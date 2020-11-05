@@ -1,0 +1,2 @@
+const teacher = "老王";
+console.log(teacher);
