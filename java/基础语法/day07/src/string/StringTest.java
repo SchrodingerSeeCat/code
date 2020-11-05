@@ -37,5 +37,9 @@ public class StringTest {
         System.out.println(s5 == s7); // false
         System.out.println(s6 == s7); // false
 
+        // 返回值得到的s8使用常量池中已经存在的"helloworld"
+        String s8 = s5.intern();
+        System.out.println(s3 == s8); //true
     }
+
 }

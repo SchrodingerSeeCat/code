@@ -1,7 +1,7 @@
 node_modules/
 
 out/
-.idea/
+
 __pycache__/
 build/
 dist/

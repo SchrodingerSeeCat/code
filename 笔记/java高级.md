@@ -751,7 +751,7 @@ class Number implements Runnable{
       System.out.println(str1 == str2); // false
   }
   ```
-
+  
 
 **String对象的创建**
 
@@ -766,6 +766,8 @@ public static void test2(){
 ```
 
 **String不同的拼接方式**
+
+常量与常量的拼接结果在常量池中。且常量池中不会存在相同内容的常量
 
 ```java
 public static void test3(){
@@ -787,4 +789,104 @@ public static void test3(){
     System.out.println(s6 == s7); // false
 }
 ```
+
+![image-20201105165311825](./java高级.assets/image-20201105165311825.png)
+
+返回值得到的s8使用常量池中已经存在的"helloworld"
+
+```java
+String s8 = s5.intern();
+System.out.println(s3 == s8); //true
+```
+
+**String常用方法**
+
+- 返回字符串长度`int length()`
+
+  ```java
+  public static void main(String[] args){
+  	String str = "Hello ";
+      String str2 = "world";
+      String str3 = "hello ";
+  	System.out.println(str.length()); // 6
+  }
+  ```
+
+- 返回指定索引处的字符`char charAt(int index)`
+
+  ```java
+  System.out.println(str.charAt(1)); // e
+  ```
+
+- 判断是否是空字符串`boolean isEmpty()`
+
+  ```java
+  System.out.println(str.isEmpty()); // false
+  ```
+
+- 使用默认语言环境，将`String`中的所有字符转换为小写`String toLowerCase()`
+
+  ```java
+  System.out.println(str.toLowerCase()); // hello
+  ```
+
+- 使用默认语言环境，将`String`中所有的字符转换为大写`String toUpperCase()`
+
+  ```java
+  System.out.println(str.toUpperCase()); // HELLO
+  ```
+
+- 返回字符串的副本，忽略前导空白和尾部空白`String trim()`
+
+  ```java
+  System.out.println(str.trim()); // hello
+  ```
+
+- 比较字符串的内容是否相同`boolean equals(Object obj)`
+
+  ```java
+  System.out.println(str.equals(str2)); // false
+  ```
+
+- 与`equals`方法类似，忽略大小写`boolean equalsIgnoreCase(String anotherString)`
+
+  ```java
+  System.out.println(str.equalsIgnoreCase(str3)); // true
+  ```
+
+- 将指定字符连接到此字符串的结尾。等价于"+"`String concat(String str)`
+
+  ```java
+  System.out.println(str.concat(str2)); // Hello world
+  ```
+
+- 比较两个字符串的大小`int compareTo(String anotherString)`
+
+  ```java
+  System.out.println(str.compareTo(str2)); // -47
+  ```
+
+- 返回一个新的字符串，它是此字符串从`beginIndex`开始截取的子串`String substring(int beginIndex)`
+
+  ```java
+  System.out.println(str.substring(2)); // llo 
+  ```
+
+- 返回一个新的字符串，它是此字符串从`beginIndex`开始到`endIndex`(不包括)结束`String substring(int beginIndex, int endIndex)`
+
+  ```java
+  System.out.println(str.substring(1, 3)); // el
+  ```
+
+- 判断此字符串是不是以指定字符串结束`boolean endsWith(String suffix)`
+
+  ```java
+  System.out.println(str.endsWith(" ")); // true
+  ```
+
+- 判断此字符串是不是以指定字符串开始`boolean startsWith(String prefix)`
+
+  ```java
+  System.out.println(str.startsWith("He")); // true
+  ```
 
