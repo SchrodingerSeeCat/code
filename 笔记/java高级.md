@@ -889,4 +889,595 @@ System.out.println(s3 == s8); //true
   ```java
   System.out.println(str.startsWith("He")); // true
   ```
+  
+- 判断字符串是否包含另外一个字符串`boolean contains(String str)`
+
+  ```java
+  System.out.println(str.startsWith("He")); // true
+  ```
+
+**String和其它结构的转换**
+
+1. 与包装类的转换
+
+   `String` --> 基本数据类型，包装类：调用`parseXxx(str)`
+
+   ```java
+   @Test
+   public void test1() {
+       String str = "123";
+       int num = Integer.parseInt(str);
+       System.out.println(num);
+   }
+   ```
+
+   基本数据类型 --> `String`
+
+   ```java
+   @Test
+   public void test2(){
+       // 基本数据类型转String
+       int num = 123;
+       String str1 = String.valueOf(num);
+       String str2 = num + "";
+   
+       System.out.println(str1);
+       System.out.println(str2);
+   }                                                                
+   ```
+
+2. 与`char[]`之间的转换
+
+   `String` --> `char[]`
+
+   ```java
+   @Test
+   public void test3(){
+       String str1 = "abc123";
+       char[] charArray = str1.toCharArray();
+       for(int i = 0; i < charArray.length; i++){
+       System.out.print(charArray[i]);
+       }
+   }
+   ```
+
+   `char[]` --> `String`
+
+   ```java
+   @Test
+   public void test4(){
+       char[] charArray = {'1', 'a', 'c'};
+       String str = new String(charArray);
+       System.out.println(str);
+   }
+   ```
+
+3. 与`byte[]`之间的转换
+
+   `String` --> `byte[]`
+
+   ```java
+   @Test
+   public void test5(){
+       String str = "abc123";
+       byte[] bytes = str.getBytes();
+       System.out.println(Arrays.toString(bytes));
+   }
+   ```
+
+   `byte[]` --> `String`
+
+   ```java
+   @Test
+   public void test6(){
+       byte[] bytes = {97, 98, 99, 49, 50, 51};
+       String str = new String(bytes);
+       System.out.println(str);
+   }
+   ```
+
+#### 2.1.2 StringBuffer 和 StringBuilder
+
+**三者的异同**
+
+1. `StringBuffer`与`StringBuilder`都是可变的字符序列，`String`是不可变的字符序列
+2. `StringBuffer`是线程安全的：效率低
+3. `StringBuilder`：线程不安全，效率高
+4. 底层都是使用`char[]`存储
+5. `StringBuffer`和`StringBuilder`默认容量为`16`，对于扩容，会扩容为原来容量的`2倍加2`
+
+**常用方法StringBuffer和StringBuilder相同**
+
+```java
+public static void main(String[] args) {
+	StringBuffer str = new StringBuffer();
+}
+```
+
+- 字符串的拼接`StringBuffer append(xxx)`
+
+  ```java
+  str.append("a");
+  str.append(1);
+  System.out.println(str); // Helloa1
+  ```
+
+- 删除指定位置的内容`StringBuffer delete(int start, int end)`
+
+  ```java
+  str.delete(4, 5);
+  System.out.println(str); // Hell
+  ```
+
+- 替换字符串`StringBuffer replace(int start, int end, String str)`
+
+  ```java
+  str.replace(2, 4, "qwe");
+  System.out.println(str); // heqweo
+  ```
+
+- 在指定位置插入`StringBuffer insert(int offset, xxx)`
+
+  ```java
+  str.insert(1, 123);
+  System.out.println(str); // H123ello
+  ```
+
+- 反转当前字符序列`StringBuffer reverse()`
+
+  ```java
+  str.reverse();
+  System.out.println(str); // olleH
+  ```
+
+- 设置某索引位置的字符`void setCharAt(int n, char ch)`
+
+  ```java
+  str.setCharAt(2, 't');
+  System.out.println(str); // Hetlo
+  ```
+
+### 2.2 日期和时间
+
+#### 2.2.1 JDK8之前
+
+1. `java.lang.System`类
+
+   `System`类提供的`public static long currentTimeMillis()`用来返回当前时间与`1970年1月1日0时0分0秒`之间的毫秒时间差(时间戳)
+
+   ```java
+   @Test
+   public void test(){
+       long time = System.currentTimeMillis();
+       System.out.println(time); // 1604722875525
+   }
+   ```
+
+2. `Date`类
+
+   `java.util.Date`类
+
+   ```java
+   @Test
+   public void test(){
+       Date date = new Date();
+       System.out.println(date); // Sat Nov 07 12:26:19 CST 2020
+       System.out.println(date.getTime()); // 1604723179115 时间戳
+   }
+   ```
+
+   自己构造时间对象
+
+   ```java
+   @Test
+   public void test(){
+       Date date = new Date(1604723179115L);
+       System.out.println(date); // Sat Nov 07 12:26:19 CST 2020
+   }@Test
+   public void test7(){
+       Calendar calendar = Calendar.getInstance();
+       int day = calendar.get(Calendar.DAY_OF_MONTH);
+       System.out.println("这个月的第 " + day + " 天"); // 这个月的第 7 天
+   
+       calendar.set(Calendar.DAY_OF_MONTH, 22);
+       day = calendar.get(Calendar.DAY_OF_MONTH);
+       System.out.println("今天更改为 " + day + " 天"); // 今天更改为 22 天
+   
+       calendar.add(Calendar.DAY_OF_MONTH, 3); // 可以为负
+       day = calendar.get(Calendar.DAY_OF_MONTH);
+       System.out.println("今天加 " + day + " 天"); // 今天加 25 天
+   
+       Date date = calendar.getTime(); // 获取时间对象
+       System.out.println(date); // Wed Nov 25 16:07:04 CST 2020
+   
+       Date date1 = new Date();
+       calendar.setTime(date1);
+   }
+   ```
+
+   `java.sql.Date`类是`java.util.Date`的子类，对应数据库中的日期
+
+   ```java
+    @Test
+    public void test(){
+        java.sql.Date date = new java.sql.Date(1604723409503L);
+        System.out.println(date); // 2020-11-07
+    }
+   ```
+
+   `util.Date` --> `sql.Date`
+
+   ```java
+   @Test
+   public void test(){
+       java.util.Date date = new java.util.Date();
+       java.sql.Date date2 = new java.sql.Date(date.getTime());   
+   }
+   ```
+
+3. `java.text.SimpleDateFormat`类
+
+   使用默认的构造器，即使用默认的时间格式
+
+   ```java
+   @Test
+   public void test(){
+       SimpleDateFormat sdf = new SimpleDateFormat();
+   
+       // 格式化
+       Date date = new Date();
+       String format = sdf.format(date);
+       System.out.println(format); // 11/7/20, 3:21 PM
+       
+       // 解析
+       String str = "11/7/20, 3:21 PM";
+       try {
+           Date date1 = sdf.parse(str);
+           System.out.println(date1); // Sat Nov 07 15:21:00 CST 2020
+       } catch (ParseException e) {
+           e.printStackTrace();
+       }
+   }
+   ```
+
+   使用自定义的时间格式
+
+   ```java
+   @Test
+   public void test(){
+       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+       
+       // 格式化
+       String format = sdf.format(new Date());
+       System.out.println(format); // 2020-11-07 03:29:49
+       
+       // 解析
+       try {
+           Date date = sdf.parse("2020-11-07 03:29:49");
+           System.out.println(date); // Sat Nov 07 03:29:49 CST 2020
+       } catch (ParseException e) {
+           e.printStackTrace();
+       }
+   }
+   ```
+
+4. `java.util.Calendar`日历类
+
+   `Calendar`是一个抽象基类，主要用于完成日期字段之间的相互操作的功能
+
+   获取`Calendar`实例的方法：使用`Calendar.getInstance()`方法，调用它的子类`GregorianCalendar`的构造器
+
+   ```java
+   @Test
+   public void test7(){
+       Calendar calendar = Calendar.getInstance();
+       int day = calendar.get(Calendar.DAY_OF_MONTH);
+       System.out.println("这个月的第 " + day + " 天"); // 这个月的第 7 天
+   
+       calendar.set(Calendar.DAY_OF_MONTH, 22);
+       day = calendar.get(Calendar.DAY_OF_MONTH);
+       System.out.println("今天更改为 " + day + " 天"); // 今天更改为 22 天
+   
+       calendar.add(Calendar.DAY_OF_MONTH, 3); // 可以为负
+       day = calendar.get(Calendar.DAY_OF_MONTH);
+       System.out.println("今天加 " + day + " 天"); // 今天加 25 天
+   
+       Date date = calendar.getTime(); // 获取时间对象
+       System.out.println(date); // Wed Nov 25 16:07:04 CST 2020
+   
+       Date date1 = new Date();
+       calendar.setTime(date1); // 重新设置日期
+   }
+   ```
+
+#### 2.2.2 JDK8的日期时间
+
+- `java.time`：包含值对象的基础包
+- `java.time.chrono`：提供对不同的日历系统的访问
+- `java.time.format`：格式化和解析时间和日期
+- `java.time.temporal`：包括底层框架和扩展特性
+- `java.time.zone`：包含时区支持的类
+
+对于绝大多数的开发者来说通常只能用到`java.time`和`java.time.format`
+
+1. LocalDate LocalTime LocalDateTime
+
+   ```java
+   @Test
+   public void test1(){
+       LocalDate localDate = LocalDate.now();
+       LocalTime localTime = LocalTime.now();
+       LocalDateTime localDateTime = LocalDateTime.now();
+   
+       System.out.println(localDate); // 2020-11-07
+       System.out.println(localTime); // 16:27:27.916185
+       System.out.println(localDateTime); // 2020-11-07T16:27:27.916208
+   }
+   ```
+
+   **`of() `设置指定的年，月，日，时，分，秒。没有偏移量**
+
+   ```java
+   LocalDateTime localDateTime = LocalDateTime.of(2020, 11, 7, 16, 30);
+   System.out.println(localDateTime); // 2020-11-07T16:30
+   ```
+
+   **getXxx 获取年，月，日，时，分，秒**
+
+   ```java
+   LocalDateTime localDateTime = LocalDateTime.now();
+   System.out.println(localDateTime.getDayOfMonth()); // 7
+   
+   System.out.println(localDateTime1.getMonth()); // NOVEMBER
+   System.out.println(localDateTime1.getMonthValue()); // 11
+   ```
+
+   **withXxx设置日期时间**
+
+   ```java
+   LocalDateTime localDateTime = LocalDateTime.now();
+   LocalDateTime localDateTime1 = localDateTime.withDayOfMonth(22);
+   System.out.println(localDateTime1); // 2020-11-22T16:30
+   ```
+
+   **plusXxx添加指定的日期时间, minusXxx减去指定的时间日期**
+
+   ```java
+   LocalDateTime localDateTime = LocalDateTime.now();
+   System.out.println(localDateTime); // 2020-11-07T16:44:09.883564
+   LocalDateTime localDateTime1 =  localDateTime.plusDays(3);
+   System.out.println(localDateTime1); // 2020-11-10T16:44:09.883564
+   ```
+
+2. 瞬时 instant
+
+   `instant`：时间线上的一个瞬时点。这可能被用来记录应用程序中的时间时间戳
+
+   ```java
+   @Test
+   public void test(){
+       Instant instant = Instant.now(); // 获取的是本初子午线的时间
+       System.out.println(instant); // 2020-11-07T08:50:44.950285Z
+       
+       OffsetDateTime offsetDateTime = instant.atOffset(ZoneOffset.ofHours(8));
+       System.out.println(offsetDateTime); // 2020-11-07T16:54:37.527700+08:00 东八区时间
+       
+       // 获取对应的时间戳
+       long l = instant.toEpochMilli();
+       System.out.println(l); // 1604739444190
+       
+       // 解析
+       Instant instant1 = Instant.ofEpochMilli(1604739444190L);
+       System.out.println(instant1); // 2020-11-07T08:57:24.190Z
+   }
+   ```
+
+3. `java.time.format.DateTimeFormatter`类，用来格式化或解析日期、时间，类似于`SimpleDateFormat`
+
+   预定义的标准格式：`ISO_LOCAL_DATE_TIME`，`ISO_LOCAL_DATE`，`ISO_LOCAL_TIME`
+
+   预定义方式
+
+   ```java
+   @Test
+   public void test(){
+       DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+       // 格式化
+       LocalDateTime localDateTime = LocalDateTime.now();
+       String str = formatter.format(localDateTime);
+       System.out.println(localDateTime); // 2020-11-07T19:33:55.475751
+       System.out.println(str); // 2020-11-07T19:33:55.475751
+       
+       // 解析
+       TemporalAccessor parse = formatter.parse("2020-11-07T19:33:55.475751");
+       System.out.println(parse); // {},ISO resolved to 2020-11-07T19:33:55.475751
+   }
+   ```
+
+   本地方式`ofLocalizedDateTime()/ofLocalizedDate`，`FormatStyle.LONG/FormatStyle.MEDIUM/FormatStyle.SHORT`：适用于`LocalDateTime`
+
+   ```java
+   @Test
+   public void test(){
+       // 本地化相关的格式
+       LocalDateTime localDateTime = LocalDateTime.now();
+       DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+       String str = formatter.format(localDateTime);
+       System.out.println(str); // 11/7/20, 7:52 PM
+   }
+   ```
+
+   自定义方式`ofPattern("yyyy-MM-dd hh:mm:ss")`
+
+   ```java
+   @Test
+   public void test(){
+       // 自定义相关的格式
+       LocalDateTime localDateTime = LocalDateTime.now();
+       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+       String str = formatter.format(localDateTime);
+       System.out.println(str); // 2020-11-07 08:03:00
+       
+       // 解析
+       TemporalAccessor date =  formatter.parse("2020-11-07 08:03:00");
+       System.out.println(date);
+       // {NanoOfSecond=0, SecondOfMinute=0, MilliOfSecond=0, HourOfAmPm=8, MinuteOfHour=3, MicroOfSecond=0},ISO resolved to 2020-11-07
+   }
+   ```
+
+4. 其它API
+
+   - `Zoneld`：该类中包含了所有的时区信息，一个时区的`ID`，如`Europe/Paris`
+- `ZonedDateTime`：一个在`ISO-8601`日历系统时区的日期时间，如`2007-12-03T10:15:30+01:00 Europe/Pairs`其中每个时区都对应着`ID`，地区`ID`都为{区域}/{城市}的格式 `Asia/Shanghai`
+   - `Clock`：使用时区提供对当前即时、日期和时间的访问时钟
+- 持续时间：`Duration`，用于计算两个"时间"间隔
+   - 日期间隔：`Period`，用于计算两个"日期"间隔
+- `TemporalAdjuster`：时间校正器。有时我们可能需要获取例如：将日期调整到"下一个工作日"等操作
+   - `TemporalAdjusters`：该类通过静态方法`firstDayOfXxx()/lastDayOfXxx/nextXxx()`提供了大量的常用`TemporalAdjuster`的实现
+
+### 2.3 java比较器
+
+`java`实现对象排序的方式有两种：自然排序`java.lang.Comparable`，定制排序`java.util.Comparator`
+
+#### 2.3.1 Comparable的使用
+
+1. 像`String`、包装类等实现了`Comparable`接口，重写了`compareTo`方法，给出了比较两个对象大小的方式
+
+2. `String`、包装类重写了`compareTo()`方法以后，进行了从小到大的排序
+
+3. 重写`compareTo()`的规则
+
+   如果当前对象`this`大于形参对象`obj`，则返回正整数
+
+   如果当前对象`this`小于形参对象`obj`，则返回负整数
+
+   如果当前对象`this`等于形参对象`obj`，则返回零
+
+4. 对于自定义的类，如果需要排序，我们可以让自定义类实现`Comparable`接口，重写`compareTo(obj)`方法在`compareTo(obj)`方法中指名如何排序
+
+   ```java
+   package compare;
+   
+   import org.junit.Test;
+   
+   import java.util.Arrays;
+   public class CompareTest {
+       @Test
+       public void test(){
+           Goods[] arr = new Goods[4];
+           arr[0] = new Goods("小米", 99.9);
+           arr[1] = new Goods("雷蛇", 299.9);
+           arr[2] = new Goods("HP", 19.9);
+           arr[3] = new Goods("戴尔", 199.9);
+           Arrays.sort(arr);
+           System.out.println(Arrays.toString(arr));
+           // [Goods{name='HP', price=19.9}, Goods{name='小米', price=99.9}, Goods{name='戴尔', price=199.9}, Goods{name='雷蛇', price=299.9}]
+       }
+   
+   }
+   
+   class Goods implements Comparable{
+       private String name;
+       private double price;
+       public Goods(String name, double price){
+           this.name = name;
+           this.price = price;
+       }
+       @Override
+       public String toString() {
+           return "Goods{" +
+                   "name='" + name + '\'' +
+                   ", price=" + price +
+                   '}';
+       }
+   
+       @Override
+   	public int compareTo(Object o) {
+           if (o instanceof Goods) {
+               Goods goods = (Goods)o;
+               return (int)(this.price - goods.price);
+           }
+           throw new ClassCastException("类型错误");
+       }
+   }
+   ```
+
+#### 2.3.2 定制排序 Comparator
+
+1. 当元素的类型没有实现`java.lang.Comparable`接口而又不方便修改代码，或者实现了`java.lang.Comaprable`接口的顺序不适合当前的操作，那么可以考虑使用`Comparator`的对象来排序，强行对多个对象进行整体排序的比较
+
+2. 重写`compare(Object o1, Object o2)`方法，比较`o1`和`o2`的大小：如果方法返回正整数，则表示`o1`大于`o2`；如果返回0，表示相等；返回负整数，表示`o1`小于`o2`
+
+3. 可以将`Comparator`传递给`sort`方法(如`Collections.sort`)或`Arrays.sort`，从而允许在排序顺序上事项精确控制
+
+4. 还可以使用`Comparator`来控制某些数据结构(如有序`set`或有序映射)的顺序，或者为那些没有自然顺序的对象`collection`提供排序
+
+   ```java
+   @Test
+   public void test(){
+   String[] arr = new String[]{"AA", "BB", "PP", "GG", "CC"};
+       Arrays.sort(arr, new Comparator<String>() {
+           @Override
+           public int compare(String o1, String o2) {
+               return -o1.compareTo(o2);
+           }
+       });
+       System.out.println(Arrays.toString(arr));
+       // [PP, GG, CC, BB, AA]
+   }
+   ```
+
+### 2.4 System类
+
+1. `System`类代表系统类，系统级的很多属性和控制方法都放置在该类的内部该类位于`java.lang`包
+
+2. 由于该类的构造器是`private`的，所以无法创建该类的对象，也就是无法实现化该类。其内部成员变量和成员方法都是`static`的，所以也可以很方便的进行调用
+
+3. 成员变量：`System`类内部包含`in`、`out`、`err`三个成员变量，分别代表标准输入流`键盘输入`，标准输出流`显示器`和标准错误输出流`显示器`
+
+4. 成员方法：
+
+   `native long currentTimeMillis()`：返回当前的计算机时间，时间的表达格式为当前计算机时间和`GMT`时间(格林威治时间)`1970年1月1日0时0分0秒`所差的毫秒数
+
+   `void exit(int status)`：该方法的作用是退出程序。其中`status`的值为`0`代表正常退出，非零代表异常退出。使用该方法可以在图形界面编程中实现程序的退出功能
+
+   `void gc()`：该方法的作用是请求系统进行垃圾回收，至于系统是否立刻回收，则取决于系统中垃圾回收算法的实现以及系统执行时的情况
+
+   `String getProperty(String key)`：该方法的作用是获得系统中属性名为`key`的属性对应的值。系统中常见的属性名及属性的作用如下
+
+   | 属性名       | 属性说明           |
+   | ------------ | ------------------ |
+   | java.version | java运行时环境版本 |
+   | java.home    | java安装目录       |
+   | os.name      | 操作系统的名称     |
+   | os.version   | 操作系统的版本     |
+   | user.name    | 用户的账户名称     |
+   | user.home    | 用户的主目录       |
+   | user.dir     | 用户当前的工作目录 |
+
+### 2.5 Math
+
+1. `java.lang.Math`提供了一系列静态方法用于科学计算。其方法的参数和返回值类型一般为`double`型
+2. `abs`：绝对值
+3. `acos, asin, atan, cos, sin, tan`：三角函数
+4. `sqrt`：平方根
+5. `pow(double a, double b)`：a的b次幂
+6. `log`：自然对数
+7. `exp`：e为底指数
+8. `max(double a, double b)`：最大值
+9. `min(double a, double b)`：最小值
+10. `random`：返回0.0到1.0的随机数
+11. `long round(double a)`：`double`型数据a转换为`long`型(四舍五入)
+12. `toDegrees(double angrad)`：弧度 --> 角度
+13. `toRadians(double angdeg)`：角度 --> 弧度
+
+### 2.6 BigInteger与BigDecimal
+
+**Biginteger**
+
+1. `Integer`类作为`int`的包转类，能存储的最大整数为`2^31-1`，`Long`类也是有限的，最大为`2^63-1`。如果要表示再大的整数，不管是基本数据类型还是他们的包装类都无能为力，更不用说进行计算了
+2. `java.math`包的`BigInteger`可以表示不可变的任意精度的整数。`BigInteger`提供所有`java`的基本数据整数操作符的对应武，并提供`java.lang.Math`的所有相关方法。另外，`BigInteger`还提供以下运算：模算术、GCD计算、质数测试、素数生成、位操作以及一些其它操作
+3. 构造器：`BigInteger(String val)`：根据字符串构建`BigInteger`对象
+
+**Bigdecimal**`浮点型
 

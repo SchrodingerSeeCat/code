@@ -49,5 +49,8 @@ public class StringMethodTest {
 
         // 判断此字符串是否以指定前缀开始
         System.out.println(str.startsWith("He"));
+
+        // 判断某字符串是否包含另外一个字符串
+        System.out.println(str.contains("ell"));
     }
 }
