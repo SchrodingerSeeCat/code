@@ -218,3 +218,100 @@
 
 1. 分析长难句的第一步就是找这句话的当中的动词(谓语)，从而找到一句话的主谓宾
 2. 如果一句话当中找到多个动词，就确定主句的谓语动词(前面没有引导词的那个动词就是主句的谓语动词)
+
+## 2. 并列句
+
+### 2.1 什么并列句？
+
+就是用连词连接两个句子
+
+```
+I loving you, you love that dog.
+
+I love you, but you love that dog.
+```
+
+### 2.2 常见的并列连词
+
+1. 平行
+
+   ```English
+   and, not only...but also...
+   
+   // 同样的
+   similary, equally, likewise, at the same time, int the meanwhile
+   ```
+
+2. 转折
+
+   ```English
+   but, yet, while, whereas
+   
+   however, nevertheless, on the contrary, conversely, unexpectedly, unfortunately, by contrast
+   ```
+
+3. 选择
+
+   ```English
+   or, wheter...or...
+   
+   alternatively
+   ```
+
+4. 因果
+
+   ```English
+   for, so
+   
+   therefore, thus, consequently, a a result
+   ```
+
+5. 递进
+
+   ```English
+   then
+   
+   besides, furthermore, moreover, additionally, subsequently(接下来), in addition
+   ```
+
+### 2.3 连词与副词、介词短语的区别
+
+使用连词时，可以加逗号，也可以不加，而其它的逻辑词的前面要么用句号，要么用连词`and`
+
+### 2.4 并列句的考点分析
+
+1. 只要写作的上下句有逻辑关系，就一定要用逻辑关系词(连词、副词、介词和介词短语)
+
+   爱情已经不在了，但是他还在留恋过去
+
+   ```
+   Romance has evaporated. but she still misses the past.
+   
+   Romance has evaporated. on the contrary she still misses the past.
+   
+   Romance has evaporated, and on the contrary she still misses the past.
+   ```
+
+   有朋自远方来不亦乐乎
+
+   ```
+   There remain an army of companies coming from afar, and consequently, I feel more than delighted.
+   ```
+
+   都说我如水百变，但我清澈不变
+
+   ```
+   I am claimed changeable like water. By contrast, my clarity keeps consistent.
+   ```
+
+   你还记得那天吗？我没有通过四级考试，一个人在雨中哭泣，你走过来拍拍我的肩膀告诉我，人生没有重点。
+
+   ```
+   Do you still keep that day in mind? I failed to pass CET4, and as a result, I shed tears in the rain along. at the same time, you came up to me and subsequently you beat my shoulder and told me "there exists no destination in life".
+   ```
+
+2. 完型填空
+
+   只需要读懂逻辑关系词前后两句话的意思
+
+3. 

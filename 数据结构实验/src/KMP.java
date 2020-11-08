@@ -2,11 +2,10 @@ import java.util.Scanner;
 
 public class KMP {
     public static void main(String[] args) {
-//        Scanner reader = new Scanner(System.in);
-//        String mainStr = reader.next();
-//        String sonStr = reader.next();
-//        System.out.println(bf(mainStr, sonStr, 0) + 1);
-        System.out.println(kmp(0, "klaaaaaab", "aab"));
+        Scanner reader = new Scanner(System.in);
+        String mainStr = reader.next();
+        String sonStr = reader.next();
+        System.out.println(bf(mainStr, sonStr, 0) + 1);
     }
     // BFÀ„∑®
     public static int bf(String mainStr, String sonStr, int pos) {

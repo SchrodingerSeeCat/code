@@ -1200,7 +1200,7 @@ public static void main(String[] args) {
 
 对于绝大多数的开发者来说通常只能用到`java.time`和`java.time.format`
 
-1. LocalDate LocalTime LocalDateTime
+1. `LocalDate`、 `LocalTime`、 `LocalDateTime`
 
    ```java
    @Test
@@ -1249,7 +1249,7 @@ public static void main(String[] args) {
    System.out.println(localDateTime1); // 2020-11-10T16:44:09.883564
    ```
 
-2. 瞬时 instant
+2. 瞬时 `instant`
 
    `instant`：时间线上的一个瞬时点。这可能被用来记录应用程序中的时间时间戳
 
@@ -1479,5 +1479,591 @@ public static void main(String[] args) {
 2. `java.math`包的`BigInteger`可以表示不可变的任意精度的整数。`BigInteger`提供所有`java`的基本数据整数操作符的对应武，并提供`java.lang.Math`的所有相关方法。另外，`BigInteger`还提供以下运算：模算术、GCD计算、质数测试、素数生成、位操作以及一些其它操作
 3. 构造器：`BigInteger(String val)`：根据字符串构建`BigInteger`对象
 
-**Bigdecimal**`浮点型
+**Bigdecimal**与**BigInteger**相似主要用于处理浮点型的数据
+
+## 3. 枚举类&注解
+
+### 3.1 枚举类
+
+- 类的对象只有有限个，确定的。
+- 如果需要定义一组常量时，强烈建议使用枚举类
+- 如果枚举类中只有一个对象，则可以作为单例模式的实现方式
+
+#### 3.1.1 定义枚举类jdk5.0之前
+
+```java
+package enumtest;
+
+public class SeasonTest {
+    public static void main(String[] args) {
+        Season spring = Season.SPRING;
+        System.out.println(spring); // Season{seasonName='春天', seasonDesc='春暖花开'}
+    }
+}
+// 自定义枚举类
+class Season{
+    // 1. 声明Season对象的属性
+    private final String seasonName;
+    private final String seasonDesc;
+
+    // 2. 私有化的类的构造器
+    private Season(String seasonName, String seasonDesc){
+        this.seasonName = seasonName;
+        this.seasonDesc = seasonDesc;
+    }
+
+    // 3. 提供当前枚举类的多个对象
+    public static final Season SPRING = new Season("春天", "春暖花开");
+    public static final Season SUMMER = new Season("夏天", "夏日炎炎");
+    public static final Season AUTUMN = new Season("秋天", "秋高气爽");
+    public static final Season WINTER = new Season("冬天", "寒风刺骨");
+
+    // 4. 获取属性
+    public String getSeasonDesc() {
+        return seasonDesc;
+    }
+
+    public String getSeasonName() {
+        return seasonName;
+    }
+
+    // 5. toString()
+    @Override
+    public String toString() {
+        return "Season{" +
+                "seasonName='" + seasonName + '\'' +
+                ", seasonDesc='" + seasonDesc + '\'' +
+                '}';
+    }
+}
+```
+
+#### 3.1.2 定义枚举类jdk5.0之后
+
+`enum`类默认继承于`java.lang.Enum`
+
+```java
+package enumtest;
+
+public class SeasonTest {
+    public static void main(String[] args) {
+        Season spring = Season.SPRING;
+        System.out.println(spring); // SPRING
+    }
+}
+enum Season {
+
+    // 1. 提供当前枚举类的多个对象, 多个对象之间用逗号隔开末尾用分号隔开
+    SPRING("春天", "春暖花开"),
+    SUMMER("夏天", "夏日炎炎"),
+    AUTUMN("秋天", "秋高气爽"),
+    WINTER("冬天", "寒风刺骨");
+
+    // 2. 声明Season对象的属性
+    private final String seasonName;
+    private final String seasonDesc;
+
+    // 3. 私有化的类的构造器
+    private Season(String seasonName, String seasonDesc){
+        this.seasonName = seasonName;
+        this.seasonDesc = seasonDesc;
+    }
+
+    // 4. 获取属性
+    public String getSeasonDesc() {
+        return seasonDesc;
+    }
+    public String getSeasonName() {
+        return seasonName;
+    }
+}
+```
+
+枚举类实现接口，正常情况下，直接实现即可，如果想让每一个枚举类对象实现不同的功能，那每一个枚举类都需要实现接口
+
+```java
+interface Info{
+    void show();
+}
+
+enum Season implements Info{
+
+    SPRING("春天", "春暖花开"){
+        @Override
+        public void show() {
+            System.out.println("我是春天");
+        }
+    },
+    SUMMER("夏天", "夏日炎炎"){
+        @Override
+        public void show() {
+            System.out.println("我是夏天");
+        }
+    },
+    AUTUMN("秋天", "秋高气爽"){
+        @Override
+        public void show() {
+            System.out.println("我是秋天");
+        }
+    },
+    WINTER("冬天", "寒风刺骨"){
+        @Override
+        public void show() {
+            System.out.println("我是冬天");
+        }
+    };
+
+    private final String seasonName;
+    private final String seasonDesc;
+
+    private Season(String seasonName, String seasonDesc){
+        this.seasonName = seasonName;
+        this.seasonDesc = seasonDesc;
+    }
+}
+```
+
+#### 3.1.3 Enum类的主要方法
+
+- `values()`：返回枚举类型的对象数组。该方法可以用来遍历所有的枚举值
+
+  ```java
+  for(int i = 0; i < spring.values().length; i++){
+  	System.out.printf("%s ", spring.values()[i]);
+  	// SPRING SUMMER AUTUMN WINTER SPRING
+  }
+  ```
+
+- `valueOf(String str)`：把一个字符串转为对应的枚举类对象。要求字符串必须是枚举类对象的"名字",否则`IllegalArgumentException`
+
+  ```java
+  Season summer = Season.valueOf("SUMMER");
+  System.out.println(summer); // SUMMER
+  ```
+
+- `toString()`：返回当前枚举类对象常量的名称
+
+  ```java
+  System.out.println(spring.toString()); // SPRING
+  ```
+
+### 3.2 注解Annotation
+
+- 从`JDK5.0`开始，`java`增加了对元数据`MetaData`的支持，也就是`Annotation(注解)`
+- `Annotation`其实就是代码里的特殊标记，这些标记可以在编译，类加载，运行时被读取，并执行相应的处理。通过使用`Annotation`，程序员可以在不改变原有逻辑的情况下，在源文件中嵌入一些补充信息。代码分析工具、开发工具和部署工具可以通过这些补充信息进行验证或者进行部署
+- `Annotation`可以像修饰符一样被使用，可用于修饰包、类、构造器、方法、成员变量、参数、局部变量的声明，这些信息诶保存在`Annotation`的`name=value`中
+- `JPA`是基于注解的，`Spring2.5`以上都是基于注解的，`Hibernate3.x`以后也是基于注解的，`Struts2`有一部分也是基于注解趋势：`框架 = 注解 + 反射 + 设计模式`
+
+#### 3.2.1 文档注解
+
+`@author`标明开发该类模块的作者
+
+`@version`标明该类模块的版本
+
+`@see`参考转向，也就是相关主题
+
+`@since`从那个版本开始增加的
+
+`@param`对方法中参数的说明，没有参数不写。可并列多个
+
+`@return`对方法返回值的说明，如果方法的返回值类型是`void`不写
+
+`@exception`对方法可能抛出的异常进行说明，如果方法没有用`throws`显示抛出的异常就不能写其中，可并列多个
+
+#### 3.2.2 编译时的格式检查
+
+- `@Override`限定重写父类方法，该注解只能用于方法
+
+  ```java
+  class Person{
+      private String name;
+      private int age;
+  
+      @Override
+      public String toString() {
+          return "Person{" +
+                  "name='" + name + '\'' +
+                  ", age=" + age +
+                  '}';
+      }
+  }
+  ```
+
+- `@Deprecated`用于表示所修饰的元素(类、方法等) --> "已过时"。通常是因为所修饰的结构危险或存在更好的选择
+
+- `@SuppressWarnings`抑制编译器警告
+
+#### 3.2.3 跟踪代码的依赖性，实现替代配置文件功能
+
+`Servlet3.0`提供的注解,使得不需要在`web.xml`文件中进行`servlet`的部署
+
+#### 3.2.4 自定义注解
+
+- 定义新的`Annotation`类型使用`@interface`关键字
+
+  ```java
+  public @interface MyAnnotation {
+  }
+  ```
+
+- 自定义注解自动继承了`java.lang.annotation.Annotation`接口
+
+- `Annotation`的成员变量在`Annotation`定义中以无参数方法的形式声明。其中方法名和返回值定义了该成员的名字和类型。称为配置参数。类型只能是八中基本数据类型、`String`、`Class`、`enum`、`Annotation`以上所有类型的数组
+
+  ```java
+  public @interface MyAnnotation {
+      String value();
+  }
+  ```
+
+- 可以定义`Annotation`的成员变量中为其指定初始值，指定成员变量的初始值可使用`default`关键字
+
+  ```java
+  public @interface MyAnnotation {
+      String value() default "hello";
+  }
+  ```
+
+- 如果只有一个参数成员，建议使用参数名为`value`
+
+- 如果定义的注解含有配置参数，那么使用时必须指定参数值，除非它有默认值。格式是"参数名=参数值"，如果只有一个参数成员，且名称为`value`，可以省略`value=`
+
+  ```java
+  @MyAnnotation
+  class Person{
+      private String name;
+      private int age;
+  }
+  ```
+
+- 没有成员定义的`Annotation`称为标记，包含成员变量的`Annotation`称为元数据`Annotation`
+
+#### 3.2.5 元注解
+
+元`Annotation`用于修饰其它`Annotation`定义，即对现有的注解进行修饰
+
+1. `Retention`：指定所修饰的`Annotation`的声明周期：`SORCE`、`CLASS(默认行为)`、`RUNTIME`
+
+   ```java
+   @Retention(RetentionPolicy.RUNTIME)
+   public @interface MyAnnotation {
+       String value() default "hello";
+   }
+   ```
+
+2. `Target`：指名注解能够修饰的结构
+
+   ```java
+   @Target({ElementType.TYPE, ElementType.FIELD})
+   public @interface MyAnnotation {
+       String value() default "hello";
+   }
+   ```
+
+3. `Documented`：用于指定被该元`Annotation`修饰的`Annotation`类将被`javadoc`工具提取成文档。默认情况下，`javadoc`不包括注解：定义为`Documented`的注解必须设置`Retention`值为`RUNTIME`
+
+   ```java
+   @Retention(RetentionPolicy.RUNTIME)
+   @Documented
+   public @interface MyAnnotation {
+       String value() default "hello";
+   }
+   ```
+
+4. `Inherited`：被它修饰的`Annotation`将具有继承性。如果某个类使用了被`Inherited`修饰的`Annotation`则其子类将自动具有该注解
+
+   ```java
+   @Inherited
+   public @interface MyAnnotation {
+       String value() default "hello";
+   }
+   ```
+
+#### 3.2.6 通过反射获取注解信息
+
+```java
+import org.junit.Test;
+import java.lang.annotation.Annotation;
+
+public class AnnotationTest {
+    @Test
+    public void test(){
+        Class<Student> studentClass = Student.class;
+        Annotation[] annotations = studentClass.getAnnotations();
+        for(int i = 0; i < annotations.length; i++){
+            System.out.println(annotations[i]); // MyAnnotation(value="hello")
+        }
+    }
+}
+@MyAnnotation
+class Person{
+
+}
+class Student extends Person{
+
+}
+```
+
+#### 3.2.7 JDK8注解新特性
+
+可重复注解
+
+```java
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE, ElementType.FIELD})
+public @interface MyAnnotations {
+    MyAnnotation[] value();
+}
+```
+
+
+
+```java
+import java.lang.annotation.*;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE, ElementType.FIELD})
+@Repeatable(MyAnnotations.class)
+public @interface MyAnnotation {
+    String value() default "hello";
+}
+```
+
+
+
+```java
+@MyAnnotation(value = "hello")
+@MyAnnotation(value = "world")
+class Person{
+
+}
+```
+
+#### 3.2.8 类型注解
+
+`ElementType.TYPE_PARAMETER`：表示该注解能写在类型变量的声明语句中
+
+```java
+import java.lang.annotation.*;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE_PARAMETER})
+@Repeatable(MyAnnotations.class)
+public @interface MyAnnotation {
+    String value() default "hello";
+}
+```
+
+```java
+class Animal<@MyAnnotation T> {
+    
+}
+```
+
+`ElementType.TYPE_USE`：表示该注解能写在使用类型的任何语句中
+
+```java
+import java.lang.annotation.*;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE_USE})
+@Repeatable(MyAnnotations.class)
+public @interface MyAnnotation {
+    String value() default "hello";
+}
+```
+
+```java
+@Test
+public void test(){
+    ArrayList<@MyAnnotation String> list = new ArrayList<>();
+    int num = (@MyAnnotation int)10L;
+}
+```
+
+## 4. java 集合
+
+### 4.1 集合框架的概述
+
+集合，数组都是对多个数据进行存储操作的结构，简称`java`容器
+
+`java`集合可以分为`Collection`和`Map`两种体系
+
+- `Collection`接口：单列数据，定义了存储一组对象的方法的集合
+
+  `List接口`：元素有序、可重复的集合。实现类：`ArrayList`、`LinkedList`、`Vector`
+
+  `Set接口`：元素无序、不可重复的集合。实现类：`HashSet`、`LinkedHashSet`、`TreeSet`
+
+- `Map接口`：双列集合，保存具有映射关系`key-value`对的集合。实现类：`HashMap`、`LinkedHashMap`、`TreeMap`、`Hashtable`、`Properties`
+
+### 4.2 Collection
+
+#### 4.2.1 Collection常用方法
+
+创建`Collection`
+
+```java
+@Test
+public void test(){
+    Collection<Object> coll = new ArrayList<>();
+}
+```
+
+- 添加元素`add(Object obj)`
+
+  ```java
+  coll.add("AA");
+  coll.add(123);
+  coll.add(LocalDateTime.now());
+  ```
+
+- 添加一个`Collection`对象
+
+  ```
+  coll.add(Collection coll);
+  ```
+
+- 获取集合的大小`int size()`
+
+  ```java
+  System.out.println(coll.size()); // 4
+  ```
+
+- 打印`toString()`
+
+  ```java
+  System.out.println(coll);
+  // [AA, BB, 123, 2020-11-08T14:53:34.321726]
+  ```
+
+- 判断当前集合是否为空`boolean isEmpty()`
+
+  ```java
+  System.out.println(coll.isEmpty()); // false
+  ```
+
+- 清空集合元素`void clear()`
+
+  ```java
+  coll.clear();
+  System.out.println(coll); // []
+  ```
+
+- 判断当前集合中是否包含obj `boolean contains(Object obj)`，`boolean containsAll(Collection coll)`判断`coll`所有的元素是否在当前对象中
+
+  ```java
+  coll.add(123);
+  System.out.println(coll.contains(123)); // true
+  // 如果是引用数据类型默认调用equals方法
+  ```
+
+- 移出某个元素`boolean remove(Object obj)`，返回是否移出成功。`removeAll(Collection coll)`，移出`coll`中的所有元素 --> 差集
+
+- `retainAll(Object obj)`求并集
+
+- `equals(Object obj)`判断两个集合是否相同
+
+- 计算集合的哈希值
+
+  ```java
+  System.out.println(coll.hashCode()); // 493567911
+  ```
+
+- 集合转换为数组
+
+  ```java
+  Object[] arr = coll.toArray();
+  for(int i = 0; i < arr.length; i++){
+  	System.out.print(arr[i] + " "); 
+      // AA BB 123 2020-11-08T18:51:30.305080
+  }
+  ```
+
+- 数组转换为集合
+
+  ```java
+  List<String> list =  Arrays.asList(new String[]{"QQ", "UU", "中国"});
+  ```
+
+#### 4.2.2 迭代器
+
+- `Iterator`对象称为迭代器(设计模式的一种)，主要用于遍历`Collection`集合中的元素。
+
+- `GOF`给迭代器模式的定义为：提供一种方法访问一个容器`container`对象中各个元素，而又不暴露该对象的内部细节
+
+- `Collection`接口继承了`java.lang.Iterable`接口，改接口有一个`iterator()`方法，那么所有实现了`Collection`接口的集合类都有一个`iterator()`方法，用以返回一个实现了`iterator`接口的对象
+
+- `iterator`仅用于遍历集合，`iterator`本身并不提供承装对象的能力，如果需要创建`iterator`对象，则必须有一个被迭代的集合
+
+- 集合对象每次调用`iterator()`方法都得到一个全新的迭代器对象，默认游标都在集合的第一个对象之前
+
+- `hasNext()`判断是否还有下一个元素，`next()`获取下一个元素，`remove()`移出当前元素
+
+  ```java
+  package collection;
+  
+  import org.junit.Test;
+  
+  import java.util.ArrayList;
+  import java.util.Collection;
+  import java.util.Iterator;
+  
+  public class IteratorTest {
+      @Test
+      public void test(){
+          Collection<Object> coll = new ArrayList<>();
+          coll.add("qwer");
+          coll.add(123);
+          coll.add(false);
+  
+          Iterator iterator = coll.iterator();
+          while(iterator.hasNext()) {
+              System.out.println(iterator.next());
+              	// qwer
+  				// 123
+  				// false
+          }
+      }
+  }
+  ```
+
+#### 4.2.3 foreach
+
+- `java5.0`提供了`foreach`循环迭代访问`Collection`和数组
+
+- 遍历操作不需获取`Collection`或数组的长度，无需使用索引访问元素
+
+- 遍历集合的底层调用`iterator`完成操作
+
+  ```java
+  @Test
+  public void test(){
+  	Collection<Object> coll = new ArrayList<>();
+      coll.add(123);
+      coll.add("ggghh");
+      coll.add(LocalDateTime.now());
+  
+      for(Object value: coll) {
+      	System.out.println(value);
+      }
+  }
+  ```
+
+#### 4.2.4 子接口List
+
+- 鉴于`java`中数组用来存储数据的局限性，我们通常使用`List`替代数组
+
+- `List`有三个实现类 `ArrayList`，`LinkedList`、`vector`
+
+  `ArrayList`：是`List`的主要实现类，线程不安全，底层使用`Object`数组存储
+
+  `vector`：线程安全底，层使用`Object`数组存储
+
+  `LinkedList`：底层使用双向链表实现
 
