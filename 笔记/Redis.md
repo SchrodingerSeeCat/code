@@ -1,22 +1,6 @@
 # Redis
 
-[1. Nosql概述](#1. Nosql概述)
-
-​	[1.1 单机`MySQL`的年代](#1.1 单机`MySQL`的年代)
-
-​	[1.2 Memcached(缓存)+MySQL+垂直拆分](#1.2 Memcached(缓存)+MySQL+垂直拆分)
-
-​	[1.3 分库分表+水平拆分+MySQL集群](#1.3 分库分表+水平拆分+MySQL集群)
-
-​	[1.4 为什么要用NoSQL](#1.4 为什么要用NoSQL)
-
-​	[1.5 什么是NoSQL](#1.5 什么是NoSQL)
-
-​	[1.6 NoSQL的四大分类](#1.6 NoSQL的四大分类)
-
-[2. Redis 入门](#2. Redis 入门)
-
-​	[2.1 Redis概述](#2.1 Redis概述)
+[TOC]
 
 ## 1. Nosql概述
 
@@ -156,23 +140,81 @@ cache --> 集群3
   /usr/local/bin
   ```
 
-### 2.2 基本命令
+### 2.2 基础知识
 
-启动
+#### 2.2.1 基本命令
 
-```
-redis-server redis.conf
-```
+- 启动
 
-连接
+  ```
+  redis-server
+  ```
 
-```
-redis-cli -p 6379
-```
+- 连接
 
-关闭服务
+  ```
+  redis-cli -p 6379
+  ```
 
-```
-shutdown
-```
+- 关闭服务
+
+  ```
+  shutdown
+  ```
+
+- `redis`默认有16个数据库，默认使用第0个，使用`select`切换数据库
+
+  ```bash
+  select index
+  ```
+
+- 查看数据库大小
+
+  ```bash
+  dbsize
+  
+  # (integer) 0
+  ```
+
+- 插入一条数据
+
+  ```
+  set country China
+  ```
+
+- 获取
+
+  ```bash
+  get country
+  
+  # "China"
+  ```
+
+- 查看数据库的所有`key`
+
+  ```bash
+  keys *
+  
+  # 1) "country"
+  ```
+
+- 清空数据库
+
+  ```bash
+  flushdb # 清空当前数据库
+  
+  flushall # 清空所有数据库
+  ```
+
+#### 2.2.2 Redis是单线程的
+
+- `Redis`是基于内存操作的，`CPU`不是`Redis`性能瓶颈，`Redis`的瓶颈是根据机器的内存和网络带宽。
+- `Redi`是`C`语言写的，官方提供的数据为`100000+`的QPS，完全不比同样使用`key-value`的`Memecache`差
+- `redis`是将所有的数据都放在内存中的，所以说使用单线程去操作效率就是最高的，多线程(`CPU`上下文的切换，会消耗过多的资源)
+
+## 3. 五大数据类型
+
+
+
+
 

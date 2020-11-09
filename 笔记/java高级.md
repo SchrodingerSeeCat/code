@@ -2057,13 +2057,303 @@ public void test(){
 
 #### 4.2.4 子接口List
 
+**List概述**
+
 - 鉴于`java`中数组用来存储数据的局限性，我们通常使用`List`替代数组
 
 - `List`有三个实现类 `ArrayList`，`LinkedList`、`vector`
 
   `ArrayList`：是`List`的主要实现类，线程不安全，底层使用`Object`数组存储
 
-  `vector`：线程安全底，层使用`Object`数组存储
+  `vector`：线程安全，层使用`Object`数组存储，不推荐使用
 
   `LinkedList`：底层使用双向链表实现
+
+**List接口方法**
+
+```java
+@Test
+public void test(){
+    ArrayList<Object> list = new ArrayList();
+    list.add(123);
+    list.add("ert");
+}
+```
+
+- `void add(int index, Object ele)`：在`index`位置插入`ele`元素
+
+  ```java
+  list.add(1, LocalDateTime.now());
+  System.out.println(list);
+  // [123, 2020-11-09T12:19:38.689714, ert]
+  ```
+
+- `boolean addAll(int index, Collection eles)`：从`index`位置开始将`eles`中的所有元素添加进来
+
+  ```java
+  List<Object> tempList = Arrays.asList(1, 2, 3);
+  list.addAll(1, tempList);
+  System.out.println(list);
+  // [123, 1, 2, 3, ert]
+  ```
+
+- `E get(int index)`：获取指定`index`位置的元素
+
+  ```java
+  System.out.println(list.get(1));
+  // ert
+  ```
+
+- `int indexOf(Object obj)`：返回`obj`在集合中首次出现的位置，没有则返回`-1`
+
+  ```java
+  System.out.println(list.indexOf("ert"));
+  // 1
+  ```
+
+- `int lastIndexOf(Object obj)`：返回`obj`在当前集合中末次出现的位置
+
+- `E remove(int index)`：移除指定`index`位置的元素，并返回此元素，
+
+  ```java
+  list.remove(1);
+  System.out.println(list);
+  // [123]
+  ```
+
+- `E set(int index, Object ele)`：设置指定`index`位置的元素为`ele`
+
+  ```java
+  list.set(0, LocalDateTime.now());
+  System.out.println(list);
+  // [2020-11-09T12:29:57.484097, ert]
+  ```
+
+- `list subList(int fromIndex, int toIndex)`：返回从`fromIndex`到`toIndex`位置的子集合
+
+- 自定义的类需要重写`equals()`方法，方便`remove`、`set`等方法的使用
+
+#### 4.2.5 子接口set
+
+- `Set`接口是`Collection`的子接口，`Set`没有提供额外的方法
+
+- `Set`集合不允许包含相同的元素，如果添加两个相同的元素，则添加操作失败
+
+- `Set`判断对象是否不是使用`==`运算符，而是根据`equals()`方法
+
+- 实现类：
+
+  `HashSet`：`Set`接口的主要实现类；线程不安全；
+
+  `LinkedHashSet`是`HashSet`的子类，遍历其内部数据时，可以按照添加的顺序遍历
+
+  `TreeSet`：底层使用红黑树存储，可以按照添加对象的指定属性，进行排序
+
+- `Set`作为`Collection`的子接口，**没有**提供额外的方法
+
+**Set的实现类：HashSet**
+
+- `HashSet`是`Set`接口的典型实现，大多数时候使用`Set`集合时都使用这个实现类。
+
+- `HashSet`按`Hash`算法来存储集合中的元素，因此具有很好的存取、查找、删除性能
+
+- `HashSet`具有以下特点
+
+  不能保证元素的排序顺序
+
+  `HashSet`不是线程安全的
+
+  集合元素可以是`null`
+
+- 无序型：不等于随机性。存储的数据在底层数组中并非按照数组索引的顺序添加，而是是根据数据的哈希值
+
+  ```java
+  @Test
+  public void test(){
+  Set<Object> set = new HashSet<>();
+      set.add(456);
+      set.add("AA");
+      set.add(LocalDateTime.now());
+      Iterator iterator = set.iterator();
+      while(iterator.hasNext()) {
+      System.out.print(iterator.next() + " ");
+      }
+  }
+  // AA 456 2020-11-09T17:25:57.837272
+  // AA 2020-11-09T17:33:13.247174 456
+  ```
+
+- `HashSet`集合判断两个元素相等的标准：两个对象通过`hashCode`方法比较相等，并且两个对象的`equals()`方法返回值也相等
+
+- 对于存在在`Set`容器中的对象，对应的类一定要重写`equals()`和`hashCode(Object obj)`方法，以实现对象相等规则。即："相等的对象必须具有相等的散列码"
+
+- 添加元素的过程
+
+  调用元素`obj`所在类的`hashCode()`方法，计算元素的哈希值
+
+  此哈希值接着通过某种算法计算出在`HashSet`底层数组中存放的位置，判断数组此位置上是否已经有元素
+
+  如果此位置没有其他元素直接添加`obj`到此位置，
+
+  如果此位置上有元素(或以链表形式存在的多个元素)，则比较元素`obj`(或者遍历链表进行比较)与其他元素的`hash`值，如果`hash`值不相同，则元素`obj`添加成功；如果`hash`值相同，进而调用`obj`所在类的`equlas`方法，如果返回`true`添加成功，否则失败(链表放在表头)
+
+- `hashCode()`重写
+
+  ```java
+  @Override
+  public int hashCode() {
+  	return Objects.hash(name, age);
+  }
+  ```
+
+**Set的实现类：LinkedHashSet**
+
+遍历其内部数据时，可以按照添加的顺序遍历，对于频繁的遍历操作，效率高于`HashSet`
+
+**Set的实现类：TreeSet**
+
+- 向`TreeSet`中添加的数据，要求是想同类的对象
+
+- `TreeSet`采用红黑树的存储结构
+
+- `TreeSet`中的数据是有序的
+
+  ```java
+  @Test
+  public void test(){
+  TreeSet<Integer> set = new TreeSet<>();
+      set.add(99);
+      set.add(34);
+      set.add(1024);
+      set.add(0);
+      System.out.print(set + " ");
+      // [0, 34, 99, 1024]
+  }
+  ```
+
+- 对于添加自定义的类需要是可比较的，实现`Comparable`接口。属于自然排序
+
+  ```java
+  import org.junit.Test;
+  import java.util.TreeSet;
+  
+  public class TreeSetTest {
+      @Test
+      public void test(){
+          TreeSet<User> set = new TreeSet<>();
+          set.add(new User("Tom", 18));
+          set.add(new User("Bob", 28));
+          set.add(new User("Jack", 18));
+          set.add(new User("Alice", 78));
+          System.out.println(set);
+          // [User{name='Alice', age=78}, User{name='Bob', age=28}, User{name='Jack', age=18}, User{name='Tom', age=18}]
+      }
+  }
+  
+  class User implements Comparable{
+      private String name;
+      private int age;
+  
+      public User(String name, int age) {
+          this.name = name;
+          this.age = age;
+      }
+  
+      @Override
+      public String toString() {
+          return "User{" +
+                  "name='" + name + '\'' +
+                  ", age=" + age +
+                  '}';
+      }
+  
+      @Override
+      public int compareTo(Object o) {
+          if (o instanceof User) {
+              User user = (User)o;
+              return this.name.compareTo(user.name);
+          }
+          throw new ClassCastException("类型不匹配");
+      }
+  }
+  ```
+
+- 定制排序，创建`TreeSet`对象时传入`Comparator`对象
+
+  ```java
+  import org.junit.Test;
+  
+  import java.util.Comparator;
+  import java.util.TreeSet;
+  
+  public class TreeSetTest {
+      @Test
+      public void test(){
+          TreeSet<User> set = new TreeSet<>(new Comparator<User>() {
+              @Override
+              public int compare(User o1, User o2) {
+                  int result = -o1.getName().compareTo(o2.getName());
+                  if (result == 0) {
+                      result = o1.getAge() - o2.getAge();
+                  }
+                  return result;
+              }
+          });
+          set.add(new User("Tom", 18));
+          set.add(new User("Bob", 28));
+          set.add(new User("Jack", 18));
+          set.add(new User("Jack", 58));
+          set.add(new User("Alice", 78));
+          System.out.println(set);
+          // [User{name='Tom', age=18}, User{name='Jack', age=18}, User{name='Jack', age=58}, User{name='Bob', age=28}, User{name='Alice', age=78}]
+      }
+  }
+  
+  class User{
+      private String name;
+      private int age;
+  
+      public User(String name, int age) {
+          this.name = name;
+          this.age = age;
+      }
+  
+      public int getAge() {
+          return age;
+      }
+  
+      public String getName() {
+          return name;
+      }
+  
+      @Override
+      public String toString() {
+          return "User{" +
+                  "name='" + name + '\'' +
+                  ", age=" + age +
+                  '}';
+      }
+  }
+  ```
+
+### 4.2 Map接口
+
+- `Map`:双列数据，存储`key-value`对的数据
+- 继承关系
+
+```mermaid
+graph TD
+Map --> Hashtable
+Map --> HashMap
+Map --> SortedMap
+Hashtable --> Properties
+HashMap --> LinkedHashMap
+SortedMap --> TreeMap
+```
+
+- `HashMap`：是`Map`主要的实现类，线程不安全，可以存储`null`的`key-value`，底层实现数组+链表+红黑树
+- `LinkedHashMap`：`HashMap`的子类：保证遍历`map`元素时，可以按照添加的顺序实现遍历，底层双向链表结构
+- `TreeMap`：是`Map`有序的实现类，对添加的`key-value`进行排序，实现排序遍历，考虑`key`的自然排序或定制排序,底层使用红黑树实现
+- `Hashtable`：线程安全的，不能存储`null`的`key-value`
+- `Properties`：`Hashtable`的子类，常用来配置文件。`key`和`value`都是`String`类型
 
