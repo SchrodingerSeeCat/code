@@ -1,5 +1,7 @@
 # Linux
 
+[TOC]
+
 ### Linux(主要)目录结构
 
 ```mermaid

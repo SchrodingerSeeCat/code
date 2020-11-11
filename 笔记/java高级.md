@@ -1902,7 +1902,7 @@ public void test(){
 
 - `Map接口`：双列集合，保存具有映射关系`key-value`对的集合。实现类：`HashMap`、`LinkedHashMap`、`TreeMap`、`Hashtable`、`Properties`
 
-### 4.2 Collection
+### 4.2 Collection接口
 
 #### 4.2.1 Collection常用方法
 
@@ -2336,7 +2336,7 @@ public void test(){
   }
   ```
 
-### 4.2 Map接口
+### 4.3 Map接口
 
 - `Map`:双列数据，存储`key-value`对的数据
 - 继承关系
@@ -2352,8 +2352,1188 @@ SortedMap --> TreeMap
 ```
 
 - `HashMap`：是`Map`主要的实现类，线程不安全，可以存储`null`的`key-value`，底层实现数组+链表+红黑树
+
 - `LinkedHashMap`：`HashMap`的子类：保证遍历`map`元素时，可以按照添加的顺序实现遍历，底层双向链表结构
+
 - `TreeMap`：是`Map`有序的实现类，对添加的`key-value`进行排序，实现排序遍历，考虑`key`的自然排序或定制排序,底层使用红黑树实现
+
 - `Hashtable`：线程安全的，不能存储`null`的`key-value`
+
 - `Properties`：`Hashtable`的子类，常用来配置文件。`key`和`value`都是`String`类型
+
+- `Map`结构的理解
+
+  `Map`中的`key`：无序的、不可重复的，使用`Set`存储所有的`key`。即`key`所在的类要重写`equals()`和`hashCode()`方法(`HashMap`为例)
+
+  `Map`中的`value`：无序的、可重复的，使用`Collection`存储所有的`value`。`value`所在的类要重写`equals()`
+
+  一个键值对：`key-value`构成了一个`Entry`对象
+
+  `Map`中的`entry`：无序的、不可重复的，使用`Set`存储所有的`entry`
+
+#### 4.3.1 HashMap的底层
+
+**`JDK7`的实现原理**
+
+```java
+HashMap map = new HashMap();
+// 实例化后底层创建了长度是16的一维数组Entry[] table
+```
+
+**存储过程**
+
+```java
+map.put(key1, value1);
+```
+
+1. 首先，调用`key1`所在类的`hashCode()`计算`key1`哈希值，此哈希值经过计算后，得到`Entry`数组中存放位置
+
+2. 如果此位置上的数据为空，此时的`key-value`添加成功
+
+3. 如果此位置上的数据不为空，则比较`key`和已经存在的一个或多个数据的哈希值
+
+   如果`key`的哈希值与已经存在的数据的哈希值都不相同，此时的`key-value`添加成功
+
+   如果`key`的哈希值和已经存在的某一个数据的哈希值相同，继续比较`equals()`方法：`equals()`返回`false`，添加成功；否则使用`value`替换原来的`value`
+
+4. 多个`value`存在相同的位置，是以链表的形式进行存储
+
+5. 在不断的添加过程中，当大小超过其临界值且要存放的位置非空，会扩容为原来容量的2倍。
+
+**JDK8相较于JDK7的不同之处**
+
+- `new HashMap()`：底层并没有创建数组
+
+- 首次调用`put(key, value)`方法时，底层才会创建长度为`16`的数组
+
+- `JDK8`底层的数组的名称为`Node[]`
+
+- `JDK7`底层结构只有：数组+链表，`JDK8`中：数组+链表+红黑树
+
+  当数组的某一个索引位置上的元素以链表形式存在的数据个数`>8`且当前数组的长度`>64`时，此时此索引位置上的所有数据改为使用红黑树存储
+
+**HashMap底层常量**
+
+- `DEFAULT_INITIAL_CAPACITY`：`HashMap`的默认容量`16`
+- `DEFAULT_LOAD_FACTOR`：`HashMap`的默认加载因子
+- `threshold`：扩容的临界值 = 容量 * 加载因子
+- `TREEIFY_THRESHOLD`：`Bucket`中链表长度大于该默认值，转换为红黑树
+- `MIN_TREEIFY_CAPACITY`：数组中`Node`被树化时最小的`hash`表容量：`64`
+
+#### 4.3.2 Map常用方法
+
+```java
+@Test
+public void test(){
+    Map<Object, Object> map = new HashMap<>();
+}
+```
+
+**添加、删除、操作**
+
+- `Object put(Object key, Object value)`：将指定`key-value`添加到(或修改)当前`map`对象中
+
+  ```java
+  map.put(123, "AA"); // 添加
+  map.put("BB", 456);
+  map.put(123, "CC"); // 修改
+  System.out.println(map); // {BB=456, 123=CC}
+  ```
+
+- `void putAll(Map m)`：将m中的所有`key-value`存放到当前`map`中
+
+- `Object remove(Object key)`：移出指定`key`的`key-value`返回`value`
+
+  ```java
+  map.put("移除", 123);
+  System.out.println(map); // {移除=123}
+  System.out.println(map.remove("移除")); // 123 不存在返回null
+  System.out.println(map); // {}
+  ```
+
+- `void clear()`：清空`map`
+
+**元素查询**
+
+- `Object get(Object key)`：获取指定`key`对应的`value`
+
+  ```java
+  map.put(123, "Hello World");
+  System.out.println(map.get(123)); // Hello World // 没有返回null
+  ```
+
+- `boolean containsKey(Object key)`：是否包含指定的`key`
+
+  ```java
+  map.put(123, "Hello World");
+  System.out.println(map.containsKey(123)); // true
+  ```
+
+- `int size()`：返回`map`中`key-value`对的个数
+
+  ```java
+  System.out.println(map.size()); // 0
+  ```
+
+- `boolean isEmpty()`：判断当前`map`是否为空
+
+  ```java
+  System.out.println(map.isEmpty()); // true
+  ```
+
+- `boolean equals(Object obj)`：判断当前`map`和参数对象`obj`是否相等
+
+  ```java
+  System.out.println(map.equals(map)); // true
+  ```
+
+**元视图操作的方法**
+
+- `Set keySet()`：返回所有`key`构成的`Set`集合
+
+  ```java
+  @Test
+  public void test1(){
+      Map<Object, Object> map = new HashMap<>();
+  
+      map.put(123, "AA");
+      map.put("BB", 456);
+      map.put("456", 999);
+      map.put("NowTime", LocalDateTime.now());
+      Set set =  map.keySet();
+      Iterator iterator = set.iterator();
+      while(iterator.hasNext()){
+      	System.out.println(iterator.next());
+      }
+  }
+  // BB
+  // 456
+  // NowTime
+  // 123
+  ```
+
+- `Collection values()`：返回所有`values`构成的`Collection`
+
+  ```java
+  Collection coll =  map.values();
+  Iterator iterator = coll.iterator();
+  while(iterator.hasNext()){
+  	System.out.println(iterator.next());
+  }
+  // 456
+  // 999
+  // 2020-11-10T15:58:45.581643
+  // AA
+  ```
+
+- `Set entrySet()`：遍历`key-value`
+
+  ```java
+  Set entrySet = map.entrySet();
+  Iterator iterator = entrySet.iterator();
+  while(iterator.hasNext()) {
+      Object obj = iterator.next();
+      Map.Entry entry = (Map.Entry) obj;
+      System.out.println(entry.getKey() + ": " + entry.getValue());
+  }
+  // BB: 456
+  // 456: 999
+  // NowTime: 2020-11-10T16:03:08.947608
+  // 123: AA
+  ```
+
+
+#### 4.3.1 TreeMap
+
+`TreeMap`中添加的`key-value`，要求必须是由同一个类创建的对象，涉及到`key`排序，遍历`TreeMap`会按照添加的顺序
+
+自然排序
+
+```java
+import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+public class TreeMapTest {
+    @Test
+    public void test(){
+        Map<User, Integer> map = new TreeMap<>()
+        map.put(new User("Tom", 23), 98);
+        map.put(new User("Bob", 15), 100);
+        map.put(new User("Jack", 34), 90);
+        map.put(new User("Alice", 22), 91);
+
+        Set entrySet = map.entrySet();
+        Iterator iterator = entrySet.iterator();
+        while(iterator.hasNext()){
+            Map.Entry entry = (Map.Entry)iterator.next();
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+}
+class User implements Comparable{
+    String name;
+    int age;
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    @Override
+    public int compareTo(Object o) {
+        if (o instanceof User) {
+            User user = (User) o;
+            int result = this.name.compareTo(user.name);
+            if (result == 0) {
+                result = this.age - user.age;
+            }
+            return  result;
+        }
+        throw new ClassCastException("类型转换错误");
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+}
+// User{name='Alice', age=22}: 91
+// User{name='Bob', age=15}: 100
+// User{name='Jack', age=34}: 90
+// User{name='Tom', age=23}: 98
+```
+
+**定制排序**
+
+```java
+import org.junit.Test;
+
+import java.util.*;
+
+public class TreeMapTest {
+    @Test
+    public void test(){
+        Map<User, Integer> map = new TreeMap<>(new Comparator<User>() {
+
+            @Override
+            public int compare(User o1, User o2) {
+                int result = o1.name.compareTo(o2.name);
+                if (result == 0) {
+                    result = o1.age - o2.age;
+                }
+                return  -result;
+            }
+        });
+        map.put(new User("Tom", 23), 98);
+        map.put(new User("Bob", 15), 100);
+        map.put(new User("Jack", 34), 90);
+        map.put(new User("Alice", 22), 91);
+
+        Set entrySet = map.entrySet();
+        Iterator iterator = entrySet.iterator();
+        while(iterator.hasNext()){
+            Map.Entry entry = (Map.Entry)iterator.next();
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+}
+class User{
+    String name;
+    int age;
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+}
+// User{name='Tom', age=23}: 98
+// User{name='Jack', age=34}: 90
+// User{name='Bob', age=15}: 100
+// User{name='Alice', age=22}: 91
+```
+
+#### 4.3.2 Properties
+
+- `Properties`类是`Hashtable`的子类，该对象用于处理属性文件
+
+- 由于属性文件里的`key`、`value`都是字符串类型，所以`Properties`里的`key`和`value`都是**字符串**类型
+
+- 存取数据时，建议使用`setProperty(String key, String value)`方法和`getProperty(String key)`方法
+
+- 具体用法
+
+  在项目根目录下创建`jdbc.properties`
+
+  ```java
+  name=Tom
+  password=123456
+  ```
+
+  使用`Properties`类
+
+  ```java
+  import org.junit.Test;
+  
+  import java.io.FileInputStream;
+  import java.io.IOException;
+  import java.util.Properties;
+  
+  public class PropertiesTest {
+      @Test
+      public void test(){
+          FileInputStream fis = null;
+          try{
+              Properties pros = new Properties();
+              fis = new FileInputStream("jdbc.properties");
+              pros.load(fis); // 加载流对应的文件
+  
+              // 获取对应的属性
+              String name = pros.getProperty("name");
+              String password = pros.getProperty("password");
+  
+              System.out.println("name: " + name + "\npassword: " + password);
+          } catch (IOException e){
+              e.printStackTrace();
+          } finally {
+              // 关闭流
+              if (fis != null) {
+                  try {
+                      fis.close();
+                  } catch (IOException e) {
+                      e.printStackTrace();
+                  }
+              }
+          }
+      }
+  }
+  
+  // name: Tom
+  // password: 123456
+  ```
+
+### 4.4 Collections工具类
+
+- `Collections`是一个操作`Set`、`List`、`Map`等集合的工具类
+- `Collections`中提供了一系列静态的方法对元素进行排序、查询和修改等操作，还提供了对集合对象设置不可变、对集合对象实现同步控制等方法
+
+#### 4.4.1 常用方法
+
+```java
+@Test
+public void test(){
+    List<Integer> list = new LinkedList<>();
+    list.add(123);
+    list.add(456);
+    list.add(0);
+    list.add(23);
+    list.add(100);
+    System.out.println(list);
+    // [123, 456, 0, 23, 100]
+}
+```
+
+- `reverse(List)`反转`List`中元素的排序
+
+  ```java
+  Collections.reverse(list);
+  System.out.println(list);
+  // [100, 23, 0, 456, 123]
+  ```
+
+- `shuffle(List)`对`List`中元素进行随机排序
+
+  ```java
+  Collections.shuffle(list);
+  System.out.println(list);
+  // [23, 100, 123, 0, 456]
+  ```
+
+- `sort(List, Comparator)`：根据指定的`Comparator`产生的顺序对`List`集合元素进行排序
+
+  ```java
+  Collections.sort(list);
+  System.out.println(list);
+  // [0, 23, 100, 123, 456]
+  
+  Collections.sort(list, new Comparator<Integer>() {
+  	@Override
+  	public int compare(Integer o1, Integer o2) {
+  		return o2 - o1;
+  	}
+  });
+  System.out.println(list);
+  // [456, 123, 100, 23, 0]
+  ```
+
+- `swap(List, int i, int j)`：将指定`List`集合中的`i`处元素和`j`处元素进行交换
+
+  ```java
+  Collections.swap(list, 0, 1);
+  System.out.println(list);
+  // [456, 123, 0, 23, 100]
+  ```
+
+- `int frequency(List list, Objec o)`：返回`o`出现的次数
+
+  ```java
+  System.out.println(Collections.frequency(list, 0));
+  // 1
+  ```
+
+- `void copy(List dest, List src)`：拷贝`List`到另一个`List`中
+
+  ```java
+  // 目的List要保证大小和src相同
+  List<Integer> dest = Arrays.asList(new Integer[list.size()]);
+  Collections.copy(dest, list);
+  System.out.println(dest);
+  // [123, 456, 0, 23, 100]
+  ```
+
+#### 4.4.2 同步控制
+
+`Collections`类中提供了多个`synchronizedXxx`的方法，该方法可使指定集合包装成线程同步的集合，从而可以解决多线程并发访问集合时的线程安全问题
+
+```java
+List syncList = Collections.synchronizedList(list);
+```
+
+## 5. 泛型
+
+### 5.1 泛型概述
+
+所谓泛型，就是允许在定义类、接口时通过一个标识表示类中某个属性的类型或者是某个方法的返回值及参数类型。这个类型参数将在使用时(继承或实现这个接口，用这个类型声明变量、创建对象时)确定(即出入实际的类型参数，也称为类型实参)
+
+泛型类，实例化时没有指明类的泛型，则默认泛型类型为`Object`类型
+
+```java
+@Test
+public void test(){
+    Map<String, Integer> map = new HashMap<>();
+    map.put("Tom", 87);
+    map.put("Jerry", 87);
+    map.put("Jack", 67);
+
+    // 泛型的嵌套
+    Set<Map.Entry<String, Integer>> entry = map.entrySet();
+    Iterator<Map.Entry<String, Integer>> iterator = entry.iterator();
+    while(iterator.hasNext()) {
+        Map.Entry<String, Integer> e = iterator.next();
+        System.out.println(e.getKey() + ": " + e.getValue());
+    }
+}
+// Tom: 87
+// Jerry: 87
+// Jack: 67
+```
+
+### 5.2 自定义泛型结构
+
+```java
+public class Order<E> {
+    private String orderName;
+    private int orderId;
+    private E orderE;
+
+    public Order(){}
+    public Order(String orderName, int orderId, E orderE) {
+        this.orderName = orderName;
+        this.orderId = orderId;
+        this.orderE = orderE;
+    }
+
+    public E getOrderE(){
+        return orderE;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderName='" + orderName + '\'' +
+                ", orderId=" + orderId +
+                ", orderE=" + orderE +
+                '}';
+    }
+}
+```
+
+对于子类继承带泛型的父类时，指明了泛型类型。则实例化子类对象时，不再需要指明泛型
+
+```java
+public class subClass extends Order<Integer> {
+    
+}
+```
+
+如果不指明泛型类型，则实例化时需要指明泛型,泛型继承不具有子父类关系
+
+```java
+class subClass<E> extends Order<E> {
+    
+}
+```
+
+泛型类可能有多个参数，此时应该将多个参数一起放在尖括号里
+
+```java
+<E1, E2, E3>
+```
+
+泛型不同的引用不能相互赋值
+
+```java
+ArrayList<String> list1 = new ArrayList<>();
+ArrayList<Integer> list2 = new ArrayList<>();
+// 不能相互赋值
+```
+
+如果泛型结构是一个接口或者抽象类，则不可创建泛型类的对象
+
+在类/接口上声明的泛型，在本类或本接口中即代表某种类型，可以作为非静态属性的类型、非静态方法的参数类型、非静态方法的返回值类型。但在静态方法中不能使用类的泛型
+
+异常类不能是泛型的
+
+对于泛型数组
+
+```java
+E[] arr = (E[])new Object[capacity];
+```
+
+泛型方法：与方法所在类是不是泛型没有关系，泛型方法可以声明为`static`
+
+```java
+public static <T> List<T> example(T element){
+	
+}
+```
+
+### 5.3 通配符
+
+#### 5.3.1 通配符的基本使用
+
+- 通配符`?`
+
+  ```java
+  @Test
+  public void test1() {
+      List<Object> list1 = null;
+      List<String> list2 = null;
+  
+      List<?> list = null;
+      list = list1;
+      list = list2;
+  }
+  ```
+
+- 遍历
+
+  ```java
+  public void print(List<?> list) {
+      Iterator<?> iterator = list.iterator();
+      while(iterator.hasNext()) {
+      	System.out.println(iterator.next());
+      }
+  }
+  ```
+
+- 如果使用了通配符，则不能向`List<?>`中添加(写入)除`null`以外的数据,但是可以读取数据，获取的数据类型为`Object`
+
+#### 5.3.2 通配符的限制
+
+类
+
+```java
+class Animal{
+
+}
+
+class Dog extends Animal{
+
+}
+```
+
+`? extends parent`：小于等于`parent`
+
+`? super parent`：大于等于`parent`
+
+```java
+public void test3(){
+    List<? extends Animal> list1 = new LinkedList<>();
+    List<? super Animal> list2 = new LinkedList<>();
+
+    List<Animal> list3 = new LinkedList<>();
+    List<Dog> list4 = new LinkedList<>();
+    List<Object> list5 = new LinkedList<>();
+
+    list1 = list3;
+    list1 = list4;
+
+    list2 = list3;
+    list2 = list5;
+}
+```
+
+有限制符的修饰可以添加符合限制的元素
+
+## 6. IO流
+
+### 6.1 File类的使用
+
+#### 6.1.1 File类的创建
+
+- `java.io.File`类：文件和文件目录路径的抽象表示形式，与平台无关
+
+- `File`能新建、删除、重命名文件目录，但`File`不能访问文件内容本身。如果需要访问文件内容本身，则需要使用输入/输出流
+
+- 想要在`java`程序中表示一个真实存在的文件或目录，那么必须有一个`File`对象，但`java`程序中的一个`File`对象，可能没有一个真实存在的文件或目录
+
+- `File`对象可以作为参数传递给流的构造器
+
+- 构造器
+
+  以`pathname`为路径创建`File`对象，可以是绝对路径或者相对路径，如果`pathname`是相对路径，则默认的当前路径在系统属性`user.dir`中存储
+
+  ```java
+  File file1 = new File("1.txt");
+  ```
+
+  以`parent`为父路径，`child`为子路径创建`File`对象
+
+  ```java
+  File file2 = new File("/home/valid/code/java/基础语法", "day10");
+  ```
+
+  根据一个父`File`对象和子文件路径创建`File`对象
+
+  ```java
+  File file3 = new File(file2, "1.txt");
+  ```
+
+- 路径分隔符
+
+  ```
+  windows: \\
+  unix: /
+  ```
+
+#### 6.1.2 File类的获取功能
+
+```java
+@Test
+public void test1(){
+    File file = new File("hello.txt");
+    File dir = new File("/home/valid/code/java/基础语法/day10/test");
+}
+```
+
+- `String getAbsoultePath()`：获取绝对路径
+
+  ```java
+  System.out.println(file.getAbsolutePath());
+  // /home/valid/code/java/基础语法/day10/hello.txt
+  ```
+
+- `String getPath()`：获取路径
+
+  ```java
+  System.out.println(file.getPath());
+  // hello.txt
+  ```
+
+- `String getName()`：获取文件或目录名称
+
+  ```java
+  System.out.println(file.getName());
+  // hello.txt
+  ```
+
+- `String getParent()`：获取文件或目录的上一级目录
+
+  ```java
+  System.out.println(file.getParent());
+  // null 因为当前创建的时候使用的相对路径，所以找不到父目录
+  ```
+
+- `long lenght()`：获取文件的大小
+
+  ```java
+  System.out.println(file.length());
+  // 0
+  ```
+
+- `long lastModified()`：获取最后一次修改的时间戳
+
+  ```java
+  System.out.println(file.lastModified());
+  // 1605080166485
+  ```
+
+- `String[] list()`：获取指定目录下的所有文件或者文件目录的名称数组
+
+  ```java
+  String[] list = dir.list();
+  for(String f : list) {
+  	System.out.println(f);
+  }
+  // 1.txt
+  // te
+  ```
+
+- `File[] listFiles() `：获取目录下的文件或目录的File对象
+
+  ```java
+  File[] listRoute = dir.listFiles();
+  for(File f : listRoute) {
+  	System.out.println(f);
+  }
+  // /home/valid/code/java/基础语法/day10/test/1.txt
+  // /home/valid/code/java/基础语法/day10/test/te
+  ```
+
+#### 6.1.3 File类的重命名
+
+`boolean renameTo(File dest)`：把文件重命名为指定的文件路径，目的文件应该不存在
+
+```java
+File dest = new File("world.txt");
+System.out.println(file.renameTo(dest));
+// true
+```
+
+#### 6.1.4 File类的判断功能
+
+- `boolean isDirectory()`：判断是否是文件目录
+
+  ```java
+  System.out.println(file.isDirectory()); // false
+  System.out.println(dir.isDirectory()); // true
+  ```
+
+- `boolean isFile()`：判断是否是文件
+
+  ```java
+  System.out.println(file.isFile()); // true
+  System.out.println(dir.isFile());  // false
+  ```
+
+- `boolean exists()`：判断是否存在
+
+  ```java
+  System.out.println(file.exists()); // true
+  ```
+
+- `boolean canRead()`：判断是否可读
+
+  ```java
+  System.out.println(file.canWrite()); // true
+  ```
+
+- `boolean canWrite()`：判断是否可写
+
+  ```java
+  System.out.println(file.canWrite()); // true
+  ```
+
+- `boolean canExecute()`：判断是否可执行
+
+  ```java
+  System.out.println(file.canExecute()); // false
+  ```
+
+- `boolean isHidden()`：判断是否隐藏
+
+  ```java
+  System.out.println(file.isHidden()); // false
+  ```
+
+#### 6.1.5 File类的创建删除功能
+
+- `boolean createNewFile()`：创建文件。若文件存在，则不创建，返回`false`。`boolean delete()`删除文件或文件夹
+
+  ```java
+  File file = new File("word.txt");
+  if(!file.exists()) {
+      try {
+      	file.createNewFile();
+      	System.out.println("创建成功");
+      } catch (IOException e) {
+      	e.printStackTrace();
+      }
+  } else {
+  	file.delete();
+  	System.out.println("删除成功");
+  }
+  ```
+
+- `boolean mkdir()`：创建文件目录。如果此文件目录存在，不创建。如果此文件目录的上层目录不存在，也不创建。`boolean mkdirs()`：创建文件目录。如果上层文件目录不存在，一并创建。如果创建文件或者目录没有写盘符`windows下`，默认在项目目录下。即`mkdirs`是递归创建文件目录
+
+  ```
+  File dir = new File("/home/valid/code/java/基础语法/day10/tes/practice");
+  if(dir.mkdirs()) {
+  	System.out.println("创建成功");
+  } else {
+  	System.out.println("创建失败");
+  }
+  ```
+
+### 6.2 IO流原理及流的分类
+
+#### 6.2.1 IO原理
+
+- `I/O`是`Input/Output`的缩写，`I/O`技术是非常使用的技术，用于处理设备之间的数据传输。文件读写，网络通信
+- `Java`程序中，对于数据的输入输出操作以`流(stream)`的方式进行
+- `java.io`包下提供了各种`流`类的和接口，用以获取不同种类的数据，并通过标准的方法输入或输出数据
+- 输入`input`：读取外部数据(磁盘、光盘等存储设备的数据)到程序(内存中)
+- 输出`output`：将程序`内存`数据输出到磁盘、光盘等存储设备中
+
+#### 6.2.2 流的分类
+
+- 按照操作单位不同分为：字节流`8bit`，字符流`16bit`
+- 按数据流的流向不同分为：输入流，输出流
+- 按流的角色的不同分为：节点流，处理流
+- 所有的流都是以下四个抽象基类的子类
+
+| 抽象基类 | 字节流       | 字符流 |
+| -------- | ------------ | ------ |
+| 输入流   | InputStream  | Reader |
+| 输出流   | OutputStream | Writer |
+
+- 节点流(或者称为文件流)有以下四个
+
+  ```java
+  FileInputStream
+  FileOutputStream
+  FileReader
+  FileWriter
+  ```
+
+
+### 6.3 File读入
+
+在当前项目下新建`hello.txt`并输入`helloworld`
+
+1. 实例化`File`类的对象，指明要操作的文件
+
+   ```java
+   File file = new File("hello.txt");
+   ```
+
+2. 提供具体的流
+
+   ```java
+   FileReader fr = new FileReader(file);
+   ```
+
+3. 读入数据：`read()`返回读入的一个字符，到文件末尾返回`-1`
+
+   ```java
+   int data = fr.read();
+   while(data != -1) {
+       System.out.print((char) data);
+       data = fr.read();
+   }
+   // helloworld
+   ```
+
+4. 关闭流
+
+   ```java
+   fr.close();
+   ```
+
+5. 流的操作都会有异常，尽量使用`try-catch`处理，因为流一定要被关闭
+
+   ```java
+   @Test
+   public void test(){
+       FileReader fr = null;
+       try {
+           File file = new File("hello.txt");
+       	fr = new FileReader(file);
+   
+           int data = fr.read();
+           while(data != -1) {
+               System.out.print((char) data);
+               data = fr.read();
+           }
+       } catch (IOException e) {
+       	e.printStackTrace();
+       } finally {
+           try {
+               if (fr != null)
+                   fr.close();
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
+       }
+   }
+   ```
+
+**利用`char[]`数组读入**
+
+```java
+char[] cbuf = new char[5];
+int num = 0;
+while((num = fr.read(cbuf)) != -1) {
+    for(int i = 0; i < num; i++){
+    	System.out.print(cbuf[i]);
+        // System.out.print(new String(cbuf, 0, num));
+    }
+}
+```
+
+对于文本文件应当使用字符流来处理
+
+### 6.4 File写出
+
+当前项目根目录新建`hello.txt`空文件
+
+1. 提供File类的对象，指明写出到的文件
+
+   ```java
+   File file = new File("hello.txt");
+   ```
+
+2. 提供`FileWriter`的对象，用于数据的写出，此时的`file`对象可以不存在，如果不存在则新建。写入默认是覆盖，如果想要追加则指定第二参数为`true`
+
+   ```java
+   FileWriter fw = new FileWriter(file);
+   // FileWriter fw = new FileWriter(file, true);
+   ```
+
+3. 写出的操作
+
+   ```java
+   fw.write("Hello Java");
+   fw.write(" I want to learn Java");
+   ```
+
+4. 流资源的关闭
+
+   ```java
+   fw.close();
+   ```
+
+5. 异常处理
+
+   ```java
+   @Test
+   public void test1() {
+       FileWriter fw = null;
+       File file = new File("hello.txt");
+       try {
+           fw = new FileWriter(file, true);
+   
+           fw.write("Hello Java");
+           fw.write(" I want to learn Java");
+       } catch (IOException e) {
+       	e.printStackTrace();
+       } finally {
+           try {
+               if (fw != null)
+               	fw.close();
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
+       }
+   }
+   ```
+
+### 6.5 字节流
+
+将当前项目目录下的`fgdjk.jpg`拷贝到当前项目目录下的`test.jpg`
+
+1. 提供`File`类的对象
+
+   ```java
+   File src = new File("fgdjk.jpg");
+   File dest = new File("test.jpg");
+   ```
+
+2. 提供`src`的`FileInputStream`和`dest`的`FileOutputStream`
+
+   ```java
+   FileInputStream fisSrc = new FileInputStream(src);
+   FileOutputStream fisDest = new FileOutputStream(dest, true);
+   ```
+
+3. 读和写
+
+   ```java
+   byte[] cbuf = new byte[10];
+   int num;
+   while((num = fisSrc.read(cbuf)) != -1) {
+   	fisDest.write(cbuf, 0, num);
+   }
+   ```
+
+4. 关闭资源
+
+   ```java
+   fisSrc.close();
+   fisDest.close();
+   ```
+
+5. 异常处理
+
+   ```java
+   @Test
+   public void test() {
+       FileInputStream fisSrc = null;
+       FileOutputStream fisDest = null;
+       try {
+           File src = new File("fgdjk.jpg");
+           File dest = new File("test.jpg");
+   
+           fisSrc = new FileInputStream(src);
+           fisDest = new FileOutputStream(dest, true);
+   
+           byte[] cbuf = new byte[10];
+           int num;
+           while((num = fisSrc.read(cbuf)) != -1) {
+           	fisDest.write(cbuf, 0, num);
+           }
+       }  catch (IOException e) {
+       	e.printStackTrace();
+       } finally {
+           try {
+               if (fisSrc != null)
+                   fisSrc.close();
+           } catch (IOException e) {
+           	e.printStackTrace();
+           }
+           try {
+               if(fisDest != null)
+                   fisDest.close();
+           } catch (IOException e) {
+           	e.printStackTrace();
+           }
+       }
+   }
+   ```
+
+对于非文本文件，应当使用字节流处理
+
+### 6.6 缓冲流
+
+缓冲流是对于节点流的包装
+
+```mermaid
+graph LR
+FileInputStream --> BufferedInputStream
+FileOutputStream --> BufferedOutputStream
+FileReader --> BufferedReader
+FileWriter --> BufferedWriter
+```
+
+1. 获取文件对象
+
+   ```java
+   File srcFile = new File("fgdjk.jpg");
+   File destFile = new File("test.jpg");
+   ```
+
+2. 获得节点流
+
+   ```java
+   FileInputStream src = new FileInputStream(srcFile);
+   FileOutputStream dest = new FileOutputStream(destFile);
+   ```
+
+3. 获取缓冲流
+
+   ```java
+   BufferedInputStream bis = new BufferedInputStream(src);
+   BufferedOutputStream bos = new BufferedOutputStream(dest);
+   ```
+
+4. 读取和写入
+
+   ```java
+   byte[] buffer = new byte[10];
+   int len;
+   while((len = bis.read(buffer)) != -1) {
+   	bos.write(buffer, 0, len);
+   }
+   ```
+
+5. 关闭流资源，如果关闭了缓冲流，相应的节点流也会被关闭
+
+   ```java
+   bis.close();
+   bos.close();
+   ```
+
+6. 异常处理
+
+   ```java
+   @Test
+   public void test() {
+       FileInputStream src = null;
+       FileOutputStream dest = null;
+   
+       BufferedInputStream bis = null;
+       BufferedOutputStream bos = null;
+       try {
+           File srcFile = new File("fgdjk.jpg");
+           File destFile = new File("test.jpg");
+   
+           src = new FileInputStream(srcFile);
+           dest = new FileOutputStream(destFile);
+   
+           bis = new BufferedInputStream(src);
+           bos = new BufferedOutputStream(dest);
+   
+           byte[] buffer = new byte[1024];
+           int len;
+           while((len = bis.read(buffer)) != -1) {
+           bos.write(buffer, 0, len);
+           }
+   
+       } catch (IOException e) {
+       	e.printStackTrace();
+       } finally {
+           try {
+               if (bis == null)
+               bis.close();
+           } catch (IOException e) {
+           	e.printStackTrace();
+           }
+           try {
+               if (bos == null)
+               bos.close();
+           } catch (IOException e) {
+           	e.printStackTrace();
+           }
+       }
+   }
+   ```
+
+7. 使用缓冲流能够显著提高文件读写错误的原因时，缓冲流的内部提供了一个默认大小为`8192`的缓冲区
+
+### 6.7 转换流
+
+- 转换流提供了在字节流和字符流之间的转换
+
+- `java`提供了俩个转换流
+
+  `InputStreamReader`：将`InputStream`转换为`Reader`
+
+  `OutputStreamWriter`：将`Writer`转换为`OutputStream`
+
+- 字节流中的数据都是字符时，转换为字符流更高效
+
+- 很多时候我们使用转换流来处理文件乱码问题。实现编码和解码的功能
 

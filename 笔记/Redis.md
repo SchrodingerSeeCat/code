@@ -214,7 +214,96 @@ cache --> 集群3
 
 ## 3. 五大数据类型
 
+`Redis`是一个开源的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件`MQ`。支持多种数据结构，如字符串`Strings`、散列`hashes`，列表`lists`、集合`sets`、有序集合`sorted sets`与范围查询，`bitmaps`，`hyperloglogs`和地理位置`geospatial`索引半径查询。
 
+### 3.1 redis-key
 
+- 判断某个`key`是否存在
 
+  ```bash
+  set name "Hello World"
+  EXISTS name
+  
+  # (integer) 1
+  ```
+
+- 移除某个`key`
+
+  ```bash
+  # 从1号数据库移出name
+  move name 1
+  ```
+
+- 设置某个`key`的过期时间
+
+  ```bash
+  #　设置name 10s过期
+  expire name 10
+  ```
+
+- 查看某个`key`的剩余时间
+
+  ```bash
+  ttl name
+  ```
+
+### 3.2 String类型
+
+- 追加字符串`append`
+
+  ```bash
+  SET key1 v1
+  APPEND key1 hello # 如果当前key不存在新建
+  GET key1
+  # "v1hello"
+  ```
+
+- 获取字符串的长度
+
+  ```bash
+  STRLEN key1
+  
+  # (integer) 7
+  ```
+
+- `value`加1
+
+  ```bash
+  SET views 0 # OK
+  GET views # "0"
+  INCR views # (integer) 1
+  GET views # "1"
+  ```
+
+- `value`减1
+
+  ```bash
+  DECR views # (integer) 0
+  GET views # "0"
+  ```
+
+- 指定步长
+
+  ```
+  INCRBY views 10 # 加10
+  
+  DECRBY views 10 # 减10
+  ```
+
+- 截取字符串`GETRANGE`
+
+  ```bash
+  SET key "helloworld"
+  GETRANGE key 0 4 # "hello"
+  GETRANGE key 0 -1 # 截取全部字符串
+  ```
+
+- 替换指定索引位置开始的字符串
+
+  ```bash
+  SETRANGE key 1 xx
+  GET key # "hxxloworld"
+  ```
+
+  
 
