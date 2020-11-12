@@ -3529,11 +3529,587 @@ FileWriter --> BufferedWriter
 
 - `java`提供了俩个转换流
 
-  `InputStreamReader`：将`InputStream`转换为`Reader`
+  `InputStreamReader`：将`InputStream`转换为`Reader`，即将一个字节的输入流转换为字符的输入流
 
-  `OutputStreamWriter`：将`Writer`转换为`OutputStream`
+  `OutputStreamWriter`：将`Writer`转换为`OutputStream`，即将一个字符的输出流转换为字节的输出流
 
 - 字节流中的数据都是字符时，转换为字符流更高效
 
 - 很多时候我们使用转换流来处理文件乱码问题。实现编码和解码的功能
+
+`hello.txt`(UTF-8编码)的内容，以`GBK`的格式输出到`word.txt`
+
+1. 获取文件对象
+
+   ```java
+   FileInputStream fis = new FileInputStream("hello.txt");
+   FileOutputStream fos = new FileOutputStream("word.txt");
+   ```
+
+2. 设置转换流
+
+   ```java
+   // 使用系统默认的字符集
+   // InputStreamReader isr = new InputStreamReader(fis);
+   
+   InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
+   OutputStreamWriter osw = new OutputStreamWriter(fos, "GBK");
+   ```
+
+3. 读取数据
+
+   ```java
+   char[] cbuf = new char[10];
+   int len;
+   while((len = isr.read(cbuf)) != -1) {
+   	osw.write(cbuf, 0, len);
+   }
+   ```
+
+4. 关闭流
+
+   ```java
+   isr.close();
+   osw.close();
+   ```
+
+5. 异常处理
+
+   ```java
+   @Test
+   public void test() {
+       FileInputStream fis = null;
+       FileOutputStream fos = null;
+   
+       InputStreamReader isr = null;
+       OutputStreamWriter osw = null;
+       try {
+           fis = new FileInputStream("hello.txt");
+           fos = new FileOutputStream("word.txt");
+   
+           isr = new InputStreamReader(fis, "UTF-8");
+           osw = new OutputStreamWriter(fos, "GBK");
+   
+           char[] cbuf = new char[10];
+           int len;
+           while((len = isr.read(cbuf)) != -1) {
+               osw.write(cbuf, 0, len);
+           }
+   
+       } catch (IOException e) {
+           e.printStackTrace();
+       } finally {
+           try {
+               if (isr != null)
+                   isr.close();
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
+   
+           try {
+               if (osw != null)
+                   osw.close();
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
+       }
+   }
+   ```
+
+### 6.8 其它流
+
+#### 6.8.1 标准输入、输出流
+
+- `System.in`：标准的输入流，默认从键盘输入
+- `System.out`：标准的输出流，默认从控制台输出
+- 可以通过`System`类的`setIn(InputStream is)/setOut(PrintStream ps)`方式重新指定输入和输出的流
+
+从键盘输入字符串，要求将读取到的整数字符串转换为大写输出。然后继续进行输出操作，只直输出`e`或者`exit`时退出程序
+
+1. 获取输入流，`System.in`是字节流，需要转换为字符流
+
+   ```java
+   InputStreamReader isr = new InputStreamReader(System.in);
+   BufferedReader br = new BufferedReader(isr);
+   ```
+
+2. 读取数据
+
+   ```java
+   String str;
+   while(true) {
+       str = br.readLine();
+       if ("e".equalsIgnoreCase(str) || "exit".equalsIgnoreCase(str)) {
+       	break;
+       }
+       System.out.println(str.toUpperCase());
+   }
+   ```
+
+3. 关闭流
+
+   ```java
+   br.close();
+   ```
+
+4. 异常处理
+
+   ```java
+   public void test() {
+       InputStreamReader isr = null;
+       BufferedReader br = null;
+       try{
+           isr = new InputStreamReader(System.in);
+           br = new BufferedReader(isr);
+           String str;
+           while(true) {
+           str = br.readLine();
+           if ("e".equalsIgnoreCase(str) || "exit".equalsIgnoreCase(str)) {
+           	break;
+           }
+           System.out.println(str.toUpperCase());
+           }
+       } catch (IOException e) {
+       	e.printStackTrace();
+       } finally {
+           try {
+               if (br != null)
+                   br.close();
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
+       }
+   }
+   ```
+
+#### 6.8.2 打印流
+
+实现将基本数据类型的数据格式转化为字符串输出
+
+打印流：`PrintStream`和`PrintWriter`
+
+- 提供了一些`print()`和`println()`方法，用于多种数据类型的输出
+- `PrintStream`和`PrintWriter`的输出不会抛出`IOException`异常
+- `PrintStream`和`PrintWriter`有自动`flush`功能
+- `PrintStream`打印的所有字符都使用平台的默认字符编码转换为字节。在需要写入字符而不是写入字节的情况下，应该使用`PrintWriter`类
+- `System.out`返回的是`PrintStream`的实例
+
+将`ASCII`字符写入`world.txt`
+
+1. 创建输出字节流和打印流
+
+   ```java
+   FileOutputStream fos = new FileOutputStream(new File("world.txt"));
+   PrintStream ps = new PrintStream(fos, true);
+   ```
+
+2. 把标准输出流重定向到文件
+
+   ```java
+   if (ps != null) {
+   	System.setOut(ps);
+   }
+   ```
+
+3. 写出`ASCII`字符
+
+   ```java
+   for(int i = 0; i <= 255; i++){
+       System.out.print((char) i);
+       if (i % 50 == 0) {
+       	System.out.println();
+       }
+   }
+   ```
+
+4. 关闭流
+
+   ```java
+   ps.close();
+   ```
+
+5. 异常处理
+
+   ```java
+   public static void test1(){
+       FileOutputStream fos = null;
+       PrintStream ps = null;
+       try {
+           fos = new FileOutputStream(new File("world.txt"));
+           ps = new PrintStream(fos, true);
+           if (ps != null) {
+           	System.setOut(ps);
+           }
+           for(int i = 0; i <= 255; i++){
+               System.out.print((char) i);
+               if (i % 50 == 0) {
+                   System.out.println();
+               }
+           }
+       } catch (FileNotFoundException e) {
+       	e.printStackTrace();
+       } finally {
+       	if (ps != null)
+       		ps.close();
+       }
+   }
+   ```
+
+#### 6.8.3 数据流
+
+- 为了方便地操作`Java`语言的基本数据类型和`String`的数据，可以使用数据流
+
+- 数据流有两个类：用于读取和写出基本数据类型、`String`类的数据
+
+  `DataInputStream`和`DataOutputStream`
+
+  分别“套接”在`InputStream`和`OutputStream`子类的流上
+
+**数据流写入**
+
+1. 创建数据流
+
+   ```java
+   DataOutputStream dos = new DataOutputStream(new FileOutputStream("data.txt"));
+   ```
+
+2. 写入数据
+
+   ```java
+   dos.writeUTF("川建国");
+   dos.flush();
+   
+   dos.writeInt(23);
+   dos.flush();
+   
+   dos.writeBoolean(true);
+   dos.flush();
+   ```
+
+3. 关闭流
+
+   ```java
+   dos.close();
+   ```
+
+4. 异常处理
+
+   ```java
+   public static void test2() {
+       DataOutputStream dos = null;
+       try {
+           dos = new DataOutputStream(new FileOutputStream("data.txt"));
+           dos.writeUTF("川建国");
+           dos.flush();
+   
+           dos.writeInt(23);
+           dos.flush();
+   
+           dos.writeBoolean(true);
+           dos.flush();
+   
+       } catch (IOException e) {
+       	e.printStackTrace();
+       } finally {
+           try {
+           	if (dos != null)
+           		dos.close();
+           } catch (IOException e) {
+           	e.printStackTrace();
+           }
+       }
+   }
+   ```
+
+**数据流的读取**
+
+1. 创建数据流
+
+   ```java
+   DataInputStream dis = new DataInputStream(new FileInputStream("data.txt"));
+   ```
+
+2. 读取数据，读取的顺序必须与写入的数据相同
+
+   ```java
+   System.out.println(dis.readUTF());
+   System.out.println(dis.readInt());
+   System.out.println(dis.readBoolean());
+   ```
+
+3. 关闭流
+
+   ```java
+   dis.close();
+   ```
+
+4. 异常处理
+
+   ```java
+   public static void test(){
+       DataInputStream dis = null;
+       try{
+           dis = new DataInputStream(new FileInputStream("data.txt"));
+   
+           System.out.println(dis.readUTF());
+           System.out.println(dis.readInt());
+           System.out.println(dis.readBoolean());
+       } catch(IOException e) {
+       	e.printStackTrace();
+       } finally {
+           try {
+               if (dis != null)
+               	dis.close();
+           } catch (IOException e) {
+           	e.printStackTrace();
+           }
+       }
+   }
+   // 川建国
+   // 23
+   // true
+   ```
+
+#### 6.8.4 对象流
+
+- `ObjectInputStream`和`ObjectOutputStream`：用于存储和读取基本数据类型或对象的处理流。它的强大之处就是可以把`java`的对象写入到数据源中，也能把对象从数据源中还原回来
+- 序列化：用`ObjectOutputStream`类保存接本类型数据或对象的机制
+- 反序列化：用`ObjectInputStream`类读取基本数据类型或对象的机制
+- `ObjectOutputStream`和`ObjectInputStream`不能序列化`static`和`transient`修饰的成员变量 
+
+**对象流的序列化**
+
+1. 创建对象流
+
+   ```java
+   ObjectOutputStream new ObjectOutputStream(new FileOutputStream("object.dat"));
+   ```
+
+2. 写入对象并刷新缓冲区
+
+   ```java
+   oos.writeObject(new String("hello 中国"));
+   oos.flush();
+   ```
+
+3. 关闭流
+
+   ```java
+   oos.close();
+   ```
+
+4. 异常处理
+
+   ```java
+   @Test
+   public void test(){
+       ObjectOutputStream oos = null;
+       try {
+           oos = new ObjectOutputStream(new FileOutputStream("object.dat"));
+           oos.writeObject(new String("hello 中国"));
+           oos.flush();
+   
+       } catch (IOException e) {
+       	e.printStackTrace();
+       } finally {
+           try {
+           if (oos != null)
+           	oos.close();
+           } catch (IOException e) {
+           	e.printStackTrace();
+       	}
+   	}
+   }
+   ```
+
+**对象流的反序列化**
+
+1. 创建对象流
+
+   ```java
+   ObjectInputStream ois = new ObjectInputStream(new FileInputStream("object.dat"));
+   ```
+
+2. 反序列化
+
+   ```java
+   String str = (String) ois.readObject();
+   System.out.println(str);
+   ```
+
+3. 关闭流
+
+   ```java
+   ois.close();
+   ```
+
+4. 异常处理
+
+   ```java
+   @Test
+   public void test1(){
+       ObjectInputStream ois = null;
+       try {
+           ois = new ObjectInputStream(new FileInputStream("object.dat"));
+           String str = (String) ois.readObject();
+           System.out.println(str);
+       } catch (IOException e) {
+       	e.printStackTrace();
+       } catch (ClassNotFoundException e) {
+       	e.printStackTrace();
+       } finally {
+           try {
+           if (ois != null)
+           	ois.close();
+           } catch (IOException e) {
+           	e.printStackTrace();
+           }
+       }
+   }
+   ```
+
+**序列化的要求**
+
+- 如果需要让某个对象支持序列化的，则必须让对象所属的类及其属性是可序列化(基本数据库类型默认可序列化)的，为了让某个类是可序列化的，该类必须实现如下两个接口之一
+
+  ```java
+  Serializable
+  Externalizable
+  ```
+
+- 并且提供一个序列化版本号
+
+  ```java
+  public static final long serialVersionUID = 498464161223L;
+  ```
+
+- 序列化实例
+
+  ```java
+  class Person implements Serializable{
+      private String name;
+      private int age;
+      public static final long serialVersionUID = 498464161223L;
+  
+      public Person(String name, int age) {
+          this.name = name;
+          this.age = age;
+      }
+      @Override
+      public String toString() {
+          return "Person{" +
+                  "name='" + name + '\'' +
+                  ", age=" + age +
+                  '}';
+      }
+  }
+  ```
+
+- 凡是实现`Serializable`接口的类都有一个表示序列化版本标识符的静态变量
+
+  `private static final long serivalVersionUID`
+
+  `seralVersionUID`用来表明类的不同版本间的兼容性，简言之，其目的是以序列化对象进行版本控制，有关个版本反序列化时是否兼容
+
+  如果类没有显示定义这个静态常量，它的值是`java`运行时环境根据类的内部细节自动生成的。若类的实例变量做了修改，`serivalVersionUID`可能发生变化
+
+- 简单来说，`java`序列化机制是通过在运行时判断类的`serialVersionUID`来验证版本一致性的。在进行反序列化时，`JVM`会把传来的字节流中的`serialVersionUID`与本地相应实体类的`serialVersionUID`进行比较，如果相同就认为是一直的，可以进行反序列化，否则就会出现序列化版本不一致的异常
+
+#### 6.8.5 随机存取文件流
+
+`RandomAccessFile`类
+
+- `RandomAccessFile`声明在`java.io`包下，但直接继承于`java.lang.Object`类。并且用它实现了`DataInput`、`DataOutput`这两个接口，也就意味着这个类即可以读也可以写
+
+- `RandomAccessFile`类支持"随机访问"的方式，程序可以直接跳到文件的任意地方来读、写文件
+
+  支持只访问文件的部分内容
+
+  可以向已存在的文件后追加内容
+
+- `RandomAccessFile`类对象可以自由移动记录指针
+
+  `long getFilePointer()`：获取文件记录指针的当前位置
+
+  `void seek(long pos)`：将文件记录指针定位到`pos`位置
+
+- 构造器
+
+  ```java
+  public RandomAccessFile(File file, String mode)
+  public RandomAccessFile(String name, String mode)
+  ```
+
+- 创建`RandomAccessFile`类实例需要指定一个`mode`参数，该参数指定`RandomAccessFile`的访问模式
+
+  `r`：以只读方式打开
+
+  `rw`：打开以便读取和写入
+
+  `rwd`：打开以便读取和写入：同步文件内容的更新
+
+  `rws`：打开以便读取和写入：同步文件内容和元数据的更新
+
+- 如果模式为只读`r`。则不会创建文件，而是会去读取一个已经存在的文件，如果读取的文件不存在则会出现异常。如果模式为`rw`读写。如果文件不存在则会去创建文件，如果存在则不会创建
+
+**文件复制实例**
+
+```java
+@Test
+public void test(){
+
+    RandomAccessFile rafr = null;
+    RandomAccessFile rafrw = null;
+    try {
+        rafr = new RandomAccessFile("hello.txt", "r");
+        rafrw = new RandomAccessFile("hello1.txt", "rw");
+
+        byte[] buffer = new byte[1024];
+        int len;
+        while(true){
+            if (((len = rafr.read(buffer)) != -1)) {
+                rafrw.write(buffer, 0, len);
+            }
+        }
+    } catch (IOException e) {
+    	e.printStackTrace();
+    } finally {
+        try {
+            if (rafr != null)
+            	rafr.close();
+        } catch (IOException e) {
+        	e.printStackTrace();
+        }
+        try {
+            if (rafrw != null)
+            	rafrw.close();
+        } catch (IOException e) {
+        	e.printStackTrace();
+        }
+    }
+}
+```
+
+`RandomAccessFile`默认是覆盖原有文件的内容(不是取代)
+
+可以设置从文件指定位置开始写入或者读取文件(重定向文件指针)
+
+```
+
+```
+
+
+
+### 6.9 字符集
+
+编码表：计算机只能识别二进制数据，早起由来是电信号。为了方便应用计算机，让他可以识别各个国家的文字。就将各个国家的文件使用数字来表示，并一一对应，形成一张表为编码表
+
+常见的编码表
+
+- `ASCII`：美国标准信息交换码，用一个字节的7位可以表示
+- `ISO8859-1`：拉丁码表，欧洲码表，用一个字节的8位表示
+- `GB2312`：中国的中文编码表。两个字节编码所有字符
+- `GBK`：中国的中文编码表升级，融合了更多的中文文字符号。最多两个字节编码
+- `Unicode`：国际标准码，融合了目前人类使用的所有字符。为每个字符分配唯一的字符码，所有的文字都用两个字节来表示
+- `UTF-8`：变长的编码方式，可用`1-4`个字节来表示一个字符
 
