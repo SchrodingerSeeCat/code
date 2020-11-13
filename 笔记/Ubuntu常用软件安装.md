@@ -43,15 +43,21 @@ sudo apt install python3-pip
 
 更换阿里源
 
-```
+```bash
 sudo mkdir ~/.pip
 sudo vim ~/.pip/pip.conf
 ```
 
 粘贴
 
-```
+```bash
 [global]
 index-url = https://mirrors.aliyun.com/pypi/simple
+```
+
+## flash
+
+```bash
+sudo apt-get install flashplugin-installer
 ```
 

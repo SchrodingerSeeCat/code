@@ -2,15 +2,16 @@ package file;
 
 import org.junit.Test;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public class RandomAccessFileTest {
     public static void main(String[] args) {
-        test();
+//        test();
     }
-//    @Test
-    public static void test(){
+    @Test
+    public void test(){
 
         RandomAccessFile rafr = null;
         RandomAccessFile rafrw = null;
@@ -18,7 +19,6 @@ public class RandomAccessFileTest {
             rafr = new RandomAccessFile("hello.txt", "r");
             rafrw = new RandomAccessFile("hello1.txt", "rw");
 
-            rafrw.seek(30);
             byte[] buffer = new byte[1024];
             int len;
             while(true){
@@ -45,4 +45,13 @@ public class RandomAccessFileTest {
             }
         }
     }
+
+    @Test
+    public void test1() throws IOException {
+        RandomAccessFile rafrw = new RandomAccessFile("hello1.txt", "rw");
+        rafrw.seek(3);
+        rafrw.write("abc".getBytes());
+        rafrw.close();
+    }
+
 }

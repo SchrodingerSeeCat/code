@@ -4090,15 +4090,37 @@ public void test(){
 }
 ```
 
-`RandomAccessFile`默认是覆盖原有文件的内容(不是取代)
+`RandomAccessFile`默认是覆盖原有文件位置的内容(不是覆盖所有)
 
 可以设置从文件指定位置开始写入或者读取文件(重定向文件指针)
 
+```java
+void seek(long pos)
 ```
 
-```
+### 6.9 NIO
 
+- `Java NIO`：与原本的`IO`有同样的作用和目的，但是使用的方式完全不同，`NIO`支持面相缓冲区的(`IO`是面相流的)、基于通道的`IO`操作
 
+- `NIO`有两种，一种针对标准输入输出`NIO`,另一套网络编程`NIO`
+
+  ```mermaid
+  graph TD
+  A[java.nio.channels.Channel] --> FileChannel:本地文件
+  A --> SocketChannel:Tcp客户端
+  A --> ServerSocketChannel:Tcp服务端
+  A --> DatagramChannel:UDP发送端和接受端
+  ```
+
+- `NIO2`引入`Path`接口，代表一个和平台无关的平台路径，描述了目录中文件的位置。`Path`是`File`类的升级版，实际引用的资源可以不存在
+
+  ```java
+  import java.nio.file.Path;
+  import java.nio.file.Paths;
+  Path path = Paths.get("hello.txt");
+  ```
+
+- `NIO2`中还有`Paths`和`Files`工具类，提供了一系列的文件目录操作方法
 
 ### 6.9 字符集
 
@@ -4112,4 +4134,467 @@ public void test(){
 - `GBK`：中国的中文编码表升级，融合了更多的中文文字符号。最多两个字节编码
 - `Unicode`：国际标准码，融合了目前人类使用的所有字符。为每个字符分配唯一的字符码，所有的文字都用两个字节来表示
 - `UTF-8`：变长的编码方式，可用`1-4`个字节来表示一个字符
+
+## 7. 网络编程
+
+### 7.1 概述
+
+- `java`是`Internet`上的语言，他从语言级上提供了对网络应用程序的支持，程序员能够很容易开发常见的网络应用程序
+- `java`提供的网络类库，可以安装无痛的网络连接，联网的底层细节被隐藏在`java`的本机安装系统里，由`JVM`进行控制。并且`java`实现了一个跨平台的网络库，程序员面对的是一个统一的网络编程环境
+
+#### 7.1.1 IP
+
+`java`中使用`InetAddress`类代表`IP`
+
+方式一：`IP`地址表示
+
+```java
+public static void main(String[] args) {
+    InetAddress inetAddress = null;
+    try {
+    	inetAddress = InetAddress.getByName("192.168.1.1");
+    } catch (UnknownHostException e) {
+    	e.printStackTrace();
+    }
+    System.out.println(inetAddress); // /192.168.1.1
+}
+```
+
+方式二：域名表示
+
+```java
+public static void main(String[] args) {
+    InetAddress inetAddress = null;
+    try {
+        inetAddress = InetAddress.getByName("www.baidu.com");
+    } catch (UnknownHostException e) {
+    	e.printStackTrace();
+    }
+    System.out.println(inetAddress); // www.baidu.com/39.156.66.18
+}
+```
+
+#### 7.1.2 端口号
+
+端口号标识正在计算机上运行的进程
+
+- 不同的进程有不同的端口号
+
+- 被规定为一个`16`位的整数`0~65535`
+
+- 端口分类
+
+  公认端口：`0~1023`，被预先定义的服务通信占用。`HTTP`,80、`FTP`,21、`Telnet`,23
+
+  注册端口：`1024~49151`，分配给用户进程或应用程序。`Tomcat`,8080、`MySQL`,3306、`Oracle`,1521
+
+  动态/私有端口：`49152~65535`
+
+- 端口号与`IP`地址的组合得出一个网络套接字`Socket`
+
+#### 7.1.3 网络协议
+
+- 网络通信协议：计算机网络中实现通信必须有一些约定，即通信协议，对速率、传输代码、代码结构、传输控制步骤、出错控制等指定标准
+- 网络协议太复杂：计算机网络通信涉及内容很多，比如指定源地址和目标地址，加密解密，压缩解压缩，差错控制，流量控制，路由控制
+- 通信协议分层的思想：在制定协议时，把复杂成份分解成一些简单的成份，再将它们复合起来。最常用的复合方式是层次关系，即同层间可以通信、上一层可以调用下一层，而与再下一层不发生关系。各层互不影响，利于系统的开发和扩展
+
+**`TCP/IP`协议簇**
+
+- 传输层协议中有两个非常重要的协议
+
+  传输控制协议`TCP`
+
+  用户数据协议`UDP`
+
+- `TCP/IP`以其两个主要协议：传输控制协议`TCP`和网络互联协议`IP`而得名，实际上是一组协议，包括多个具有不同功能且互为关联的协议
+
+- `IP`协议是网络层的主要协议，支持网间互联的数据通信
+
+- `TCP/IP`协议模型从更实用的角度出发，形成了高效的四层体系结构，即物理链路层、`IP`层、传输层和应用层
+
+### 7.2 TCP网络编程
+
+#### 7.2.1 客户端
+
+1. 获取服务端`IP`
+
+   ```java
+   InetAddress inetAddress = InetAddress.getByName("127.0.0.1");
+   ```
+
+2. 获取套接字
+
+   ```java
+   Socket socket = new Socket(inetAddress, 8080);
+   ```
+
+3. 获得输出流
+
+   ```java
+   OutputStream os = socket.getOutputStream();
+   ```
+
+4. 写入信息
+
+   ```java
+   os.write("Hello, I am a client".getBytes());
+   ```
+
+5. 关闭数据的输出，提示服务器数据传送完毕
+
+   ```java
+   socket.shutdownOutput(); 
+   ```
+
+6. 接受服务端的反馈
+
+   ```java
+   InputStream inputStream = socket.getInputStream();
+   ByteArrayOutputStream baos = new ByteArrayOutputStream();
+   byte[] message = new byte[1024];
+   int len;
+   while((len = inputStream.read(message)) != -1) {
+   	baos.write(message, 0, len);
+   }
+   System.out.println(baos.toString());
+   ```
+
+7. 关闭流和套接字
+
+   ```java
+   os.close();
+   socket.close();
+   ```
+
+8. 异常处理
+
+   ```java
+   @Test
+   public void client(){
+       InetAddress inetAddress = null;
+       Socket socket = null;
+       OutputStream os = null;
+       InputStream inputStream = null;
+       ByteArrayOutputStream baos = null;
+   
+       try {
+           inetAddress = InetAddress.getByName("127.0.0.1");
+           socket = new Socket(inetAddress, 8080);
+   
+           os = socket.getOutputStream();
+           os.write("Hello, I am a client".getBytes());
+           
+           socket.shutdownOutput();
+   
+           inputStream = socket.getInputStream();
+           baos = new ByteArrayOutputStream();
+           byte[] message = new byte[1024];
+           int len;
+           while((len = inputStream.read(message)) != -1) {
+               baos.write(message, 0, len);
+           }
+           System.out.println(baos.toString());
+       } catch (IOException e) {
+       	e.printStackTrace();
+       } finally {
+           try {
+               if (inputStream != null)
+                   inputStream.close();
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
+           try {
+               if (baos != null)
+                   baos.close();
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
+           
+           try {
+               if (os != null)
+               	os.close();
+           } catch (IOException e) {
+           	e.printStackTrace();
+           }
+           try {
+               if (socket != null)
+               	socket.close();
+           } catch (IOException e) {
+           	e.printStackTrace();
+           }
+       }
+   }
+   ```
+
+#### 7.2.2 服务端
+
+1. 创建服务器套接字
+
+   ```java
+   ServerSocket serverSocket = new ServerSocket(8080);
+   ```
+
+2. 接受客户端的`Socket`
+
+   ```java
+   Socket socket = serverSocket.accept();
+   ```
+
+3. 获得输入流
+
+   ```java
+   InputStream inputStream = socket.getInputStream();
+   ```
+
+4. 读取信息
+
+   ```java
+   ByteArrayOutputStream baos = new ByteArrayOutputStream();
+   byte[] message = new byte[1024];
+   int len;
+   while((len = inputStream.read(message)) != -1) {
+       baos.write(message, 0, len);
+   }
+   System.out.println(baos.toString());
+   ```
+
+5. 服务器给予客户端反馈
+
+   ```java
+   OutputStream outputStream = socket.getOutputStream();
+   outputStream.write("I am a server".getBytes());
+   ```
+
+6. 关闭流和套接字
+
+   ```java
+   baos.close();
+   inputStream.close();
+   socket.close();
+   serverSocket.close();
+   ```
+
+7. 异常处理
+
+   ```java
+   @Test
+   public void server(){
+       // 服务端
+       ServerSocket serverSocket = null;
+       Socket socket = null;
+       InputStream inputStream = null;
+       ByteArrayOutputStream baos = null;
+       OutputStream outputStream = null;
+       try {
+           serverSocket = new ServerSocket(8080);
+           socket = serverSocket.accept();
+           inputStream = socket.getInputStream();
+   
+           baos = new ByteArrayOutputStream();
+           byte[] message = new byte[1024];
+           int len;
+           while((len = inputStream.read(message)) != -1) {
+           	baos.write(message, 0, len);
+           }
+           System.out.println(baos.toString());
+           
+           outputStream = socket.getOutputStream();
+           outputStream.write("I am a server".getBytes());
+       } catch (IOException e) {
+       	e.printStackTrace();
+       } finally {
+           try {
+               if (outputStream != null)
+                   outputStream.close();
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
+           try {
+               if (baos != null)
+               	baos.close();
+           } catch (IOException e) {
+           	e.printStackTrace();
+           }
+           try {
+           	if (inputStream != null)
+           		inputStream.close();
+           } catch (IOException e) {
+           	e.printStackTrace();
+           }
+           try {
+           	if (socket != null)
+           		socket.close();
+           } catch (IOException e) {
+           	e.printStackTrace();
+           }
+           try {
+           	if (serverSocket != null)
+           		serverSocket.close();
+           } catch (IOException e) {
+           	e.printStackTrace();
+           }
+       }
+   }
+   ```
+
+### 7.3 UDP网络编程
+
+#### 7.3.1 发送端
+
+1. 创建套接字
+
+   ```java
+   DatagramSocket socket = new DatagramSocket();
+   ```
+
+2. 创建数据包
+
+   ```java
+   String str = "我是UDP方式发送的数据包";
+   InetAddress inet = InetAddress.getLocalHost();
+   DatagramPacket packet = new DatagramPacket(str.getBytes(), 0, str.length(), inet, 8080);
+   ```
+
+3. 发送数据包
+
+   ```java
+   socket.send(packet);
+   ```
+
+4. 关闭资源
+
+   ```java
+   socket.close();
+   ```
+
+5. 异常处理
+
+   ```java
+   @Test
+   public void send(){
+       DatagramSocket socket = null;
+       try {
+           socket = new DatagramSocket();
+   
+           String str = "我是UDP方式发送的数据包";
+           InetAddress inet = InetAddress.getLocalHost();
+           DatagramPacket packet = new DatagramPacket(str.getBytes(), 0, str.length(), inet, 8080);
+   
+           socket.send(packet);
+   
+       } catch (IOException e) {
+       	e.printStackTrace();
+       } finally {
+           if (socket != null)
+           	socket.close();
+       }
+   }
+   ```
+
+#### 7.3.2 接收端
+
+1. 创建套接字
+
+   ```java
+   DatagramSocket socket = new DatagramSocket(8080);
+   ```
+
+2. 创建接受的数据包
+
+   ```java
+   byte[] buffer = new byte[100];
+   DatagramPacket packet = new DatagramPacket(buffer, 0, buffer.length);
+   ```
+
+3. 接受数据
+
+   ```java
+   socket.receive(packet);
+   ```
+
+4. 输出数据
+
+   ```java
+   System.out.println(new String(packet.getData(), 0, packet.getLength()));
+   ```
+
+5. 关闭资源
+
+   ```
+   socket.close();
+   ```
+
+6. 异常异常处理
+
+   ```java
+   @Test
+   public void receiver() {
+       // 创建套接字
+       DatagramSocket socket = null;
+       try {
+           socket = new DatagramSocket(8080);
+   
+           // 创建接受的数据包
+           byte[] buffer = new byte[1024];
+           DatagramPacket packet = new DatagramPacket(buffer, 0, buffer.length);
+   
+           // 接受数据
+           socket.receive(packet);
+   
+           // 输出数据
+           System.out.println(new String(packet.getData(), 0, packet.getLength()));
+       } catch (IOException e) {
+           e.printStackTrace();
+       } finally {
+           if(socket != null)
+               socket.close();
+       }
+   }
+   ```
+
+### 7.4 URL编程
+
+- `URL(Uniform Resource Locator)`：统一资源定位符，它表示`internet`上某一资源的地址
+
+- 它是一种具体的`URL`，即`URL`可以用来标识一个资源，而且还指明了如何`locate`这个资源
+
+- 通过`URL`我们可以访问`internet`上的各种网络资源，比如常见的`www`，`ftp`站点。浏览器通过解析给定的`URL`可以在网络上查找相应的文件或其它资源
+
+- `URL`的基本结构由5部分组成
+
+  ```java
+  <传输协议>://<主机名>:<端口号>/<文件名>#片段名?参数列表
+  ```
+
+- 实例化
+
+  ```java
+  URL url = new URL("https://www.baidu.com/");
+  ```
+
+- 常用方法
+
+  `String getProtocol()`获取协议名
+
+  ```java
+  System.out.println(url.getProtocol()); // https
+  ```
+
+  `String getPort()`获取该URL的端口号
+
+  ```java
+  System.out.println(url.getPort()); // -1
+  ```
+
+  `String getPath()`获取该URL的文件路径
+
+  ```java
+  System.out.println(url.getPath()); // /
+  ```
+
+## 8. java反射机制
+
+
+
+
 
