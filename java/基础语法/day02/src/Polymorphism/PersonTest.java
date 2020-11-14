@@ -1,8 +1,5 @@
 package Polymorphism;
 
-import Polymorphism.Man;
-import Polymorphism.Person;
-
 public class PersonTest {
     public static void main(String[] args){
         Person p1 = new Man();

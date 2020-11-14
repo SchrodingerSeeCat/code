@@ -1,7 +1,5 @@
 package Polymorphism;
 
-import Polymorphism.Person;
-
 public class Woman extends Person {
     boolean isBeauty;
     public void goShopping(){

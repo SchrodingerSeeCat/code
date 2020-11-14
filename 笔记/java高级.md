@@ -4594,7 +4594,587 @@ public static void main(String[] args) {
 
 ## 8. java反射机制
 
+### 8.1 反射机制概述
 
+- `Reflection`(反射)被视为动态语言的关键，反射机制允许程序在执行期间借助于`Reflection API`取得任何类的内部信息，并能直接操作任意对象的内部属性和方法。
 
+- 加载完类之后，在堆内存的方法区中就产生了一个`Class`类型的对象(一个类只有一个`Class`对象)，这个对象就包含了完整的类的结构信息。我们可以通过这个对象看到类的结构。
 
+- `java`反射机制提供的功能
 
+  在运行时判断任意一个对象所属的类
+
+  在运行时构造任意一个类的对象
+
+  在运行时判断任意一个类所具有的成员变量和方法
+
+  在运行时获取泛型信息
+
+  在运行时调用任意一个对象的成员变量和方法
+
+  在运行时处理注解
+
+  生成动态代理
+
+- 反射的相关`API`
+
+  ```java
+  java.lang.Class; // 代表一个类
+  java.lang.reflect.Method; // 代表类的方法
+  java.lang.reflect.Field; // 代表类的成员变量
+  java.lang.reflect.Constructor; // 代表类的构造器
+  ```
+
+#### 8.1.1 快速入门
+
+**Person结构**
+
+```java
+class Person{
+    private String name;
+    public int age;
+
+    public Person(){}
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    private Person(String name) {
+        this.name = name;
+    }
+
+    public void show(){
+        System.out.println("I am " + name);
+    }
+
+    private String showMessage(String nation) {
+        System.out.println("My nation is " + nation);
+        return nation;
+    }
+}
+```
+
+- 通过反射创建`Person`实例
+
+  ```java
+  // 拿到Person的class
+  Class<Person> personClass = Person.class;
+  // 得到Person的构造器
+  Constructor<Person> cons = personClass.getConstructor(String.class, int.class);
+  // 实例化Person对象
+  Person p = cons.newInstance("Tom", 12);
+  ```
+
+- 通过反射调用对象指定的属性方法
+
+  ```java
+  // 通过反射调用对象指定的属性方法
+  Field age = personClass.getField("age");
+  age.set(p, 10);
+  
+  // 调用方法
+  Method show = personClass.getMethod("show");
+  show.invoke(p);
+  ```
+
+- 通过反射也可以调用私有结构
+
+  ```java
+  // 调用私有结构器
+  Constructor<Person> cons1 = personClass.getDeclaredConstructor(String.class);
+  cons1.setAccessible(true);
+  Person p2 = cons1.newInstance("大黄");
+  // 调用私有的属性
+  Field name = personClass.getDeclaredField("name");
+  name.setAccessible(true);
+  name.set(p2, "大白");
+  // 调用私有方法
+  Method showNation = personClass.getDeclaredMethod("showNation", String.class);
+  showNation.setAccessible(true);
+  String nation = (String) showNation.invoke(p2, "China");
+  System.out.println(p2);
+  ```
+
+#### 8.1.2 Class类
+
+`Class`类的实例对应着一个运行时类
+
+**获取`Class`实例的方式**
+
+- 方式一：调用运行时类的属性
+
+  ```java
+  Class<Person> clazz = Person.class;
+  System.out.println(clazz);
+  // class ReflectionTest.Person
+  ```
+
+- 方式二：通过运行时类的对象，调用`getClass()`
+
+  ```java
+  Person p = new Person();
+  Class clazz = p1.getClass();
+  System.out.println(clazz);
+  // class ReflectionTest.Person
+  ```
+
+- 方式三：调用`Class`的静态方法：`forName(String classPath)`
+
+  ```java
+  Class clazz = Class.forName("ReflectionTest.Person");
+  System.out.println(clazz);
+  // class ReflectionTest.Person
+  ```
+
+- 方式四：使用类的加载器
+
+  ```java
+  ClassLoader classLoader = ReflectionTest.class.getClassLoader();
+  Class clazz = classLoader.loadClass("ReflectionTest.Person");
+  System.out.println(clazz);
+  // class ReflectionTest.Person
+  ```
+
+**`Class`类对应的对象**
+
+- `class`：外部类，成员(成员内部类，静态内部类)，局部内部类，匿名内部类
+- `interface`：接口
+- `[]`：数组
+- `enum`：枚举
+- `annotation`：注解`@interface`
+- `primitive type`：基本数据类型
+- `void`
+
+### 8.2 创建运行时类的对象
+
+`newInstance()`：调用此方法，创建对应的运行时类的对象，调用对应类的空参构造器
+
+```java
+Class<Person> clazz = Person.class;
+Person p = clazz.newInstance(); // 方法已过时，推荐clazz.getConstructor().newInstance();
+System.out.println(p); // Person{name='null', age=0}
+```
+
+提供创建多个类实例的方法
+
+```java
+public Object getInstance(String classPath) throws Exception {
+	return Class.forName(classPath).getConstructor().newInstance();
+}
+```
+
+实例调用
+
+```java
+int num = new Random().nextInt(3);
+String classPath = "";
+switch(num) {
+    case 1:
+        classPath = "java.util.Date";
+        break;
+    case 2:
+        classPath = "java.lang.Object";
+        break;
+    default:
+    	classPath = "ReflectionTest.Person";
+}
+try {
+	Object obj = getInstance(classPath);
+	System.out.println(obj);
+} catch (Exception e) {
+	e.printStackTrace();
+}
+```
+
+### 8.3 获取运行时类的完整结构
+
+#### 8.3.1 类的结构
+
+`Person.java`
+
+```java
+import java.util.Random;
+
+@MyAnnotation(value = "class")
+public class Person extends Creature<String> implements Comparable<String>, MyInterface{
+
+    private String name;
+    int age;
+    public int id;
+
+    public Person(){
+        id = new Random().nextInt(100);
+    }
+
+    @MyAnnotation(value = "constructor")
+    private Person(String name) {
+        this();
+        this.name = name;
+    }
+
+    Person(String name, int age) {
+        this(name);
+        this.age = age;
+    }
+
+    @MyAnnotation(value = "method")
+    private String show(String nation) {
+        System.out.println("我的国籍是：" + nation);
+        return nation;
+    }
+
+    public String skill(String skill) throws Exception {
+        return skill;
+    }
+    @Override
+    public int compareTo(String o) {
+        return name.compareTo(o);
+    }
+
+    @Override
+    public void info() {
+        System.out.println("I am a Person");
+    }
+}
+```
+
+`Creature.java`
+
+```java
+import java.io.Serializable;
+
+public class Creature<T> implements Serializable {
+    private char gender;
+    public double weight;
+
+    private void breath(){
+        System.out.println("生物呼吸");
+    }
+    public void eat(){
+        System.out.println("生物吃东西");
+    }
+}
+```
+
+`MyInterface.java`
+
+```java
+package reflectstruct;
+
+public interface MyInterface {
+    void info();
+}
+```
+
+`MyAnnotation.java`
+
+```java
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target({ElementType.TYPE, ElementType.FIELD, ElementType.METHOD, ElementType.CONSTRUCTOR})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyAnnotation {
+    String value() default "hello";
+}
+```
+
+#### 8.3.2 获取属性结构
+
+- `Field[] getFields()`：获取当前运行时类及其父类中声明为`public`的属性
+
+  ```java
+  Field[] fields = clazz.getFields();
+  for(Field f : fields) {
+  	System.out.println(f);
+  }
+  // public int reflectstruct.Person.id
+  // public double reflectstruct.Creature.weight
+  ```
+
+- `Field[] getDeclaredFields()`：获取当前运行时类中声明的所有属性和方法(不包含父类)
+
+  ```java
+  Field[] fields = clazz.getDeclaredFields();
+  for(Field f : fields) {
+  	System.out.println(f);
+  }
+  // private java.lang.String reflectstruct.Person.name
+  // int reflectstruct.Person.age
+  // public int reflectstruct.Person.id
+  ```
+
+- 对于每个属性也可以获得以下结构
+  
+```java
+  Class<Person> clazz = Person.class;
+  Field[] fields = clazz.getDeclaredFields();
+  ```
+  
+  `int getModifiers()`：获取权限修饰符，为一个整数，调用`Modifier.toString(int mod)`转换为`String`字符串
+  
+  ```java
+  for(Field f : fields) {
+      int modifiers = f.getModifiers();
+    System.out.println(Modifier.toString(modifiers));
+  }
+  // private
+  //
+  // public
+  ```
+  
+  `Class<?> getType()`：获取变量的类型
+  
+  ```java
+  for(Field f : fields) {
+      Class type = f.getType();
+      System.out.println(type);
+  }
+  // class java.lang.String
+  // int
+  // int
+  ```
+  
+  `public String getName() `：获取变量名
+  
+  ```java
+  for(Field f : fields) {
+      String name = f.getName();
+      System.out.println(name);
+  }
+  // name
+  // age
+  // id
+  ```
+
+#### 8.3.3 获取方法结构
+
+- `Method[] getMethods()`：获取当前运行时类及其所有父类中声明为`public`权限的方法
+
+  ```java
+  @Test
+  public void test() {
+      Class<Person> clazz = Person.class;
+      Method[] methods = clazz.getMethods();
+  
+      for(Method m : methods) {
+      	System.out.println(m);
+      }
+  }
+  ```
+
+  ```java
+  // public java.lang.String reflectstruct.Person.skill(java.lang.String)
+  // public int reflectstruct.Person.compareTo(java.lang.Object)
+  // public int reflectstruct.Person.compareTo(java.lang.String)
+  // public void reflectstruct.Person.info()
+  // public void reflectstruct.Creature.eat()
+  // public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException
+  // public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
+  // public final void java.lang.Object.wait() throws java.lang.InterruptedException
+  // public boolean java.lang.Object.equals(java.lang.Object)
+  // public java.lang.String java.lang.Object.toString()
+  // public native int java.lang.Object.hashCode()
+  // public final native java.lang.Class java.lang.Object.getClass()
+  // public final native void java.lang.Object.notify()
+  // public final native void java.lang.Object.notifyAll()
+  ```
+
+- `Method[] getDeclaredMethods()`：获取当前类的所有属性和方法
+
+  ```java
+  Method[] declaredMethods = clazz.getDeclaredMethods();
+  for(Method m : declaredMethods) {
+  	System.out.println(m);
+  }
+  // public int reflectstruct.Person.compareTo(java.lang.String)
+  // public int reflectstruct.Person.compareTo(java.lang.Object)
+  // public void reflectstruct.Person.info()
+  // private java.lang.String reflectstruct.Person.show(java.lang.String)
+  // public java.lang.String reflectstruct.Person.skill(java.lang.String)
+  ```
+
+- 具体也可以获取权限修饰符，返回值类型，注解
+
+  ```java
+  @Test
+  public void test() {
+      Class<Person> clazz = Person.class;
+      Method[] declaredMethods = clazz.getDeclaredMethods();
+  }
+  ```
+
+  获取方法声明的注解
+
+  ```java
+  for(Method m : declaredMethods) {
+      Annotation[] annos = m.getAnnotations();
+      for(Annotation a : annos) {
+          System.out.println(a);
+      }
+  }
+  // @reflectstruct.MyAnnotation(value="method")
+  ```
+
+  `int getModifiers()`：获取权限修饰符
+
+  ```java
+  for(Method m : declaredMethods) {
+      System.out.println(Modifier.toString(m.getModifiers()));
+  }
+  // private
+  // public
+  // public volatile
+  // public
+  // public
+  ```
+
+  `Class<?> getReturnType()`：获取返回值
+
+  ```java
+  for(Method m : declaredMethods) {
+      System.out.println(m.getReturnType());
+  }
+  // java.lang.String
+  // java.lang.String
+  // int
+  // int
+  // void
+  ```
+
+  `String getName()`：获取方法名
+
+  ```java
+  for(Method m : declaredMethods) {
+  	System.out.println(m.getName());
+  }
+  // show
+  // skill
+  // compareTo
+  // compareTo
+  // info
+  ```
+
+  `Class<?>[] getParameterTypes()`：获取形参列表
+
+  ```java
+  for(Method m : declaredMethods) {
+  	Class[] parameterTypes = m.getParameterTypes();
+      	if(parameterTypes != null && parameterTypes.length != 0) {
+          	for(Class param : parameterTypes) {
+              	System.out.print(param + " ");
+              }
+          }
+  }
+  // class java.lang.String
+  // class java.lang.String
+  // class java.lang.Object
+  // class java.lang.String
+  //    
+  ```
+
+  `Class<?>[] getExceptionTypes()`：获取异常
+
+  ```java
+  Class[] exceptions = m.getExceptionTypes();
+  if (exceptions != null && exceptions.length != 0) {
+      System.out.print("throws ");
+      for(Class e : exceptions) {
+      	System.out.print(e);
+      }
+  }
+  ```
+
+#### 8.3.4 获取其它结构
+
+```java
+@Test
+public void test() {
+	Class<Person> clazz = Person.class;
+}
+```
+
+- `Constructor<?>[] getConstructors()`：获取当前类中声明为`public`的构造器
+
+  ```java
+  Constructor[] constructors = clazz.getConstructors();
+  for(Constructor con : constructors) {
+  	System.out.println(con);
+  }
+  // public reflectstruct.Person()
+  ```
+
+- `Constructor<?>[] getDeclaredConstructors()`：获取当前类中所有的构造器
+
+  ```java
+  Constructor[] constructors1 = clazz.getDeclaredConstructors();
+  for(Constructor con : constructors1) {
+  	System.out.println(con);
+  }
+  // public reflectstruct.Person()
+  // reflectstruct.Person(java.lang.String,int)
+  // private reflectstruct.Person(java.lang.String)
+  ```
+
+- 获取运行时的父类
+
+  ```java
+  Class superClass = clazz.getSuperclass();
+  System.out.println(superClass);
+  // class reflectstruct.Creature
+  ```
+
+- 获取运行时类的带泛型的父类
+
+  ```java
+  Type superClass1 = clazz.getGenericSuperclass();
+  System.out.println(superClass1);
+  // reflectstruct.Creature<java.lang.String>
+  ```
+
+- 获取运行时类的带泛型的父类的泛型
+
+  ```java
+  Type superClass = clazz.getGenericSuperclass();
+  ParameterizedType ptt = (ParameterizedType)superClass;
+  Type[] args = ptt.getActualTypeArguments();
+  for(Type a : args) {
+  	System.out.println(a);
+  }
+  // class java.lang.String
+  ```
+
+- ` Class<?>[] getInterfaces()`：获取运行时类实现的接口
+
+  ```java
+  Class[] interfaces = clazz.getInterfaces();
+  for(Class in : interfaces) {
+  	System.out.println(in);
+  }
+  // interface java.lang.Comparable
+  // interface reflectstruct.MyInterface
+  ```
+
+- `Package getPackage()`：获取运行时类所在的包
+
+  ```java
+  Package pack = clazz.getPackage();
+  System.out.println(pack);
+  // 	package reflectstruct
+  ```
+
+- 获取运行时类的注解
+
+  ```java
+  Annotation[] annotations = clazz.getAnnotations();
+  for(Annotation annotation : annotations) {
+  	System.out.println(annotation);
+  }
+  // @reflectstruct.MyAnnotation(value="class")
+  ```
+
+### 8.4 调用运行时类的指定结构
+
+#### 8.3.1 属性

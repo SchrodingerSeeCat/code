@@ -1,7 +1,5 @@
 package codeblock;
 
-import java.util.Scanner;
-
 // 代码块
 public class PersonTest {
     public static void main(String[] args) {

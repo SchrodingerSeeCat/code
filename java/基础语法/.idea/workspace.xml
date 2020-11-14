@@ -19,50 +19,256 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e92c8a2-19df-4da6-bf36-c46d96627bac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/day01/day01.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/day02/day02.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../数据结构实验/.vscode/c_cpp_properties.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../数据结构实验/.vscode/launch.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../数据结构实验/.vscode/settings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../数据结构实验/.vscode/tasks.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../数据结构实验/Hello.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../数据结构实验/a.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../数据结构实验/linkList.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../数据结构实验/linkList.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../数据结构实验/problem_3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../数据结构实验/quickSort.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/java.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/java.md" afterDir="false" />
+    <list default="true" id="369b93bb-15ef-46c1-860a-926a35757e9c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/day12/day12.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/基础语法.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/基础语法.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day01/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day01/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day01/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day01/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day01/day01.iml" beforeDir="false" afterPath="$PROJECT_DIR$/day01/day01.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day02/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day02/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day02/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day02/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day02/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day02/day02.iml" beforeDir="false" afterPath="$PROJECT_DIR$/day02/day02.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day02/src/Polymorphism/PersonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/day02/src/Polymorphism/PersonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day02/src/Polymorphism/Woman.java" beforeDir="false" afterPath="$PROJECT_DIR$/day02/src/Polymorphism/Woman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day02/src/codeblock/PersonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/day02/src/codeblock/PersonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day02/src/toString/PersonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/day02/src/PersonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day03/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day03/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day03/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day03/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day03/day03.iml" beforeDir="false" afterPath="$PROJECT_DIR$/day03/day03.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day04/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day04/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day04/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day04/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day04/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day04/day04.iml" beforeDir="false" afterPath="$PROJECT_DIR$/day04/day04.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day05/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day05/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day05/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day05/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day05/day05.iml" beforeDir="false" afterPath="$PROJECT_DIR$/day05/day05.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/day06.iml" beforeDir="false" afterPath="$PROJECT_DIR$/day06/day06.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day07/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day07/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day07/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day07/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day07/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day07/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day07/day07.iml" beforeDir="false" afterPath="$PROJECT_DIR$/day07/day07.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day08/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day08/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day08/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day08/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day08/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day08/day08.iml" beforeDir="false" afterPath="$PROJECT_DIR$/day08/day08.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day09/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day09/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day09/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day09/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day09/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day09/day09.iml" beforeDir="false" afterPath="$PROJECT_DIR$/day09/day09.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day09/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/day09/src/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day10/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day10/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day10/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day10/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day10/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day10/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day10/day10.iml" beforeDir="false" afterPath="$PROJECT_DIR$/day10/day10.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day10/src/file/FileTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/day10/src/file/FileTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day10/src/file/RandomAccessFileTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/day10/src/file/RandomAccessFileTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day10/test/1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/day10/src/test/1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day11/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day11/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day11/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day11/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day11/day11.iml" beforeDir="false" afterPath="$PROJECT_DIR$/day11/day11.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/java高级.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/java高级.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="AnnotationType" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectId" id="1j5gg5o9xkNWBDlMC2hn6P33Ckc" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1kGGYsTNVVueqLfRNe2O7o3pdBV" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path" value="/usr/lib/jvm/jdk-11.0.9/lib" />
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/day02" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/day12/src" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/day12/src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/day011/src" />
+      <recent name="$PROJECT_DIR$/day010" />
+      <recent name="$PROJECT_DIR$/day010/src" />
+      <recent name="$PROJECT_DIR$/day009/src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.GetOtherTest.test2">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GetMethodTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="day12" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="getstruct.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="getstruct" />
+      <option name="MAIN_CLASS_NAME" value="getstruct.GetMethodTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GetMethodTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="day12" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="getstruct.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="getstruct" />
+      <option name="MAIN_CLASS_NAME" value="getstruct.GetMethodTest" />
+      <option name="METHOD_NAME" value="test1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GetOtherTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="day12" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="getstruct.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="getstruct" />
+      <option name="MAIN_CLASS_NAME" value="getstruct.GetOtherTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GetOtherTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="day12" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="getstruct.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="getstruct" />
+      <option name="MAIN_CLASS_NAME" value="getstruct.GetOtherTest" />
+      <option name="METHOD_NAME" value="test1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GetOtherTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="day12" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="getstruct.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="getstruct" />
+      <option name="MAIN_CLASS_NAME" value="getstruct.GetOtherTest" />
+      <option name="METHOD_NAME" value="test2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.GetOtherTest.test2" />
+        <item itemvalue="JUnit.GetOtherTest.test1" />
+        <item itemvalue="JUnit.GetOtherTest.test" />
+        <item itemvalue="JUnit.GetMethodTest.test1" />
+        <item itemvalue="JUnit.GetMethodTest.test" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8e92c8a2-19df-4da6-bf36-c46d96627bac" name="Default Changelist" comment="" />
-      <created>1603099474982</created>
+      <changelist id="369b93bb-15ef-46c1-860a-926a35757e9c" name="Default Changelist" comment="" />
+      <created>1605319565766</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1603099474982</updated>
-      <workItem from="1603099476079" duration="18000" />
+      <updated>1605319565766</updated>
+      <workItem from="1605319567308" duration="1990000" />
+      <workItem from="1605321573022" duration="10142000" />
+      <workItem from="1605356025567" duration="7806000" />
     </task>
     <servers />
   </component>
@@ -79,11 +285,80 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1603099493791">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state x="444" y="131" key="#Project_Structure" timestamp="1605320209243">
+      <screen x="0" y="24" width="1920" height="1056" />
     </state>
-    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1603099493791" />
+    <state x="444" y="131" key="#Project_Structure/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605320209243" />
+    <state x="635" y="254" width="648" height="604" key="#com.intellij.ide.util.MemberChooser" timestamp="1605331580311">
+      <screen x="0" y="24" width="1920" height="1056" />
+    </state>
+    <state x="635" y="254" width="648" height="604" key="#com.intellij.ide.util.MemberChooser/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605331580311" />
+    <state x="529" y="469" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1605328776455">
+      <screen x="0" y="24" width="1920" height="1056" />
+    </state>
+    <state x="529" y="469" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605328776455" />
+    <state x="685" y="374" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1605323034750">
+      <screen x="0" y="24" width="1920" height="1056" />
+    </state>
+    <state x="685" y="374" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605323034750" />
+    <state x="730" y="246" key="FileChooserDialogImpl" timestamp="1605320620950">
+      <screen x="0" y="24" width="1920" height="1056" />
+    </state>
+    <state x="730" y="246" key="FileChooserDialogImpl/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605320620950" />
+    <state width="1864" height="336" key="GridCell.Tab.0.bottom" timestamp="1605364097433">
+      <screen x="0" y="24" width="1920" height="1056" />
+    </state>
+    <state width="1864" height="336" key="GridCell.Tab.0.bottom/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605364097433" />
+    <state width="1864" height="336" key="GridCell.Tab.0.center" timestamp="1605364097433">
+      <screen x="0" y="24" width="1920" height="1056" />
+    </state>
+    <state width="1864" height="336" key="GridCell.Tab.0.center/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605364097433" />
+    <state width="1864" height="336" key="GridCell.Tab.0.left" timestamp="1605364097433">
+      <screen x="0" y="24" width="1920" height="1056" />
+    </state>
+    <state width="1864" height="336" key="GridCell.Tab.0.left/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605364097433" />
+    <state width="1864" height="336" key="GridCell.Tab.0.right" timestamp="1605364097433">
+      <screen x="0" y="24" width="1920" height="1056" />
+    </state>
+    <state width="1864" height="336" key="GridCell.Tab.0.right/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605364097433" />
+    <state width="1864" height="336" key="GridCell.Tab.1.bottom" timestamp="1605364097434">
+      <screen x="0" y="24" width="1920" height="1056" />
+    </state>
+    <state width="1864" height="336" key="GridCell.Tab.1.bottom/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605364097434" />
+    <state width="1864" height="336" key="GridCell.Tab.1.center" timestamp="1605364097433">
+      <screen x="0" y="24" width="1920" height="1056" />
+    </state>
+    <state width="1864" height="336" key="GridCell.Tab.1.center/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605364097433" />
+    <state width="1864" height="336" key="GridCell.Tab.1.left" timestamp="1605364097433">
+      <screen x="0" y="24" width="1920" height="1056" />
+    </state>
+    <state width="1864" height="336" key="GridCell.Tab.1.left/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605364097433" />
+    <state width="1864" height="336" key="GridCell.Tab.1.right" timestamp="1605364097434">
+      <screen x="0" y="24" width="1920" height="1056" />
+    </state>
+    <state width="1864" height="336" key="GridCell.Tab.1.right/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605364097434" />
+    <state x="480" y="292" key="NewModule_or_Project.wizard" timestamp="1605320176422">
+      <screen x="0" y="24" width="1920" height="1056" />
+    </state>
+    <state x="480" y="292" key="NewModule_or_Project.wizard/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605320176422" />
+    <state x="444" y="131" key="SettingsEditor" timestamp="1605356056115">
+      <screen x="0" y="24" width="1920" height="1056" />
+    </state>
+    <state x="444" y="131" key="SettingsEditor/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605356056115" />
+    <state x="574" y="437" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1605328794382">
+      <screen x="0" y="24" width="1920" height="1056" />
+    </state>
+    <state x="574" y="437" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605328794382" />
+    <state x="150" y="83" key="new project wizard" timestamp="1605320932955">
+      <screen x="0" y="24" width="1920" height="1056" />
+    </state>
+    <state x="150" y="83" key="new project wizard/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605320932955" />
+    <state x="702" y="361" width="625" height="291" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1605356054808">
+      <screen x="0" y="24" width="1920" height="1056" />
+    </state>
+    <state x="702" y="361" width="625" height="291" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605356054808" />
   </component>
 </project>
