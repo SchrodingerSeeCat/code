@@ -61,3 +61,10 @@ index-url = https://mirrors.aliyun.com/pypi/simple
 sudo apt-get install flashplugin-installer
 ```
 
+## QT
+
+```bash
+sudo apt install aptitude
+sudo aptitude install qt5-default qtcreator qml-module-qtquick-controls2
+```
+

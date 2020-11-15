@@ -42,4 +42,17 @@ public class Person extends Creature<String> implements Comparable<String>, MyIn
     public void info() {
         System.out.println("I am a Person");
     }
+
+    private static void showDesc() {
+        System.out.println("我是 static method");
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", id=" + id +
+                '}';
+    }
 }

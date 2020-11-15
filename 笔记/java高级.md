@@ -4830,7 +4830,9 @@ public class Person extends Creature<String> implements Comparable<String>, MyIn
     public int compareTo(String o) {
         return name.compareTo(o);
     }
-
+	private static void showDesc() {
+        System.out.println("我是 static method");
+    }
     @Override
     public void info() {
         System.out.println("I am a Person");
@@ -4911,10 +4913,10 @@ public @interface MyAnnotation {
 ```java
   Class<Person> clazz = Person.class;
   Field[] fields = clazz.getDeclaredFields();
-  ```
-  
+```
+
   `int getModifiers()`：获取权限修饰符，为一个整数，调用`Modifier.toString(int mod)`转换为`String`字符串
-  
+
   ```java
   for(Field f : fields) {
       int modifiers = f.getModifiers();
@@ -4924,9 +4926,9 @@ public @interface MyAnnotation {
   //
   // public
   ```
-  
+
   `Class<?> getType()`：获取变量的类型
-  
+
   ```java
   for(Field f : fields) {
       Class type = f.getType();
@@ -4936,9 +4938,9 @@ public @interface MyAnnotation {
   // int
   // int
   ```
-  
+
   `public String getName() `：获取变量名
-  
+
   ```java
   for(Field f : fields) {
       String name = f.getName();
@@ -5177,4 +5179,854 @@ public void test() {
 
 ### 8.4 调用运行时类的指定结构
 
+```java
+@Test
+public void test3() throws Exception {
+    Class<Person> clazz = Person.class;
+}
+```
+
 #### 8.3.1 属性
+
+**方式一**
+
+- `Field getField(String name)`：获取运行时类的某一个属性,要求运行时类中声明为`public`的属性
+
+  ```java
+  Field id = clazz.getField("id");
+  System.out.println(id); // public int reflectstruct.Person.id
+  ```
+
+- 设置当前属性的值
+
+  ```java
+  Person p = clazz.getConstructor().newInstance();
+  id.set(p, 1001);
+  ```
+
+- 获取当前属性的值
+
+  ```java
+  System.out.println(id.get(p));
+  // 1001
+  ```
+
+:star:**方式二**
+
+- `Field getDeclaredField(String name)`：获取运行时类中的任意属性
+
+  ```java
+  Field name = clazz.getDeclaredField("name");
+  ```
+
+- 设置当前属性是可访问的
+
+  ```java
+  name.setAccessible(true);
+  ```
+
+- 设置当前属性的值
+
+  ```java
+  name.set(p, "Tom");
+  System.out.println(name.get(p));
+  // Tom
+  ```
+
+#### 8.3.2 方法
+
+**调用普通方法**
+
+- 创建运行时类的对象
+
+  ```java
+  Person p = clazz.getConstructor().newInstance();
+  ```
+
+- `Method getDeclaredMethod(String name, Class<?>... parameterTypes)`：获取指定的某个方法
+
+  ```java
+  Method show = clazz.getDeclaredMethod("show", String.class);
+  ```
+
+- 确保方法是可访问的(仅对于访问权限小于`public`的)
+
+  ```java
+  show.setAccessible(true);
+  ```
+
+- `Object invoke(Object obj, Object... args)`：调用方法并获得返回值
+
+  ```java
+  String returnValue = (String)show.invoke(p, "China"); // 我的国籍是：China
+  System.out.println(returnValue); // China
+  ```
+
+**调用静态方法**
+
+```java
+Method showDesc = clazz.getDeclaredMethod("showDesc");
+showDesc.setAccessible(true);
+showDesc.invoke(Person.class); // 参数也可以是Person对象 null
+```
+
+#### 8.3.3 构造器
+
+- 获取指定的构造器
+
+  ```java
+  Constructor<Person> pc = clazz.getDeclaredConstructor(String.class);
+  ```
+
+- 保证此构造器是可访问的
+
+  ```java
+  pc.setAccessible(true);
+  ```
+
+- 创建对象
+
+  ```java
+  Person tom = pc.newInstance("Tom");
+  System.out.println(tom);
+  // Person{name='Tom', age=0, id=91}
+  ```
+
+### 8.5 动态代理
+
+- 创建接口
+
+  ```java
+  interface Human{
+      String getBelief();
+      void eat(String food);
+  }
+  ```
+
+- 创建被代理类
+
+  ```java
+  class SuperMan implements Human {
+  
+      @Override
+      public String getBelief() {
+          return "保护地球";
+      }
+  
+      @Override
+      public void eat(String food) {
+          System.out.println("超人吃" + food);
+      }
+  }
+  ```
+
+- 创建工厂类
+
+  ```java
+  class ProxyFactory{
+      // 调用此方法，返回一个代理类对象 obj为被代理类的对象
+      public static Object getProxyInstance(Object obj) {
+          MyInvocationHandler handler = new MyInvocationHandler();
+  
+          handler.bind(obj);
+  
+          return Proxy.newProxyInstance(obj.getClass().getClassLoader(), obj.getClass().getInterfaces(), handler);
+      }
+  }
+  ```
+
+- 创建实现方法的类
+
+  ```java
+  class MyInvocationHandler implements InvocationHandler{
+      private Object obj; // 需要使用被代理类的对象进行赋值
+  
+      public void bind(Object obj) {
+          this.obj = obj;
+      }
+      // 当通过代理类的对象，调用方法时，就会自动调用 invoke
+      @Override
+      public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+          // method是代理类对象调用的方法，也是被代理类对象要调用的方法
+          return method.invoke(obj, args);
+      }
+  }
+  ```
+
+- 测试
+
+  ```java
+  public class DynamicProxyTest {
+      public static void main(String[] args) {
+          Human proxyInstance = (Human)ProxyFactory.getProxyInstance(new SuperMan());
+          System.out.println(proxyInstance.getBelief());
+          proxyInstance.eat("掉渣饼");
+      }
+  }
+  // 保护地球
+  // 超人吃掉渣饼
+  ```
+
+## 9. java8新特性
+
+`java8`是`java`语言开发的一个主要版本，是`java5`以来最具有革命性的版本
+
+**特点**
+
+- 速度更快
+- 代码更少(增加了新的语法：`Lambda`表达式)
+- 强大的`Stream API`
+- 便于并行
+- 最大化减少空指针异常`Optional`
+- `Nashorm`引擎，允许在`JVM`上运行`JS`应用(未来准备弃用)
+
+### 9.1 Lambda表达式
+
+#### 9.1.1 概述
+
+`Lambda`是一个匿名函数，我们可以吧`Lambda`表达式理解是一段可以传递的代码(将代码像数据一样传递)。使用它可以写出更简洁、更灵活的代码。作为一种更紧凑的代码风格，使`java`的语言表达能力得到了提升
+
+```java
+(o1, o2) -> Integer.compare(o1, o2);
+```
+
+- `->`：`Lambda`表达式的操作符
+- `(o1, o2)`：形参列表
+- `Integer.compare(o1, o2)`：`Lambda`体
+
+`Lambda`表达式的本质：作为函数式接口的实例
+
+#### 9.1.2 快速入门
+
+```java
+@Test
+public void test1() {
+    Comparator<Integer> com = (o1, o2) -> Integer.compare(o1, o2);
+
+    System.out.println(com.compare(23, 32)); // -1
+}
+```
+
+#### 9.1.3 基本使用
+
+- 无参，无返回值
+
+  ```java
+  Runnable r = () -> System.out.println("I am a iron man");
+  r.run(); // I am a iron man
+  ```
+
+- 需要一个参数，没有返回值。参数类型可以省略，只有一个参数`()`可以省略
+
+  ```java
+  Consumer<String> c = (String str) -> {
+  	System.out.println("有一个参数，没有返回值\t" + str);
+  };
+  c.accept("被调用了");
+  // 有一个参数，没有返回值	被调用了
+  ```
+
+- 有两个或以上的参数，有多条执行语句，并且可以有返回值
+
+  ```java
+  Comparator<Integer> com = (o1, o2) -> {
+  	return Integer.compare(o1, o2);
+  };
+  
+  System.out.println(com.compare(23, 32)); // -1
+  ```
+
+### 9.2 函数式接口
+
+#### 9.2.1 概述
+
+- 如果一个接口中，只声明了一个抽象方法，此接口就称为函数式接口
+- 可以通过`Lambda`表达式来创建该接口的对象。
+- 可以在一个接口上使用`@FunctionalInterface`注解，这样做可以检查它是否是一个函数式接口。同时`javadoc`会包含一条声明，说明这个接口是一个函数式接口
+- `java.util.function`包下定义了`java8`的丰富的函数式接口
+
+java内置的函数式接口
+
+|   函数式接口   | 参数类型 | 返回类型 |                             用途                             |
+| :------------: | :------: | :------: | :----------------------------------------------------------: |
+|  Consumer<T>   |    T     |   void   |       对类型为T的对象应用操作，方法：void accept(T t)        |
+|  Supplier<T>   |    无    |    T     |               返回类型为T的对象，方法：T get()               |
+| Function<T, R> |    T     |    R     | 对类型为T的对象应用操作，并返回结果。结果是R类型的对象，方法 R apply(T t) |
+|  Predicate<T>  |    T     | boolean  | 确定类型为T的对象时否满足约束，并返回boolean值，boolean test(T t) |
+
+#### 9.2.2 消费型接口
+
+```java
+ @Test
+ public void test() {
+     happyTime(500, t -> {
+     	System.out.println("我有" + t + "元");
+     });
+   	// 我有500.0元
+ }
+ public void happyTime(double money, Consumer<Double> con){
+ 	con.accept(money);
+ }
+```
+
+#### 9.2.3 断定型接口
+
+ 筛选出所有含 "京" 的字符串
+
+```java
+@Test
+public void test() {
+    List<String> list = Arrays.asList("北京", "上海", "南京","广州", "深圳");
+
+    List<String> list1 = filterString(list, str -> str.endsWith("京"));
+    System.out.println(list1);
+    // [北京, 南京]
+}
+public List<String> filterString(List<String> list, Predicate<String> pre) {
+    ArrayList<String> filterList = new ArrayList<>();
+    for(String s : list) {
+        if (pre.test(s)) {
+        	filterList.add(s);
+        }
+    }
+    return filterList;
+}
+```
+
+### 9.3 方法引用
+
+#### 9.3.1 概述
+
+- 当要传递给`Lambda`体的操作，已经有实现的方法了，可以使用方法引用
+
+- 方法引用可以看做是`Lambda`表达式深层次的表达。话句话说，方法引用就是`Lambda`表达式，也就是函数式接口的一个实例，通过方法的名字指向一个方法，可以认为是`Lambda`表达式的一个语法糖
+
+- 要求：实现接口的抽象方法的参数列表和返回值类型，必须与方法引用的方法的参数列表和返回值类型保持一致
+
+- 格式：使用`::`将类(或对象)与方法名分隔开来
+
+- 如下三种使用情况
+
+  对象::实例方法
+
+  类::静态方法名
+
+  类::实例方法名
+
+#### 9.3.2 具体用法
+
+测试类
+
+```java
+public class MethodTest {
+}
+```
+
+- 对象调用实例方法
+
+  ```java
+  @Test
+  public void test1() {
+      MethodTest methodTest = new MethodTest();
+      Supplier<String> sup = methodTest::print;
+      System.out.println(sup.get());
+  }
+  public String print() {
+      return "hello";
+  }
+  ```
+
+- 类调用静态方法
+
+  ```java
+  @Test
+  public void test2() {
+      Comparator<Integer> com = Integer::compare;
+      System.out.println(com.compare(12, 3));
+  }
+  ```
+
+- 类调用实例方法，方法引用的第一个参数和被引用的方法的调用者是相同的
+
+  ```java
+  @Test
+  public void test3() {
+      Comparator<Integer> com = Integer::compareTo;
+      System.out.println(com.compare(15, 10));
+  }
+  ```
+
+
+### 9.4 构造器与方法引用
+
+#### 9.4.1 构造器引用
+
+```java
+class Person{
+    private String name;
+    private int age;
+
+    public Person() {}
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+}
+```
+
+- 调用空参构造器
+
+  ```java
+  @Test
+  public void test() {
+      Supplier<Person> sup = Person::new;
+      Person p = sup.get();
+      System.out.println(p);
+  }
+  // Person{name='null', age=0}
+  ```
+
+- 调用含参的构造器
+
+  ```java
+  @Test
+  public void test() {
+      BiFunction<String, Integer, Person> bpd = Person::new;
+      Person p = bpd.apply("Tom", 18);
+      System.out.println(p);
+  }
+  // Person{name='Tom', age=18}
+  ```
+
+#### 9.4.2 数组引用
+
+```java
+@Test
+public void test() {
+    Function<Integer, String[]> func = String[]::new;
+    String[] strs = func.apply(5);
+    System.out.println(Arrays.toString(strs));
+}
+// [null, null, null, null, null]
+```
+
+### 9.5 Stream API
+
+#### 9.5.1 概述
+
+- `Stream API(java.util.stream)`把真正的函数式编程风格引入`java`中。这是目前为止对`java`类库最好的补充，因为`Stream API`可以极大提供`java`程序员的生产力，让让程序员写出高效率、干净、简洁的代码
+
+- `Stream`是`java8`中处理集合的关键抽象概念，它可以指定你希望对集合进行的操作，可以执行非常复杂的查找、过滤和映射等操作。使用`Stream API`对集合数据进行操作，就类似于使用`SQL`执行的数据库查询。也可以使用`Stream API`来并行执行操作。简言之，`Stream API`提供了一种高效且易于使用的处理数据的方式 
+
+- `Stream`和`Collection`集合的区别：`Collection`是一种静态的内存数据结构，而`Stream`是有关计算的。前者是主要面对内存，存储在内存中，后者主要是面向`CPU`，通过`CPU`实现计算
+
+- 特点
+
+  `Stream`自己不会存储元素
+
+  `Stream`不会改变源对象。相反，它们会返回一个持有结果的新`Stream`
+
+  `Stream`操作是延迟执行的。这意味着他们会等到需要结果的时候才执行
+
+- `Stream`的操作步骤
+
+  `Stream`的实例化
+
+  一系列的中间操作(过滤、映射)
+
+  终止操作：一旦执行终止操作，之后此`Stream`对象就不能再被使用
+
+`Person`类的结构
+
+```java
+class Person{
+    private String name;
+    private int age;
+
+    public Person() {}
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public static List<Person> getPersons(){
+        List<Person> list = new ArrayList<>();
+        list.add(new Person("Tom", 18));
+        list.add(new Person("Jack", 56));
+        list.add(new Person("Alice", 18));
+        list.add(new Person("Bob", 38));
+        list.add(new Person("Tony", 22));
+        list.add(new Person("Stark", 14));
+        return list;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+}
+```
+
+
+
+#### 9.5.2 实例化
+
+- 方式一：`java8`中的`Collection`接口被扩展，提供了两个获取流的方法
+
+  首先获取集合对象
+
+  ```java
+  List<Person> persons = Person.getPersons();
+  ```
+
+  `default Stream<E> stream()`：返回一个顺序流
+
+  ```java
+  Stream<Person> stream = persons.stream();
+  ```
+
+  `default Stream<E> parallelStream()`：返回一个并行流
+
+  ```
+  Stream<Person> personStream = persons.parallelStream();
+  ```
+
+- 方式二：通过数组
+
+  `java8`中的`Arrays`的静态方法`stream()`可以获取数组流
+
+  `static <T> Stream<T> stream(T[] array)`：返回一个流
+
+  `Arrays`类提供了一系列的方法用于获取数组流
+
+  `xxxStream stream(xxx[] array)`
+
+  ```java
+  int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+  IntStream stream = Arrays.stream(arr);
+  ```
+
+- 方式三：通过`Stream`的`of()`
+
+  可以调用`Stream`类静态方法`of()`，通过显示值创建一个流。它可以接受任意数量的参数
+
+  ```java
+  Stream<Integer> stream = Stream.of(1, 2, 3, 4, 5, 6);
+  ```
+
+- 方式三：创建无限流
+
+  使用静态方法`Stream.iterate()`和`Stream.generate()`，创建无限流
+
+  迭代`static<T> Stream<T> iterate(final T seed, final UnaryOperator<T> f)`
+
+  ```java
+  Stream.iterate(0, t -> t + 2).limit(10).forEach(System.out::println);
+  ```
+
+  生成`static<T> Stream<T> generate(Supplier<? extends T> s)`
+
+  ```java
+  Stream.generate(Math::random).limit(10).forEach(System.out::println);
+  ```
+
+#### 9.5.3 中间操作
+
+多个中间操作可以连起来形成一个流水线，除非流水线上触发终止操作，否则中间操作不会执行任何的处理！而在终止操作时一次性全部处理，称为"惰性求值"
+
+**筛选与切片**
+
+| 方法                | 切片                                                         |
+| ------------------- | ------------------------------------------------------------ |
+| filter(Predicate p) | 接受Lambda,从流中排除某些元素                                |
+| distinct()          | 筛选，通过流所生成元素的hashCode()和equals()去除重复元素     |
+| limit(long maxSize) | 截断流，使元素不超过给定数量                                 |
+| skip(long n)        | 跳过元素，返回一个扔掉了前n个元素的流。若流中元素不足n个，则返回一个空流。与limit(n)互补 |
+
+- 筛选年龄大于`18`的人
+
+  ```java
+  @Test
+  public void test() {
+  	List<Person> persons = Person.getPersons();
+      Stream<Person> stream = persons.stream();
+  
+      stream.filter(person -> person.getAge() > 20).forEach(System.out::println);
+  }
+  // Person{name='Jack', age=56}
+  // Person{name='Bob', age=38}
+  // Person{name='Tony', age=22}
+  ```
+
+- 取流的前三条记录
+
+  ```java
+  Stream<Person> stream = persons.stream();
+  stream.limit(3).forEach(System.out::println);
+  // Person{name='Tom', age=18}
+  // Person{name='Jack', age=56}
+  // Person{name='Alice', age=18}
+  ```
+
+- 跳过前三条记录，如果要跳过的数大于总数，返回空
+
+  ```java
+  Stream<Person> stream = persons.stream();
+  stream.skip(3).forEach(System.out::println);
+  // Person{name='Bob', age=38}
+  // Person{name='Tony', age=22}
+  // Person{name='Stark', age=14}
+  ```
+
+**映射**
+
+- 将数组元素转换为大写
+
+  ```java
+  @Test
+  public void test1() {
+      List<String> list = Arrays.asList("aa", "bb", "cc", "dd");
+      list.stream().map(str -> str.toUpperCase()).forEach(System.out::println);
+  }
+  // AA
+  // BB
+  // CC
+  // DD
+  ```
+
+- 获取员工姓名长度等于4的员工的姓名
+
+  ```java
+  List<Person> p = Person.getPersons();
+  p.stream().map(Person::getName).filter(name -> name.length() == 4).forEach(System.out::println);
+  // Jack
+  // Tony
+  ```
+
+- `flatMap(Function f)`接受一个函数作为参数，将流中的每个值都换成另一个流，然后把所有流连成一个流
+
+  ```java
+  List<String> list = Arrays.asList("aa", "bb", "cc", "dd");
+  list.stream().flatMap(StreamOperationTest::fromStringToStream).forEach(c -> {
+  	System.out.print(c + " ");
+  });
+  // 将对应字符串中的多个字符构成的集合转化为对应的Stream的实例
+  public static Stream<Character> fromStringToStream(String str) {
+      ArrayList<Character> list = new ArrayList<>();
+      for(Character c : str.toCharArray()) {
+          list.add(c);
+      }
+      return list.stream();
+  }
+  // a a b b c c d d
+  ```
+
+**排序**
+
+```java
+@Test
+public void test2() {
+    List<Integer> list = Arrays.asList(1, 8, 0, 6, 7, 10, 12, 4);
+    list.stream().sorted().forEach(num ->{
+    	System.out.print(num + " ");
+    });
+    
+    System.out.println();
+    
+    list.stream().sorted((o1, o2) -> - o1.compareTo(o2)).forEach(num ->{
+    	System.out.print(num + " ");
+    });
+}
+// 0 1 4 6 7 8 10 12 
+// 12 10 8 7 6 4 1 0
+```
+
+#### 9.5.4 终止操作
+
+终止操作会从流的流水线生成结果。其结果可以是任何不是流的值
+
+**匹配与查找**
+
+| 方法                   | 描述                     |
+| :--------------------- | :----------------------- |
+| allMatch(Predicate p)  | 检查是否匹配所有元素     |
+| anyMatch(Predicate p)  | 检查是否至少匹配一个元素 |
+| noneMatch(Predicate p) | 检查是否没有匹配所有元素 |
+| findFirst()            | 返回第一个元素           |
+| findAny()              | 返回当前流中的任意元素   |
+| count()                | 返回流中元素总数         |
+| max(Comparator c)      | 返回流中最大值           |
+| min(Comparator c)      | 返回流中最小值           |
+| forEach(Consumer c)    | 内部迭代                 |
+
+- 是否所有人的年龄都大于`18`
+
+  ```java
+  public void test() {
+      List<Person> list = Person.getPersons();
+      boolean flag = list.stream().allMatch(person -> person.getAge() > 18);
+      System.out.println(flag); // false
+  }
+  ```
+
+- 返回第一个人的信息
+
+  ```java
+  Optional<Person> p = list.stream().findFirst();
+  System.out.println(p);
+  // Optional[Person{name='Tom', age=18}]
+  ```
+
+- 返回最大的年龄
+
+  ```java
+  Optional<Integer> age = list.stream().map(person -> person.getAge()).max(Integer::compare);
+  System.out.println(age);
+  // Optional[56]
+  ```
+
+**归约**
+
+| 方法                             | 描述                                                    |
+| -------------------------------- | ------------------------------------------------------- |
+| reduce(T iden, BinaryOperator b) | 可以讲流中元素反复结合起来，得到一个值，返回T           |
+| reduce(BinaryOperator b)         | 可以讲流中元素反复结合起来，得到一个值。返回Optional<T> |
+
+- 计算`1 - 100`的和
+
+  ```java
+  List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+  Integer sum = list.stream().reduce(10, Integer::sum);
+  System.out.println(sum); // 65
+  ```
+
+- 计算所有人的年龄综合
+
+  ```java
+  List<Person> person = Person.getPersons();
+  Optional<Integer> sum = person.stream().map(Person::getAge).reduce(Integer::sum);
+  System.out.println(sum); // Optional[166]
+  ```
+
+**收集**
+
+- `collect(Collector c)`：将流转换为其它形式，接受一个`Collector`接口的实现，用于给`Stream`中元素做汇总的方法
+- `Collector`接口中方法的实现决定了如何对流执行收集的操作(如：收集到`List`、`Set`、`Map`)
+- `Collectors`实用类提供了很多静态方法，可以方便地创建常见收集器实例
+
+- 查找年龄大于20的，结果返回一个List或Set
+
+  ```java
+  List<Person> person = Person.getPersons();
+  List<Person> list = person.stream().filter(p -> p.getAge() > 18).collect(Collectors.toList());
+  System.out.println(list);
+  // [Person{name='Jack', age=56}, Person{name='Bob', age=38}, Person{name='Tony', age=22}]
+  ```
+
+### 9.6 Optional类
+
+`Optional<T>`类`java.util.Optional`是一个容器类，它可以保存类型`T`的值，代表这个值存在。或仅仅保存`null`，表示这个值不存在。原来用`null`表示一个值不存在，现在`Optional`可以更好的表达这个概念。并且可以避免空指针异常
+
+#### 9.6.1 类的结构
+
+```java
+public class Girl {
+    private String name;
+    public Girl() {}
+    public Girl(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Girl{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+}
+```
+
+```java
+public class Boy {
+    private Girl girl;
+    public Boy(){}
+    public Boy(Girl girl) {
+        this.girl = girl;
+    }
+
+    public Girl getGirl() {
+        return girl;
+    }
+
+    public void setGirl(Girl girl) {
+        this.girl = girl;
+    }
+
+    @Override
+    public String toString() {
+        return "Boy{" +
+                "girl=" + girl +
+                '}';
+    }
+}
+```
+
+#### 9.6.2 构造器
+
+- `Optional.of(T t)`：创建一个`Optional`实例，t必须非空
+
+  ```java
+  @Test
+  public void test() {
+      Girl girl = new Girl();
+      Optional<Girl> optionalGirl = Optional.of(girl);
+  }
+  ```
+
+- `Optional<T> ofNullable(T value)`：可以为`null`
+
+  ```java
+  @Test
+  public void test1() {
+      Girl girl = null;
+      Optional<Girl> optionalGirl = Optional.ofNullable(girl);
+      System.out.println(optionalGirl);
+  }
+  ```
+
+#### 9.6.3 具体使用
+
+```java
+public String getGirlName(Boy boy) {
+    Optional<Boy> optionalBoy = Optional.ofNullable(boy);
+    Boy boy1 = optionalBoy.orElse(new Boy(new Girl("Alice")));
+
+    Girl girl = boy1.getGirl();
+    Optional<Girl> girlOptional = Optional.ofNullable(girl);
+
+    Girl girl1 = girlOptional.orElse(new Girl("Anna"));
+
+    return girl1.getName();
+}
+```
+
+## 10. JDK9&10&11
