@@ -135,12 +135,12 @@ public class BinaryTree<E> {
             return left != null && right != null;
         }
 
-        // 判断是不是左孩子
+        // 判断当前节点是不是父节点的左孩子
         public boolean isLeftChild(){
             return parent != null && this == this.parent.left;
         }
 
-        // 判断是不是右孩子
+        // 判断当前节点是不是父节点的右孩子
         public boolean isRightChild(){
             return parent != null && this == this.parent.right;
         }
@@ -218,5 +218,9 @@ public class BinaryTree<E> {
             }
         }
         return height;
+    }
+
+    protected Node<E> createNode(E element, Node<E> parent) {
+        return new Node<>(element, parent);
     }
 }

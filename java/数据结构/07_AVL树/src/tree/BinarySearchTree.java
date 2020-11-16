@@ -3,7 +3,7 @@ import tree.BinaryTree;
 
 import java.util.Comparator;
 
-public class BinarySearchTree<E> extends BinaryTree {
+public class BinarySearchTree<E> extends BinaryTree<E> {
     private Comparator<E> comparator;
 
     // 比较器
@@ -19,11 +19,6 @@ public class BinarySearchTree<E> extends BinaryTree {
         return node(element) != null;
     }
 
-    // 创建节点
-    // 添加节点
-    protected Node<E> createNode(E element, Node parent){
-        return new Node<>(element, parent);
-    }
     public void add(E element){
         elementNotNullCheck(element);
         // 添加第一节点

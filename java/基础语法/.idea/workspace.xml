@@ -20,12 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="369b93bb-15ef-46c1-860a-926a35757e9c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/day12/src/getstruct/GetOtherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/day12/src/getstruct/GetOtherTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/day12/src/reflectstruct/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/day12/src/reflectstruct/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/Ubuntu常用软件安装.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Ubuntu常用软件安装.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/java高级.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/java高级.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +58,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/day12/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../数据结构实验" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -86,15 +81,13 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.OptionalTest.test1">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -202,6 +195,7 @@
       <workItem from="1605403903337" duration="17353000" />
       <workItem from="1605436929796" duration="12163000" />
       <workItem from="1605449880563" duration="9000" />
+      <workItem from="1605500142045" duration="860000" />
     </task>
     <servers />
   </component>
@@ -241,10 +235,10 @@
       <screen x="0" y="24" width="1920" height="1056" />
     </state>
     <state x="685" y="374" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605323034750" />
-    <state x="730" y="246" key="FileChooserDialogImpl" timestamp="1605320620950">
+    <state x="730" y="246" key="FileChooserDialogImpl" timestamp="1605514188149">
       <screen x="0" y="24" width="1920" height="1056" />
     </state>
-    <state x="730" y="246" key="FileChooserDialogImpl/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605320620950" />
+    <state x="730" y="246" key="FileChooserDialogImpl/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605514188149" />
     <state width="1864" height="210" key="GridCell.Tab.0.bottom" timestamp="1605449427481">
       <screen x="0" y="24" width="1920" height="1056" />
     </state>

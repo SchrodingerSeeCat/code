@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/01_动态数组/01_动态数组.iml" filepath="$PROJECT_DIR$/01_动态数组/01_动态数组.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02_链表/02_链表.iml" filepath="$PROJECT_DIR$/02_链表/02_链表.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03_stack/03_stack.iml" filepath="$PROJECT_DIR$/03_stack/03_stack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/04_queue/04_queue.iml" filepath="$PROJECT_DIR$/04_queue/04_queue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/05_二叉搜索树/05_二叉搜索树.iml" filepath="$PROJECT_DIR$/05_二叉搜索树/05_二叉搜索树.iml" />
+      <module fileurl="file://$PROJECT_DIR$/06_二叉树重构/06_二叉树重构.iml" filepath="$PROJECT_DIR$/06_二叉树重构/06_二叉树重构.iml" />
+      <module fileurl="file://$PROJECT_DIR$/07_AVL树/07_AVL树.iml" filepath="$PROJECT_DIR$/07_AVL树/07_AVL树.iml" />
+      <module fileurl="file://$PROJECT_DIR$/数据结构.iml" filepath="$PROJECT_DIR$/数据结构.iml" />
+    </modules>
+  </component>
+</project>

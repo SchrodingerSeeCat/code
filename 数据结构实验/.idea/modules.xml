@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/01_链表的合并/01_链表的合并.iml" filepath="$PROJECT_DIR$/01_链表的合并/01_链表的合并.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02_进制转换/02_进制转换.iml" filepath="$PROJECT_DIR$/02_进制转换/02_进制转换.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03_KMP/03_KMP.iml" filepath="$PROJECT_DIR$/03_KMP/03_KMP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/04_二叉树重构/04_二叉树重构.iml" filepath="$PROJECT_DIR$/04_二叉树重构/04_二叉树重构.iml" />
       <module fileurl="file://$PROJECT_DIR$/数据结构实验.iml" filepath="$PROJECT_DIR$/数据结构实验.iml" />
     </modules>
   </component>
