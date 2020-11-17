@@ -1,5 +1,6 @@
 package tree;
 // 平衡二叉树
+import java.sql.SQLOutput;
 import java.util.Comparator;
 
 public class AVLTree<E> extends BinarySearchTree<E>{
@@ -21,6 +22,7 @@ public class AVLTree<E> extends BinarySearchTree<E>{
                 break;
             }
         }
+
     }
 
     // 恢复平衡
@@ -28,32 +30,70 @@ public class AVLTree<E> extends BinarySearchTree<E>{
         Node<E> parent = ((AVLNode<E>)grand).tallerChild();
         Node<E> node = ((AVLNode<E>)parent).tallerChild();
         if (parent.isLeftChild()) { // L
-            if (node.isRightChild()) {
+            if (node.isLeftChild()) {
+                // LL情况 将grand右旋转
+                rotateRight(grand);
+            } else {
                 // LR情况 先对Parent进行左旋转转换为LL情况 再将grand右旋转
                 rotateLeft(parent);
+                rotateRight(grand);
             }
-            // LL情况 将grand右旋转
-            rotateRight(grand);
+
         } else { // R
-            if (node.isLeftChild()) {
+            if (node.isRightChild()) {
+                // RR
+                rotateLeft(grand);
+            } else {
                 // RL情况 将parent右旋转转换为RR情况 再将grand左旋转
                 rotateRight(parent);
+                rotateLeft(grand);
             }
-            // RR情况 将grand左旋转
-            rotateLeft(grand);
         }
     }
 
     // 左旋转
-    private void rotateLeft(Node<E> node) {
+    private void rotateLeft(Node<E> grand) {
+        Node<E> parent = grand.right;
+        Node<E> child = parent.left;
 
+        grand.right = parent.left;
+        parent.left = grand;
+
+        afterRotate(grand, parent, child);
     }
     // 右旋转
-    private void rotateRight(Node<E> node) {
-        Node<E> parent = node.left;
-        node.left = node.left.right;
-        parent.right = node;
+    private void rotateRight(Node<E> grand) {
+        Node<E> parent = grand.left;
+        Node<E> child = parent.right;
 
+        grand.left = parent.right;
+        parent.right = grand;
+
+        afterRotate(grand, parent, child);
+    }
+    // 旋转之后要做的事
+    private void afterRotate(Node<E> grand, Node<E> parent, Node<E> child) {
+        // 让parent成为子树的根节点
+        parent.parent = grand.parent;
+
+        if (grand.isLeftChild()) {
+            grand.parent.left = parent;
+        } else if (grand.isRightChild()){
+            grand.parent.right = parent;
+        } else {
+            root = parent;
+        }
+        // child的parent
+        if (child != null) {
+            child.parent = grand;
+        }
+
+        // 更新grand的parent
+        grand.parent = parent;
+
+        // 更新高度
+        updateHeight(grand);
+        updateHeight(parent);
     }
     // 判断当前节点是否平衡
     private boolean isBalanced(Node<E> node) {

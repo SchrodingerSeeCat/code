@@ -305,5 +305,63 @@ cache --> 集群3
   GET key # "hxxloworld"
   ```
 
-  
+- 指定过期时间
 
+  ```bash
+  setex key3 30 "hello"
+  ```
+
+- 不存在则设置,成功返回`1`，失败返回`0`
+
+  ```bash
+  setnx key "redis"
+  ```
+
+- `mset`批量设置多个值
+
+  ```bash
+  mset k1 v1 k2 v2
+  ```
+
+- `mget`批量获取多个值
+
+  ```bash
+  mget k1 k2
+  ```
+
+- `mset`巧妙设置对象
+
+  ```bash
+  mset user:1:name zhangsan user:1:age 18
+  ```
+
+- `mget`获取对香港
+
+  ```bash
+  mget user:1:name user:1:age
+  # 1) "zhangsan"
+  # 2) "18"
+  ```
+
+- `getset`先获取再设置
+
+### 3.3 List
+
+在`redis`中可以用`list`实现，栈、队列、阻塞队列
+
+- 往`list`中放到列表的头部
+
+  ```bash
+  lpush key one
+  lpush key two
+  ```
+
+- 取值,顺序与放入时相反
+
+  ```bash
+  lrange key 0 -1
+  # 1) "two"
+  # 2) "one"
+  ```
+
+  

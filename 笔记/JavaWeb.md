@@ -94,3 +94,81 @@ JSP/Servlet
 `java`主要用的`web`服务器是`tomcat`
 
 ## 3. Tomcat
+
+### 3.1 配置
+
+- 下载[官网](http://tomcat.apache.org/)
+
+- 解压到某个目录
+
+- 核心配置文件`server.xml`
+
+- 对于`sudo apt install tomcat9`
+
+  ```bash
+  # 配置文件
+  /etc/tomcat9/
+  
+  # 启动文件
+  /usr/share/tomcat9
+  
+  # webapps
+  /var/lib/tomcat9
+  ```
+
+- 默认端口`8080`
+
+### 3.2 发布一个web
+
+```bash
+webapps
+	- ROOT # 默认网站目录
+	- example # 自定义网站目录
+		- META-INF # 网站源信息
+			- classes # java程序
+			- lib # 网站依赖的jar包
+			- context.xml # 网站配置文件
+		- index.html # 默认首页
+```
+
+## 4. IDEA使用Maven
+
+由于`maven`本身的问题，可能之后写的配置文件无法被导出的问题，在`pom.xml`下加入
+
+```xml
+<build>
+    <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*.properties</include>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>true</filtering>
+        </resource>
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.properties</include>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>true</filtering>
+        </resource>
+    </resources>
+</build>
+```
+
+修改`web.xml`为最新版
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0"
+         metadata-complete="true">
+</web-app>
+```
+
