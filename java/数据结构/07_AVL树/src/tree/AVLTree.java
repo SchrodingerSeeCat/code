@@ -25,6 +25,82 @@ public class AVLTree<E> extends BinarySearchTree<E>{
 
     }
 
+    // 重写删除节点之后的操作
+    @Override
+    protected void afterRemove(Node<E> node) {
+        while((node = node.parent) != null) {
+            if(isBalanced(node)) {
+                // 平衡更新高度
+                updateHeight(node);
+            } else {
+                // 不平衡恢复平衡
+                rebalance(node);
+            }
+        }
+    }
+
+    // 统一处理调整平衡
+    private void rebalance2(Node<E> grand) {
+        Node<E> parent = ((AVLNode<E>)grand).tallerChild();
+        Node<E> node = ((AVLNode<E>)parent).tallerChild();
+        if (parent.isLeftChild()) { // L
+            if (node.isLeftChild()) {
+                // LL
+                rotate(grand, node.left, node, node.right, parent, parent.right, grand, grand.right);
+            } else {
+                // LR
+                rotate(grand, parent.left, parent, node.left, node, node.right, grand, grand.right);
+            }
+
+        } else { // R
+            if (node.isRightChild()) {
+                // RR
+                rotate(grand, grand.left, grand, parent.left, parent, node.left, node, node.right);
+            } else {
+                // RL
+                rotate(grand, grand.left, grand, node.left, node, node.right, parent, parent.right);
+            }
+        }
+    }
+    private void rotate(
+            Node<E> r,
+            Node<E> a, Node<E> b, Node<E> c,
+            Node<E> d,
+            Node<E> e, Node<E> f, Node<E> g) {
+        // 让d成为这棵子数的根节点
+        d.parent = r.parent;
+        if (r.isLeftChild()) {
+            r.parent.left = d;
+        } else if (r.isRightChild()) {
+            r.parent.right = d;
+        } else {
+            root = d;
+        }
+
+        // b是d的左子树，a成为b的左子树，c成为b的右子树
+        b.left = a;
+        if (a != null) a.parent = b;
+        b.right = c;
+        if (c != null) c.parent = b;
+        // 更新高度
+        updateHeight(b);
+
+        // f是d的右子树，e成为f的左子树，g成为f的右子树
+        f.left = e;
+        if (e != null) e.parent = f;
+        f.right = g;
+        if (g != null) g.parent = f;
+        // 更新高度
+        updateHeight(f);
+
+        // d为根节点，左子树为b，右子树为f
+        d.left = b;
+        d.right = f;
+        b.parent = d;
+        f.parent = d;
+        updateHeight(d);
+    }
+
     // 恢复平衡
     private void rebalance(Node<E> grand) {
         Node<E> parent = ((AVLNode<E>)grand).tallerChild();
@@ -50,7 +126,6 @@ public class AVLTree<E> extends BinarySearchTree<E>{
             }
         }
     }
-
     // 左旋转
     private void rotateLeft(Node<E> grand) {
         Node<E> parent = grand.right;

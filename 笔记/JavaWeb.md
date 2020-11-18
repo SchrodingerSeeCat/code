@@ -172,3 +172,215 @@ webapps
 </web-app>
 ```
 
+## 5. Servlet
+
+### 5.1 Servlet简介
+
+- `Servlet`就是`sun`公司开发动态`web`的一门技术
+
+- `sun`在这些`API`中提供一个接口叫做`Servlet`，如果你想开发一个`Servlet`程序，只需要完成两个步骤
+
+  编写一个类，实现`Servlet`接口
+
+  把开发好的`java`类部署到`web`服务器中
+
+- `Servlet`接口`sun`公司有两个默认的实现类`HttpServlet`
+
+把实现了`Servlet`接口的`java`程序叫做`Servlet`
+
+### 5.2 HelloServlet
+
+1. 构建一个普通的`maven`项目，删掉里面的`src`目录，以后我们的学习就在这个项目里面建立`Module`，这个空的工程就是`Maven`主工程，主目录导入`Servlet`依赖
+
+   ```xml
+   <dependencies>
+       <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+       <dependency>
+           <groupId>javax.servlet</groupId>
+           <artifactId>javax.servlet-api</artifactId>
+           <version>4.0.1</version>
+       </dependency>
+       <!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
+       <dependency>
+           <groupId>javax.servlet.jsp</groupId>
+           <artifactId>javax.servlet.jsp-api</artifactId>
+           <version>2.3.3</version>
+       </dependency>
+   </dependencies>
+   ```
+
+2. 关于`Maven`父子工程的理解
+
+   父项目`pom.xml`中会有
+
+   ```xml
+   <modules>
+   	<module>servlet-01</module>
+   </modules>
+   ```
+
+   子项目`pom.xml`中会有
+
+   ```xml
+   <groupId>org.example</groupId>
+   <artifactId>servlet-01</artifactId>
+   <version>1.0-SNAPSHOT</version>
+   <packaging>war</packaging>
+   
+   <name>servlet-01 Maven Webapp</name>
+   ```
+
+   父项目中的依赖，子项目可以直接使用
+
+3. `maven`项目优化
+
+   修改`web.xml`为最新的
+
+   将`maven`的结构搭建完整
+
+4. 编写一个`Servlet`程序
+
+   编写一个普通类
+
+   实现`Servlet`接口，即普通类继承于`HttpServlet`
+
+   ```mermaid
+   graph TD
+   Servlet接口 --> GenericServlet --> HttpServlet --> 自己实现的类
+   ```
+
+   重写特定方法
+
+   ```java
+   public class HelloServlet extends HttpServlet {
+       @Override
+       protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+           PrintWriter writer = resp.getWriter();
+           writer.print("Hello Servlet");
+       }
+   
+       @Override
+       protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+           super.doPost(req, resp);
+       }
+   }
+   ```
+
+5. 在`web.xml`编写`Servlet`的映射
+
+   我们编写的是`java`程序，但是通过浏览器访问，而浏览器需要连接`web`服务器，所以我们需要在`web`服务中注册我们写的`Servlet`，还需要给它一个访问路径
+   
+   ```xml
+   <!-- 注册Servlet -->
+   <servlet>
+       <servlet-name>hello</servlet-name>
+       <servlet-class>com.valid.servlet.HelloServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+       <servlet-name>hello</servlet-name>
+       <url-pattern>/hello</url-pattern>
+   </servlet-mapping>
+   ```
+   
+6. 配置`Tomcat`
+
+7. 启动测试
+
+### 6.3 Servlet原理
+
+`Servlet`是有`web`服务器
+
+![image-20201118204700122](JavaWeb.assets/image-20201118204700122.png)
+
+### 6.4 Mapping
+
+- 一个`Servlet`可以指定一个映射路径
+
+  ```xml
+  <servlet-mapping>
+      <servlet-name>hello</servlet-name>
+      <url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+  ```
+
+- 一个`Servlet`可以指定多个映射路径
+
+  ```xml
+  <servlet-mapping>
+      <servlet-name>hello</servlet-name>
+      <url-pattern>/hello1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>hello</servlet-name>
+      <url-pattern>/hello2</url-pattern>
+  </servlet-mapping>
+  ```
+
+- 一个`Servlet`可以指定通用映射路径
+
+  ```xml
+  <servlet-mapping>
+      <servlet-name>hello</servlet-name>
+      <url-pattern>/hello/*</url-pattern>
+  </servlet-mapping>
+  ```
+
+- 默认请求
+
+  ```xml
+  <servlet-mapping>
+      <servlet-name>hello</servlet-name>
+      <url-pattern>/*</url-pattern>
+  </servlet-mapping>
+  ```
+
+- 自定义后缀实现请求映射，`*`不能加项目映射的路径
+
+  ```xml
+  <servlet-mapping>
+      <servlet-name>hello</servlet-name>
+      <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  ```
+
+- 优先级问题
+
+  指定了固有的映射路径的优先级最高，如果找不到就会走默认的处理请求
+
+### 6.5 ServletContext
+
+`web`容器启动的时候，它会为每个程序都创建一个对应的`ServletContext`对象，它代表了当前的`web`应用
+
+- 共享数据：不同的`servlet`实现通信
+
+  设置需要获取的值
+
+  ```java
+  public class HelloServlet extends HttpServlet {
+      @Override
+      protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          // 获取上下文对象
+          ServletContext context = this.getServletContext();
+  
+          String username = "小狐狸学java";
+          // 将数据保存在ServletContext中
+          context.setAttribute("username", username);
+      }
+  }
+  ```
+
+  获取设置的值
+
+  ```java
+  public class GetServlet extends HttpServlet {
+      @Override
+      protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          resp.setContentType("text/html");
+          resp.setCharacterEncoding("utf-8");
+          PrintWriter writer = resp.getWriter();
+          writer.print(this.getServletContext().getAttribute("username"));
+      }
+  }
+  ```
+
+- 

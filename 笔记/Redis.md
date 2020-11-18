@@ -349,7 +349,7 @@ cache --> 集群3
 
 在`redis`中可以用`list`实现，栈、队列、阻塞队列
 
-- 往`list`中放到列表的头部
+- 往`list`中放到列表的头部，`key`不存在创建新的`key`
 
   ```bash
   lpush key one
@@ -364,4 +364,314 @@ cache --> 集群3
   # 2) "one"
   ```
 
+- 往`list`放到列表的尾部
+
+  ```bash
+  rpush key three
   
+  lrange key 0 -1
+  # 1) "two"
+  # 2) "one"
+  # 3) "three"
+  ```
+
+- 移除`list`头部的值
+
+  ```bash
+  lpop key
+  
+  lrange key 0 -1
+  # 1) "one"
+  # 2) "three"
+  ```
+
+- 移除`list`尾部的值
+
+  ```bash
+  rpop key
+  
+  lrange key 0 -1
+  # 1) "one"
+  ```
+
+- 获取指定索引的`list`值
+
+  ```bash
+  lindex key 0
+  # "one"
+  ```
+
+- 查看`list`的长度
+
+  ```bash
+  llen key
+  
+  # (integer) 1
+  ```
+
+- 移除指定数量的值
+
+  ```bash
+  lrem key 1 one
+  ```
+
+- 截断`list`
+
+  ```bash
+  lpush key "one" "two" "three" "four"
+  
+  ltrim key 1 2
+  lrange key 0 -1
+  # 1) "three"
+  # 2) "two"
+  ```
+
+- 元素移动
+
+  ```bash
+  #　将尾部的值移动到mylist中
+  rpoplpush key mylist
+  
+  lrange key 0 -1
+  # 1) "three"
+  
+  lrange mylist 0 -1
+  # 1) "two"
+  ```
+
+- 设置指定索引的值，没有会报错
+
+  ```bash
+  lset key 0 "one"
+  lrange key 0 -1
+  # 1) "one"
+  ```
+
+- 往指定索引的前(或后)插入指定的值
+
+  ```bash
+  linsert key before "one" "two"
+  lrange key 0 -1
+  # 1) "two"
+  # 2) "one"
+  
+linsert key after "one" "zero"
+  lrange key 0 -1
+  # 1) "two"
+  # 2) "one"
+  # 3) "zero"
+  ```
+  
+
+### 3.4 Set
+
+值的内容不可重复
+
+- 插入值，`key`不存在则创建
+
+  ```bash
+  sadd myset "one"
+  sadd myset "two"
+  sadd myset "three"
+  ```
+
+- 查看全部值
+
+  ```bash
+  smembers myset
+  # 1) "one"
+  # 2) "three"
+  # 3) "two"
+  ```
+
+- 查看是否包含某个值
+
+  ```bash
+  sismember myset "one"
+  # (integer) 1
+  ```
+
+- 查看元素数量
+
+  ```bash
+  scard myset
+  # (integer) 3
+  ```
+
+- 移除某个值
+
+  ```bash
+  srem myset "three"
+  smembers myset
+  # 1) "one"
+  # 2) "two"
+  ```
+
+- 随机取出一个值
+
+  ```bash
+  srandmember myset
+  # "one"
+  ```
+
+- 随机删除集合中的某个元素
+
+  ```bash
+  spop myset
+  # "two"
+  
+  smembers myset
+  # 1) "one"
+  ```
+
+- 将一个集合中的元素移动到另外一个集合中
+
+  ```bash
+  smove myset myset2 "one"
+  # (integer) 1
+  
+  smembers myset
+  # (empty array)
+  
+  smembers myset2
+  # 1) "one"
+  ```
+
+- 求两个集合的并、差集、交集
+
+  ```bash
+  flushdb
+  sadd key1 a
+  sadd key1 b
+  sadd key1 c
+  sadd key2 c
+  sadd key2 d
+  sadd key2 e
+  
+  smembers key1
+  # 1) "c"
+  # 2) "b"
+  # 3) "a"
+  
+  smembers key2
+  # 1) "e"
+  # 2) "c"
+  # 3) "d"
+  ```
+
+  `key1`与`key2`的差集
+
+  ```bash
+  sdiff key1 key2
+  # 1) "a"
+  # 2) "b"
+  ```
+
+  `key1`与`key2`的交集
+
+  ```bash
+  sinter key1 key2
+  # 1) "c"
+  ```
+
+  `key1`与`key2`的并集
+
+  ```bash
+  sunion key1 key2
+  # 1) "a"
+  # 2) "b"
+  # 3) "c"
+  # 4) "e"
+  # 5) "d"
+  ```
+
+### 3.5 Hash
+
+`Map`集合，`key-map`，值是一个`map`集合
+
+- 存一个值
+
+  ```bash
+  hset myhash field1 "one"
+  ```
+
+- 获取某个值
+
+  ```bash
+  hget myhash field1
+  # "one"
+  ```
+
+- 同时设置多个值
+
+  ```bash
+  hmset myhash field1 "zero" field2 "one"
+  ```
+
+- 同时获取多个值
+
+  ```bash
+  hmget myhash field1 field2
+  # 1) "zero"
+  # 2) "one"
+  ```
+
+- 获取所有键值对
+
+  ```bash
+  hgetall myhash
+  # 1) "field1"
+  # 2) "zero"
+  # 3) "field2"
+  # 4) "one"
+  ```
+
+- 删除指定的键值对
+
+  ```bash
+  hdel myhash field1
+  
+  hgetall myhash
+  # 1) "field2"
+  # 2) "one"
+  ```
+
+- 获取键值对的数量
+
+  ```bash
+  hlen myhash
+  # (integer) 1
+  ```
+
+- 获得所有的`key`
+
+  ```
+  hkeys myhash
+  # 1) "field2"
+  ```
+
+- 获取所有的值
+
+  ```bash
+  hvals myhash
+  # 1) "one"
+  ```
+
+- 加减操作
+
+  ```bash
+  hset myhash field1 3
+  
+  hincrby myhash field1 1
+  # (integer) 4
+  ```
+
+- 不存在则设置
+
+  ```
+  hsetnx myhash field3 hello
+  ```
+
+### 3.6 Zset
+
+`zset`有序集合，在`set`的基础上，增加了一个值，`set k1 v1`, `zset k1 score1 v1`
