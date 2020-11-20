@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.example</groupId>
-  <artifactId>03-response</artifactId>
+  <artifactId>05-session-cookie</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>03-response Maven Webapp</name>
+  <name>05-session-cookie Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -40,7 +40,7 @@
   </dependencies>
 
   <build>
-    <finalName>03-response</finalName>
+    <finalName>05-session-cookie</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>

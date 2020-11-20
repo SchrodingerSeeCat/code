@@ -489,6 +489,73 @@ public class PropertiesServlet extends HttpServlet {
 
 ### 5.6 HttpServletRequest
 
+`HttpServletRequest`代表客户端的请求，用户通过`Http`协议访问服务器，`HTTP`请求中的所有信息会被封装到`HttpServletRequest`，通过`HttpServletRequest`的方法，获得客户端的所有信息
+
+- 获取客户端的参数的常用方法
+
+`index.jsp`
+
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+    <head>
+        <title>login</title>
+    </head>
+    <body>
+        <div>
+            <form action="${pageContext.request.contextPath}/login" method="post">
+                用户名：<input type="text" name="username"><br>
+                密码：<input type="password" name="password"><br>
+                爱好：
+                <input type="checkbox" name="hobbys" value="代码">代码
+                <input type="checkbox" name="hobbys" value="唱歌">唱歌
+                <input type="checkbox" name="hobbys" value="电影">电影
+                <input type="submit">
+            </form>
+        </div>
+    </body>
+</html>
+```
+
+`success.jsp`
+
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+    <head>
+        <title>success</title>
+    </head>
+    <body>
+        <div>登录成功</div>
+    </body>
+</html>
+```
+
+登录
+
+```java
+@Override
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    // 设置接受的编码为UTF-8
+    req.setCharacterEncoding("UTF-8");
+    
+    String username = req.getParameter("username");
+    String password = req.getParameter("password");
+    String[] hobbys = req.getParameterValues("hobbys");
+    System.out.println(username);
+    System.out.println(password);
+    System.out.println(Arrays.toString(hobbys));
+
+    // 通过请求转发 这里的 / 代表当前项目
+    req.getRequestDispatcher("/success.jsp").forward(req, resp);
+}
+
+@Override
+protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    doGet(req, resp);
+}
+```
+
 ### 5.7 HttpServletResponse
 
 `web`服务器接受到客户端的`http`请求，分别创建一个代表请求的`HttpServletRequest`对象，代表响应的一个`HttpServletResponse`
@@ -612,3 +679,314 @@ int SC_INTERNAL_SERVER_ERROR = 500;
    ```
 
 #### 5.7.4 重定向
+
+一个`web`资源收到客户端请求后，他会通知客户端去访问另外一个`web`资源，这个过程叫做重定向
+
+主要方法
+
+```java
+void sendRedirect(String var1) throws IOException;
+```
+
+设置访问K
+
+```java
+@Override
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    /*  
+    resp.setHeader("Location", "/s3/code");
+    resp.setStatus(302);
+     */
+    resp.sendRedirect("/s3/code");
+}
+```
+
+重定向和转发的区别
+
+相同点
+
+- 页面都会发生跳转
+
+不同点
+
+- 请求转发的时候，`url`不会发生变化；307
+- 重定向时候，`url`地址栏会发生变化；302
+
+**重定向实例**：当用户登录成功则会跳转到`success.jsp`
+
+`index.jsp`
+
+```jsp
+<html >
+    <meta charset="UTF-8">
+    <body>
+        <h2>Hello World!</h2>
+
+<%--        ${pageContext.request.contextPath()}代表当前项目的路径--%>
+        <form action="${pageContext.request.contextPath}/login" method="get">
+            用户名：<input type="text" name="username">
+            密码：<input type="password" name="password">
+            <input type="submit">
+        </form>
+
+    </body>
+</html>
+```
+
+`success.jsp`
+
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+    <head>
+        <title>success</title>
+    </head>
+    <body>
+        <div>登录成功</div>
+    </body>
+</html>
+```
+
+登录
+
+```java
+@Override
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    String username = req.getParameter("username");
+    String password = req.getParameter("password");
+    System.out.println("username: " + username);
+    System.out.println("password: " + password);
+    resp.sendRedirect("/s3/success.jsp");
+}
+```
+
+## 6. cookie、session
+
+会话：用户打开一个浏览器，点击了很多超链接，访问多个`web`资源，关闭浏览器，这个过程称之为会话
+
+有状态会话：用户从客户端第一次登录，服务端发放一个`cookie`，第二次访问时客户端带着`cookie`来访问，不用登录
+
+### 6.1 cookie
+
+- 获取`cookie`
+
+  ```java
+  Cookie[] cookies = req.getCookies();
+  ```
+
+- 获取`cookie`的`key`
+
+  ```java
+  cookies[i].getName()
+  ```
+
+- 获取`cookie`的`value`
+
+  ```java
+  cookies[i].getValue()
+  ```
+
+- 响应返回一个`cookie`并设置过期时间，默认关闭浏览器`cookie`失效
+
+  ```java
+  Cookie nameCookie = new Cookie("name", "哔哩哔哩");
+  nameCookie.setMaxAge(24 * 60 * 60);
+  resp.addCookie(nameCookie);
+  ```
+
+- 注意事项
+
+  一个`cookie`只能保存一个信息
+
+  一个`web`站点可以给浏览器发送多个`cookie`，最多存放`20`个`cookie`
+
+  `cookie`大小有限制`4kb`
+
+  `300`个`cookie`浏览器上限
+
+  对于中文`cookie`尽量在设置和取值是进行`UTF-8`的编码和解码
+
+  ```java
+  Cookie nameCookie = new Cookie("name", URLEncoder.encode("哔哩哔哩", "UTF-8"));
+  
+  
+  URLDecoder.decode(cookies[i].getValue(), "UTF-8");
+  ```
+
+- 删除`cookie`
+
+  不设置有效期，关闭浏览器，自动失效
+
+  设置过期时间为`0`
+
+### 6.2 Session
+
+`Session`：服务器会给每一个用户(浏览器)创建一个`Session`对象，一个`Session`对象独占一个浏览器，只要浏览器没有关闭，这个`Session`就可以一直存在
+
+`session`和`cookie`的区别
+
+- `Cookie`是把用户的数据写给用户的浏览器，由浏览器保存
+- `Session`把用户的数据写到用户独占`Session`中，由服务端保存
+- `Session`对象由服务端创建
+
+使用`Session`
+
+- 创建`Session`对象，并存储属性
+
+  ```java
+  HttpSession session = req.getSession();
+  session.setAttribute("name", "哔哩哔哩");
+  ```
+
+- 获取`Session id`
+
+  ```java
+  String id = session.getId();
+  ```
+
+- 在其它`Servlet`中获取`Session`并取出存储在里面的数据
+
+  ```java
+  HttpSession session = req.getSession();
+  String name = (String) session.getAttribute("name");
+  ```
+
+- 移除`Session`中的数据，并删除`Session`
+
+  ```java
+  session.removeAttribute("name");
+  session.invalidate();
+  ```
+
+- 或者在`web.xml`中配置注销`session`
+
+  ```xml
+  <!--设置session的默认失效时间为1分钟-->
+  <session-config>
+  	<session-timeout>1</session-timeout>
+  </session-config>
+  ```
+
+## 7. JSP
+
+`JSP`：`java server pages`，`java`服务器端页面，和`Servlet`一样，属于动态`web`技术
+
+特点：
+
+- 写`JSP`与写`HTML`相似
+
+- 区别：
+
+  `HTML`只给用户提供静态的数据
+
+  `JSP`页面中可以嵌入`JAVA`代码，为用户提供动态数据
+
+### 7.1 JSP原理
+
+服务器内部的工作
+
+- `tomcat`中有一个`work`目录
+- `IDEA`中使用`Tomcat`的会在`IDEA`的`tomcat`中产生一个`work`目录，`work`目录中有着`java`程序
+- `JSP`最终会被转换成一个`java`类
+- `JSP`本质上也是一个`Servlet`
+
+```java
+// 初始化
+public void _jspInit() {}
+
+// 销毁
+public void _jspDestory() {}
+
+// JSPService
+public void _jspService(HttpServletRequest request, HttpServletResponse response) {}
+```
+
+在`JSP`页面中：
+
+- 只要是`JAVA`代码就会原封不动的输出
+
+- 如果是`HTML`代码，就会被转换为
+
+  ```java
+  out.write("<html>\r\n");
+  ```
+
+### 7.2 JSP依赖
+
+```xml
+<dependencies>
+    <!-- servlet的依赖 -->
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>4.0.1</version>
+    </dependency>
+    <!-- JSP的依赖 -->
+    <dependency>
+        <groupId>javax.servlet.jsp</groupId>
+        <artifactId>javax.servlet.jsp-api</artifactId>
+        <version>2.3.3</version>
+    </dependency>
+    <!-- JSTL表达式的依赖 -->
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.2</version>
+    </dependency>
+
+	<!-- 标签库 -->
+    <dependency>
+        <groupId>taglibs</groupId>
+        <artifactId>standard</artifactId>
+        <version>1.1.2</version>
+    </dependency>
+</dependencies>
+```
+
+### 7.3 JSP语法
+
+#### 7.3.1 表达式
+
+- 将程序的结果，输出到客户端
+
+  ```jsp
+  <%= LocalDateTime.now()%>
+  
+  <%--2020-11-20T21:27:38.530437--%>
+  ```
+
+- `jsp`脚本片段
+
+  ```jsp
+  <%
+      int sum = 0;
+      for(int i = 0; i <= 100; i++) {
+      	sum+=i;
+      }
+      out.println("<h1>sum = " + sum + "</h1>");
+  %>
+  
+  <%--sum = 5050--%>
+  ```
+
+- 在`java`代码中嵌入`HTML`
+
+  ```jsp
+  <%
+  	for(int i = 0; i < 5; i++) {
+  %>
+  		<h3>我是第<%=i%>次循环</h3>
+  <%
+  	}
+  %>
+  <%--
+  我是第0次循环
+  我是第1次循环
+  我是第2次循环
+  我是第3次循环
+  我是第4次循环
+  --%>
+  ```
+
+  
+

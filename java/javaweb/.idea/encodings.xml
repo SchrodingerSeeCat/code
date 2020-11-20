@@ -5,5 +5,8 @@
     <file url="file://$PROJECT_DIR$/01-servlet/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/03-response/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/03-response/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/04-request/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/05-session-cookie/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/05-session-cookie/src/main/resources" charset="UTF-8" />
   </component>
 </project>

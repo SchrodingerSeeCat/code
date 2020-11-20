@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0"
+         metadata-complete="true">
+
+<!--    cookie-->
+    <servlet>
+        <servlet-name>cookie</servlet-name>
+        <servlet-class>CookieTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cookie</servlet-name>
+        <url-pattern>/cookie</url-pattern>
+    </servlet-mapping>
+
+<!--    设置session-->
+    <servlet>
+        <servlet-name>session</servlet-name>
+        <servlet-class>SessionTest1</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>session</servlet-name>
+        <url-pattern>/session</url-pattern>
+    </servlet-mapping>
+    
+<!--    获取session-->
+    <servlet>
+        <servlet-name>getsession</servlet-name>
+        <servlet-class>SessionTest2</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getsession</servlet-name>
+        <url-pattern>/getsession</url-pattern>
+    </servlet-mapping>
+    
+    
+<!--    注销session-->
+    <servlet>
+        <servlet-name>invalidate</servlet-name>
+        <servlet-class>SessionTest3</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>invalidate</servlet-name>
+        <url-pattern>/out</url-pattern>
+    </servlet-mapping>
+
+<!--    设置session的默认失效时间为1分钟-->
+    <session-config>
+        <session-timeout>1</session-timeout>
+    </session-config>
+</web-app>

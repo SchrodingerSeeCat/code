@@ -5,6 +5,9 @@
     <file type="web" url="file://$PROJECT_DIR$/01-servlet" />
     <file type="web" url="file://$PROJECT_DIR$/02-servlet" />
     <file type="web" url="file://$PROJECT_DIR$/03-response" />
+    <file type="web" url="file://$PROJECT_DIR$/04-request" />
+    <file type="web" url="file://$PROJECT_DIR$/05-session-cookie" />
+    <file type="web" url="file://$PROJECT_DIR$/06-JSP" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">

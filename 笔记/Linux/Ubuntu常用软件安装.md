@@ -149,5 +149,21 @@ sudo apt install maven
   <localRepository>/home/valid/maven-repo</localRepository>
   ```
 
-  
+
+修改JDK版本找到`profiles`
+
+```xml
+<profile>    
+	<id>jdk-1.11</id>    
+    <activation>    
+        <activeByDefault>true</activeByDefault>    
+        <jdk>1.11</jdk>    
+    </activation>    
+    <properties>    
+        <maven.compiler.source>1.11</maven.compiler.source>    
+        <maven.compiler.target>1.11</maven.compiler.target>    
+        <maven.compiler.compilerVersion>1.11</maven.compiler.compilerVersion>    
+    </properties> 
+</profile>
+```
 

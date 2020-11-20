@@ -25,4 +25,24 @@
         <servlet-name>verification</servlet-name>
         <url-pattern>/code</url-pattern>
     </servlet-mapping>
+
+<!--    重定向-->
+    <servlet>
+        <servlet-name>redirect</servlet-name>
+        <servlet-class>com.valid.servlet.RedirectServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>redirect</servlet-name>
+        <url-pattern>/redirect</url-pattern>
+    </servlet-mapping>
+
+<!--    request-->
+    <servlet>
+        <servlet-name>request</servlet-name>
+        <servlet-class>com.valid.servlet.RequestTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>request</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
 </web-app>
