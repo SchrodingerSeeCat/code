@@ -8,6 +8,9 @@
     <file type="web" url="file://$PROJECT_DIR$/04-request" />
     <file type="web" url="file://$PROJECT_DIR$/05-session-cookie" />
     <file type="web" url="file://$PROJECT_DIR$/06-JSP" />
+    <file type="web" url="file://$PROJECT_DIR$/07-Filter" />
+    <file type="web" url="file://$PROJECT_DIR$/08-application" />
+    <file type="web" url="file://$PROJECT_DIR$/09-smbms" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">

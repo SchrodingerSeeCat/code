@@ -15,6 +15,9 @@
         <module>04-request</module>
         <module>05-session-cookie</module>
         <module>06-JSP</module>
+        <module>07-Filter</module>
+        <module>08-JDBC</module>
+        <module>09-smbms</module>
     </modules>
 
     <dependencies>
@@ -44,5 +47,11 @@
             <version>1.1.2</version>
         </dependency>
 
+        <!--数据库驱动-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.22</version>
+        </dependency>
     </dependencies>
 </project>

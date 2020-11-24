@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/05_二叉搜索树/05_二叉搜索树.iml" filepath="$PROJECT_DIR$/05_二叉搜索树/05_二叉搜索树.iml" />
       <module fileurl="file://$PROJECT_DIR$/06_二叉树重构/06_二叉树重构.iml" filepath="$PROJECT_DIR$/06_二叉树重构/06_二叉树重构.iml" />
       <module fileurl="file://$PROJECT_DIR$/07_AVL树/07_AVL树.iml" filepath="$PROJECT_DIR$/07_AVL树/07_AVL树.iml" />
+      <module fileurl="file://$PROJECT_DIR$/08_红黑树/08_红黑树.iml" filepath="$PROJECT_DIR$/08_红黑树/08_红黑树.iml" />
       <module fileurl="file://$PROJECT_DIR$/数据结构.iml" filepath="$PROJECT_DIR$/数据结构.iml" />
     </modules>
   </component>

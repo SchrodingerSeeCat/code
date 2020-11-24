@@ -1,16 +1,11 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: valid
-  Date: 2020/11/20
-  Time: 下午9:38
-  To change this template use File | Settings | File Templates.
---%>
-
+<%@ page errorPage="error/500.jsp" %>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
-
+    <%
+        int i = 1/0;
+    %>
 </body>
 </html>

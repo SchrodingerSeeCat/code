@@ -988,5 +988,981 @@ public void _jspService(HttpServletRequest request, HttpServletResponse response
   --%>
   ```
 
+
+#### 7.3.2 JSP声明
+
+`JSP`声明会被编译到`JSP`生成的`java`类中，其他的，就会被生成到`_jspService`方法中
+
+```jsp
+<%!
+    static {
+    	System.out.println("Loading Servlet");
+    }
+
+    private int globalVar = 0;
+
+    public void method() {
+    	System.out.println("执行了自定义的方法");
+    }
+%>
+```
+
+### 7.4 JSP指令
+
+- 如果此页面报错，重定向到错误页面
+
+  ```jsp
+  <%@ page errorPage="error/500.jsp" %>
+  ```
+
+- 或者在`web.xml`配置全局的错误页面
+
+  ```xml
+  <error-page>
+      <error-code>500</error-code>
+      <location>/error/500.jsp</location>
+  </error-page>
+  <error-page>
+      <error-code>404</error-code>
+      <location>/error/404.jsp</location>
+  </error-page>
+  ```
+
+- 引入其它页面
+
+  ```jsp
+  <%@ include file="xxx.jsp" %>
+  ```
+
+- `JSP`标签引入其它页面
+
+  ```jsp
+  <jsp:include page="xxx.jsp" />
+  ```
+
+### 7.5 9大内置对象
+
+- `PageContext`
+- `Request`
+- `Response`
+- `Session`
+- `Application`【ServletContext】
+- `config`【ServletConfig】
+- `out`
+- `page`
+- `exception`
+
+#### 7.5.1 作用域
+
+- 保存的数据只在一个页面中有效
+
+  ```java
+  pageContext.setAttribute("name1", "1");
+  ```
+
+- 保存的数据只在一次请求中有效，请求转发会携带这个参数
+
+  ```java
+  request.setAttribute("name2", "2");
+  ```
+
+- 保存的数据在一次会话中有效
+
+  ```java
+  session.setAttribute("name3", "3");
+  ```
+
+- 保存的数据在服务器中有效
+
+  ```java
+  application.setAttribute("name4", "4");
+  ```
+
+取数据的顺序 `page` --> `request` --> `session` --> `application`，找不到则会为`null`
+
+```java
+ String name4 = (String) pageContext.findAttribute("name5");
+// null
+```
+
+### 7.6 JSP、JSTL、EL
+
+#### 7.6.1 EL表达式
+
+- 获取数据
+
+- 执行运算
+
+- 获取`web`开发的常用对象
+
+  ```
+  <!-- JSTL表达式的依赖 -->
+  <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+  </dependency>
   
+  <!-- 标签库 -->
+  <dependency>
+      <groupId>taglibs</groupId>
+      <artifactId>standard</artifactId>
+      <version>1.1.2</version>
+  </dependency>	
+  ```
+
+#### 7.6.2 JSP标签
+
+```jsp
+<jsp:forward page="jsptag2.jsp">
+    <jsp:param name="key1" value="value1"/>
+    <jsp:param name="key2" value="value2"/>
+</jsp:forward>
+<%--
+    实际上是用地址栏来实现参数的传递
+--%>
+```
+
+**取数据**
+
+```jsp
+<%=request.getParameter("key1")%>
+<%=request.getParameter("key2")%>
+```
+
+#### 7.6.3 JSTL表达式
+
+`JSTL`标签库的使用就是为了弥补`HTML`标签的不足，自定义了许多标签
+
+**核心标签**
+
+- 引入核心标签库
+
+  ```jsp
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  ```
+
+- 判断
+
+  ```jsp
+  <form method="get" action="coreif.jsp">
+      <input type="text" name="username" value="${param.username}">
+      <input type="submit" value="提交">
+  </form>
+  <c:if test="${param.username=='admin'}" var="isAdmin">
+      <c:out value="管理员登录"></c:out>
+  </c:if>
+  <c:out value="${isAdmin}"></c:out>
+  ```
+
+- 参考：[菜鸟教程](https://www.runoob.com/jsp/jsp-jstl.html)
+
+## 9. javaBean
+
+实体类
+
+- 必须要有一个无参构造
+- 属性必须私有化
+- 必须有`get/set`方法
+
+一般用来和数据库的字段做映射`ORM`
+
+ORM：对象关系映射
+
+- 表 --> 类
+- 字段 --> 属性
+- 行记录 --> 对象
+
+## 10. MVC
+
+`MVC`：`model`、`view`、`controller`
+
+`controller`：控制器
+
+- 接受用户的请求
+- 重定向或者转发视图
+
+`view`视图
+
+- 展示数据
+- 提供用户操作
+
+`model`增删改查
+
+- 业务逻辑`service`
+- 数据持久层`CRUD/Dao`
+
+```mermaid
+graph LR
+客户端 --> view --> |操作|controller --> |转发/重定向|view
+controller --> service --> Dao --> |JDBC|数据库
+Dao --> service --> controller
+view --> |返回|客户端
+```
+
+## 11. Filter和监听器
+
+### 11.1 Filter
+
+`Filter`：过滤器，用来过滤网站的数据
+
+- 处理中文乱码
+- 登录验证
+
+```mermaid
+graph LR
+web浏览器 --> web服务器 --> filter过滤器 --> Java程序 --> filter过滤器 --> web服务器 --> web浏览器
+```
+
+数据库依赖
+
+```xml
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.22</version>
+</dependency>
+```
+
+#### 11.1.1 具体使用
+
+1. 导包
+
+   ```java
+   import javax.servlet.*;
+   ```
+
+2. 实现`Filter`接口
+
+   ```java
+   public class FilterTest implements Filter {
+   	// 初始化
+       @Override
+       public void init(FilterConfig filterConfig) throws ServletException {
+   
+       }
+   	
+   	
+       @Override
+       public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+   
+       }
+   	
+   	// 销毁
+       @Override
+       public void destroy() {
+   
+       }
+   }
+   ```
+
+3. 编写过滤器
+
+   ```java
+   @Override
+   public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+       response.setCharacterEncoding("UTF-8");
+       request.setCharacterEncoding("UTF-8");
+       response.setContentType("text/html;charset=utf-8");
+   
+       // 放行请求
+       filterChain.doFilter(request, response);
+   }
+   ```
+
+4. 配置过滤器
+
+   ```xml
+   <filter>
+       <filter-name>character</filter-name>
+       <filter-class>FilterTest</filter-class>
+   </filter>
+   <filter-mapping>
+       <filter-name>character</filter-name>
+       <!--任何网站的请求都要走过滤器-->
+       <url-pattern>/*</url-pattern>
+   </filter-mapping>
+   ```
+
+### 11.2 监听器
+
+实现一个监听器的接口
+
+```java
+public class OnlineCountListener implements HttpSessionListener {
+    // session创建时触发
+    @Override
+    public void sessionCreated(HttpSessionEvent se) {
+       method(se, 1);
+    }
+
+
+    // session销毁时触发
+    @Override
+    public void sessionDestroyed(HttpSessionEvent se) {
+        method(se, -1);
+    }
+
+    public void method(HttpSessionEvent se, Integer value) {
+        ServletContext ctx = se.getSession().getServletContext();
+        Integer count = (Integer)ctx.getAttribute("count");
+        if (count == null) {
+            count = Integer.valueOf(1);
+        } else {
+            count = Integer.valueOf(count + value);
+        }
+        ctx.setAttribute("count", count);
+    }
+}
+```
+
+配置`web.xml`
+
+```xml
+<listener>
+	<listener-class>OnlineCountListener</listener-class>
+</listener>
+```
+
+### 11.3 权限管理应用
+
+实现登录成功后存储`session`并重定向到`success.jsp`，单独访问会被重定向到`error.jsp`
+
+`login.jsp`
+
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+    <form action="/s7/login" method="post">
+        <input type="text" name="username">
+        <input type="submit" value="登录">
+    </form>
+</body>
+</html>
+```
+
+`success.jsp`
+
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+    <h1>登录成功</h1>
+
+    <p><a href="/s7/logout">注销</a></p>
+</body>
+</html>
+```
+
+`error.jsp`
+
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+    <h1>错误</h1>
+    <h3>没有权限</h3>
+    <a href="/s7/login.jsp">返回登录页面</a>
+</body>
+</html>
+```
+
+`Login.java`
+
+```java
+public class Login extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 获取参数
+        String name = req.getParameter("username");
+        if ("admin".equals(name)) {
+            req.getSession().setAttribute("USER_SESSION", req.getSession().getId());
+            resp.sendRedirect(req.getContextPath() + "/success.jsp");
+        } else {
+            resp.sendRedirect(req.getContextPath() + "/error.jsp");
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
+}
+```
+
+`LoginOut.java`
+
+```java
+public class LoginOut extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        if (session.getAttribute("USER_SESSION") != null) {
+            req.getSession().removeAttribute("USER_SESSION");
+        }
+        resp.sendRedirect(req.getContextPath() + "/login.jsp");
+    }
+}
+```
+
+`Author.java`
+
+```java
+public class Author implements Filter {
+
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+
+        HttpServletRequest req = (HttpServletRequest) servletRequest;
+        HttpSession session = req.getSession();
+        if (session == null || session.getAttribute("USER_SESSION") == null) {
+            ((HttpServletResponse) servletResponse).sendRedirect(req.getContextPath() + "/error.jsp");
+        }
+        filterChain.doFilter(servletRequest, servletResponse);
+    }
+}
+```
+
+`web.xml`
+
+```xml
+<!--    配置登录-->
+    <servlet>
+        <servlet-name>login</servlet-name>
+        <servlet-class>Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>login</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    
+<!--    配置注销-->
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>LoginOut</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+<!--    配置授权登录-->
+    <filter>
+        <filter-name>author</filter-name>
+        <filter-class>Author</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>author</filter-name>
+        <url-pattern>/success.jsp</url-pattern>
+    </filter-mapping>
+```
+
+## 12. JDBC
+
+`JDBC`：`java`数据库连接
+
+```mermaid
+graph TD
+javaApp --> JDBC
+JDBC --> MySQL驱动 --> MySQL
+JDBC --> Oracle驱动 --> Oracle
+JDBC --> SqlServer驱动 --> SqlServer
+```
+
+需要`jar`包的支持
+
+- `java.sql`
+- `javax.sql`
+- `mysql-connector-java`：驱动
+
+### 12.1 使用步骤
+
+1. 创建数据库`jdbc`并创建表
+
+   ```sql
+   CREATE TABLE users (
+       id       int         not null
+           primary key,
+       name     varchar(40) null,
+       password varchar(40) null,
+       email    varchar(60) null,
+       birthday date        null
+   );
+   
+   INSERT INTO jdbc.users (id, name, password, email, birthday) VALUES (1, '汪峰', '123456', '666@qq.com', '2000-01-01');
+   INSERT INTO jdbc.users (id, name, password, email, birthday) VALUES (2, '罗小黑', '123456', '66456@qq.com', '2000-01-01');
+   INSERT INTO jdbc.users (id, name, password, email, birthday) VALUES (3, '幸平创真', '123456', '892366@qq.com', '2000-01-01');
+   INSERT INTO jdbc.users (id, name, password, email, birthday) VALUES (4, '艾伦.耶格尔', '123456', '2346@qq.com', '2000-01-01');
+   INSERT INTO jdbc.users (id, name, password, email, birthday) VALUES (5, '日向森罗', '123456', '123456@qq.com', '2000-01-01');
+   ```
+
+2. 导入数据库驱动`web.xml`
+
+   ```xml
+   <dependency>
+       <groupId>mysql</groupId>
+       <artifactId>mysql-connector-java</artifactId>
+       <version>8.0.22</version>
+   </dependency>
+   ```
+
+3. 配置连接信息`JDBC.java`
+
+   ```java
+   String url = "jdbc:mysql://localhost:3306/jdbc?useUnicode=true&characterEncoding=utf-8";
+   String username = "root";
+   String password = "123456";
+   ```
+
+4. 加载驱动
+
+   ```java
+   Class.forName("com.mysql.cj.jdbc.Driver");
+   ```
+
+5. 获取数据库驱动
+
+   ```java
+   Connection con = DriverManager.getConnection(url, username, password);
+   ```
+
+6. 获取向数据库发送SQL的对象statemen
+
+   ```java
+   Statement statement = con.createStatement();
+   ```
+
+7. 编写`SQL`
+
+   ```
+   String sql = "SELECT * FROM users";
+   ```
+
+8. 执行查询`sql`返回一个结果集
+
+   ```java
+   ResultSet result = statement.executeQuery(sql);
+   
+   // 对于增删改,返回受影响的行数
+   int count = statement.executeUpdate(sql)
+   ```
+
+9. 遍历结果集
+
+   ```java
+   while (result.next()) {
+       System.out.print("id = " + result.getObject("id"));
+       System.out.print("\tname = " + result.getObject("name"));
+       System.out.print("\tpassword = " + result.getObject("password"));
+       System.out.print("\temail = " + result.getObject("email"));
+       System.out.print("\tbirthday = " + result.getObject("birthday") + "\n");
+   }
+   ```
+
+10. 关闭连接
+
+    ```java
+    result.close();
+    statement.close();
+    con.close();
+    ```
+
+### 12.2 CRUD
+
+#### 12.2.1 搭建前提
+
+`Util.java`
+
+```java
+import java.sql.*;
+
+public class Util {
+    // 配置信息
+    private static final String url = "jdbc:mysql://localhost:3306/jdbc?useUnicode=true&characterEncoding=utf-8";
+    private static final String username = "root";
+    private static final String password = "123456";
+
+    private static Connection con = null;
+
+    static {
+
+        try {
+            // 加载驱动
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // 获取数据库的连接
+            con = DriverManager.getConnection(url, username, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static Connection getCon() {
+        return con;
+    }
+	
+    // 关闭数据库
+    public static void close(ResultSet rs, PreparedStatement ps) {
+        try {
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+`User.java`
+
+```java
+import java.sql.Date;
+
+public class User {
+    private Integer id;
+    private String name;
+    private String password;
+    private String email;
+    private Date birthday;
+
+    // get/set/toString
+}
+```
+
+#### 12.2.2 查询
+
+1. 创建`model`
+
+   ```
+   List<User> users = new LinkedList<>();
+   ```
+
+2. 创建预处理对象和结果集
+
+   ```java
+   PreparedStatement ps = null;
+   ResultSet rs = null;
+   ```
+
+3. 获取数据库连接
+
+   ```java
+   Connection con = Util.getCon();
+   ```
+
+4. 编写`sql`
+
+   ```
+   String sql = "SELECT * FROM users";
+   ```
+
+5. 执行`sql`
+
+   ```java
+   ps = con.prepareStatement(sql);
+   rs = ps.executeQuery();
+   ```
+
+6. 取出数据到`model`
+
+   ```java
+   while (rs.next()) {
+       User user = new User();
+       user.setId(rs.getInt("id"));
+       user.setName(rs.getString("name"));
+       user.setPassword(rs.getString("password"));
+       user.setEmail(rs.getString("email"));
+       user.setBirthday(rs.getDate("birthday"));
+       users.add(user);
+   }
+   ```
+
+7. 关闭数据库
+
+   ```java
+   Util.close(rs, ps);
+   ```
+
+8. 异常处理
+
+   ```java
+   @Test
+   public void check() {
+       List<User> users = new LinkedList<>();
+   
+       // 创建预处理对象和结果集
+       PreparedStatement ps = null;
+       ResultSet rs = null;
+   
+       // 获取数据库连接
+       Connection con = Util.getCon();
+   
+       // 编写sql
+       String sql = "SELECT * FROM users";
+       try {
+           // 执行sql
+           ps = con.prepareStatement(sql);
+           rs = ps.executeQuery();
+           while (rs.next()) {
+               User user = new User();
+               user.setId(rs.getInt("id"));
+               user.setName(rs.getString("name"));
+               user.setPassword(rs.getString("password"));
+               user.setEmail(rs.getString("email"));
+               user.setBirthday(rs.getDate("birthday"));
+               users.add(user);
+       	}
+       } catch (SQLException e) {
+       	e.printStackTrace();
+       } finally {
+       	Util.close(rs, ps);
+       }
+   
+       System.out.println(users);
+   }
+   ```
+
+#### 12.2.3 增删改
+
+增删改，步骤相同，不同在于编写的`sql`语句，只会返回受影响的记录数
+
+1. 创建预处理对象
+
+   ```java
+   PreparedStatement ps = null;
+   ```
+
+2. 获取数据库连接
+
+   ```java
+   Connection con = Util.getCon();
+   ```
+
+3. 编写`sql`：`?`表示占位符
+
+   ```java
+   String sql = "INSERT INTO users(id, name, password, email, birthday) VALUES (?,?,?,?,?)";
+   ```
+
+4. 处理`sql`
+
+   ```
+   ps = con.prepareStatement(sql);
+   ```
+
+5. 设置占位符的值
+
+   ```java
+   ps.setInt(1, 6);
+   ps.setString(2, "多拉格尼尔");
+   ps.setString(3, "123456");
+   ps.setString(4, "jsfdg@qq.com");
+   ps.setDate(5, new Date(System.currentTimeMillis()));
+   ```
+
+6. 执行`sql`
+
+   ```java
+   int count = ps.executeUpdate();
+   System.out.println("受影响的条数：" + count);
+   ```
+
+7. 异常处理
+
+   ```java
+   @Test
+   public void increase() {
+       Connection con = Util.getCon();
+       PreparedStatement ps = null;
+       String sql = "INSERT INTO users(id, name, password, email, birthday) VALUES (?,?,?,?,?)";
+       try {
+           ps = con.prepareStatement(sql);
+   
+           ps.setInt(1, 6);
+           ps.setString(2, "多拉格尼尔");
+           ps.setString(3, "123456");
+           ps.setString(4, "jsfdg@qq.com");
+           ps.setDate(5, new Date(System.currentTimeMillis()));
+   
+           int count = ps.executeUpdate();
+           System.out.println("受影响的条数：" + count);
+       } catch (SQLException e) {
+       	e.printStackTrace();
+       } finally {
+           Util.close(null, ps);
+       }
+   }
+   ```
+
+### 12.3 事物
+
+要么都成功，要么都失败
+
+创建模拟事物的表
+
+```sql
+CREATE TABLE account(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    `name` VARCHAR(40),
+    money FLOAT
+);
+
+INSERT INTO account(`name`,money) VALUES('A',1000);
+INSERT INTO account(`name`,money) VALUES('B',1000);
+INSERT INTO account(`name`,money) VALUES('C',1000);
+```
+
+1. 配置信息
+
+   ```java
+   // 配置信息
+   String url = "jdbc:mysql://localhost:3306/jdbc?useUnicode=true&characterEncoding=utf-8";
+   String username = "root";
+   String password = "123456";
+   
+   // 获取数据库的连接
+   Connection con = null;
+   PreparedStatement ps = null;
+   
+   
+   Class.forName("com.mysql.cj.jdbc.Driver");
+   con = DriverManager.getConnection(url, username, password);
+   ```
+
+2. 开启事物，`false`为开启
+
+   ```java
+   con.setAutoCommit(false);
+   ```
+
+3. 模拟出错
+
+   ```java
+   String sql = "update account set money = money - 100 where name='A'";
+   ps = con.prepareStatement(sql);
+   ps.executeUpdate();
+   
+   int i = 1/0;
+   
+   String sql2 = "update account set money = money + 100 where name='B'";
+   ps = con.prepareStatement(sql2);
+   ps.executeUpdate();
+   ```
+
+4. 提交
+
+   ```java
+   con.commit();
+   ```
+
+5. 回滚
+
+   ```java
+   con.rollback();
+   ```
+
+6. 完整代码
+
+   ```java
+   import java.sql.*;
+   
+   public class JDBCTest2 {
+       public static void main(String[] args) {
+           String url = "jdbc:mysql://localhost:3306/jdbc?useUnicode=true&characterEncoding=utf-8";
+           String username = "root";
+           String password = "123456";
+   
+           Connection con = null;
+           PreparedStatement ps = null;
+           try {
+               Class.forName("com.mysql.cj.jdbc.Driver");
+   
+               con = DriverManager.getConnection(url, username, password);
+   
+               con.setAutoCommit(false);
+   
+               String sql = "update account set money = money - 100 where name='A'";
+               ps = con.prepareStatement(sql);
+               ps.executeUpdate();
+   
+               int i = 1/0;
+   
+               String sql2 = "update account set money = money + 100 where name='B'";
+               ps = con.prepareStatement(sql2);
+               ps.executeUpdate();
+   
+               con.commit();
+   
+           } catch (ClassNotFoundException e) {
+               e.printStackTrace();
+           }   catch (SQLException e) {
+               e.printStackTrace();
+           }  finally {
+               if (con != null) {
+                   try {
+                       con.rollback();
+                   } catch (SQLException e) {
+                       e.printStackTrace();
+                   }
+                   try {
+                       con.close();
+                   } catch (SQLException e) {
+                       e.printStackTrace();
+                   }
+               }
+   
+               if (ps != null) {
+                   try {
+                       ps.close();
+                   } catch (SQLException throwables) {
+                       throwables.printStackTrace();
+                   }
+               }
+           }
+       }
+   }
+   ```
+
+## 13. 标准项目
+
+### 13.1 目录结构
+
+```mermaid
+graph TD
+project --> src
+project --> target
+src --> main --> java --> A[com.valid]
+A --> dao
+A --> filter
+A--> pojo
+A --> service
+A --> servlet
+A --> util
+main --> resources
+main --> webapp
+```
 

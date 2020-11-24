@@ -1,22 +1,22 @@
-import java.util.*;
+import java.util.Scanner;
+import java.util.function.Supplier;
 
 public class BinaryTree {
     private Node root;
-    public void generateTree(String tree) {
-        List<Character> list = new LinkedList<>();
-        for(int i = 0; i < tree.length(); i++) {
-            list.add(tree.charAt(i));
-        }
-        Iterator<Character> iterator = list.iterator();
-
-        preOrder(root, iterator);
+    public void createTree() {
+        preOrder(root, () -> {
+            Scanner reader = new Scanner(System.in);
+            Character ch = reader.next().charAt(0);
+            reader.close();
+            return ch;
+        });
     }
-    public void preOrder(Node node, Iterator<Character> iterator) {
-        char temp = iterator.next();
-        if (temp == '#') return;
-        node = new Node(temp);
-        preOrder(node.left, iterator);
-        preOrder(node.right, iterator);
+    public void preOrder(Node node, Supplier<Character> fun) {
+        char ch = fun.get();
+        if (ch == '#') return;
+        node = new Node(ch);
+        preOrder(node.left, fun);
+        preOrder(node.right, fun);
     }
 
     // 中序遍历
