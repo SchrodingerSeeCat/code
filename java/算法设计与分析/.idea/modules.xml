@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/01_分而治之/01_分而治之.iml" filepath="$PROJECT_DIR$/01_分而治之/01_分而治之.iml" />
+      <module fileurl="file://$PROJECT_DIR$/算法设计与分析.iml" filepath="$PROJECT_DIR$/算法设计与分析.iml" />
+    </modules>
+  </component>
+</project>
