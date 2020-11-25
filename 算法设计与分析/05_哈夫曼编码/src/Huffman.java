@@ -1,10 +1,6 @@
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-
 public class Huffman<E> {
     private Node<E> root;
 
-    public Huffman(){}
     public Huffman(Heap<Node<E>> heap) {
         createHuffman(heap, heap.size());
     }
@@ -16,48 +12,20 @@ public class Huffman<E> {
         root = heap.remove();
     }
 
-    // 前序遍历
-    public void preOrder(Node<E> node, Consumer<Node<E>> con) {
-        if (node == null || con == null) return;
-        con.accept(node);
-        preOrder(node.getLeft(), con);
-        preOrder(node.getRight(), con);
+    public void bestPrefix(){
+        StringBuffer sb = new StringBuffer();
+        Sum sum = new Sum();
+        bestPrefix(root, sb, "", sum);
+        System.out.print(sb + sum.toString());
     }
-    public void preOrder(Node<E> node, BiConsumer<Node<E>, StringBuffer> con, StringBuffer sb) {
-        if (node == null) return;
-        con.accept(node, sb);
-        preOrder(node.getLeft(), con, sb.append(0));
-        preOrder(node.getRight(), con, sb.append(1));
-    }
-
-    // 求最优前缀码
-    public void besPrefix() {
-//        bestPrefix(root);
-        preOrder(root, new StringBuffer());
-    }
-    public void preOrder(Node<E> node, StringBuffer sb) {
-        if (node == null) {
-            return;
+    private void bestPrefix(Node<E> node, StringBuffer sb, String prefix, Sum sum){
+        if(node == null) return;
+        if(node.getLeft() == null && node.getRight() == null) {
+            sb.append(node.getElement()).append(": ").append(prefix).append("\n");
+            sum.acc(prefix.length() * (int)node.getFrequency());
         }
-        if (node.getLeft() == null && node.getRight() == null) {
-            System.out.println(node + sb.toString());
-            sb.delete(0, sb.length());
-        }
-        preOrder(node.getLeft(), sb.append(0));
-        preOrder(node.getRight(), sb.append(1));
-    }
-    private void bestPrefix(Node<E> node) {
-        preOrder(node, (n, sb) -> {
-            if(n.getLeft() == null && n.getRight() == null) {
-                System.out.println(node + sb.toString());
-            }
-        }, new StringBuffer());
-    }
-
-    @Override
-    public String toString() {
-        preOrder(root, System.out::print);
-        return "";
+        bestPrefix(node.getLeft(), sb, prefix + "0", sum);
+        bestPrefix(node.getRight(), sb, prefix + "1", sum);
     }
 }
 
@@ -90,6 +58,14 @@ class Node<E> implements Comparable<Node<E>>{
         return (int) (this.frequency - node.frequency);
     }
 
+    public E getElement() {
+        return element;
+    }
+
+    public float getFrequency() {
+        return frequency;
+    }
+
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
@@ -100,5 +76,17 @@ class Node<E> implements Comparable<Node<E>>{
                 append(frequency).
                 append(')').
                 toString();
+    }
+}
+
+class Sum{
+    private int sum;
+    public void acc(int element) {
+        sum += element;
+    }
+
+    @Override
+    public String toString() {
+        return sum + "";
     }
 }
