@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    创建对象-->
+    <bean id="user" class="User"/>
+
+<!--    set方法注入属性-->
+    <bean id="book" class="dependency.injection.Book">
+<!--        使用property完成属性注入-->
+        <property name="bookName" value="狂人日记"></property>
+        <property name="bookAuthor" value="鲁迅"></property>
+<!--        设置null值-->
+
+<!--        <property name="address">-->
+<!--            <null></null>-->
+<!--        </property>-->
+
+<!--       特殊符号 -->
+<!--        <property name="address">-->
+<!--&lt;!&ndash;            CDATA解决&ndash;&gt;-->
+<!--            <value><![CDATA[<<南京>>]]></value>-->
+<!--        </property>-->
+
+<!--        转义-->
+        <property name="address" value="&lt;&lt;南京&gt;&gt;"></property>
+    </bean>
+
+<!--    使用有参构造注入属性-->
+    <bean id="order" class="dependency.injection.Order">
+        <constructor-arg name="name" value="小米手机"></constructor-arg>
+        <constructor-arg name="address" value="China"></constructor-arg>
+    </bean>
+
+<!--    使用p标签名-->
+    <bean id="book2" class="dependency.injection.Book" p:bookName=""></bean>
+
+
+</beans>

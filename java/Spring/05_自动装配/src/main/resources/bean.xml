@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    实现自动装配
+        bean标签竖向autowire，配置自动装配
+        autowire属性常用两个值：
+            byName根据属性名称注入，注入值bean的id值和类属性的名称相同
+            byType根据属性类型注入
+-->
+    <bean id="emp" class="autowire.Emp" autowire="byType"></bean>
+    <bean id="dept" class="autowire.Dept"></bean>
+</beans>

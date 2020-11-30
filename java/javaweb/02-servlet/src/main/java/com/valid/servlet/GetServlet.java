@@ -14,5 +14,13 @@ public class GetServlet extends HttpServlet {
         resp.setCharacterEncoding("utf-8");
         PrintWriter writer = resp.getWriter();
         writer.print(this.getServletContext().getAttribute("username"));
+        writer.close();
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PrintWriter writer = resp.getWriter();
+        writer.println("Hello World!");
+        writer.close();
     }
 }

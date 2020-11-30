@@ -85,7 +85,7 @@ C --> 字节码文件
 - `HotSpot VM`目前市面上高性能虚拟机的代表作之一
 - 它采用解释起与即时编译器并存的架构
 
-![image-20201119223248764](JVM.assets/image-20201119223248764.png)
+![image-20201119223248764](./JVM.assets/image-20201119223248764.png)
 
 ### 1.5 java代码执行流程
 
@@ -209,3 +209,11 @@ B(验证Verification) --> C(准备Preparation) --> D(解析Resolution)
 - `JVM`支持两种类型的类加载器，分别是引导类加载器`Bootstrap ClassLoader`和自定义类加载器`User-Defined ClassLoader`
 - 从概念上来讲，自定义类加载器一般指的是程序中由开发人员自定义的一类类加载器，但是`java`虚拟机规范却没有这么定义，而是将所有派生于抽象类`ClassLoader`的类加载器都划分为自定义类加载器
 - 无论类加载器的类型如何划分，在程序中我们最常见的类加载器始终只有3个
+
+```mermaid
+graph TD
+A[Bootstrap ClassLoader] --> B[Extension Class Loader] --> C[System Class Loader] --> D[User Define Class Loader] --> E[User Defined Class Loader] --> |...|I[....]
+C --> F[User Defined Class Loader] -->G[User Defined Class Loader] --> |...|H[....]
+```
+
+四者的关系为包含

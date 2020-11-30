@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    集合类型的注入-->
+    <bean id="student" class="ordinary.Student">
+<!--        数组类型注入-->
+        <property name="courses">
+            <array>
+                <value>java课程</value>
+                <value>数据库课程</value>
+            </array>
+        </property>
+
+<!--        list类型注入-->
+        <property name="name">
+            <list>
+                <value>张三</value>
+                <value>小三</value>
+            </list>
+        </property>
+
+<!--        map类型注入-->
+        <property name="map">
+            <map>
+                <entry key="JAVA" value="java"></entry>
+                <entry key="PHP" value="php"></entry>
+            </map>
+        </property>
+
+<!--        set集合注入-->
+        <property name="set">
+            <set>
+                <value>SQL</value>
+                <value>Redis</value>
+            </set>
+        </property>
+    </bean>
+
+<!--    集合类型注入对象值-->
+    <bean id="teacher" class="classtype.Teacher">
+        <property name="courses">
+            <list>
+                <ref bean="course1"></ref>
+                <ref bean="course2"></ref>
+                <ref bean="course3"></ref>
+            </list>
+        </property>
+    </bean>
+
+<!--    创建多个course对象-->
+    <bean id="course1" class="classtype.Course">
+        <property name="name" value="java"></property>
+    </bean>
+    <bean id="course2" class="classtype.Course">
+        <property name="name" value="php"></property>
+    </bean>
+    <bean id="course3" class="classtype.Course">
+        <property name="name" value="c++"></property>
+    </bean>
+</beans>
