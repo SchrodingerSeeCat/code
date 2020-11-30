@@ -76,13 +76,13 @@ B --> |实现类|ClassSystemXmlApplicationContext
 
 `ClassSystemXmlApplicationContext`：类路径
 
-## 3. Bean管理
+## 3. Bean管理(xml方式)
 
 什么是`Bean`管理
 - `Spring`创建对象
 - `Spring`注入属性
 
-### 3.1 基于`xml`配置文件方式创建对象
+### 3.1 方式创建对象
 
 1. 实现
 
@@ -1080,5 +1080,246 @@ public class Emp {
 
 2. 把外部`properties`属性文件引入到`spring`配置文件中
 
+   引入`context`名称空间
 
+   ```xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <beans xmlns="http://www.springframework.org/schema/beans"
+          xmlns:context="http://www.springframework.org/schema/context"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+   </beans>
+   ```
 
+   引入属性文件，并配置
+
+   ```xml
+   <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+   <bean id="dataSorce" class="com.alibaba.druid.pool.DruidDataSource">
+    <property name="driverClassName" value="${prop.driverClass}"></property>
+       <property name="url" value="${prop.url}"></property>
+       <property name="username" value="${prop.userName}"></property>
+       <property name="password" value="${prop.password}"></property>
+   </bean>
+   ```
+   
+
+## 4. Bean管理(注解方式)
+
+1. 引入`aop`依赖`spring-aop-5.2.6.RELEASE.jar`
+
+2. 开启组件扫描在`xml`中配置，多个包中使用`,`隔开或者直接扫描包的上层目录
+
+   ```xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <beans xmlns="http://www.springframework.org/schema/beans"
+          xmlns:context="http://www.springframework.org/schema/context"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+   
+       <context:component-scan base-package="instance, dao"></context:component-scan>
+   </beans>
+   ```
+
+3. 创建类，在类的上面添加创建对象注解
+
+### 4.1 创建对象
+
+四种注解的功能相同，但是可以用来创建`bean`实例
+
+1. `@Component`
+2. `@Service`
+3. `@Controller`
+4. `@Repository`
+
+**实例**
+
+```java
+package instance;
+import org.springframework.stereotype.Component;
+
+@Component(value = "userService")
+public class UserService {
+    public void show() {
+        System.out.println("service show.....");
+    }
+}
+```
+
+- 在注解里面value属性值可以省略不写
+-  默认值是类名称，首字母小写
+
+**测试**
+
+```java
+@Test
+public void test() {
+    ApplicationContext context = new ClassPathXmlApplicationContext("instance/bean.xml");
+    UserService userService = context.getBean("userService", UserService.class);
+    userService.show();
+}
+```
+
+### 4.2 自定义组件扫描
+
+- 只扫描带`Controller`的类
+
+  ```xml
+  <context:component-scan base-package="instance" use-default-filters="false">
+          <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+  </context:component-scan>
+  ```
+
+- 设置哪些内容不被扫描
+
+  ```xml
+  <context:component-scan base-package="instance">
+  	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+  </context:component-scan>
+  ```
+
+### 4.3 属性注入
+
+#### 4.3.1 Autowired
+
+`@Autowired`：根据属性类型进行自动装配
+
+1. 把`service`和`dao`对象创建，在`service`和`dao`类天剑创建对象注解
+
+   `UserService.java`
+
+   ```java
+   @Service
+   public class UserService {
+       public void show() {
+           System.out.println("service show.....");
+       }
+   }
+   ```
+
+   `UserDao.java`
+
+   ```java
+   public interface UserDao {
+       void show();
+   }
+   ```
+
+   `UserDaoImpl.java`
+
+   ```java
+   @Repository
+   public class UserDaoImpl implements UserDao {
+       @Override
+       public void show() {
+           System.out.println("dao show");
+       }
+   }
+   ```
+
+2. 在`service`中注入`dao`对象，在`service`类中添加`dao`类型属性，在属性上面使用注解，不需要添加`set`方法
+
+   ```java
+   @Autowired
+   private UserDao userDao;
+   ```
+
+#### 4.3.2 Qualifier
+
+`@Qualifier`：根据属性名称进行注入，需要和`@Autowire`搭配使用
+
+```java
+@Autowired
+@Qualifier(value = "userDaoImpl")
+private UserDao userDao;
+```
+
+当一个接口的实现类有多个时就可以使用`Qualifier`
+
+#### 4.3.3 Resource
+
+`@Resource`：可以根据类型注入，也可以根据名称注入
+
+类型注入
+
+```java
+@Resource
+private UserDao userDao;
+```
+
+名称注入
+
+```java
+@Resource(name = "userDaoImpl")
+private UserDao userDao;
+```
+
+#### 4.3.4 value
+
+`@Value`：注入普通类型
+
+```java
+@Value(value = "10")
+private int a;
+```
+
+### 4.4 完全注解开发
+
+1. 创建配置类，替代`xml`配置文件
+
+   ```java
+   @Configuration
+   @ComponentScan(basePackages = {"instance", "dao"})
+   public class Config {
+   
+   }
+   ```
+
+2. 测试
+
+   ```java
+   @Test
+   public void test4() {
+       ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+       UserService userService = context.getBean("userService", UserService.class);
+       System.out.println(userService);
+   }
+   ```
+
+## 5. AOP
+
+### 5.1 基本概念
+
+面向切面编程：利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的[耦合度](https://baike.baidu.com/item/耦合度/2603938)降低，提高程序的可重用性，同时提高了开发的效率。
+
+```flow
+st=>start: 登录
+
+form=>inputoutput: 用户名密码
+database=>operation: 数据库查询
+home=>operation: 主页
+
+cond=>condition: 判断框(是或否?)
+
+st->form
+form->database->cond
+cond(yes)->home
+cond(no)->form
+```
+
+如果要在登录功能基础之上添加功能(权限控制)
+
+- 原始方式：直接修改源代码
+- `Spring`不修改源代码的方式添加新的功能：添加权限判断模块
+
+### 5.2 底层原理
+
+`AOP`底层使用动态代理
+
+动态代理的不同情况
+
+- 有接口情况，使用`JDK`动态代理
+
+- 没有接口情况，使用`CGLIB`
