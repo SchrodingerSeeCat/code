@@ -365,7 +365,7 @@ docker run -it --name 容器3 --volumes-from 容器1 镜像
 1. mysql
 
    ```
-   docker run -p 3306:3306 --name mysql -v /valid/mysql/conf:/etc/mysql/conf.d -v /valid/mysql/logs:/logs -v /valid/mysql/data:/var/lid/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+   docker run -p 3306:3306 --name mysql -v /valid/mysql/conf:/etc/mysql/conf.d -v /valid/mysql/logs:/logs -v /valid/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql
    ```
 
    进入mysql的容器

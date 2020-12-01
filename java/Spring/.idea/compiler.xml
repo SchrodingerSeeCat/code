@@ -6,6 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="09_JDBCTemplate" />
+        <module name="08_AOP" />
         <module name="03_工厂bean" />
         <module name="01_Spring相关概念、IOC" />
         <module name="02_集合注入" />

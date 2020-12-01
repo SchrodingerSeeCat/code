@@ -1,3 +1,5 @@
+
+
 # Spring
 
 [TOC]
@@ -82,7 +84,7 @@ B --> |实现类|ClassSystemXmlApplicationContext
 - `Spring`创建对象
 - `Spring`注入属性
 
-### 3.1 方式创建对象
+### 3.1 创建对象
 
 1. 实现
 
@@ -1316,10 +1318,650 @@ cond(no)->form
 
 ### 5.2 底层原理
 
+#### 5.2.1 基本原理
+
 `AOP`底层使用动态代理
 
 动态代理的不同情况
 
-- 有接口情况，使用`JDK`动态代理
+- 有接口情况，使用`JDK`动态代理，创建接口实现类的代理对象来增强接口的功能
 
-- 没有接口情况，使用`CGLIB`
+  ```mermaid
+  graph TD
+  接口 --> 实现类
+  接口 --> 代理对象
+  ```
+
+- 没有接口情况，使用`CGLIB`,创建子类的代理对象增强功能
+
+  ```mermaid
+  graph TD
+  父类 --> 子类
+  父类 --> 代理对象
+  ```
+
+#### 5.2.2 具体实现
+
+使用`JDK`的动态代理，使用`Proxy`类里面的方法创建代理对象
+
+```java
+// 类加载器 接口 接口实现类
+static Object newProxyInstance(ClassLoader loader, Class<?>[] interfaces, InvocationHandler h)
+```
+
+1. 创建接口，定义方法
+
+   ```java
+   public interface User {
+       int add(int a, int b);
+       String update(String id);
+   }
+   ```
+
+2. 创建接口的实现类，实现方法
+
+   ```java
+   public class UserImpl implements User{
+       @Override
+       public int add(int a, int b) {
+           return a + b;
+       }
+   
+       @Override
+       public String update(String id) {
+           return id;
+       }
+   }
+   ```
+
+3. 使用`Proxy`创建代理类`UserDaoProxy`
+
+   ```java
+   public class UserDaoProxy implements InvocationHandler {
+       // 增强的逻辑
+       @Override
+       public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+           return null;
+       }
+   }
+   ```
+
+4. 传递被代理类的对象到代理的内部(有参构造)
+
+   ```java
+   private Object obj;
+   public UserDaoProxy(Object obj) {
+   	this.obj = obj;
+   }
+   ```
+
+5. 重写代理类`UserDaoProxy`的`invoke`方法
+
+   ```java
+   @Override
+   public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+       // 方法之前
+       System.out.println("方法之前执行：" + method.getName() + " :传递的参数：" + Arrays.toString(args));
+   
+       // 被增强的方法执行
+       Object res = method.invoke(obj, args);
+   
+       // 方法之后
+       System.out.println("方法之后执行");
+       return res;
+   }
+   ```
+
+6. 创建代理对象测试
+
+   ```java
+   public static void main(String[] args) {
+       Class[] interfaces = {User.class};
+       UserImpl user = new UserImpl();
+       
+       User u = (User)Proxy.newProxyInstance(ProxyTest.class.getClassLoader(), interfaces, new UserDaoProxy(user));
+       System.out.println(u.add(1, 2));
+   }
+   // 方法之前执行：add :传递的参数：[1, 2]
+   // 方法之后执行
+   // 方法之后执行
+   // 3
+   ```
+
+### 5.3 AOP术语
+
+连接点：类里面可以被增强的方法
+
+切入点：实际被真正增强的方法
+
+通知(增强)：方法中实际增强的部分
+- 前置通知：方法之前执行
+- 后置通知：方法之后执行
+- 环绕通知：方法前后执行
+- 异常通知：异常时执行
+- 最终通知：类似`finally`
+
+切面：将通知应用到切入点的过程
+
+### 5.4 AOP操作准备
+
+`Spring`框架一般基于`AspectJ`实现`AOP`操作，`AspectJ`不属于`Spring`的组成部分，独立于`AOP`框架，一般把`AspectJ`和`Spring`一起使用，进行`AOP`操作
+
+#### 5.4.1 相关依赖
+
+```xml
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-aspects -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-aspects</artifactId>
+    <version>5.3.1</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+<dependency>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjweaver</artifactId>
+    <version>1.9.6</version>
+    <scope>runtime</scope>
+</dependency>
+<!-- https://mvnrepository.com/artifact/aopalliance/aopalliance -->
+<dependency>
+    <groupId>aopalliance</groupId>
+    <artifactId>aopalliance</artifactId>
+    <version>1.0</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/cglib/cglib -->
+<dependency>
+    <groupId>cglib</groupId>
+    <artifactId>cglib</artifactId>
+    <version>3.3.0</version>
+</dependency>
+```
+
+#### 5.4.2 切入点表达式
+
+切入点表达式作用：知道对哪个类里面的哪个方法进行增强
+
+语法结构
+
+```
+execution([权限修饰符][返回类型][类全路径][方法名称]([参数列表]))
+```
+
+示例1：对`com.valid.dao.Book`类里面的`add`进行增强
+
+```
+execution(* com.valid.dao.Book.add(..))
+```
+
+示例2：对`com.valid.dao.Book`类里面的所有方法进行增强
+
+```
+execution(* com.valid.dao.Book.*(..))
+```
+
+示例3：对`com.valid.dao`包里面的所有类所有方法进行增强
+
+```
+execution(* com.valid.dao.*.*(..))
+```
+
+### 5.5 AOP操作(AspectJ注解):star:
+
+#### 5.5.1 具体实现
+
+1. 创建原始类，增强该类的方法
+
+   ```java
+   package aopanno;
+   
+   @Component
+   public class User {
+       public void add() {
+           System.out.println("add....");
+       }
+   }
+   ```
+
+2. 创建增强类(编写增强的逻辑)
+
+   在增强类里，创建不同的方法，不同的方法代表不同的通知类型
+
+   ```java
+   package aopanno;
+   
+   @Component
+   @Aspect // 生成代理对象
+   public class UserProxy {
+       public void before() {
+           System.out.println("before.....");
+       }
+   }
+   ```
+
+3. 进行通知的配置
+
+   在`spring`配置文件中，开启注解扫描
+
+   ```xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <beans xmlns="http://www.springframework.org/schema/beans"
+          xmlns:context="http://www.springframework.org/schema/context"
+          xmlns:aop="http://www.springframework.org/schema/aop"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="
+          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+   </beans>
+   ```
+
+   使用注解创建`User`和`UserProxy`对象
+
+   在增强类上面添加注解`@Aspect`
+
+   在`spring`配置文件中开启生成代理对象
+
+   ```xml
+   <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+   ```
+
+4. 配置不同类型的通知
+
+   在增强类的里面，在作为通知方法上面添加通知类型注解，使用切入点表达式配置
+
+   ```java
+   @Before(value = "execution(* aopanno.User.add(..))")
+   public void before() {
+   	System.out.println("before.....");
+   }
+   ```
+
+5. 测试
+
+   ```java
+   @Test
+   public void test() {
+       ApplicationContext context = new ClassPathXmlApplicationContext("bean.xml");
+       User user = context.getBean("user", User.class);
+       user.add();
+   }
+   // before.....
+   // add....
+   ```
+
+不同类型的通知
+
+```java
+@Component
+@Aspect
+public class UserProxy {
+
+    // 前置通知
+    // @before注解表示作为前置通知
+    @Before(value = "execution(* aopanno.User.add(..))")
+    public void before() {
+        System.out.println("before....");
+    }
+
+    // 最终通知，有没有异常都会执行
+    @After(value = "execution(* aopanno.User.add(..))")
+    public void after() {
+        System.out.println("after...");
+    }
+
+    // 方法返回之后执行
+    @AfterReturning(value = "execution(* aopanno.User.add(..))")
+    public void afterReturn() {
+        System.out.println("AfterReturning...");
+    }
+
+    // 异常通知
+    @AfterThrowing(value = "execution(* aopanno.User.add(..))")
+    public void afterThrowing() {
+        System.out.println("AfterThrowing...");
+    }
+
+    // 环绕通知
+    @Around(value = "execution(* aopanno.User.add(..))")
+    public void around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        System.out.println("环绕之前...");
+
+        // 被增强的方法执行
+        proceedingJoinPoint.proceed();
+
+        System.out.println("环绕之后...");
+    }
+}
+```
+
+#### 5.5.2 其他操作
+
+- 公共切入点抽取
+
+  ```java
+  @Pointcut(value = "execution(* aopanno.User.add(..))")
+  public void point() {
+  
+  }
+  
+  // 使用提取切入点
+  @Before(value = "point()")
+  public void before() {
+  	System.out.println("before....");
+  }
+  ```
+
+- 有多个增强类对同一个方法进行增强，可以设置增强类的优先级
+
+  在增强类上面添加`@Order(数字类型)`，数字**越小**优先级越高
+
+  ```java
+  @Component
+  @Aspect
+  @Order(0)
+  public class PersonProxy {
+      @Before(value = "execution(* aopanno.User.add(..))")
+      public void Before() {
+          System.out.println("Person before...");
+      }
+  }
+  ```
+
+#### 5.2.3 完全注解
+
+1. 创建配置类
+
+   ```java
+   @Configuration
+   @ComponentScan(value = {"aopanno"})
+   @EnableAspectJAutoProxy(proxyTargetClass = true)
+   public class Config {
+   }
+   ```
+
+2. 测试
+
+   ```java
+   @Test
+   public void test() {
+       ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+       User user = context.getBean("user", User.class);
+       user.add();
+   }
+   ```
+
+### 5.6 AOP操作(AspectJ配置文件)
+
+1. 创建两个类，增强类和被增强类，创建方法
+
+   `Book.java`
+
+   ```java
+   package aopxml;
+   
+   public class Book {
+       public void buy() {
+           System.out.println("buy...");
+       }
+   }
+   ```
+
+   `BookProxy.java`
+
+   ```java
+   package aopxml;
+   
+   public class BookProxy {
+       public void before() {
+           System.out.println("before...");
+       }
+   }
+   ```
+
+2. 在`spring`配置文件中创建两个类对象
+
+   ```xml
+   <bean id="book" class="aopxml.Book"></bean>
+   <bean id="bookProxy" class="aopxml.BookProxy"></bean>
+   ```
+
+3. 在`spring`配置文件中配置切入点
+
+   ```xml
+   <!--配置增强方法-->
+   <aop:config expose-proxy="false">
+       <!--配置切入点-->
+       <aop:pointcut id="buy" expression="execution(* aopxml.Book.buy())"/>
+   
+       <!--配置切面-->
+       <aop:aspect ref="bookProxy">
+       <!--增强作用在具体的方法上-->
+       	<aop:before method="before" pointcut-ref="buy"/>
+       </aop:aspect>
+   </aop:config>
+   ```
+
+4. 测试
+
+   ```java
+   @Test
+   public void test1() {
+       ApplicationContext context = new ClassPathXmlApplicationContext("bean1.xml");
+       Book book = context.getBean("book", Book.class);
+       book.buy();
+   }
+   ```
+
+## 6. data
+
+### 6.1 JdbcTemplate
+
+`Spring`框架对`JDBC`进行的封装，使用`JdbcTemplate`方便实现对数据库的操作
+
+#### 6.1.1 准备工作
+
+- 依赖
+
+  ```xml
+  <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.2.3</version>
+  </dependency>
+  <dependency>
+  	<groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.22</version>
+  </dependency>
+  
+  <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>5.2.11.RELEASE</version>
+  </dependency>
+  <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>5.2.11.RELEASE</version>
+  </dependency>
+  <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-orm</artifactId>
+      <version>5.2.11.RELEASE</version>
+  </dependency>
+  ```
+
+- 配置数据库连接池
+
+  ```xml
+  <bean id="dataSorce" class="com.alibaba.druid.pool.DruidDataSource">
+      <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+      <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+      <property name="username" value="root" />
+      <property name="password" value="123456" />
+  </bean>
+  ```
+
+- 配置`JdbcTemplate`对象，注入`DataSource`
+
+  ```xml
+  <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+  	<property name="dataSource" ref="dataSorce" />
+  </bean>
+  ```
+
+- 创建`service`类，创建`dao`类，在`dao`注入`jdbcTemplate`对象
+
+  配置文件中开启组件扫描
+
+  ```xml
+  <context:component-scan base-package="service dao" />
+  ```
+
+  `dao`中注入`jdbcTemplate`
+
+  ```java
+  @Autowired
+  private JdbcTemplate jdbcTemplate;
+  ```
+
+  `service`中注入`dao`
+
+  ```java
+  @Autowired
+  private BookDao bookDao;
+  ```
+
+- 创建数据库`test`并创建以下表
+
+  ```
+  create table book(
+      user_id bigint(20) NOT NULL AUTO_INCREMENT primary key ,
+      username varchar(100) NOT NULL ,
+      ustatus varchar(50) NOT NULL
+  )
+  ```
+
+#### 6.1.2 增加
+
+1. 创建实体类`Book`
+
+   ```java
+   package entity;
+   
+   public class Book {
+       private String userId;
+       private String username;
+       private String ustatus;
+   
+       public String getUserId() {
+           return userId;
+       }
+   
+       public String getUsername() {
+           return username;
+       }
+   
+       public String getUstatus() {
+           return ustatus;
+       }
+   
+       public void setUserId(String userId) {
+           this.userId = userId;
+       }
+   
+       public void setUsername(String username) {
+           this.username = username;
+       }
+   
+       public void setUstatus(String ustatus) {
+           this.ustatus = ustatus;
+       }
+   }
+   ```
+
+2. 编写`service`和`dao`
+
+   在`dao`进行数据库添加操作
+
+   调用`JdbcTemplate`对象里的`update`方法实现添加操作
+
+   ```java
+   @Repository
+   public class BookDaoImpl implements BookDao{
+       // 注入jdbcTemplate
+       @Autowired
+       private JdbcTemplate jdbcTemplate;
+   
+   
+       @Override
+       public void add(Book book) {
+           // 创建sql语句
+           String sql = "INSERT INTO book(username, ustatus) VALUES (?,?)";
+   
+           // 调用方法实现
+           int update = jdbcTemplate.update(sql, book.getUsername(), book.getUstatus());
+           System.out.println("受影响的行数: " + update);
+       }
+   }
+   ```
+
+3. 测试
+
+   ```java
+   @Test
+   public void test() {
+       // 测试JDBCTemplate
+       ApplicationContext context = new ClassPathXmlApplicationContext("jdbc.xml");
+   
+       BookService bookService = context.getBean("bookService", BookService.class);
+   
+       Book book = new Book();
+       book.setUsername("叶凡");
+       book.setStatus("失踪");
+       bookService.addBook(book);
+   }
+   /* 
+   Loading class `com.mysql.jdbc.Driver'. This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver'. The driver is automatically registered via the SPI and manual loading of the driver class is generally unnecessary.
+   12月 01, 2020 9:54:28 下午 com.alibaba.druid.support.logging.JakartaCommonsLoggingImpl info
+   信息: {dataSource-1} inited
+   受影响的行数: 1 
+   */
+   ```
+
+#### 6.1.3 修改和删除
+
+`dao`添加方法`update`和`delete`
+
+```java
+@Override
+public void update(Book book) {
+    // 修改操作
+    String sql = "UPDATE book set username=?, ustatus=? WHERE user_id=?";
+    int update = jdbcTemplate.update(sql, book.getUsername(), book.getStatus(), book.getUserId());
+    System.out.println("受影响的行数：" + update);
+}
+
+@Override
+public void delete(String id) {
+    // 删除操作
+    String sql = "DELETE FROM book WHERE user_id=?";
+    int update = jdbcTemplate.update(sql, id);
+    System.out.println("受影响的行数：" + update);
+}
+```
+
+`service`中添加
+
+```java
+// 修改的方法
+public void updateBook(Book book) {
+	bookDao.update(book);
+}
+
+// 删除
+public void deleteBook(String id) {
+	bookDao.delete(id);
+}
+```
+
