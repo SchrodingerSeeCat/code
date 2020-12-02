@@ -1415,13 +1415,16 @@ static Object newProxyInstance(ClassLoader loader, Class<?>[] interfaces, Invoca
 6. 创建代理对象测试
 
    ```java
-   public static void main(String[] args) {
-       Class[] interfaces = {User.class};
-       UserImpl user = new UserImpl();
-       
-       User u = (User)Proxy.newProxyInstance(ProxyTest.class.getClassLoader(), interfaces, new UserDaoProxy(user));
-       System.out.println(u.add(1, 2));
+   public class ProxyTest {
+       public static void main(String[] args) {
+           Class[] interfaces = {User.class};
+           UserImpl user = new UserImpl();
+   
+           User u = (User)Proxy.newProxyInstance(ProxyTest.class.getClassLoader(), interfaces, new UserDaoProxy(user));
+           System.out.println(u.add(1, 2));
+   	}
    }
+   
    // 方法之前执行：add :传递的参数：[1, 2]
    // 方法之后执行
    // 方法之后执行
@@ -1834,11 +1837,11 @@ public class UserProxy {
 
 - 创建数据库`test`并创建以下表
 
-  ```
+  ```sql
   create table book(
       user_id bigint(20) NOT NULL AUTO_INCREMENT primary key ,
       username varchar(100) NOT NULL ,
-      ustatus varchar(50) NOT NULL
+      status varchar(50) NOT NULL
   )
   ```
 
@@ -1852,7 +1855,7 @@ public class UserProxy {
    public class Book {
        private String userId;
        private String username;
-       private String ustatus;
+       private String status;
    
        public String getUserId() {
            return userId;
@@ -1862,8 +1865,8 @@ public class UserProxy {
            return username;
        }
    
-       public String getUstatus() {
-           return ustatus;
+       public String getStatus() {
+           return status;
        }
    
        public void setUserId(String userId) {
@@ -1874,8 +1877,17 @@ public class UserProxy {
            this.username = username;
        }
    
-       public void setUstatus(String ustatus) {
-           this.ustatus = ustatus;
+       public void setStatus(String status) {
+           this.status = status;
+       }
+   
+       @Override
+       public String toString() {
+           return "Book{" +
+                   "userId='" + userId + '\'' +
+                   ", username='" + username + '\'' +
+                   ", status='" + status + '\'' +
+                   '}';
        }
    }
    ```
@@ -1965,3 +1977,401 @@ public void deleteBook(String id) {
 }
 ```
 
+测试
+
+```java
+@Test
+public void test1() {
+    // 测试修改
+    ApplicationContext context = new ClassPathXmlApplicationContext("jdbc.xml");
+
+    BookService bookService = context.getBean("bookService", BookService.class);
+
+    Book book = new Book();
+    book.setUserId("1");
+    book.setUsername("石昊");
+    book.setStatus("上苍");
+    bookService.updateBook(book);
+}
+
+@Test
+public void test2() {
+    // 测试删除
+    ApplicationContext context = new ClassPathXmlApplicationContext("jdbc.xml");
+
+    BookService bookService = context.getBean("bookService", BookService.class);
+    bookService.deleteBook("1");
+}
+```
+
+#### 6.1.4 查询
+
+- 返回某个值
+
+  查询表里面有多少条记录
+
+  `dao`层添加方法
+
+  ```java
+  @Override
+  public int count() {
+      // 查询总数
+      String sql = "SELECT COUNT(*) FROM book";
+      return jdbcTemplate.queryForObject(sql, Integer.class); // 第二参数为需要返回的类型的Class
+  }
+  ```
+
+  `service`添加方法
+
+  ```java
+  public int allSum() {
+  	return bookDao.count();
+  }
+  ```
+
+  测试
+
+  ```java
+  @Test
+  public void test3() {
+      // 测试查询总数
+      ApplicationContext context = new ClassPathXmlApplicationContext("jdbc.xml");
+  
+      BookService bookService = context.getBean("bookService", BookService.class);
+      System.out.println(bookService.allSum());
+  }
+  ```
+
+- 返回对象
+
+  `dao`层添加方法
+
+  ```java
+  @Override
+  public Book findOne(String id) {
+      String sql = "SELECT * FROM book WHERE user_id=?";
+      // 第二个参数是一个接口，返回不同类型数据，使用这个接口里面实现类完成数据的封装
+      return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Book>(Book.class), id);
+  }
+  ```
+
+  `service`
+
+  ```java
+  public Book findOne(String id) {
+  	return bookDao.findOne(id);
+  }
+  ```
+
+  测试
+
+  ```java
+  @Test
+  public void test4() {
+      // 测试返回某一条记录
+      ApplicationContext context = new ClassPathXmlApplicationContext("jdbc.xml");
+  
+      BookService bookService = context.getBean("bookService", BookService.class);
+      System.out.println(bookService.findOne("2"));
+  }
+  ```
+
+- 返回集合
+
+  `dao`层添加方法
+
+  ```java
+  @Override
+  public List<Book> AllBook() {
+      String sql = "SELECT * FROM book";
+      return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Book>(Book.class));
+  }
+  ```
+
+  `service`添加方法
+
+  ```java
+  public List<Book> findAll() {
+  	return bookDao.AllBook();
+  }
+  ```
+
+  测试
+
+  ```java
+  @Test
+  public void test5() {
+      // 测试返回集合
+      ApplicationContext context = new ClassPathXmlApplicationContext("jdbc.xml");
+  
+      BookService bookService = context.getBean("bookService", BookService.class);
+      System.out.println(bookService.findAll());
+  }
+  ```
+
+#### 6.1.5 批量操作
+
+- 批量添加
+
+  `dao`层
+
+  ```java
+  @Override
+  public void batchAddBook(List<Object[]> batchArgs) {
+      String sql = "INSERT INTO book VALUES(?, ?, ?)";
+      
+      // 底层会将batchArgs遍历进行添加
+      int[] ints = jdbcTemplate.batchUpdate(sql, batchArgs);
+      System.out.println(Arrays.toString(ints));
+  }
+  ```
+
+  `service`层
+
+  ```java
+  public void batchAdd(List<Object[]> batchArgs) {
+  	bookDao.batchAddBook(batchArgs);
+  }
+  ```
+
+  测试
+
+  ```java
+  @Test
+  public void test6() {
+      // 测试返回集合
+      ApplicationContext context = new ClassPathXmlApplicationContext("jdbc.xml");
+  
+      BookService bookService = context.getBean("bookService", BookService.class);
+      List<Object[]> batchArgs = new ArrayList<>();
+      batchArgs.add(new Object[]{"3", "楚风", "成长中"});
+      batchArgs.add(new Object[]{"4", "曹雨生", "轮回中"});
+      batchArgs.add(new Object[]{"5", "石昊", "失踪"});
+      bookService.batchAdd(batchArgs);
+  }
+  ```
+
+- 批量修改和删除与批量添加相同，只是编写的`sql`语句不同
+
+#### 6.1.6 事务操作
+
+事务是数据库操作的最基本单位，逻辑上一组操作，要么都成功，要么都失败。即有一个失败，总体操作就会失败
+
+事务特性`ACID`
+
+- 原子性
+- 一致性：操作之前和操作之后的总和是不变的
+- 隔离性：多个事务之间不会影响
+- 持久性：当事务被提交时，表才会发生变化
+
+**环境搭建**
+
+- 创建表`account`
+
+  ```sql
+  CREATE TABLE account(
+      id int primary key auto_increment,
+      username varchar(10),
+      money int
+  );
+  INSERT INTO account(username, money) VALUES ("Lucy", 100);
+  INSERT INTO account(username, money) VALUES ("Alice", 100);
+  ```
+
+- 创建`service`，搭建`dao`完成对象创建和注入关系
+
+  在`service`注入`dao`，在`dao`中注入`JdbcTemplate`，`JdbcTemplate`注入`DataSource`
+
+  `AccountDao.java`
+
+  ```java
+  package dao;
+  
+  public interface AccountDao {
+  }
+  ```
+
+  `AccountDaoImpl.java`
+
+  ```java
+  package dao;
+  
+  @Repository
+  public class AccountDaoImpl implements AccountDao{
+      @Autowired                                                          
+      private JdbcTemplate jdbcTemplate;
+  }
+  ```
+
+  `AccountService.java `
+
+  ```java
+  package service;
+  
+  @Service
+  public class AccountService  {
+  
+      @Autowired
+      private AccountDao accountDao;
+  }
+  ```
+
+  `Account.java`
+
+  ```java
+  package entity;
+  
+  public class Account {
+      private int id;
+      private String userName;
+      private int money;
+  	// get set方法
+  }
+  ```
+
+- 在创建转账的方法
+
+  `AccountDao.java`
+
+  ```java
+  void payment(String name, int money);
+  ```
+
+  `AccountDaoImpl.java`
+
+  ```java
+  @Override
+  public void payment(String name, int money) {
+      String sql = "UPDATE account SET money=money+? WHERE username=?";
+      jdbcTemplate.update(sql, money, name);
+  }
+  ```
+
+  `accountMoney.java`
+
+  ```java
+  public void accountMoney() {
+      // Lucy-100
+      accountDao.payment("Lucy", +100);
+      
+      // 
+      
+      // Alice+100
+      accountDao.payment("Alice", -100);
+  }
+  ```
+
+**事务的处理步骤**
+
+1. 开启事务
+2. 进入业务逻辑
+3. 没有异常，提交事务
+4. 有异常，回滚
+
+**事务操作**
+
+事务操作一般添加在`service`层
+
+`Spring`中的的事务管理操作有两种方式
+
+1. 编程式事务管理
+2. 声明式事务管理:star:
+
+声明式事务管理，底层使用`AOP`原理
+
+1. 基于注解方式:star:
+2. 基于`xml`方式
+
+事务管理的`API`,`Spring`提供了一个接口,代表事务管理器，这个接口针对不同的框架提供不同的实现类
+
+```mermaid
+graph TD
+PlatformTransactionManager --> A[AbstractPlatformTransactionManager] 
+A --> CciLocalTransactionManager
+A --> JpaTransactionManager
+A --> |JDBC|DataSourceTransactionManager
+A --> JtaTransactionManager
+A --> |Hibernate|HibernateTransactionManager
+```
+
+**事务操作步骤**
+
+1. 配置文件中配置事务管理器
+
+   ```xml
+   <!--创建事务管理器-->
+   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+       <!--创建数据源-->
+       <property name="dataSource" ref="config" />
+   </bean>
+   ```
+
+2. 在`spring`配置文件中，开启事务注解
+
+   在`spring`配置文件中引入命名空间`tx`
+
+   ```xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <beans xmlns="http://www.springframework.org/schema/beans"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:context="http://www.springframework.org/schema/context"
+          xmlns:tx="http://www.springframework.org/schema/tx"
+          xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                              http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+                              http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx.xsd">
+   </beans>
+   ```
+
+   开启事务的注解
+
+   ```xml
+   <tx:annotation-driven transaction-manager="transactionManager" /> 
+   ```
+
+3. 在`service`类上面(或者在`service`类里面的方法上)添加事务注解
+
+   ```java
+   @Transactional
+   ```
+
+   如果把这个注解加到了类的上面，表示这个类里面的所有方法都添加了事务
+
+**声明式事务管理参数配置**
+
+1. 在`service`类上面添加`@Transactional`，这个注解里面可以配置事务相关参数
+
+   `propagation`：事务传播行为，多事务方法进行直接调用，这个过程中事务是如何进行管理的
+
+   | 传播属性     | 描述                                                         |
+   | :----------- | ------------------------------------------------------------ |
+   | REQUIRED     | 如果有事务在运行，当前的方法就在这个事务内运行，否则，就启动一个新的事务，并在自己的事务内运行 |
+   | REQUIRED_NEW | 当前的方法必须启动新事物，并在它自己的事务内运行，如果有事务正在运行，应该将它挂起 |
+   | SUPPORTS     | 如果有事务在运行，当前的方法就在这个事务内运行，否则它可以不运行在事务中 |
+   | NOT_SUPPORTE | 当前的方法不应该运行在事务中，如果有运行的事务，将它挂起     |
+   | MANDATORY    | 当前的方法必须运行在事务内部，如果没有正在运行的事务，就抛出异常 |
+   | NEVER        | 当前的方法不应该运行在事务中，如果有运行的事务，就抛出异常   |
+   | NESTED       | 如果有事务在运行，当前的方法就应该在这个事务的嵌套事务内运行。否则，就启动一个新的事务，并在它自己的事务内运行 |
+
+   `ioslation`：事务隔离级别，事务有特性成为隔离性，多事务操作之间不会产生影响。不考虑隔离性产生很多问题
+
+   - 脏读：一个未提交的事务读取到另一个未提交事务的数据
+   - 不可重复读：一个未提交事务读取到另一提交事务修改的数据
+   - 虚读：一个未提交事务读取到另一提交事务添加数据
+   - 通过设置事务的隔离级别，解决读的问题
+
+   |                            | 脏读 | 不可重复读 | 幻读 |
+   | -------------------------- | ---- | ---------- | ---- |
+   | READ UNCOMMITTED(读未提交) | 有   | 有         | 有   |
+   | READ COMMITIED(读已提交)   | 无   | 有         | 有   |
+   | REPEATABLE READ(可重复读)  | 无   | 无         | 有   |
+   | SERIALIZABLE(串行化)       | 无   | 无         | 无   |
+
+   `timeout`：超时时间
+
+   `readOnly`：是否只读
+
+   `rollbackFor`：回滚
+
+   `noRollbackFor`：不回滚
+
+   

@@ -7,7 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/03_背包问题/03_背包问题.iml" filepath="$PROJECT_DIR$/03_背包问题/03_背包问题.iml" />
       <module fileurl="file://$PROJECT_DIR$/04_最长子序列问题/04_最长子序列问题.iml" filepath="$PROJECT_DIR$/04_最长子序列问题/04_最长子序列问题.iml" />
       <module fileurl="file://$PROJECT_DIR$/05_哈夫曼编码/05_哈夫曼编码.iml" filepath="$PROJECT_DIR$/05_哈夫曼编码/05_哈夫曼编码.iml" />
-      <module fileurl="file://$PROJECT_DIR$/06_prim算法/06_prim算法.iml" filepath="$PROJECT_DIR$/06_prim算法/06_prim算法.iml" />
+      <module fileurl="file://$PROJECT_DIR$/06_kruskal算法/06_kruskal算法.iml" filepath="$PROJECT_DIR$/06_kruskal算法/06_kruskal算法.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/算法设计与分析.iml" filepath="$PROJECT_DIR$/.idea/算法设计与分析.iml" />
     </modules>
   </component>

@@ -15,6 +15,7 @@
         <module name="07_注解管理bean" />
         <module name="05_自动装配" />
         <module name="06_外部属性文件" />
+        <module name="10_JDBC事务管理" />
       </profile>
     </annotationProcessing>
   </component>

@@ -18,6 +18,7 @@
         <module>07_注解管理bean</module>
         <module>08_AOP</module>
         <module>09_JDBCTemplate</module>
+        <module>10_JDBC事务管理</module>
     </modules>
 
     <dependencies>
