@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/01_Spring相关概念、IOC/01_Spring相关概念、IOC.iml" filepath="$PROJECT_DIR$/01_Spring相关概念、IOC/01_Spring相关概念、IOC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02_集合注入/02_集合注入.iml" filepath="$PROJECT_DIR$/02_集合注入/02_集合注入.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03_工厂bean/03_工厂bean.iml" filepath="$PROJECT_DIR$/03_工厂bean/03_工厂bean.iml" />
+      <module fileurl="file://$PROJECT_DIR$/04_生命周期/04_生命周期.iml" filepath="$PROJECT_DIR$/04_生命周期/04_生命周期.iml" />
+      <module fileurl="file://$PROJECT_DIR$/05_自动装配/05_自动装配.iml" filepath="$PROJECT_DIR$/05_自动装配/05_自动装配.iml" />
+      <module fileurl="file://$PROJECT_DIR$/06_外部属性文件/06_外部属性文件.iml" filepath="$PROJECT_DIR$/06_外部属性文件/06_外部属性文件.iml" />
+      <module fileurl="file://$PROJECT_DIR$/07_注解管理bean/07_注解管理bean.iml" filepath="$PROJECT_DIR$/07_注解管理bean/07_注解管理bean.iml" />
+      <module fileurl="file://$PROJECT_DIR$/08_AOP/08_AOP.iml" filepath="$PROJECT_DIR$/08_AOP/08_AOP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/09_JDBCTemplate/09_JDBCTemplate.iml" filepath="$PROJECT_DIR$/09_JDBCTemplate/09_JDBCTemplate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10_JDBC事务管理&amp;Spring5新功能/10_JDBC事务管理&amp;Spring5新功能.iml" filepath="$PROJECT_DIR$/10_JDBC事务管理&amp;Spring5新功能/10_JDBC事务管理&amp;Spring5新功能.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Spring.iml" filepath="$PROJECT_DIR$/Spring.iml" />
+    </modules>
+  </component>
+</project>

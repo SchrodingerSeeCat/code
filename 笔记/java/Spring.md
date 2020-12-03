@@ -1755,13 +1755,11 @@ public class UserProxy {
    }
    ```
 
-## 6. data
-
-### 6.1 JdbcTemplate
+## 6. JdbcTemplate
 
 `Spring`框架对`JDBC`进行的封装，使用`JdbcTemplate`方便实现对数据库的操作
 
-#### 6.1.1 准备工作
+### 6.1 准备工作
 
 - 依赖
 
@@ -1845,7 +1843,7 @@ public class UserProxy {
   )
   ```
 
-#### 6.1.2 增加
+### 6.2 增加
 
 1. 创建实体类`Book`
 
@@ -1941,7 +1939,7 @@ public class UserProxy {
    */
    ```
 
-#### 6.1.3 修改和删除
+### 6.3 修改和删除
 
 `dao`添加方法`update`和`delete`
 
@@ -2004,7 +2002,7 @@ public void test2() {
 }
 ```
 
-#### 6.1.4 查询
+### 6.4 查询
 
 - 返回某个值
 
@@ -2109,7 +2107,7 @@ public void test2() {
   }
   ```
 
-#### 6.1.5 批量操作
+### 6.5 批量操作
 
 - 批量添加
 
@@ -2153,7 +2151,7 @@ public void test2() {
 
 - 批量修改和删除与批量添加相同，只是编写的`sql`语句不同
 
-#### 6.1.6 事务操作
+### 6.6 事务操作
 
 事务是数据库操作的最基本单位，逻辑上一组操作，要么都成功，要么都失败。即有一个失败，总体操作就会失败
 
@@ -2164,7 +2162,7 @@ public void test2() {
 - 隔离性：多个事务之间不会影响
 - 持久性：当事务被提交时，表才会发生变化
 
-**环境搭建**
+#### 6.6.1 环境搭建
 
 - 创建表`account`
 
@@ -2268,7 +2266,7 @@ public void test2() {
 3. 没有异常，提交事务
 4. 有异常，回滚
 
-**事务操作**
+#### 6.6.2 事务操作
 
 事务操作一般添加在`service`层
 
@@ -2294,7 +2292,7 @@ A --> JtaTransactionManager
 A --> |Hibernate|HibernateTransactionManager
 ```
 
-**事务操作步骤**
+#### 6.6.3 事务操作步骤(基于注解方式)
 
 1. 配置文件中配置事务管理器
 
@@ -2336,7 +2334,7 @@ A --> |Hibernate|HibernateTransactionManager
 
    如果把这个注解加到了类的上面，表示这个类里面的所有方法都添加了事务
 
-**声明式事务管理参数配置**
+#### 6.6.4 声明式事务管理参数配置
 
 1. 在`service`类上面添加`@Transactional`，这个注解里面可以配置事务相关参数
 
@@ -2366,12 +2364,321 @@ A --> |Hibernate|HibernateTransactionManager
    | REPEATABLE READ(可重复读)  | 无   | 无         | 有   |
    | SERIALIZABLE(串行化)       | 无   | 无         | 无   |
 
-   `timeout`：超时时间
+   `timeout`：超时时间，事务需要在一定的时间内提交，如果不提交则进行回滚，`Spring`默认为`-1`即没有超时时间，可以设置以秒为单位的超时时间
 
-   `readOnly`：是否只读
+   `readOnly`：是否只读，默认值为`false`，表示可以增删改查各种操作，设置为`true`表示只能读
 
-   `rollbackFor`：回滚
+   `rollbackFor`：回滚，设置出现哪些异常进行事务回滚
 
-   `noRollbackFor`：不回滚
+   `noRollbackFor`：不回滚，设置出现哪些异常不进行事务回滚
 
+   #### 6.6.5 事务操作步骤(基于xml方式)
    
+   1. 在`spring`配置文件中进行配置
+   
+      配置事务管理器
+   
+      ```
+      <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+          <!--创建数据源-->
+          <property name="dataSource" ref="config" />
+      </bean>
+      ```
+   
+      配置通知
+   
+      ```xml
+      <tx:advice id="txAdvice">
+          <!--配置事务参数-->
+          <tx:attributes>
+              <!--指定在哪种规则的方法上面添加事务 支持通配符*-->
+              <tx:method name="accountMoney" timeout="10"/>
+          </tx:attributes>
+      </tx:advice>
+      ```
+   
+      配置切入点和切面
+   
+      ```xml
+      <aop:config>
+          <!--配置切入点-->
+          <aop:pointcut id="pt" expression="execution(* service.AccountService.accountMoney(..))"/>
+          <!--配置切面-->
+          <aop:advisor advice-ref="txAdvice" pointcut-ref="pt" />
+      </aop:config>
+      ```
+   
+   2. 测试
+   
+      ```java
+      @Test
+      public void test1() {
+          ApplicationContext context = new ClassPathXmlApplicationContext("bean1.xml");
+          AccountService accountService = context.getBean("accountService", AccountService.class);
+          accountService.accountMoney();
+      }
+      ```
+
+#### 6.1.5 事务操作(完全注解开发)
+
+1. 创建配置类使用配置类代替`xml`
+
+   ```java
+   @Configuration // 配置类
+   @ComponentScan(basePackages = {"service", "dao"}) // 组件扫描
+   @EnableTransactionManagement // 开启事务
+   public class TxConfig {
+   
+   }
+   ```
+
+2. 创建数据库连接池的方法
+
+   ```java
+   @Bean
+   public DruidDataSource getDruidDataSource(){
+   
+       DruidDataSource dataSource = new DruidDataSource();
+       dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+       dataSource.setUrl("jdbc:mysql://localhost:3306/test");
+       dataSource.setUsername("root");
+       dataSource.setPassword("123456");
+   
+       return dataSource;
+   }
+   ```
+
+3. 创建`jdbcTemplate`对象
+
+   ```java
+   @Bean
+   public JdbcTemplate getJdbcTemplate(DataSource dataSource) {
+       // 经过上个方法，此时的IOC容器中已经存在dataSource对象，可以直接注入
+       return new JdbcTemplate(dataSource);
+   }
+   ```
+
+4. 创建事务管理器
+
+   ```java
+   @Bean
+   public DataSourceTransactionManager getDataSourceTransactionManager(DataSource dataSource) {
+   	return new DataSourceTransactionManager(dataSource);
+   }
+   ```
+
+5. 测试
+
+   ```java
+   @Test
+   public void test() {
+       ApplicationContext context = new AnnotationConfigApplicationContext(TxConfig.class);
+       AccountService accountService = context.getBean("accountService", AccountService.class);
+       accountService.accountMoney();
+   }
+   ```
+
+## 7. Spring5新功能
+
+1. `Spring5`基于`JDK8`，删除许多不建议使用的类和方法
+
+2. 自带了通用的日志封装，`Spring5`移除了`Log5jConfigListener`，官方建议使用`Log4j2`
+
+3. `Spring5`框架核心容器支持`@Nullable`注解
+
+   `@Nullable`可以使用在方法上面，方法返回可以为空；属性上面，属性值可以为空；参数上面，参数值可以为空
+
+4. 支持函数式编程
+
+5. 支持整合`JUnit5`单元测试
+
+### 7.1 整合Log4j2工具
+
+1. 引入相关依赖
+
+   ```xml
+   <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+   <dependency>
+       <groupId>org.apache.logging.log4j</groupId>
+       <artifactId>log4j-core</artifactId>
+       <version>2.14.0</version>
+   </dependency>
+   <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+   <dependency>
+       <groupId>org.apache.logging.log4j</groupId>
+       <artifactId>log4j-api</artifactId>
+       <version>2.14.0</version>
+   </dependency>
+   <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
+   <dependency>
+       <groupId>org.apache.logging.log4j</groupId>
+       <artifactId>log4j-slf4j-impl</artifactId>
+       <version>2.14.0</version>
+   </dependency>
+   <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+   <dependency>
+       <groupId>org.slf4j</groupId>
+       <artifactId>slf4j-api</artifactId>
+       <version>1.7.30</version>
+   </dependency>
+   ```
+
+2. 新建`log4j2.xml`
+
+   ```xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <!--设置日志级别 OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL-->
+   <configuration status="INFO">
+       <!--先定义所有的appender -->
+       <appenders>
+           <!--输出到控制台 -->
+           <Console name="Console" target="SYSTEM_OUT">
+               <!--输出日志的格式 -->
+               <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+           </Console>
+       </appenders>
+   
+   
+       <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
+       <loggers>
+           <root level="INFO">
+               <appender-ref ref="Console"/>
+           </root>
+       </loggers>
+   </configuration>
+   ```
+
+3. 测试
+
+   ```console
+   17:30:19.382 INFO  com.alibaba.druid.pool.DruidDataSource 985 init - {dataSource-1} inited
+   ```
+
+自己输出`log`
+
+```java
+public class UserLog {
+    private static final Logger log = LoggerFactory.getLogger(UserLog.class);
+
+    public static void main(String[] args) {
+        log.info("info log");
+        log.warn("warn log");
+    }
+}
+// 18:42:06.217 INFO  log.UserLog 10 main - info log
+// 18:42:06.219 WARN  log.UserLog 11 main - warn log
+```
+
+### 7.2 函数式编程实例
+
+自己创建对象进行注册到`IOC`容器中
+
+1. 创建`User.java`
+
+   ```java
+   public class User {
+   }
+   ```
+
+2. 具体实现
+
+   ```java
+   @Test
+   public void test3() {
+       // 1. 创建GenericApplicationContext对象
+       GenericApplicationContext context = new GenericApplicationContext();
+   
+       // 2. 调用context的对象方法进行注册
+       context.refresh();
+       context.registerBean("user1", User.class, () -> new User());
+   
+       // 3.获取在Spring注册的对象
+       User user = (User) context.getBean("user1");
+       System.out.println(user);
+   }
+   ```
+
+### 7.3 整合单元测试
+
+#### 7.3.1 整合Junit4
+
+1. 引入测试相关依赖
+
+   ```xml
+   <dependency>
+       <groupId>org.springframework</groupId>
+       <artifactId>spring-test</artifactId>
+       <version>5.3.1</version>
+   </dependency>
+   ```
+
+   以及`Junit4`的依赖
+
+   ```java
+   import org.junit.Test;
+   ```
+
+2. 编写测试类
+
+   ```java
+   @RunWith(SpringJUnit4ClassRunner.class) // 指定JUnit的版本
+   @ContextConfiguration("classpath:bean.xml") // 加载配置文件
+   public class JunitTest4 {
+       @Autowired
+       private AccountService accountService;
+   
+       @Test
+       public void test() {
+           accountService.accountMoney();
+       }
+   }
+   ```
+
+#### 7.3.2 整合Junit5
+
+1. 引入`Junit5`的依赖
+
+   ```java
+   import org.junit.jupiter.api.Test;
+   ```
+
+2. 编写测试类
+
+   ```java
+   @ExtendWith(SpringExtension.class)
+   @ContextConfiguration("classpath:bean.xml")
+   public class JunitTest5 {
+   
+       @Autowired
+       private AccountService accountService;
+   
+       @Test
+       public void test() {
+           accountService.accountMoney();
+       }
+   }
+   ```
+
+   第二种写法
+
+   ```java
+   @SpringJUnitConfig(locations = "classpath:bean.xml")
+   public class JunitTest5 {
+   
+       @Autowired
+       private AccountService accountService;
+   
+       @Test
+       public void test() {
+           accountService.accountMoney();
+       }
+   }
+   ```
+
+### 7.4 WebFlux
+
+#### 7.4.1 概述
+
+- `webflux`是`Spring5`添加的新模块，用于`web`开发的，功能与`SpringMVC`类似，`Webflux`使用当前一种比较流行的响应式编程出现的框架
+- 使用传统的`web`框架，比如`SpringMVC`，这些基于`Servlet`容器，`Webflux`是一种异步非阻塞的框架，异步非阻塞的框架在`Servlet3.1`以后支持。核心是基于`Reactor`的相关`API`实现的
+- 异步非阻塞

@@ -15,8 +15,22 @@
         <module name="07_注解管理bean" />
         <module name="05_自动装配" />
         <module name="06_外部属性文件" />
-        <module name="10_JDBC事务管理" />
+        <module name="10_JDBC事务管理&amp;Spring5新功能" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="01_Spring相关概念、IOC" target="1.11" />
+      <module name="02_集合注入" target="1.11" />
+      <module name="03_工厂bean" target="1.11" />
+      <module name="04_生命周期" target="1.11" />
+      <module name="05_自动装配" target="1.11" />
+      <module name="06_外部属性文件" target="1.11" />
+      <module name="07_注解管理bean" target="1.11" />
+      <module name="08_AOP" target="1.11" />
+      <module name="09_JDBCTemplate" target="1.11" />
+      <module name="10_JDBC事务管理&amp;Spring5新功能" target="1.11" />
+      <module name="11_Spring5新特性" target="1.11" />
+      <module name="Spring" target="1.11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
