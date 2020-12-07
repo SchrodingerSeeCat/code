@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.valid.dao.UserMapper">
+
+    <!--将结果集映射为User-->
+    <resultMap id="UserMap" type="User">
+        <!--property属性 column数据库字段名-->
+        <!--只需要映射不同的字段-->
+        <result property="password" column="pwd" />
+    </resultMap>
+    <select id="getUserById" resultMap="UserMap">
+        select * from mybatis.user where id=#{id}
+    </select>
+
+    <!--分页查询limit-->
+    <select id="getUserByLimit" resultType="User" parameterType="map" resultMap="UserMap">
+        SELECT * FROM mybatis.user limit #{start}, #{sum}
+    </select>
+
+    <!--分页查询RowBounds-->
+    <select id="getUserByRowBounds" resultMap="UserMap">
+        SELECT * FROM mybatis.user
+    </select>
+</mapper>

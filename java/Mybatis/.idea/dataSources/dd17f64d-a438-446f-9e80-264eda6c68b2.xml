@@ -1151,7 +1151,7 @@ SELECT|sys.sys_config:null
     <view id="363" parent="2" name="VIEW_TABLE_USAGE">
       <System>1</System>
     </view>
-    <table id="364" parent="3" name="USER"/>
+    <table id="364" parent="3" name="user"/>
     <column id="365" parent="285" name="USER">
       <Position>1</Position>
       <DataType>varchar(97)|0s</DataType>
