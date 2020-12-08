@@ -13,6 +13,9 @@
         <module>02_mybatis配置</module>
         <module>03_mybatis结果集映射</module>
         <module>04_mybatis注解开发</module>
+        <module>05_mybatis一对多</module>
+        <module>06_mybatis多对一</module>
+        <module>07_mybatis动态SQL</module>
     </modules>
     <build>
         <resources>
@@ -88,5 +91,14 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.30</version>
         </dependency>
+
+        <!--Lombok-->
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+        </dependency>
+
     </dependencies>
 </project>

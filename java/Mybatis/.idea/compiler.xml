@@ -7,10 +7,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="03_mybatis结果集映射" />
-        <module name="02_mybatis配置" />
         <module name="04_mybatis注解开发" />
         <module name="01_mybatis" />
+        <module name="05_mybatis一对多" />
+        <module name="06_mybatis多对一" />
+        <module name="07_mybatis动态SQL" />
+        <module name="02_mybatis配置" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="05_mybatis一对多 (1)" target="1.11" />
+      <module name="07_多对一" target="1.11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

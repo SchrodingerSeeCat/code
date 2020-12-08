@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="com.valid.dao.StudentMapper">
+    <!--
+        复杂的属性单独处理
+        对象：association
+        集合：collection
+    -->
+
+<!--    方式一-->
+<!--    <resultMap id="studentTeacher" type="Student">-->
+<!--        <result property="id" column="id"/>-->
+<!--        <result property="name" column="name"/>-->
+<!--        <association property="teacher" column="tid" javaType="Teacher" select="getTeacher"/>-->
+<!--    </resultMap>-->
+<!--    <select id="getStudent" resultMap="studentTeacher">-->
+<!--        SELECT * FROM student-->
+<!--    </select>-->
+<!--    <select id="getTeacher" resultType="Teacher">-->
+<!--        SELECT * FROM teacher WHERE id=#{tid}-->
+<!--    </select>-->
+
+<!--    方式二-->
+    <select id="getStudent" resultMap="studentTeacher">
+        SELECT s.id sid, s.name sname, t.name tname
+        FROM student s
+        INNER JOIN teacher t
+        ON s.tid = t.id
+    </select>
+    <resultMap id="studentTeacher" type="Student">
+        <result property="id" column="sid"/>
+        <result property="name" column="sname" />
+        <association property="teacher" javaType="Teacher">
+            <result property="name" column="tname"/>
+        </association>
+    </resultMap>
+</mapper>

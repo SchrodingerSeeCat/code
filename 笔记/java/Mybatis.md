@@ -1,3 +1,5 @@
+![mybatis](Mybatis.assets/mybatis-logo.png)
+
 # Mybatis
 
 [TOC]
@@ -872,3 +874,732 @@ cond(yes)->J->e
        sqlSession.close();
    }
    ```
+
+### 8.2 CRUD
+
+#### 8.2.1 查询
+
+1. 在`UserMapper`中添加方法
+
+   对于方法如果有多个参数必须使用`@Param`指定字段，`mybatis`默认是从`@Param`中获取参数
+
+   ```java
+   @Select("SELECT * FROM user where id=#{id}")
+   User getUserById(@Param("id") int id);
+   ```
+
+2. 测试
+
+   ```java
+   @Test
+   public void test() {
+       SqlSession sqlSession = MybatisUtils.getSqlSession();
+   
+       UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+       User user = userMapper.getUserById(1);
+       System.out.println(user);
+   
+       sqlSession.close();
+   }
+   ```
+
+#### 8.2.2 插入
+
+1. 在`UserMapper`中添加方法
+
+   ```java
+   @Insert("INSERT INTO user(id, name, pwd) VALUES(#{id}, #{name}, #{password})")
+   int InsertUser(User user);
+   ```
+
+2. 测试
+
+   ```java
+   @Test
+   public void test() {
+       SqlSession sqlSession = MybatisUtils.getSqlSession();
+   
+       UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+       int i = userMapper.InsertUser(new User(6, "无始", "793453"));
+   
+       sqlSession.commit();
+       sqlSession.close();
+   }
+   ```
+
+#### 8.2.3 更新
+
+1. 在`UserMapper`中添加方法
+
+   ```java
+   @Update("UPDATE user SET name=#{name}, pwd=#{password} WHERE id=#{id}")
+   int updateUser(User user);
+   ```
+
+2. 测试
+
+   ```java
+   @Test
+   public void test() {
+       SqlSession sqlSession = MybatisUtils.getSqlSession();
+   
+       UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+       int i = userMapper.updateUser(new User(4, "无终仙王", "99999"));
+   
+       sqlSession.commit();
+       sqlSession.close();
+   }
+   ```
+
+#### 8.2.4 删除
+
+1. 在`UserMapper`中添加方法
+
+   ```java
+   @Delete("DELETE FROM user WHERE id=#{id}")
+   int deleteUser(@Param("id") int id);
+   ```
+
+2. 测试
+
+   ```java
+   @Test
+   public void test4() {
+       // 测试删除
+       SqlSession sqlSession = MybatisUtils.getSqlSession();
+   
+       UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+       int i = userMapper.deleteUser(6);
+   
+       sqlSession.commit();
+       sqlSession.close();
+   }
+   ```
+
+## 9. Lombok
+
+1. 在`IDEA`中安装`Lombok`插件
+
+2. 在`Maven`项目中导入`Lombok`的依赖
+
+   ```xml
+   <dependency>
+       <groupId>org.projectlombok</groupId>
+       <artifactId>lombok</artifactId>
+       <version>1.18.16</version>
+   </dependency>
+   ```
+
+3. 在实体类上加注解即可
+
+   ```
+   @Getter and @Setter
+   @FieldNameConstants
+   @ToString
+   @EqualsAndHashCode
+   @AllArgsConstructor, @RequiredArgsConstructor and @NoArgsConstructor
+   @Log, @Log4j, @Log4j2, @Slf4j, @XSlf4j, @CommonsLog, @JBossLog, @Flogger, @CustomLog
+   @Data
+   @Builder
+   @SuperBuilder
+   @Singular
+   @Delegate
+   @Value
+   @Accessors
+   @Wither
+   @With
+   @SneakyThrows
+   @val
+   @var
+   experimental @var
+   @UtilityClass
+   ```
+
+`@Data`：自动生成无参构造、`get`、`set`、`toString`、`hashCode`、`equals`
+
+`@AllArgsConstructor`：有参构造
+
+`@NoArgsConstructor`：无参构造
+
+## 10. 多对一
+
+```mermaid
+graph TD
+student1 --> A[teacher]
+student2 --> A
+student3 --> A
+student4 --> A
+```
+
+多个学生对应一个老师。
+
+对于学生而言，多个学生关联一个老师【多对一】，称为关联关系
+
+对于老师而言，一个老师有很多关系【一对多】，称为集合关系
+
+### 10.1 环境搭建
+
+1. 数据库
+
+   ```sql
+   CREATE TABLE `teacher` (
+      `id` INT(10) NOT NULL,
+      `name` VARCHAR(30) DEFAULT NULL,
+      PRIMARY KEY (`id`)
+   ) ENGINE=INNODB DEFAULT CHARSET=utf8;
+   
+   INSERT INTO teacher(`id`, `name`) VALUES (1, '秦老师');
+   INSERT INTO teacher(`id`, `name`) VALUES (2, '马老师');
+   
+   CREATE TABLE `student` (
+      `id` INT(10) NOT NULL,
+      `name` VARCHAR(30) DEFAULT NULL,
+      `tid` INT(10) DEFAULT NULL,
+      PRIMARY KEY (`id`),
+      KEY `fktid` (`tid`),
+      CONSTRAINT `fktid` FOREIGN KEY (`tid`) REFERENCES `teacher` (`id`)
+   ) ENGINE=INNODB DEFAULT CHARSET=utf8;
+   INSERT INTO `student` (`id`, `name`, `tid`) VALUES ('1', '小明', '1');
+   INSERT INTO `student` (`id`, `name`, `tid`) VALUES ('2', '小红', '1');
+   INSERT INTO `student` (`id`, `name`, `tid`) VALUES ('3', '小张', '1');
+   INSERT INTO `student` (`id`, `name`, `tid`) VALUES ('4', '小李', '1');
+   INSERT INTO `student` (`id`, `name`, `tid`) VALUES ('5', '小王', '1');
+   ```
+
+2. 实体类：此处使用了`Lombok`
+
+   `Teacher.java`
+
+   ```java
+   @Data
+   public class Teacher {
+       private int id;
+       private String name;
+   }
+   ```
+
+   `Student.java`
+
+   ```java
+   @Data
+   public class Student {
+       private int id;
+       private String name;
+   
+       // 学生关联一个老师
+       private Teacher teacher;
+   }
+   ```
+
+3. 新建`TeacherMapper.xml`和`StudentMapper.xml`配置文件，并将两者加入`mybatis-config.xml`配置文件中
+
+   ```xml
+   <mappers>
+       <mapper resource="com/valid/dao/TeacherMapper.xml" />
+       <mapper resource="com/valid/dao/StudentMapper.xml" />
+   </mappers>
+   ```
+
+### 10.2 具体实例
+
+查询所有的学生信息，以及对应老师的信息
+
+#### 10.2.1 按照查询嵌套处理
+
+1. `StudentMapper`中编写方法
+
+   ```java
+   List<Student> getStudent();
+   ```
+
+2. `StudentMapper.xml`中配置
+
+   复杂的属性单独处理
+   对象：`association`
+   集合：`collection`
+
+   ```xml
+   <resultMap id="studentTeacher" type="Student">
+       <result property="id" column="id"/>
+       <result property="name" column="name"/>
+       <association property="teacher" column="tid" javaType="Teacher" select="getTeacher"/>
+   </resultMap>
+   <select id="getStudent" resultMap="studentTeacher">
+       SELECT * FROM student
+   </select>
+   <select id="getTeacher" resultType="Teacher">
+       SELECT * FROM teacher WHERE id=#{tid}
+   </select>
+   ```
+
+   这种类似于子查询的方法
+
+3. 测试
+
+   ```java
+   @Test
+   public void test1() {
+       SqlSession sqlSession = MybatisUtils.getSqlSession();
+   
+       StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+       List<Student> list = studentMapper.getStudent();
+       for(Student student : list) {
+       	System.out.println(student);
+       }
+   
+       sqlSession.close();
+   }
+   ```
+
+#### 10.2.2 按照结果嵌套处理
+
+1. `StudentMapper`中编写方法
+
+   ```java
+   List<Student> getStudent();
+   ```
+
+2. `StudentMapper.xml`中配置
+
+   ```xml
+   <select id="getStudent" resultMap="studentTeacher">
+       SELECT s.id sid, s.name sname, t.name tname
+       FROM student s
+       INNER JOIN teacher t
+       ON s.tid = t.id
+   </select>
+   <resultMap id="studentTeacher" type="Student">
+       <result property="id" column="sid"/>
+       <result property="name" column="sname" />
+       <association property="teacher" javaType="Teacher">
+       	<result property="name" column="tname"/>
+       </association>
+   </resultMap>
+   ```
+
+3. 测试
+
+   ```java
+   @Test
+   public void test() {
+       SqlSession sqlSession = MybatisUtils.getSqlSession();
+   
+       StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+       List<Student> list = studentMapper.getStudent();
+       for(Student student : list) {
+       System.out.println(student);
+       }
+   
+       sqlSession.close();
+   }
+   ```
+
+## 11. 一对多
+
+```mermaid
+graph TD
+A[teacher] --> student1
+A --> student2
+A --> student3
+A --> student4
+```
+
+一个老师拥有多个学生
+
+### 11.1 环境搭建
+
+修改实体类
+
+`Student.java`
+
+```java
+@Data
+public class Student {
+    private int id;
+    private String name;
+    private int tid;
+}
+```
+
+`Teacher.java`
+
+```java
+@Data
+public class Teacher {
+    private int id;
+    private String name;
+
+    // 一个老师拥有多个学生
+    private List<Student> students;
+}
+```
+
+### 11.2 具体实例
+
+获取指定老师下的所有学生及老师的信息
+
+#### 11.2.1 按照查询嵌套处理
+
+1. `TeacherMapper`中编写方法
+
+   ```java
+   List<Teacher> getTeacher(@Param("tid") int id);
+   ```
+
+2. `TeacherMapper.xml`中编写配置
+
+   ```xml
+   <select id="getTeacher" resultMap="TeacherStudent">
+       SELECT * FROM teacher WHERE id=#{tid}
+   </select>
+   
+   <resultMap id="TeacherStudent" type="Teacher">
+       <result property="id" column="id" />
+       <result property="name" column="name" />
+       <collection property="students" javaType="ArrayList" ofType="Student" select="getStudentByTeacherId" column="id"/>
+   </resultMap>
+   
+   <select id="getStudentByTeacherId" resultType="Student">
+       SELECT * FROM student WHERE tid=#{id}
+   </select>
+   ```
+
+3. 测试
+
+   ```java
+   @Test
+   public void test() {
+       SqlSession sqlSession = MybatisUtils.getSqlSession();
+   
+       TeacherMapper teacherMapper = sqlSession.getMapper(TeacherMapper.class);
+       Teacher teacher = teacherMapper.getTeacher(1);
+       System.out.println(teacher);
+   
+       sqlSession.close();
+   }
+   ```
+
+#### 11.2.2 按照结果嵌套处理
+
+1. `TeacherMapper`中编写方法
+
+   ```java
+   List<Teacher> getTeacher(@Param("tid") int id);
+   ```
+
+2. `TeacherMapper.xml`中编写配置
+
+   集合中泛型使用`ofType`属性获取
+
+   ```xml
+   <select id="getTeacher" resultMap="TeacherStudent">
+       SELECT
+       s.id sid, s.name sname, t.name tname, t.id tid
+       FROM student s
+       INNER JOIN teacher t
+       ON t.id = #{tid} and s.tid = t.id;
+   </select>
+   <resultMap id="TeacherStudent" type="Teacher">
+       <result property="id" column="tid" />
+       <result property="name" column="tname" />
+       <collection property="students" ofType="Student">
+           <result property="id" column="sid" />
+           <result property="name" column="sname" />
+           <result property="tid" column="tid" />
+       </collection>
+   </resultMap>
+   ```
+
+3. 测试
+
+   ```java
+   @Test
+   public void test() {
+       SqlSession sqlSession = MybatisUtils.getSqlSession();
+   
+       TeacherMapper teacherMapper = sqlSession.getMapper(TeacherMapper.class);
+       Teacher teacher = teacherMapper.getTeacher(1);
+       System.out.println(teacher);
+   
+       sqlSession.close();
+   }
+   ```
+
+`javaType`用来指定实体类中属性的类型
+
+`ofType`用来指定映射到`List`或者集合重点的实体类型，泛型中的约束类型
+
+## 12. 动态SQL
+
+动态`SQL`：根据不同的条件生成不同的`SQL`语句
+
+### 12.1 搭建环境
+
+1. sql
+
+   ```sql
+   CREATE TABLE `blog`(
+      `id` VARCHAR(50) NOT NULL COMMENT '博客id',
+      `title` VARCHAR(100) NOT NULL COMMENT '博客标题',
+      `author` VARCHAR(30) NOT NULL COMMENT '博客作者',
+      `create_time` DATETIME NOT NULL COMMENT '创建时间',
+      `views` INT(30) NOT NULL COMMENT '浏览量'
+   )ENGINE=INNODB DEFAULT CHARSET=utf8;
+   ```
+
+2. 编写实体类
+
+   ```java
+   @Data
+   public class Blog {
+       private int id;
+       private String title;
+       private String author;
+       private Date createTime;
+       private int views;
+   }
+   ```
+
+3. 编写`BlogMapper.java`接口和`BlogMapper.xml`配置文件
+
+4. `mybatis-config.xml`中添加
+
+   ```xml
+   <!--开启驼峰命名转换-->
+   <setting name="mapUnderscoreToCamelCase" value="true"/>
+   ```
+
+5. 添加数据
+
+   `BlogMapper`添加方法`int addBlog(Blog blog)`
+
+   `BlogMapper.xml`中添加映射
+
+   ```xml
+   <insert id="addBlog" parameterType="Blog">
+       INSERT INTO blog(id, title, author, create_time, views)
+       VALUES(#{id}, #{title}, #{author}, #{createTime}, #{views})
+   </insert>
+   ```
+
+   添加
+
+   ```java
+   @Test
+   public void test() {
+       SqlSession sqlSession = MybatisUtils.getSqlSession();
+       BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+       Blog blog = new Blog();
+       blog.setId(IDutils.getId());
+       blog.setTitle("Mybatis");
+       blog.setAuthor("狂神说");
+       blog.setCreateTime(new Date());
+       blog.setViews(9999);
+   
+       mapper.addBlog(blog);
+   
+       blog.setId(IDutils.getId());
+       blog.setTitle("Java");
+       mapper.addBlog(blog);
+   
+       blog.setId(IDutils.getId());
+       blog.setTitle("Spring");
+       mapper.addBlog(blog);
+   
+       blog.setId(IDutils.getId());
+       blog.setTitle("微服务");
+       mapper.addBlog(blog);
+   
+       sqlSession.commit();
+       sqlSession.close();
+   }
+   ```
+
+### 12.2 常用标签
+
+四大标签
+
+`if`、`choose(when, otherwise)`、`trim(where, set)`、`foreach`
+
+#### 12.2.1 IF
+
+1. `BlogMapper`添加方法
+
+   ```java
+   List<Blog> queryBlogIF(Map<String, Object> map);
+   ```
+
+2. `BlogMapper.xml`添加
+
+   ```xml
+   <select id="queryBlogIF" parameterType="map" resultType="Blog">
+       SELECT * FROM blog
+       <where>
+           <if test="title != null">
+               and title=#{title}
+           </if>
+           <if test="author != null">
+               and author=#{author}
+           </if>
+       </where>
+   </select>
+   ```
+
+3. 测试
+
+   ```java
+   @Test
+   public void test1() {
+       SqlSession sqlSession = MybatisUtils.getSqlSession();
+   
+       BlogMapper blogMapper = sqlSession.getMapper(BlogMapper.class);
+       Map<String, Object> map = new HashMap<>();
+       List<Blog> list = blogMapper.queryBlogIF(map);
+   
+       System.out.println(list);
+       sqlSession.close();
+   }
+   ```
+
+#### 12.2.2 choose(when, otherwise)
+
+类似`java`的`switch`只要满足其中一项就会跳出
+
+```xml
+<select id="queryBlogChoose" parameterType="map" resultType="Blog">
+    SELECT * FROM blog
+    <where>
+        <choose>
+            <when test="title != null">
+            	title=#{title}
+            </when>
+            <when test="author != null">
+            	author=#{author}
+            </when>
+            <otherwise>
+            	views=#{views}
+            </otherwise>
+        </choose>
+    </where>
+</select>
+```
+
+#### 12.2.3 trim(where, set)
+
+`set`会去除多余的`,`
+
+```xml
+<update id="updateBlog" parameterType="map">
+    UPDATE blog
+    <set>
+        <if test="title != null">
+        	title=#{title},
+        </if>
+        <if test="author != null">
+        	author=#{author},
+        </if>
+    </set>
+    WHERE id=#{id}
+</update>
+```
+
+#### 12.2.4 SQL片段
+
+有时会将一些重复可用的`SQL`片段抽取出来
+
+```xml
+<sql id="if-title-author">
+    <if test="title != null">
+    	title=#{title}
+    </if>
+    <if test="author != null">
+    	author=#{author}
+    </if>
+</sql>
+```
+
+通过`include`来进行引用
+
+```xml
+<update id="updateBlog" parameterType="map">
+    UPDATE blog
+    <set>
+    	<include refid="if-title-author" />
+    </set>
+    WHERE id=#{id}
+</update>
+```
+
+#### 12.2.5 Foreach
+
+查询`1-2-3`号博客
+
+1. `BlogMapper`添加方法
+
+   ```java
+   List<Blog> queryBlogForeach(Map<String, Object> map);
+   ```
+
+2. `BlogMapper.xml`添加映射
+
+   ```xml
+   <select id="queryBlogForeach" parameterType="map" resultType="Blog">
+       SELECT * FROM blog
+       <where>
+       	<foreach collection="ids" item="id" open="and (" close=")" separator="or">
+       		id=#{id}
+       	</foreach>
+       </where>
+   </select>
+   ```
+
+3. 测试
+
+   ```java
+   @Test
+   public void test4() {
+       SqlSession sqlSession = MybatisUtils.getSqlSession();
+   
+   
+       Map<String, Object> map = new HashMap<>();
+       ArrayList<Integer> arrayList = new ArrayList<>();
+       arrayList.add(1);
+       map.put("ids", arrayList);
+   
+       BlogMapper blogMapper = sqlSession.getMapper(BlogMapper.class);
+       List<Blog> list = blogMapper.queryBlogForeach(map);
+       System.out.println(list);
+   
+       sqlSession.close();
+   }
+   ```
+
+## 13. 缓存
+
+### 13.1 概述
+
+1. 什么是缓存
+
+   存在内存中的临时数据
+
+   将用户经常查询的数据放在缓存中，用户去查询数据就不用从磁盘上(关系型数据库数据文件)查询，从缓存中查询，提高查询效率，解决高并发系统的性能问题
+
+2. 为什么使用缓存
+
+   减少和数据库的交互次数，减少系统开销，提高系统效率
+
+3. 什么样的数据能使用缓存
+
+   经常查询且不经常改变的数据
+
+### 13.2 Mybatis缓存
+
+- `Mybatis`包含一个非常强大的查询缓存特性，它可以非常方便地定制和配置缓存。缓存可以极大的提升查询效率
+
+- `Mybatis`系统中默认定义了两级缓存：一级缓存和二级缓存
+
+  默认情况下，只有一级缓存开启。(`SqlSession`级别的缓存，也称为本地缓存)
+
+  二级缓存需要手动开启和配置，他是基于`namespace`级别的缓存。
+
+  为了提高扩展性，`Mybatis`定义了缓存接口`Cache`。我们可以通过实现`Cache`接口来定义二级缓存
