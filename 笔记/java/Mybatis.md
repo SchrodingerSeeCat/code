@@ -1595,11 +1595,109 @@ public class Teacher {
 ### 13.2 Mybatis缓存
 
 - `Mybatis`包含一个非常强大的查询缓存特性，它可以非常方便地定制和配置缓存。缓存可以极大的提升查询效率
-
 - `Mybatis`系统中默认定义了两级缓存：一级缓存和二级缓存
+- 默认情况下，只有一级缓存开启。(`SqlSession`级别的缓存，也称为本地缓存)从获取`SqlSession`到关闭`SqlSession`
+- 二级缓存需要手动开启和配置，他是基于`namespace`级别的缓存。
+- 为了提高扩展性，`Mybatis`定义了缓存接口`Cache`。我们可以通过实现`Cache`接口来定义二级缓存
 
-  默认情况下，只有一级缓存开启。(`SqlSession`级别的缓存，也称为本地缓存)
+### 13.3 一级缓存
 
-  二级缓存需要手动开启和配置，他是基于`namespace`级别的缓存。
+一级缓存默认开启，生命周期从获取`SqlSession`到关闭`SqlSession`为止
 
-  为了提高扩展性，`Mybatis`定义了缓存接口`Cache`。我们可以通过实现`Cache`接口来定义二级缓存
+如果存在**增删改**的情况可能会改变原有的情况，缓存必定会刷新
+
+缓存也可以手动清空缓存
+
+```java
+sqlSession.clearCache();
+```
+
+### 13.4 二级缓存
+
+- 二级缓存也叫全局缓存，一级缓存的作用域太低了，所以诞生了二级缓存
+
+- 基于`namesapce`级别的缓存，一个名称空间，对应一个二级缓存
+
+- 工作机制
+
+  一个会话查询一条数据，这个数据就会被放在当前会话的一级缓存中
+
+  如果当前会话关闭了，这个会话对应的一级缓存就没了；但是我们想要的是，会话关闭了，一级缓存中的数据就会被保存在二级缓存中
+
+  新的会话查询信息，就可以从二级缓存中获取内容
+
+  不同的`mapper`查出的数据会放在自己对应的缓存中
+
+**使用步骤**
+
+1. `mybatis-config.xml`开启全局缓存
+
+   ```xml
+   <setting name="cacheEnabled" value="true"/>
+   ```
+
+2. 在对应的`Mapper.xml`文件中开启缓存
+
+   ```xml
+   <cache
+       eviction="FIFO"
+       flushInterval="60000"
+       size="512"
+       readOnly="true"/>
+   ```
+
+### 13.5 自定义缓存-ehcache
+
+`Ehcache`是一种广泛使用的开源`Java`分布式缓存。主要面向通用缓存
+
+使用步骤
+
+1. 导入依赖
+
+   ```xml
+   <!-- https://mvnrepository.com/artifact/org.mybatis.caches/mybatis-ehcache -->
+   <dependency>
+       <groupId>org.mybatis.caches</groupId>
+       <artifactId>mybatis-ehcache</artifactId>
+       <version>1.2.1</version>
+   </dependency>
+   ```
+
+2. 修改`Mapper.xml`
+
+   ```xml
+   <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+   ```
+
+3. 新建`ehcache.xml`
+
+   ```xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+            updateCheck="false">
+   
+       <diskStore path="./tmpdir/Tmp_EhCache"/>
+   
+       <defaultCache
+           eternal="false"
+           maxElementsInMemory="10000"
+           overflowToDisk="false"
+           diskPersistent="false"
+           timeToIdleSeconds="1800"
+           timeToLiveSeconds="259200"
+           memoryStoreEvictionPolicy="LRU"/>
+   
+       <cache
+           name="cloud_user"
+           eternal="false"
+           maxElementsInMemory="5000"
+           overflowToDisk="false"
+           diskPersistent="false"
+           timeToIdleSeconds="1800"
+           timeToLiveSeconds="1800"
+           memoryStoreEvictionPolicy="LRU"/>
+   </ehcache>
+   ```
+
+   

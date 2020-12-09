@@ -16,6 +16,7 @@
         <module>05_mybatis一对多</module>
         <module>06_mybatis多对一</module>
         <module>07_mybatis动态SQL</module>
+        <module>08_mybatis缓存</module>
     </modules>
     <build>
         <resources>
@@ -99,6 +100,15 @@
             <artifactId>lombok</artifactId>
             <version>1.18.16</version>
         </dependency>
+
+        <!--Ehcache-->
+        <!-- https://mvnrepository.com/artifact/org.mybatis.caches/mybatis-ehcache -->
+        <dependency>
+            <groupId>org.mybatis.caches</groupId>
+            <artifactId>mybatis-ehcache</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+
 
     </dependencies>
 </project>

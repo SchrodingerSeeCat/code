@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="03_mybatis结果集映射" />
+        <module name="08_mybatis缓存" />
         <module name="04_mybatis注解开发" />
         <module name="01_mybatis" />
         <module name="05_mybatis一对多" />
