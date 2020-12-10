@@ -7,6 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="01_回顾servlet" />
+        <module name="04_Controller" />
+        <module name="02_SpringMVC" />
+        <module name="03_注解开发" />
       </profile>
     </annotationProcessing>
   </component>
