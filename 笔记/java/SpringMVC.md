@@ -378,3 +378,152 @@ public String test(@PathVariable int a,@PathVariable int b, Model model) {
 
 ## 5. 数据处理
 
+### 5.1 处理提交的数据
+
+1. 如果请求的参数的名称和处理器方法的参数名称相同，可以直接通过参数拿到
+
+   ```
+   http://192.168.1.108:8080/s4/hello?name=hahah
+   ```
+
+   ```java
+   @RequestMapping("/hello")
+   public String hello(String name) {
+       System.out.println(name);
+       return "test";
+   }
+   ```
+
+2. 如果请求的参数与处理器方法的参数名称不同
+
+   ```
+   http://192.168.1.108:8080/s4/different?username=hahha
+   ```
+
+   通过`@RequestParam`指定参数的名称
+
+   ```java
+   @RequestMapping("/different")
+   public String test(@RequestParam("username") String name) {
+       System.out.println(name);
+       return "test";
+   }
+   ```
+
+3. 返回对象
+
+   实体类
+
+   ```java
+   public class User {
+       private int id;
+       private String name;
+       private int age;
+   }
+   ```
+
+   编写控制器
+
+   ```
+   // http://localhost:8080/s4/object?id=1&name=haha&age=18
+   ```
+
+   ```
+   @RequestMapping("/object")
+   public String test1(User user) {
+       // 前端返回对象
+       System.out.println(user);
+   
+       return "test";
+   }
+   ```
+
+   前端传递的参数名和对象的属性名需要一致，匹配不到的字段为类型零值
+
+### 5.2 数据回显前端
+
+1. `ModelAndView`
+
+   ```java
+   @Override
+   public ModelAndView handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
+       ModelAndView mv = new ModelAndView();
+   
+       mv.addObject("msg", "ControllerTest1");
+       mv.setViewName("test"); // 视图
+       return mv;
+   }
+   ```
+
+2. `Model`
+
+   ```java
+   @RequestMapping("/test")
+   public String test(Model model) {
+       model.addAttribute("msg", "ControllerTest");
+   
+       return "test";
+   }
+   ```
+
+3. `ModleMap`
+
+   ```java
+   @RequestMapping("/modelmap")
+   public String test2(ModelMap map) {
+       map.addAttribute("msg", "ModelMap");
+   
+       return "test";
+   }
+   ```
+
+`Model`：只有寥寥几个方法只适合用于存储数据，简化了新手对于`Model`对象的操作和理解
+
+`ModelMap`：继承了`LinkedMap`，除了实现了自身的一些方法，同样的继承`LinkedMap`的方法和特性
+
+`ModelAndView`：可以在存储数据的同时，可以进行设置返回的逻辑视图，进行控制展示层的跳转
+
+### 5.3 乱码问题
+
+1. 我们可以在首页编写一个提交的表单`form.jsp`
+
+   ```html
+   <form action="encoding" method="post">
+       <input type="text" name="name">
+       <input type="submit">
+   </form>
+   ```
+
+2. 编写`Controller`
+
+   ```java
+   @PostMapping("/encoding")
+   public String test(String name, Model model) {
+       model.addAttribute("msg", name);
+       return "test";
+   }
+   ```
+
+3. 启动测试
+
+   如果是输入中文，很大的可能会乱码
+
+**解决方法**
+
+使用`Spring`提供的过滤器
+
+```xml
+<filter>
+    <filter-name>encoding</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+        <param-name>encoding</param-name>
+        <param-value>utf-8</param-value>
+    </init-param>
+</filter>
+<filter-mapping>
+    <filter-name>encoding</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+```
+
