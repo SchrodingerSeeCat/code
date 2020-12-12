@@ -510,7 +510,7 @@ public String test(@PathVariable int a,@PathVariable int b, Model model) {
 
 **解决方法**
 
-使用`Spring`提供的过滤器
+在`web.xml`中使用`Spring`提供的过滤器
 
 ```xml
 <filter>
@@ -526,4 +526,126 @@ public String test(@PathVariable int a,@PathVariable int b, Model model) {
     <url-pattern>/*</url-pattern>
 </filter-mapping>
 ```
+
+### 5.4 JSON
+
+#### 5.4.1 概述
+
+- `JSON(JavaScript Object Notation)`，`js`标记对象，是一种轻量级的数据交换格式，目前使用较为广泛
+- 采用完全独立于编程语言的文本格式来存储和表示数据
+- 简洁和清晰的层次结构使得`JSON`称为理想的数据交换语言
+- 易于人阅读和编写，同时也易于机器解析和生成，并有效地提升网络传输效率
+
+#### 5.4.2 jackson
+
+1. 导入依赖
+
+   ```xml
+   <dependency>
+       <groupId>com.fasterxml.jackson.core</groupId>
+       <artifactId>jackson-databind</artifactId>
+       <version>2.12.0</version>
+   </dependency>
+   ```
+
+2. 编写控制器
+
+   ```java
+   @RequestMapping("/json")
+   @ResponseBody // 不会走视图解析器，会直接返回一个字符串
+   public String jsonTest() throws JsonProcessingException {
+       // 创建一个对象
+       User user = new User("张三", 18, true);
+   
+       // jackson，ObjectMapper
+       ObjectMapper mapper = new ObjectMapper();
+       String str = mapper.writeValueAsString(user);
+       return str;
+   }
+   ```
+
+3. `JSON`乱码解决`springmvc-servlet.xml`
+
+   ```xml
+   <mvc:annotation-driven>
+       <mvc:message-converters>
+           <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+           	<constructor-arg value="UTF-8" />
+           </bean>
+           <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+           	<property name="objectMapper" >
+           <bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
+               <property name="failOnEmptyBeans" value="false" />
+               </bean>
+               </property>
+           </bean>
+       </mvc:message-converters>
+   </mvc:annotation-driven>
+   ```
+
+`@ResponseBody`：作用在方法上，使得方法只能返回字符串，而不会返回`jsp`页面
+
+`@RestController`：作用在类上，使得类中所有的方法都只能返回字符串
+
+`ObjectMapper`的实例可以解析对象、集合、时间默认为返回时间戳
+
+自定义时间格式
+
+```java
+@RequestMapping("/json")
+@ResponseBody
+public String jsonTest() throws JsonProcessingException {
+    // jackson，ObjectMapper
+    ObjectMapper mapper = new ObjectMapper();
+
+    // 关闭默认返回的时间格式
+    mapper.configure(SerializationFeature.WRITE_DATE_KEYS_AS_TIMESTAMPS, false);
+
+    // 自定义时间格式
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    mapper.setDateFormat(sdf);
+
+    return mapper.writeValueAsString(new Date());
+}
+```
+
+#### 5.4.3 fastJson
+
+`fastJson`是阿里开发的一款专门用于`Java`开发的包，可以方便的实现`json`对象与`JavaBean`对象的转换，实现`JavaBean`对象与`json`字符串的转换，实现`json`对象与`json`字符串的转换
+
+`fastjson`的三个主要的类
+
+- `JSONObject`代表`json`对象
+
+  `JSONObject`实现了`Map`接口，底层操作由`Map`实现
+
+  `JSONObject`对应`json`对象，通过各种形式的`get()`方法可以获取`json`对象中的数据，也可利用诸如`size()`，`isEmpty()`等方法获取`key-value`的个数和判断是否为空。其本本质是用过实现`Map`接口并调用接口中的方法完成的
+
+- `JSONArray`代表`json`数组
+
+  内部使用`List`接口中的方法完成操作
+
+- `JSON`代表`JSONObject`和`JSONArray`的转化
+
+1. 导入依赖
+
+   ```xml
+   <dependency>
+       <groupId>com.alibaba</groupId>
+       <artifactId>fastjson</artifactId>
+       <version>1.2.75</version>
+   </dependency>
+   ```
+
+2. 控制器
+
+   ```java
+   @RequestMapping("/json")
+   @ResponseBody
+   public String jsonTest(){
+       User user = new User("李四", 18, false);
+   
+       return JSON.toJSONString(user);
+   }
+   ```
 

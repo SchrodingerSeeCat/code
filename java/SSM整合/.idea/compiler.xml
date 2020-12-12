@@ -6,15 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="01_回顾servlet" />
-        <module name="04_Controller" />
-        <module name="05_JSON" />
-        <module name="02_SpringMVC" />
-        <module name="03_注解开发" />
+        <module name="SSM整合" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="06_SSM整合" target="1.11" />
-    </bytecodeTargetLevel>
   </component>
 </project>
