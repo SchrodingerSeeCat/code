@@ -1555,6 +1555,8 @@ execution(* com.valid.dao.*.*(..))
           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+       <!--开启注解扫描-->
+       <context:component-scan base-package="aopanno"></context:component-scan>
    </beans>
    ```
 

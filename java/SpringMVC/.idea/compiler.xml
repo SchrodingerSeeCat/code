@@ -8,9 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="01_回顾servlet" />
         <module name="04_Controller" />
+        <module name="08_文件上传" />
+        <module name="06_AJAX" />
+        <module name="07_拦截器" />
+        <module name="03_注解开发" />
         <module name="05_JSON" />
         <module name="02_SpringMVC" />
-        <module name="03_注解开发" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

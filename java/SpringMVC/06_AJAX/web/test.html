@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax测试</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+</head>
+<body>
+    <div>
+        <p>输入地址：</p>
+        <p>
+            <input type="text" id="url" value="https://www.baidu.com">
+            <input type="submit" value="提交" onclick="go()">
+        </p>
+    </div>
+    <div>
+        <iframe id="ifr" style="width: 100%; height: 500px">
+
+        </iframe>
+    </div>
+</body>
+<script>
+    function go(){
+        document.getElementById("ifr").src = "https://www.baidu.com"
+        let url = document.getElementById("url").value;
+    }
+</script>
+</html>

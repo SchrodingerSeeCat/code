@@ -11,6 +11,12 @@
     <file url="file://$PROJECT_DIR$/04_Controller/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/05_JSON/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/05_JSON/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/06_AJAX/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/06_AJAX/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/07_拦截器/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/07_拦截器/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/08_文件上传/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/08_文件上传/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

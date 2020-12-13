@@ -3,6 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!--开启标准日志-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
     <!--配置数据源交给spring做-->
     <typeAliases>
         <package name="com.valid.pojo"/>
@@ -12,4 +17,6 @@
     <mappers>
         <mapper class="com.valid.dao.BookMapper" />
     </mappers>
+
+
 </configuration>

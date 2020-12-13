@@ -28,4 +28,10 @@
         SELECT *
         FROM books;
     </select>
+
+    <select id="queryBookByName" resultType="Books" parameterType="string">
+        SELECT *
+        FROM books
+        WHERE bookName=#{bookName};
+    </select>
 </mapper>

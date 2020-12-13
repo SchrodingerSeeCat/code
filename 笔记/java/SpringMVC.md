@@ -649,3 +649,206 @@ public String jsonTest() throws JsonProcessingException {
    }
    ```
 
+## 6. 拦截器
+
+### 6.1 概述
+
+`SpringMVC`的处理器拦截器类似于`Servlet`开发过程中的过滤器`Filter`，用于对处理器进行预处理和后处理。开发者可以自定义一些拦截器来实现特定的功能
+
+过滤器与拦截器的区别：拦截器是`AOP`思想的具体应用
+
+**过滤器**
+
+- `Servlet`规范中的一部分，任何`java web`工程都可以使用
+- 在`url-pattern`中配置`/*`之后，可以对所有要访问的资源进行拦截
+
+**拦截器**
+
+- 拦截器是`SpringMVC`框架自己的，只有使用了`SpringMVC`框架的工程才能使用
+- 拦截器只会拦截访问的控制器方法，如果访问的是`jsp/html/css/image/js`是不会进行拦截的
+
+### 6.2 自定义拦截器
+
+自定义的拦截器，需要实现`HandlerInterceptor`接口
+
+1. 编写拦截器
+
+   ```java
+   public class MyInterceptor implements HandlerInterceptor {
+       // return true 执行下一个拦截器，放行
+       @Override
+       public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+           System.out.println("===============处理前=================");
+           return true;
+       }
+   
+       @Override
+       public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+           System.out.println("==================处理后===============");
+       }
+   
+       @Override
+       public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+           System.out.println("==================清理=================");
+       }
+   }
+   ```
+
+2. 配置
+
+   ```xml
+   <mvc:interceptors>
+       <mvc:interceptor>
+           <!--包括这个请求下面的所有的请求-->
+           <mvc:mapping path="/**"/>
+           <bean class="com.valid.interceptor.MyInterceptor" />
+       </mvc:interceptor>
+   </mvc:interceptors>
+   ```
+
+## 7. 文件上传下载
+
+### 7.1 文件上传
+
+#### 7.1.1 准备工作
+
+文件上传是项目开发最常见的功能之一，`springMVC`可以很好的支持文件上传，但是`SpringMVC`上下文中默认没有装配`MultipartResolver`，因此默认情况下不能处理文件上传工作。如果想要使用`Spring`的文件上传功能，则需要在上下文中配置`MultipartResolver`
+
+前端表单要求：为了能上传文件，必须将表单的`method`设置为`POST`，并将`enctype`设置为`multipart/form-data`。只有在这样的情况下，浏览器才会把用户选择的文件以二进制数据发送给服务器
+
+表单中的`enctype`属性说明
+
+- `application/x-www=form-urlencoded`：默认方式，只处理表单域中`value`属性值，采用这种编码方式的表单会将表单域中的值处理成`URL`编码方式
+- `multipart/form-data`：这种编码方式会以二进制流的方式来处理表单数据，这种编码方式会把文件域指定的内容也封装到请求参数中，不会对字符编码
+- `text/plain`：除了把空格转化为`+`号外，其他字符都不做编码处理，这种方式适用直接通过表单发送邮件
+
+`SpringMVC`的文件处理
+
+- `SpringMVC`为文件上传提供了直接的支持，这种支持是即插即用的`MultipartResolver`实现的
+- `SpringMVC`适用`Apache Commons FileUpload`技术实现了一个`MultipartResolver`实现类：`CommonsMultipartResolver`。因此`SpringMVC`的文件上传还需要依赖`Apache Commons FileUpload`的组件
+
+#### 7.1.2 文件上传实例
+
+1. 编写表单
+
+   ```jsp
+   <form action="${pageContext.request.contextPath}/upload" enctype="multipart/form-data" method="POST">
+       <input type="file" name="file">
+       <input type="submit" value="upload">
+   </form>
+   ```
+
+2. 编写配置文件
+
+   ```xml
+   <!--文件上传-->
+   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+       <!--请求的编码格式，必须和jsp的pageEncoding属性一致，以便正确读取表单的内容，默认为ISO-8859-1-->
+       <property name="defaultEncoding" value="utf-8" />
+       <!--传文件大小限制，单位为字节-->
+       <property name="maxUploadSize" value="10485760" />
+       <property name="maxInMemorySize" value="40960" />
+   </bean>
+   ```
+
+3. 编写`controller`
+
+   第一种方法
+
+   ```java
+   @PostMapping("/upload")
+   public String upload(@RequestParam("file")CommonsMultipartFile file, HttpServletRequest request) throws IOException {
+       // 获取文件名
+       String uploadFileName = file.getOriginalFilename();
+   
+       // 如果文件名为空，直接回到首页
+       if("".equals(uploadFileName)) {
+       	return "redirect:/index.jsp";
+       }
+   
+       // 上传路径保存设置
+       String path = request.getServletContext().getRealPath("/upload");
+   
+       // 如果路径不存在，创建一个
+       File realPath = new File(path);
+       if(!realPath.exists()) {
+       	realPath.mkdir();
+       }
+   
+       // 文件输入输出流
+       InputStream is = file.getInputStream();
+       OutputStream os = new FileOutputStream(new File(realPath, uploadFileName));
+   
+       // 读取和写入
+       int len = 0;
+       byte[] buffer = new byte[1024];
+       while((len = is.read(buffer)) != -1) {
+       	os.write(buffer, 0, len);
+       }
+       os.close();
+       is.close();
+       return "redirect:/index.jsp";
+   }
+   ```
+
+   第二种方法
+
+   ```java
+   @PostMapping("/upload")
+   public String upload(@RequestParam("file")CommonsMultipartFile file, HttpServletRequest request) throws IOException {
+       // 上传路径保存设置
+       String path = request.getServletContext().getRealPath("/upload");
+       File realPath = new File(path);
+       if(!realPath.exists()) {
+       	realPath.mkdir();
+       }
+   
+       // 通过CommonsMultipartFile的方法直接写文件
+       file.transferTo(new File(realPath, file.getOriginalFilename()));
+   
+       return "redirect:/index.jsp";
+   }
+   ```
+
+
+### 7.2 文件下载
+
+1. 设置`response`响应头
+2. 读取文件`InputStream`
+3. 写出文件`OutputStream`
+4. 执行操作
+5. 关闭流
+
+```java
+@GetMapping("/download")
+public String download(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    // 要下载的图片的地址
+    String path = request.getServletContext().getRealPath("/upload");
+    String fileName = "20201212数据库原理复习资料.doc";
+
+    // 设置response响应头
+    response.reset(); // 设置页面不缓存，清空buffer
+    response.setCharacterEncoding("UTF-8"); // 字符编码
+    response.setContentType("multipart/form-data"); // 二进制传输数据
+    response.setHeader("Content-Disposition", "attachment;fileName=" + URLEncoder.encode(fileName, "UTF-8"));
+
+    File file = new File(path, fileName);
+
+    // 读取和写入
+    InputStream in = new FileInputStream(file);
+    OutputStream out = response.getOutputStream();
+
+    int len = 0;
+    byte[] buffer = new byte[1024];
+    while((len = in.read(buffer)) != -1) {
+    	out.write(buffer, 0, len);
+    }
+    out.flush();
+
+    // 关闭
+    in.close();
+    out.close();
+    return "index";
+}
+```
+

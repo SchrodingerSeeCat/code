@@ -14,7 +14,9 @@
         <module>03_注解开发</module>
         <module>04_Controller</module>
         <module>05_JSON</module>
-        <module>06_SSM整合</module>
+        <module>06_AJAX</module>
+        <module>07_拦截器</module>
+        <module>08_文件上传</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -86,6 +88,13 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.75</version>
+        </dependency>
+
+        <!--文件上传-->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.4</version>
         </dependency>
     </dependencies>
 </project>

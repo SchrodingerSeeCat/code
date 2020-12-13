@@ -76,17 +76,18 @@
             <version>5.2.12.RELEASE</version>
         </dependency>
 
-<!--        &lt;!&ndash;fastjson&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.alibaba</groupId>-->
-<!--            <artifactId>fastjson</artifactId>-->
-<!--            <version>1.2.75</version>-->
-<!--        </dependency>-->
-
+        <!--jackson-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.12.0</version>
+        </dependency>
+
+        <!--aop事务支持-->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.6</version>
         </dependency>
     </dependencies>
 
