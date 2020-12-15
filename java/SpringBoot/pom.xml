@@ -9,6 +9,9 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>01_HelloWorld</module>
+        <module>02_config</module>
+        <module>03_属性绑定</module>
+        <module>04_构造器绑定</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -19,9 +22,38 @@
     </parent>
 
     <dependencies>
+        <!--web项目支持-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!--配置文件对应实体类的提示-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+        </dependency>
+
+        <!--hibernate验证器-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.2.0.Final</version>
         </dependency>
     </dependencies>
 
@@ -30,6 +62,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.4.0</version>
             </plugin>
         </plugins>
     </build>

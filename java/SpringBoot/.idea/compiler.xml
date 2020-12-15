@@ -6,13 +6,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="02_config" />
         <module name="01_HelloWorld" />
+        <module name="04_构造器绑定" />
+        <module name="03_属性绑定" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="11" />
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="01_HelloWorld" options="-parameters" />
+      <module name="02_config" options="-parameters" />
+      <module name="03_属性绑定" options="-parameters" />
+      <module name="04_构造器绑定" options="-parameters" />
       <module name="SpringBoot" options="-parameters" />
     </option>
   </component>

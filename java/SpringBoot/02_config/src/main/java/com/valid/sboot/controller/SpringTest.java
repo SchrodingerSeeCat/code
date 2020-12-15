@@ -1,12 +1,13 @@
-package com.valid.controller;
+package com.valid.sboot.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TestController {
-    @RequestMapping("hello")
-    public String hello() {
-        return "Hello World";
+public class SpringTest {
+
+    @RequestMapping("/hello")
+    public String test() {
+        return "hello";
     }
 }
