@@ -5,22 +5,32 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
 @Data
 @Component
+@ConfigurationProperties("person")
 @Validated
-@ConfigurationProperties(prefix = "acme.my-person.person") // 在属性类中，前缀不可以是驼峰模式，只能使用羊肉串模式
-public class OwnerProperties {
+public class Person {
+    // 普通属性校验
 
     @NotNull
     private String firstName;
-
     @Max(18)
     private int age;
-
     @Email
     private String email;
+
+    // 内部类校验
+    @Valid
+    private School school = new School();
+
+    @Data
+    class School{
+        @NotNull
+        private String sname;
+    }
 }

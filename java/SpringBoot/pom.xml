@@ -12,6 +12,8 @@
         <module>02_config</module>
         <module>03_属性绑定</module>
         <module>04_构造器绑定</module>
+        <module>05_数据校验</module>
+        <module>06_profile</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -51,10 +53,11 @@
 
         <!--hibernate验证器-->
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>5.2.0.Final</version>
+            <version>6.1.6.Final</version>
         </dependency>
+
     </dependencies>
 
     <build>

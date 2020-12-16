@@ -1,4 +1,4 @@
-# Spring Boot
+# SpringBoot
 
 [TOC]
 
@@ -462,23 +462,158 @@ java -jar --spring.config.location=C:/myproject.properties
 
    ```xml
    <dependency>
-       <groupId>org.hibernate</groupId>
+       <groupId>org.hibernate.validator</groupId>
        <artifactId>hibernate-validator</artifactId>
-       <version>5.2.0.Final</version>
+       <version>6.1.6.Final</version>
    </dependency>
    ```
 
 2. 在属性类上加入注解
 
    ```java
-   @Data
-   @ConfigurationProperties("acme.my-person.person")
-   @Component
-   @Validated
-   public class OwnerProperties {
+   public class Person {
+       // 普通属性校验
+   
+       @NotNull
        private String firstName;
+       @Max(18)
+       private int age;
+       @Email
+    private String email;
+   
+       // 内部类校验
+       @Valid
+       private School school = new School();
+   
+       @Data
+       class School{
+           @NotNull
+           private String sname;
+       }
+   }
+   ```
+   
+3. `application.yml`
+
+   ```xml
+   person:
+     first-name: 张
+     age: 18
+     email: xxxxx
+   ```
+
+4. `controller`
+
+   ```java
+   @Autowired
+   Person person;
+   
+   @RequestMapping("yaml")
+   public Person yaml() {
+   	return person;
    }
    ```
 
-   
+5. 启动测试
+
+内部类的校验，需要在内部类的实例上添加`@Valid`
+
+### 2.8 @Value
+
+`@Vlaue`与`@ConfigurationProperties`功能相似
+
+绑定的类型
+
+| Feature      | @ConfigurationProperties | @Value |
+| ------------ | ------------------------ | ------ |
+| 松散绑定     | Yes                      | Limit  |
+| 元数据支持   | Yes                      | No     |
+| SpEl表达式   | No                       | Yes    |
+| 复杂类型绑定 | Yes                      | No     |
+
+`@Value`仅仅支持绑定单个数据
+
+```java
+@Data
+@Component
+public class ValueProperties {
+
+    @Value("${person.first-name}")
+    private String firstName;
+    private int age;
+
+    private String email;
+}
+```
+
+`SpEl`表达式
+
+```java
+@Value("#{2 * 3}")
+private int age;
+```
+
+`@Value`不支持校验
+
+### 2.9 多profile
+
+#### 2.9.1 通过---分割环境
+
+`application.yml`可以指定多种环境以`---`分割，
+
+```yml
+acme:
+  enable: true
+  remote-address: 192.168.0.108
+spring:
+  profiles:
+    active: dev
+---
+acme:
+  enable: true
+  remote-address: 192.168.0.109
+spring:
+  config:
+    activate:
+      on-profile: dev
+---
+acme:
+  enable: true
+  remote-address: 192.168.0.110
+spring:
+  config:
+    activate:
+      on-profile: pro
+```
+
+可以在`yml`文件中通过`spring.profiles.active`指定环境，也可以通过启动参数指定，也可以通过启动参数覆盖环境的参数
+
+```
+-Dspring.profiles.active=dev -Dacme.enabled=false
+```
+
+#### 2.9.2 通过文件名称来分割环境
+
+文件的名称需要为`application-环境名称.yml`
+
+假设有
+
+- `application-dev.yml`
+- `application-pro.yml`
+
+依然通过启动参数指定环境
+
+```
+-Dspring.profiles.active=pro
+```
+
+## 3. 自动装配
+
+### 3.1 java中的spi
+
+`SPI`的全名为`Service Provider Interface`大多数开发人员可能不熟悉，因为这个是针对厂商或者插件的。
+
+简单的总结少`java SPI`机制的思想。我们系统里抽象的各个模块，往往有很多不同的实现方案。面向对象的设计里，我们一般推荐模块之间基于接口编程，模块之间不对实现类进行硬编码。一旦代码里涉及具体的实现类，就违反了可拔插的原则，如果需要替换一种实现，就需要修改代码。为了实现在模块装配的时候能不在程序里动态指明，这就需要一种服务发现机制
+
+`java SPI`就是提供这样的一个机制：为某个接口寻找服务实现的机制，有点类似`IOC`的思想，就是将装配的控制权移到程序之外，在模块化设计中这个机制尤其重要
 

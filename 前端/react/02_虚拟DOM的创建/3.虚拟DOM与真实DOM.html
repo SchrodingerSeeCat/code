@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用jsx创建虚拟DOM</title>
+</head>
+<body>
+    <div id="test"></div>
+
+    <script type="text/javascript" src="../js/16.x/react.development.js"></script>
+    <script type="text/javascript" src="../js/16.x/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/16.x/babel.min.js"></script>
+
+    <script type="text/babel">
+        const VDOM = (
+            <h1 id="test">
+                <span>Hello React</span>
+            </h1>
+        )
+        
+        console.log(VDOM)
+        /*
+            1. 本质是Object类型的对象
+            2. 虚拟DOM比较"轻"，真实DOM比较"重",因为虚拟DOM是React内部在用
+        */
+        ReactDOM.render(VDOM, document.getElementById("test"))
+    </script>
+</body>
+</html>

@@ -7,7 +7,7 @@ acme:
     roles:
       - 男主角
       - 摄影师
-  myPerson:
+  my-person:
     person:
       first-name: 张
       age: 4
