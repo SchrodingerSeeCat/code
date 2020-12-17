@@ -86,6 +86,8 @@
 
 ### 1.2 React Jsx
 
+#### 1.2.1 简介
+
 1. `jsx`全称`JavaScript XML`
 
 2. `react`定义的一种类似于`XML`的`JS`扩展语法
@@ -106,7 +108,7 @@
 
 5. 标签名任意：`HTML`标签或其他标签
 
-#### 1.2.1 基本语法
+#### 1.2.2 基本语法
 
 1. 定义`DOM`是，不要写引号
 
@@ -179,4 +181,156 @@
    ```
 
 7. 首字符小写标签仅能为`html`的标准标签，首字符大写是一个自定义的组件
+
+#### 1.2.3 练习
+
+`jsx`动态渲染数据
+
+- 表达式：一个表达式会产生一个值，可以放在任何一个需要值的地方
+
+  变量
+
+  函数。。。
+
+- 语句(代码)：
+
+  `if`语句，`for`语句
+
+- 对于`jsx`内部的`{}`只能为表达式
+
+```html
+<div id="test"></div>
+<script type="text/babel">
+// 模拟后端数据
+const data = ["Angular", "React", "Vue"]
+const VDOM = (
+	<div>
+		<h1>前端js框架列表</h1>    
+		<ul>
+			{
+				data.map((item, index) => {
+					return <li key={index}>{item}</li>
+				})
+			}   
+    	</ul>
+    </div>
+    )
+	ReactDOM.render(VDOM, document.getElementById("test"))
+</script>
+```
+
+每一个虚拟`DOM`节点，都需要一个`key`用来作为唯一标识
+
+### 1.3 模块与组件、模块化与组件化
+
+#### 1.3.1 模块
+
+1. 理解：向外部提供特定功能的`js`程序，一般就是一个`js`文件
+2. 为什么要拆分模块：随着业务逻辑的增加，代码越来越多且复杂
+3. 作用：复用`js`，简化`js`的编写，提高`js`运行效率
+
+#### 1.3.2 组件
+
+1. 理解：用来实现局部功能效果的代码和资源的集合`html/css/js/image`等等
+2. 为什么需要组件：一个界面的功能太过复杂
+3. 作用：复用编码，简化项目编码，提高运行效率
+
+#### 1.3.3 模块化
+
+当应用的`js`都已模块来编写的，这个应用就是一个模块化的应用
+
+#### 1.3.4 组件化
+
+当应用是以多组件的方式实现的，这个应用就是一个组件化的应用
+
+## 2. React面向组件开发
+
+### 2.1 基本理解和使用
+
+#### 2.1.1 使用React开发者工具调试
+
+安装插件`React Developer Tools`
+
+#### 2.1.2 组件的创建方式
+
+**函数式组件**
+
+```html
+<div id="test"></div>
+<script type="text/babel">
+    // 1. 创建函数式组件
+    function MyComponent() {
+        return (
+            <h1>函数式组件，适用于简单组件的定义</h1>
+        )
+    }
+
+    // 2. 渲染组件到页面
+    ReactDOM.render(<MyComponent />, document.getElementById("test"))
+</script>
+```
+
+函数内部的`this`是`ubderfined`，因为`babel`编译后开启了严格模式
+
+`render`之后的过程
+
+1. `React`解析组件标签，找到了`MyComponent`组件
+2. 返现组件是使用函数定义的，随后调用该函数，将返回的虚拟`DOM`转为真实`DOM`，随后呈现在页面中
+
+**类式组件**
+
+```
+<div id="test"></div>
+<script type="text/babel">
+// 1. 创建类式组件
+class MyComponent extends React.Component{
+    render() {
+        return (
+            <h2>我是用类定义的组件</h2>
+        )
+    }
+}
+
+// 2. 渲染组件到页面
+ReactDOM.render(<MyComponent />, document.getElementById("test"))
+```
+
+`render`是放在了原型对象上，供实例使用
+
+`render()`函数内部的`this`指向`MyComponent`的实例对象
+
+`ReactDOM.render`之后的过程
+
+1. `React`解析组件标签，找到了`MyComponent`组件
+2. 发现组件是类定义的，随后创建该类的实例，并通过该实例代用原型上的`render`方法
+3. 将`render`返回的虚拟`DOM`转换为真实`DOM`，随后呈现在页面中
+
+**总结**
+
+函数式组件适用于简单组件
+
+类式组件适用于复杂组件
+
+### 2.2 三大核心属性
+
+三大核心属性仅仅针对类式组件
+
+#### 2.2.1 state
+
+**理解**
+
+1. `state`是组件对象最重要的属性，值是对象(可以包含多个`key-value`的组合)
+2. 组件被称为''状态机“，通过更新组件的`state`来更新对应的页面显示(重新渲染组件)
+
+**强烈注意**
+
+1. 组件中的`render`方法中的`this`为组件实例对象
+
+2. 组件自定义的方法中`this`为`undefined`
+
+   强制绑定`this`通过函数对象的`bind()`
+
+   箭头函数
+
+3. 状态数据，不能直接修改或更新
 
