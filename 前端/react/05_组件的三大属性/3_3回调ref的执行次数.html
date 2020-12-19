@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3_3回调ref的执行次数.html</title>
+</head>
+<body>
+    <script type="text/javascript" src="../js/16.x/react.development.js"></script>
+    <script type="text/javascript" src="../js/16.x/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/16.x/babel.min.js"></script>
+    <!-- 引入prop-types，用于对组件标签属性进行限制 -->
+    <script type="text/javascript" src="../js/16.x/prop-types.js"></script>
+
+    <div id="test"></div>
+    <script type="text/babel">
+        class Demo extends React.Component{
+            state ={
+                isHot: false
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h2>今天天气很{this.state.isHot ? "炎热" : "凉爽"}</h2>
+                        <input type="text" ref={this.showData} placeholder="点击按钮提示数据"/>
+                        <button onClick={this.showData}>点我提示左侧的数据</button>&nbsp;
+                    </div>
+                )
+            }
+
+
+
+            showData = (c) => {
+                // alert(this.input.value)
+                console.log(c)
+                this.setState({isHot: !this.state.isHot})
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.getElementById("test"))
+    </script>
+</body>
+</html>

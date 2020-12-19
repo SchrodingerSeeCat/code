@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>引出生命周期</title>
+</head>
+<body>
+    <script type="text/javascript" src="../js/16.x/react.development.js"></script>
+    <script type="text/javascript" src="../js/16.x/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/16.x/babel.min.js"></script>
+
+    <div id="test"></div>
+    <script type="text/babel">
+        // h2的透明度会从1 慢慢减到 0， 到0之后会立即赋值为1
+        // 当点击按钮时，将组件从页面中移除
+        // 创建组件
+        class Life extends React.Component{
+            // render调用的时机：初始化渲染】状态更新之后
+            render() {
+                return (
+                    <div>
+                        <h2 style={{opacity: this.state.opacity}}>React学不会怎么办</h2>
+                        <button onClick={this.delete}>不活了</button>
+                    </div>
+                )
+            }
+
+            state = {
+                opacity: 1
+            }
+
+            // 组件挂载之后
+            componentDidMount() {
+                let i = 0.1
+                this.timer = setInterval(() => {
+                    if(this.state.opacity <= 0) {
+                        i = 0.1
+                    } else if(this.state.opacity >= 1) {
+                        i = -0.1
+                    }
+                    this.setState({opacity: this.state.opacity + i})
+                }, 200)
+            }
+
+            // 组件卸载之前
+            componentWillUnmount() {
+                // 清除定时器
+                clearInterval(this.timer)
+            }
+
+            // 移除组件
+            delete = () => {
+                ReactDOM.unmountComponentAtNode(document.getElementById("test")) 
+            }
+        }
+
+        ReactDOM.render(<Life />, document.getElementById("test"))
+    </script>
+</body>
+</html>

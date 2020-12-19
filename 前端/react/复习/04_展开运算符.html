@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr1 = [1, 3, 5, 7, 9]
+        let arr2 = [2, 4, 6, 8, 10]
+        console.log(...arr1) // 展开一个数组
+
+        let arr3 = [...arr1, ...arr2] // 连接数组
+        console.log(...arr3)
+
+        // 可变参数
+        function sum(...nums) {
+            return nums.reduce((pre, current) => {
+                return pre + current
+            })
+        }
+        console.log(sum(1, 2, 3, 4))
+
+        // 复制对象,原生js不能展开对象
+        let person = {name: 'tom', age: 18}
+        let person2 = {...person}
+        console.log(person2)
+
+        // 展开对象的时候，修改属性的值
+        let person3 = {...person, name: 'jack'}
+        console.log(person3)
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript" src="../js/16.x/react.development.js"></script>
+    <script type="text/javascript" src="../js/16.x/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/16.x/babel.min.js"></script>
+
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+    <script type="text/babel">
+        const data = []
+
+        class Person extends React.Component{
+            render() {
+                return (
+                    <ul>
+                        <li>姓名：{this.props.name}</li>
+                        <li>性别：{this.props.age + 1}</li>
+                        <li>年龄：{this.props.sex}</li>
+                    </ul>
+                )
+          }  
+        }
+
+        // 第一种方式传参
+        ReactDOM.render(<Person name="Alcie" age={18} sex="女"/>, document.getElementById("test1"))
+        ReactDOM.render(<Person name="Tom" age={18} sex="男"/>, document.getElementById("test2"))
+
+        // 第二种方式传参
+        const p = {name: "老刘", age: 19, sex: "女"}
+        ReactDOM.render(<Person {...p}/>, document.getElementById("test3"))
+    </script>
+</body>
+</html>

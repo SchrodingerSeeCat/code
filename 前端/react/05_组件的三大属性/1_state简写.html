@@ -14,31 +14,20 @@
     <script type="text/babel">
         // 1. 创建类式组件
         class Weather extends React.Component{
-            constructor(props) {
-                super(props)
-                
-                // 初始化状态
-                this.state = {
-                    isHot: true
-                }
-
-                // 解决this指向问题
-                this.changeWeather = this.changeWeather.bind(this)
+            
+            // 初始化状态
+            state = {
+                isHot: true
             }
-
             render() {
                 return (
                     <h2 id="title" onClick={this.changeWeather}>今天天气很{this.state.isHot ? "炎热" : "凉爽"}</h2>
                 )
             }
 
-            changeWeather() {
-                // 由于changeWeather是作为onClick的回调，所以不是通过实例调用的，this会丢失
-                // 类中的方法默认开启了局部的严格模式
-
-                // 状态不可直接更改，需要通过setState修改
-                // 修改是更新，而不是替代
-                // 每一次的数据的修改，都会导致render的调用
+            // 自动以方法要用赋值语句的形式+箭头函数
+            changeWeather = () => {
+                console.log(this)
                 this.setState({isHot: !this.state.isHot})
             }
         }

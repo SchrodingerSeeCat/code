@@ -55,6 +55,22 @@
                 2.如果A类继承了B类，且A类中写了构造器，那么A类构造器中的super是必须要调用的
                 3.类中所定义的方法，都是放在类的原型对象上，供实例去使用
         */
+
+
+        class Car{
+            constructor(name, price) {
+                this.name = name
+                this.price = price
+            }
+
+            // 类中可以直接写赋值语句，会给当前的类的实例都追加该属性
+            wheel = 4
+
+            // 将属性加在类的本身
+            static test = "aa"
+        }
+        const car = new Car("奔驰", 100)
+        console.log(car)
     </script>
 </body>
 </html>

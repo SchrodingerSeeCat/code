@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回调ref</title>
+</head>
+<body>
+    <script type="text/javascript" src="../js/16.x/react.development.js"></script>
+    <script type="text/javascript" src="../js/16.x/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/16.x/babel.min.js"></script>
+    <!-- 引入prop-types，用于对组件标签属性进行限制 -->
+    <script type="text/javascript" src="../js/16.x/prop-types.js"></script>
+
+    <div id="test"></div>
+    <script type="text/babel">
+        class Demo extends React.Component{
+            render() {
+                return (
+                    <div>
+                        <input type="text" ref={(c) => {this.input1 = c}} placeholder="点击按钮提示数据"/>
+                        <button onClick={this.showData} ref="btn">点我提示左侧的数据</button>&nbsp;
+                        <input onBlur={this.showData2} type="text" ref={c => this.input2 = c} placeholder="失去焦点提示"/>
+                    </div>
+                )
+            }
+
+            showData = () => {
+                alert(this.input1.value)
+            }
+
+            showData2 = () => {
+                alert(this.input2.value)
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.getElementById("test"))
+    </script>
+</body>
+</html>

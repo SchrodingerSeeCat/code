@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非受控表单</title>
+</head>
+<body>
+    <script type="text/javascript" src="../js/16.x/react.development.js"></script>
+    <script type="text/javascript" src="../js/16.x/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/16.x/babel.min.js"></script>
+
+    <div id="test"></div>
+    <script type="text/babel">
+        class Login extends React.Component{
+
+            handleSubmit = (event) => {
+                event.prevenDefault() // 阻止表单提交
+
+                const {username, password} = this
+                alert(`用户名：${username.value}，密码：${password.value}`)
+            }
+
+            render() {
+                return (
+                    <form action="http://www.baidu.com" onSubmit={this.handleSubmit}>
+                        用户名：<input ref={c => this.username = c} type="text" name="username"/>
+                        密码：<input ref={c => this.password = c} type="password" name="password" />
+                        <button>登录</button>
+                    </form>
+                )
+            }
+        }
+
+        ReactDOM.render(<Login />, document.getElementById("test"))
+    </script>
+</body>
+</html>

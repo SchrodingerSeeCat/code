@@ -334,3 +334,328 @@ ReactDOM.render(<MyComponent />, document.getElementById("test"))
 
 3. 状态数据，不能直接修改或更新
 
+**动态渲染数据**
+
+```jsx
+<div id="test"></div>
+<script type="text/babel">
+    // 1. 创建类式组件
+    class Weather extends React.Component{
+
+        // 初始化状态
+        state = {
+            isHot: true
+        }
+        render() {
+            return (
+                <h2 id="title" onClick={this.changeWeather}>今天天气很{this.state.isHot ? "炎热" : "凉爽"}</h2>
+            )
+        }
+
+        // 自动以方法要用赋值语句的形式+箭头函数
+        changeWeather = () => {
+            this.setState({isHot: !this.state.isHot})
+        }
+    }
+
+    // 2. 渲染组件到页面
+    ReactDOM.render(<Weather />, document.getElementById("test"))
+</script>
+```
+
+#### 2.2.2 props
+
+需求：自定义用来显示一个人员信息的组件
+
+- 名字必须指定，且为字符串类型
+- 性别为字符串类型，如果性别没有指定，默认为男
+- 年龄必须指定，且为数字类型
+
+对`props`的属性进行限制，属性的限制需要引入`prop-types.js`
+
+```javascript
+// 对Person属性的类型进行限制
+static propTypes = {
+    // string类型为字符串，isRequired必须有值
+    name: PropTypes.string.isRequired,
+    sex: PropTypes.string,
+    age: PropTypes.number,
+    speak: PropTypes.func
+}  
+
+// 设置属性的默认值
+static defaultProps = {
+    sex: "待鉴定",
+    age: 18
+}
+```
+
+渲染组件
+
+```jsx
+render() {
+    return (
+        <ul>
+            <li>姓名：{this.props.name}</li>
+            <li>性别：{this.props.age + 1}</li>
+            <li>年龄：{this.props.sex}</li>
+        </ul>
+    )
+}
+```
+
+传递`props`的两种方式
+
+1. 直接传递
+
+   ```jsx
+   ReactDOM.render(<Person name="Tom" age={18} sex="男"/>, document.getElementById("test"))
+   ```
+
+2. `...`传递
+
+   ```jsx
+   const p = {name: "老刘", age: 19}
+   ReactDOM.render(<Person {...p}/>, document.getElementById("test"))
+   ```
+
+**理解**
+
+1. 每个组件对象都会有`props(properties)`属性
+2. 组件标签的所有属性都保存在`props`中
+
+**注意**
+
+`props`的属性是只读的
+
+函数式组件使用`props`
+
+```jsx
+function Person(props) {
+    return (
+        <ul>
+            <li>姓名：{props.name}</li>
+            <li>性别：{props.age + 1}</li>
+            <li>年龄：{props.sex}</li>
+        </ul>
+    )
+}
+
+ReactDOM.render(<Person name="Alcie" age={18} sex="女" />, document.getElementById("test"))
+```
+
+对于属性限制，限制只能写在函数的外部
+
+#### 2.2.3 refs
+
+组件内的标签可以定义`ref`属性来标识自己，相当于`id`属性，`ref`指定的值都会被收集到`refs`属性中
+
+1. 字符串形式的`ref`：不推荐使用
+
+   `render`
+
+   ```jsx
+   <input type="text" ref="input1" placeholder="点击按钮提示数据"/>
+   <button onClick={this.showData} >点我提示左侧的数据</button>
+   ```
+
+   方法
+
+   ```jsx
+   showData = () => {
+   	alert(this.refs.input1.value)
+   }
+   ```
+
+2. 回调函数形式的`ref`
+
+   `render`，`c`为当前节点对象
+
+   ```jsx
+   <input type="text" ref={(c) => {this.input1 = c}} placeholder="点击按钮提示数据"/>
+   <button onClick={this.showData} ref="btn">点我提示左侧的数据</button>&nbsp;
+   <input onBlur={this.showData2} type="text" ref={c => this.input2 = c} placeholder="失去焦点提示"/>
+   ```
+
+   方法
+
+   ```jsx
+   showData = () => {
+   	alert(this.input1.value)
+   }
+   
+   showData2 = () => {
+   	alert(this.input2.value)
+   }
+   ```
+
+   对于内敛的`ref`会在组件更新时调用两次，第一的参数为`null`，第二次的参数为当前节点，如果不想要调用两次，需要将方法绑定在类上
+
+   ```jsx
+   <div>
+       <h2>今天天气很{this.state.isHot ? "炎热" : "凉爽"}</h2>
+       <button onClick={this.showData}>点我获取天气</button>&nbsp;
+   </div>
+   ```
+
+   方法
+
+   ```jsx
+   state ={
+   	isHot: false
+   }
+   showData = (c) => {
+   	this.setState({isHot: !this.state.isHot})
+   }
+   ```
+
+3. `createRef`
+
+   首先创建容器
+
+   ```
+   myRef = React.createRef()
+   ```
+
+   `React.createRef`调用后可以返回一个容器，该容器可以存储被ref所标识的节点，一个容器只能存储一个节点
+
+   创建`jsx`结构
+
+   ```jsx
+   <div>
+       <input type="text" ref={this.myRef} placeholder="点击按钮提示数据"/>
+       <button onClick={this.showData} ref="btn">点我提示左侧的数据</button>&nbsp;
+   </div>
+   ```
+
+   创建方法
+
+   ```javascript
+   showData = () => {
+   	alert(this.myRef.current.value)
+   }
+   ```
+
+#### 2.2.4 三大属性与事件处理
+
+1. 通过`onXxx`属性来指定事件处理函数
+
+   `React`使用的是自定义(合成)事件，而不是使用原生的`DOM`事件----为了更好的兼容性
+
+   `React`中的事件是通过事件委托方式处理的(委托给组件最外层的元素)-----为了高效
+
+2. 当发生事件的`DOM`与要操作的`DOM`相同时，可以省略`ref`通过`event.target`得到发生事件的`DOM`元素对象
+
+   ```jsx
+   <input onBlur={this.showData} type="text" placeholder="失去焦点提示数据"/>
+   showData = (event) => {
+   	alert(event.target.value)
+   }
+   ```
+
+### 2.3 收集表单数据
+
+包含表单组件的分类
+
+1. 非受控组件
+
+   现用现取
+
+   ```jsx
+   class Login extends React.Component{
+   
+       handleSubmit = (event) => {
+       	event.prevenDefault() // 阻止表单提交
+       	const {username, password} = this
+       	alert(`用户名：${username.value}，密码：${password.value}`)
+       }
+   
+       render() {
+           return (
+               <form action="http://www.baidu.com" onSubmit={this.handleSubmit}>
+                   用户名：<input ref={c => this.username = c} type="text" name="username"/>
+                   密码：<input ref={c => this.password = c} type="password" name="password" />
+                   	<button>登录</button>
+               </form>
+           )
+       }
+   }
+   ```
+
+2. 受控组件：推荐使用
+
+   将需要的信息存储在`state`中
+
+   ```jsx
+   class Login extends React.Component{
+   
+       // 初始化状态
+       state = {
+           username: "",
+           password: ""
+       }
+   
+       handleSubmit = (event) => {
+           event.prevenDefault() // 阻止表单提交
+   
+           const {username, password} = this.state
+           alert(`用户名：${username}，密码：${password}`)
+       }
+   
+       // 保存用户名密码到状态中
+       saveFormData = (dataType) => {
+           return (event) => {
+               this.setState({[dataType]: event.target.value})
+           }
+       }
+       render() {
+           return (
+               <form onSubmit={this.handleSubmit}>
+                   用户名：<input onChange={this.saveFormData("username")} type="text" name="username"/>
+                   密码：<input onChange={this.saveFormData("password")} type="password" name="password" />
+                   <button>登录</button>
+               </form>
+           )
+       }
+   }
+   ```
+
+   对于`saveFormData`就是一个高阶函数
+
+   高阶函数：
+
+   - 若`A`函数，接受的参数是一个函数，那么`A`就可以成为高阶函数
+   - 若`A`函数，调用的返回值依然是一个函数，那么`A`就可以称之为高阶函数
+   - 常见的高阶函数：`Promise`、`setTimeout`、`arr.map()`
+
+   函数的柯里化：
+
+   - 通过函数调用继续返回函数的方式，实现多次接受参数最后统一处理的函数编码形式
+
+### 2.4 组件的生命周期
+
+组件分为挂载和卸载
+
+- 当组件被渲染到页面上时，称为挂载
+
+- 当组件被从页面中移除时，称为卸载
+
+  ```javascript
+  // 参数为指定的容器
+  ReactDOM.unmountComponentAtNode(document.getElementById("test"))
+  ```
+
+  
+
+#### 2.4.1 生命周期理解
+
+1. 组件从创建到死亡它会经历一些特定的阶段
+2. `React`中包含了一系列钩子函数(生命周期回调函数)，会在特定的时刻调用
+3. 我们定义组件时，会在特定的生命周期回调函数中做特定的工作
+
+#### 2.4.1 生命周期钩子
+
+<img src="React.assets/react生命周期(新).png" alt="react生命周期(新)" style="zoom:60%;" />
+
+
+

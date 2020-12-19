@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript" src="../js/16.x/react.development.js"></script>
+    <script type="text/javascript" src="../js/16.x/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/16.x/babel.min.js"></script>
+    <!-- 引入prop-types，用于对组件标签属性进行限制 -->
+    <script type="text/javascript" src="../js/16.x/prop-types.js"></script>
+
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+    <script type="text/babel">
+        class Person extends React.Component{
+
+            constructor(props) {
+
+                // 构造器是否接受props，是否传递给super，取决于：是否希望在构造函数中通过this访问props
+                super(props)
+                console.log(this.props)
+            }
+
+            // 对Person属性的类型进行限制
+            static propTypes = {
+                // string类型为字符串，isRequired必须有值
+                name: PropTypes.string.isRequired,
+                sex: PropTypes.string,
+                age: PropTypes.number,
+                speak: PropTypes.func
+            }  
+
+            // 设置属性的默认值
+            static defaultProps = {
+                sex: "待鉴定",
+                age: 18
+            }
+
+            // 初始化状态
+            state = {}
+
+            render() {
+                return (
+                    <ul>
+                        <li>姓名：{this.props.name}</li>
+                        <li>性别：{this.props.age + 1}</li>
+                        <li>年龄：{this.props.sex}</li>
+                    </ul>
+                )
+            }
+        }
+
+        // 第一种方式传参
+        ReactDOM.render(<Person name="Alcie" age={18} sex="女" speak={speak}/>, document.getElementById("test1"))
+        ReactDOM.render(<Person name="Tom" age={18} sex="男"/>, document.getElementById("test2"))
+
+        // 第二种方式传参
+        const p = {name: "老刘", age: 19}
+        ReactDOM.render(<Person {...p}/>, document.getElementById("test3"))
+
+        function speak() {
+            console.log("人会说话")
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命周期(旧)</title>
+</head>
+<body>
+    <script type="text/javascript" src="../js/16.x/react.development.js"></script>
+    <script type="text/javascript" src="../js/16.x/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/16.x/babel.min.js"></script>
+
+    <div id="test"></div>
+    <script type="text/babel">
+        // 点击按钮，数字加1
+        class Count extends React.Component{
+            // 构造器
+            constructor(props) {
+                console.log("Count-constructor")
+                super(props)
+                this.state = {
+                    num: props.num
+                }
+            }
+
+            // 组件将要挂载之前
+            componentWillMount() {
+                console.log("Count-componentWillMount")
+            }
+
+            // 组件挂载之后
+            componentDidMount() {
+                console.log("Count-componentDidMount")
+            }
+
+            // 组件卸载之前
+            componentWillUnmount() {
+                console.log("Count-componentWillUnmount")
+            }
+
+            // 控制组件是否更新
+            shouldComponentUpdate() {
+                console.log("Count-shouldComponentUpdate")
+                // 如果返回false，则组件不更新
+                return true
+            }
+
+            // 组件将要更新
+            componentWillUpdate() {
+                console.log("Count-componentWillUpdate")
+            }
+
+            // 组件更新之后
+            componentDidUpdate() {
+                console.log("Count-componentDidUpdate");
+            }
+            render() {
+                console.log("render")
+                return (
+                    <div>
+                        <h2>当前和为{this.state.num}</h2>
+                        <button onClick={this.sum}>点我加1</button>
+                        <button onClick={this.delete}>卸载组件</button>
+                    </div>
+                )
+            }
+
+            sum = () => {
+                this.setState({num: this.state.num + 1})
+            }
+            delete = () => {
+                ReactDOM.unmountComponentAtNode(document.getElementById("test"))
+            }
+        }
+
+        ReactDOM.render(<Count num={10}/>, document.getElementById("test"))
+    </script>
+</body>
+</html>
