@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript" src="../js/17.x/react.development.js"></script>
+    <script type="text/javascript" src="../js/17.x/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/17.x/babel.min.js"></script>
+
+    <div id="test"></div>
+    <script type="text/babel">
+        class Person extends React.Component{
+            state = {
+                persons: [
+                    {id: 1, name: "张三", age: 18},
+                    {id: 2, name: "李四", age: 20}
+                ]
+            }
+
+            add = () => {
+                this.setState({
+                    persons: [{id: this.state.persons.length + 1, name: "小王", age: 17}, ...this.state.persons]
+                })
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h2>展示人员信息使用index</h2>
+                        <button onClick={this.add}>添加一个小王</button>
+                        <ul>
+                            {
+                                // 新添加的数据破坏了顺序，则会造成原本不需要的更新的DOM更新
+                                this.state.persons.map((value, index) => {
+                                    return <li key={index}>
+                                                {value.name} ------ {value.age}
+                                                <input type="text" />
+                                           </li>
+                                })
+                            }
+                        </ul>
+
+                        <h2>展示人员信息使用id</h2>
+                        <button onClick={this.add}>添加一个小王</button>
+                        <ul>
+                            {
+                                this.state.persons.map((value) => {
+                                    return <li key={value.id}>
+                                                {value.name} ------ {value.age}
+                                                <input type="text" />
+                                           </li>
+                                })
+                            }
+                        </ul>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Person />, document.getElementById("test"))
+    </script>
+</body>
+</html>

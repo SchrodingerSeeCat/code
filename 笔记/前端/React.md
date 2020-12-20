@@ -655,7 +655,170 @@ ReactDOM.render(<Person name="Alcie" age={18} sex="女" />, document.getElementB
 
 #### 2.4.1 生命周期钩子
 
+1. 旧版本的钩子
+
+<img src="React.assets/react生命周期(旧).png" alt="react生命周期(旧)" style="zoom:80%;" />
+
+- 初始化阶段：由`ReactDOM.render()`触发
+
+  `constructor` 
+
+  `componentWillMount` 
+
+   :star:`render` 
+
+   :star:`compoonentDidMount`：一般用于初始化的操作，订阅消息，会接受`preProps`和`preState`作为参数，新版本中还会接受`getSnapshotBeforeUpdate`的快照值
+
+- 更新阶段：由组件内部`this.setState()`或者父组件重新`render`触发
+
+  `shouldConponentUpdate`：仅当返回值为`true`是，组件允许更新，如果是`forceUpdate()`将会跳过验证
+
+  `componentWillUpdate`
+
+  `render`
+
+  `componentDidUpdate`
+
+- 卸载组件：由`ReactDOM.unmountComponentAtNode:()`触发
+
+  :star:`componentWillUnmount`：一般用于收尾工作，取消订阅
+
+2. 新版本的钩子
+
 <img src="React.assets/react生命周期(新).png" alt="react生命周期(新)" style="zoom:60%;" />
 
+对于新版的钩子，由于以下三个钩子经常被误用，所以`componentWillMount`、`componentWillReceiveProps`、`componentWillUpdate`需要加上前缀`UNSAFE_`
 
+- 初始化阶段：由`ReactDOM.render`触发
 
+  `constructor`
+
+  `getDerivedStateFromProps`
+
+  `render`
+
+  `componentDidMount()`
+
+- 更新阶段
+
+  `getDerivedStateFromProps`
+
+  `shouldComponentUpdate`
+
+  `render`
+
+  `getSnapshotBeforeUpdate`
+
+  `componentDidUpdate`
+
+- 卸载组件：由`ReactDOM.umountComponentAtNode`触发
+
+  `componentWillUnmount`
+
+### 2.5 Diffing算法
+
+`Diffing`算法的最小力度是标签
+
+#### 2.5.1 key的作用
+
+1. 虚拟`DOM`中`key`的作用
+
+   - 简单来说：`key`是虚拟`DOM`对象的标识，在更新显示时`key`起着极其重要的作用
+
+   - 详细的说：当状态中的数据发生变化时，`react`会根据【新数据】生成【新的虚拟`DOM`】,随后`React`进行了【新虚拟`DOM`】与【旧虚拟`DOM`】的`diff`比较，比较规则如下：
+
+     旧虚拟`DOM`中找到了与新虚拟`DOM`相同的`key`
+
+     - 若虚拟`DOM`内容没变，直接使用之前的真实`DOM`
+     - 若虚拟`DOM`内容变了，则生成新的真实`DOM`，随后替换掉页面之前的真实`DOM`
+
+     旧虚拟`DOM`中未找到与新虚拟`DOM`相同的`key`，根据数据创建新的真实`DOM`，随后渲染到页面
+
+2. 用`index`作用作为`key`可能会引发的问题
+
+   - 若对数据进行：逆序添加、逆序删除等破坏顺序操作：会产生没有必要的真实`DOM`更新 ==> 界面效果没问题，但效率低
+   - 如果结构中还包含输入类的`DOM`：会产生错误`DOM`更新 ==> 界面有问题
+   - 如果不存在对数据的逆序添加、逆序删除等破坏顺序的操作，仅用于渲染列表用于展示，使用`index`作为`key`是没有问题的
+
+3. 开发中如何选择`key`
+
+   - 最好使用每条数据的唯一标识作为`key`、比如`id`、手机号、身份证号、学号等唯一值
+   - 如果确定只是简单的展示数据，用`idnex`也是可以的
+
+## 3. React脚手架
+
+### 3.1 使用create-react-app创建react应用
+
+#### 3.1.1 react脚手架
+
+1. `xxx`脚手架: 用来帮助程序员快速创建一个基于`xxx`库的模板项目
+
+   包含了所有需要的配置（语法检查、`jsx`编译、`devServer`…）
+
+   下载好了所有相关的依赖
+
+   可以直接运行一个简单效果
+
+2. `react`提供了一个用于创建react项目的脚手架库: `create-react-app`
+
+3. 项目的整体技术架构为:  `react` + `webpack`+ ``es6` + `eslint`
+
+4. 使用脚手架开发的项目的特点: 模块化, 组件化, 工程化
+
+#### 3.1.2 创建项目并启动
+
+1. 全局安装
+
+   ```bash
+   npm install -g create-react-app
+   ```
+
+2. 切换到想创项目的目录，使用命令
+
+   ```bash
+   create-react-app hello-react
+   ```
+
+3. 进入项目文件夹
+
+   ```bash
+   cd hello-react
+   ```
+
+4. 启动项目
+
+   ```bash
+   npm start
+   ```
+
+5. 常用命令
+
+   ```bash
+   npm start # 启动项目
+   npm build # 编译打包项目
+   npm test # 测试
+   npm eject # 显示配置文件
+   ```
+
+#### 3.1.3 react脚手架项目结构
+
+```
+public ---- 静态资源文件夹
+    favicon.icon ------ 网站页签图标
+    index.html -------- 主页面 --重要
+    logo192.png ------- logo图
+    logo512.png ------- logo图
+    manifest.json ----- 应用加壳的配置文件
+    robots.txt -------- 爬虫协议文件
+src ---- 源码文件夹
+    App.css -------- App组件的样式
+    App.js --------- App组件 --重要
+    App.test.js ---- 用于给App做测试
+    index.css ------ 样式
+    index.js ------- 入口文件 --重要
+    logo.svg ------- logo图
+    reportWebVitals.js
+    	--- 页面性能分析文件(需要web-vitals库的支持)
+    setupTests.js
+    	---- 组件单元测试的文件(需要jest-dom库的支持)
+```

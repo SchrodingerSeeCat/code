@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>生命周期(旧)</title>
+    <title>Document</title>
 </head>
 <body>
-    <script type="text/javascript" src="../js/16.x/react.development.js"></script>
-    <script type="text/javascript" src="../js/16.x/react-dom.development.js"></script>
-    <script type="text/javascript" src="../js/16.x/babel.min.js"></script>
+    <script type="text/javascript" src="../js/17.x/react.development.js"></script>
+    <script type="text/javascript" src="../js/17.x/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/17.x/babel.min.js"></script>
 
     <div id="test"></div>
     <script type="text/babel">
@@ -19,13 +19,15 @@
                 console.log("Count-constructor")
                 super(props)
                 this.state = {
-                    num: props.num
+                    num: 50
                 }
             }
 
-            // 组件将要挂载之前
-            componentWillMount() {
-                console.log("Count-componentWillMount")
+            // 获取派生状态，能够接受props和state作为参数
+            static getDerivedStateFromProps(props, state) {
+                console.log("Count-getDerivedStateFromProps", props, state)
+                // 返回的值能够影响props和state
+                return null
             }
 
             // 组件挂载之后
@@ -45,17 +47,9 @@
                 return true
             }
 
-            // 组件将要更新
-            componentWillUpdate() {
-                console.log("Count-componentWillUpdate")
-            }
-
-            // 组件更新之后
-            componentDidUpdate() {
-                console.log("Count-componentDidUpdate");
-            }
+            // 组件更新
             render() {
-                console.log("render")
+                console.log("Count-render")
                 return (
                     <div>
                         <h2>当前和为{this.state.num}</h2>
@@ -66,6 +60,16 @@
                 )
             }
 
+            // 更新之前获取快照
+            getSnapshotBeforeUpdate(preProps, preState) {
+                console.log("Count-getSnapshotBeforeUpdate")
+                return "Hello World"
+            }
+
+            // 组件更新之后
+            componentDidUpdate(preProps, preState, snapshot) {
+                console.log("Count-componentDidUpdate", preProps, preState, snapshot);
+            }
             // 加1的回调
             sum = () => {
                 this.setState({num: this.state.num + 1})
@@ -83,47 +87,7 @@
             }
         }
 
-        // 父组件
-        class A extends React.Component{
-            // 初始化状态
-            state = {
-                carName: "奔驰"
-            }
-
-            render() {
-                return (
-                    <div>
-                        <div>A: </div>
-                        <button onClick={this.chageCar}>换车</button>
-                        <B carName={this.state.carName}></B>
-                    </div>
-                )
-            }
-
-            chageCar = () => {
-                this.setState({carName: "奥拓"})
-            }
-        }
-
-        // 子组件
-        class B extends React.Component{
-
-            // 组件接受参数之前，第一次的参数不会被调用
-            componentWillReceiveProps() {
-                console.log("B-componentWillReceiveProps")
-            }
-            render() {
-                return (
-                    <div>
-                        B: 接受到的是{this.props.carName}
-                    </div>
-                )
-            }
-
-
-        }
-        // ReactDOM.render(<Count num={10}/>, document.getElementById("test"))
-        ReactDOM.render(<A />, document.getElementById("test"))
+        ReactDOM.render(<Count num={10}/>, document.getElementById("test"))
     </script>
 </body>
 </html>

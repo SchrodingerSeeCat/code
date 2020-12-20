@@ -6,9 +6,6 @@ public class Main {
         int[] price = {24, 2, 9, 10, 9};
         int[] capArr = {10, 3, 4, 5, 4};
         System.out.println(knapsackSR(4, 13, capArr, price));
-
-        int[][] cache = new int[6][14];
-        System.out.println(knapsackMR(4, 13, capArr, price, cache));
     }
     public static int knapsackSR(int end, int cap, int[] capArr, int[] price){
         if (cap < 0) return -1;
@@ -25,18 +22,5 @@ public class Main {
             return p2;
         }
         return p1 + price[end];
-    }
-
-    public static int knapsackMR(int end, int cap, int[] capArr, int[] price, int[][] cache){
-        if (cap < 0) return -1;
-        if (end <= 0) return 0;
-        if (cache[end][cap] != 0) {
-            return;
-        }
-        // 选择商品p的情况
-        int p1 = knapsackSR(end - 1, cap - capArr[end], capArr, price);
-        // 未选择商品p的情况
-        int p2 = knapsackSR(end - 1, cap, capArr, price);
-        cache[end][cap] = Math.max()
     }
 }
