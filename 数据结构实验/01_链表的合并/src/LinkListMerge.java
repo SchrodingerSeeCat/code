@@ -1,22 +1,39 @@
-public class LinkListMerge {
-	public static void main(String[] args) {
-		LinkList la = new LinkList();
-		la.add(1);
-		la.add(2);
-		la.add(3);
-		la.add(4);
-		la.add(5);
+import java.util.LinkedList;
+import java.util.Scanner;
 
-		LinkList lb = new LinkList();
-		lb.add(2);
-		lb.add(4);
-		lb.add(6);
-		lb.add(8);
-		lb.add(10);
-		System.out.println("la: " + la);
-		System.out.println("lb: " + lb);
-		LinkList lc = LinkList.MergeOrderLinkList(la, lb);
-		System.out.println("lc: " + lc);
+public class LinkListMerge {
+//	public static void main(String[] args) {
+//		Scanner reader = new Scanner(System.in);
+//
+//		// 读入a
+//		int n = reader.nextInt();
+//		LinkList la = new LinkList();
+//		for(int i = 0; i < n; i++) {
+//			la.add(reader.nextInt());
+//		}
+//
+//		// 读入b
+//		n = reader.nextInt();
+//		LinkList lb = new LinkList();
+//		for(int i = 0; i < n; i++) {
+//			lb.add(reader.nextInt());
+//		}
+//
+//		LinkList lc = LinkList.MergeOrderLinkList(la, lb);
+//		System.out.println(lc);
+//	}
+
+	public static void main(String[] args) {
+		Scanner reader = new Scanner(System.in);
+
+		// 读入a
+		int n = reader.nextInt();
+		LinkList l = new LinkList();
+		for(int i = 0; i < n; i++) {
+			l.add(reader.nextInt());
+		}
+		l.reverse();
+		System.out.println(l);
 	}
 }
 
@@ -68,13 +85,32 @@ class LinkList{
 	// toString
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
+		if(root == null) {
+			return null;
+		}
 		Node node = root;
-		while(node.next != null) {
-			sb.append(node.element).append("->");
+		while(node != null && node.next != null) {
+			sb.append(node.element).append(" ");
 			node = node.next;
 		}
 		sb.append(node.element);
 		return sb.toString();
+	}
+
+	public void reverse() {
+		if(root == null) return;
+
+		Node node = root;
+		Node prev = null;
+		Node next = null;
+		while(node != null && node.next != null) {
+			next = node.next;
+			node.next = prev;
+			prev = node;
+			node = next;
+		}
+		node.next = prev;
+		root = node;
 	}
 
 	// 添加节点
@@ -96,6 +132,9 @@ class LinkList{
 
 	// 查找节点的父节点
 	public Node node(Node node) {
+		if(node == root) {
+			return null;
+		}
 		Node parent = root;
 		while(parent.next != node) {
 			parent = parent.next;
@@ -110,6 +149,11 @@ class LinkList{
 		public Node(int element, Node next) {
 			this.element = element;
 			this.next = next;
+		}
+
+		@Override
+		public String toString() {
+			return element + " ";
 		}
 	}
 }

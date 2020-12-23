@@ -14,6 +14,7 @@
         <module>04_构造器绑定</module>
         <module>05_数据校验</module>
         <module>06_profile</module>
+        <module>07_java_spi</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -24,6 +25,14 @@
     </parent>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
+        </dependency>
+
         <!--web项目支持-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

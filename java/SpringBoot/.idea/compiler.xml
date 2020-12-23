@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -10,8 +11,12 @@
         <module name="01_HelloWorld" />
         <module name="06_profile" />
         <module name="04_构造器绑定" />
-        <module name="03_属性绑定" />
         <module name="05_数据校验" />
+        <module name="03_属性绑定" />
+        <module name="ali-pay" />
+        <module name="wx-pay" />
+        <module name="service-common" />
+        <module name="main-test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11" />
@@ -24,7 +29,12 @@
       <module name="04_构造器绑定" options="-parameters" />
       <module name="05_数据校验" options="-parameters" />
       <module name="06_profile" options="-parameters" />
+      <module name="07_java_spi" options="-parameters" />
       <module name="SpringBoot" options="-parameters" />
+      <module name="ali-pay" options="-parameters" />
+      <module name="main-test" options="-parameters" />
+      <module name="service-common" options="-parameters" />
+      <module name="wx-pay" options="-parameters" />
     </option>
   </component>
 </project>

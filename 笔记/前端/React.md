@@ -747,9 +747,7 @@ ReactDOM.render(<Person name="Alcie" age={18} sex="女" />, document.getElementB
 
 ## 3. React脚手架
 
-### 3.1 使用create-react-app创建react应用
-
-#### 3.1.1 react脚手架
+### 3.1 react脚手架
 
 1. `xxx`脚手架: 用来帮助程序员快速创建一个基于`xxx`库的模板项目
 
@@ -765,7 +763,7 @@ ReactDOM.render(<Person name="Alcie" age={18} sex="女" />, document.getElementB
 
 4. 使用脚手架开发的项目的特点: 模块化, 组件化, 工程化
 
-#### 3.1.2 创建项目并启动
+### 3.2 创建项目并启动
 
 1. 全局安装
 
@@ -800,7 +798,7 @@ ReactDOM.render(<Person name="Alcie" age={18} sex="女" />, document.getElementB
    npm eject # 显示配置文件
    ```
 
-#### 3.1.3 react脚手架项目结构
+### 3.3 react脚手架项目结构
 
 ```
 public ---- 静态资源文件夹
@@ -822,3 +820,148 @@ src ---- 源码文件夹
     setupTests.js
     	---- 组件单元测试的文件(需要jest-dom库的支持)
 ```
+
+### 3.4 功能界面的组件化编码流程
+
+1. 拆分组件：拆分界面抽组件
+
+2. 实现静态组件：使用组件实现静态页面效果
+
+3. 实现动态组件
+
+   - 动态显示初始化数据
+
+     数据类型
+
+     数据名称
+
+     保存在哪个组价
+
+   - 交互(从绑定事件监听开始)
+
+### 3.5 常用库
+
+1. 唯一id
+
+   安装
+
+   ```bash
+   npm i uuid
+   ```
+
+   使用
+
+   ```js
+   import {nanoid} from 'nanoid'
+   
+   // 返回一个字符串类型的id
+   id = nanoid()
+   ```
+
+2. 类型限制
+
+   安装
+
+   ```bash
+   npm i prop-types
+   ```
+
+   使用
+
+   ```js
+   import PropTypes from 'prop-types'
+   
+   static propTypes = {
+       id: PropTypes.string.isRequired,
+       name: PropTypes.string.isRequired,
+       done: PropTypes.bool.isRequired,
+       updateTodo: PropTypes.func.isRequired
+   }
+   ```
+
+
+### 3.6 状态提升
+
+如果对于A、B两兄弟组件，状态数据需要共享，那就需要把他们的状态统一放到其父组件中，通过父组件向其传递状态
+
+```mermaid
+graph TD
+父组件 --> 子组件A
+父组件 --> 子组件B
+```
+
+1. 父组件向子组件传递数据，通过`props`
+
+```mermaid
+graph TD
+父组件 --> |props|子组件
+```
+
+2. 子组件向父组件传递数据
+
+   如果是子组件向父组件传递数据，就需要在父组件创建函数，然后将其传递给子组件，子组件进行调用时，将数据传递给父组件
+
+   ```mermaid
+   graph TD
+   子组件 --> |函数|父组件
+   ```
+
+## 4. React ajax
+
+### 4.1 理解
+
+#### 4.1.1 前置说明
+
+1. `React`本身只关注界面，并不包含发送`ajax`请求的代码
+2. 前端应用需要通过`ajax`请求与后台进行交互(`json`数据)
+3. `react`应用中需要集成第三方`ajax`库(或自己封装)
+
+#### 4.1.2 常用的`ajax`请求库
+
+1. `jQuery`比较重，如果需要另外引用不建议使用
+2. `axios`轻量级，建议使用
+   - 封装`XmlHttpRequest`对象的`ajax`
+   - `promis`风格
+   - 可以用在浏览器端和`node`服务器端
+
+### 4.2 axios
+
+#### 4.2.1 安装使用
+
+1. 安装
+
+   ```
+   npm add axios
+   ```
+
+2. 使用
+
+   ```jsx
+   import React, { Component } from 'react'
+   import axios from 'axios'
+   
+   export default class App extends Component {
+       getStudentData = () => {
+           axios.get('www.baidu.com')
+           .then(
+               res => {
+                   console.log(res.data)
+               },
+               error => {
+                   console.log(error)
+               }
+           )
+           
+       }
+   
+       render() {
+           return (
+               <div>
+                   <button onClick={this.getStudentData}>点我获取数据</button>
+               </div>
+           )
+       }
+   }
+   ```
+
+   

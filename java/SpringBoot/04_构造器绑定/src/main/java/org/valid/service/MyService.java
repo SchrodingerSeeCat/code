@@ -1,4 +1,4 @@
-package com.valid.service;
+package org.valid.service;
 
 import com.valid.model.AnotherComponent;
 import org.springframework.boot.context.properties.ConfigurationProperties;
