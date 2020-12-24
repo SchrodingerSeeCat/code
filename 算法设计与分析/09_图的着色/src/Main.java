@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.function.Consumer;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,7 +12,7 @@ public class Main {
             map.setEdge(reader.nextInt() - 1, reader.nextInt() - 1);
         }
 
-        map.depthFirstSearch();
+        map.toColor();
     }
 }
 class Map{
@@ -23,7 +22,7 @@ class Map{
     private int k;
     // 颜色的数量
     private int m;
-    // 临界矩阵存储边
+    // 邻接矩阵存储边
     private boolean[][] matrix;
 
     public Map(int n, int k, int m) {
@@ -36,59 +35,36 @@ class Map{
     // 设置边
     public void setEdge(int i, int j) {
         matrix[i][j] = true;
+        matrix[j][i] = true;
     }
 
-
+    // 着色
     public void toColor() {
-        boolean[] visited = new boolean[n];
-
+        // 标识图的染色情况
         int[] color = new int[n];
-
-        toColor(0, visited, color);
+        // 只遍历1/m的情况
+        int sum = toColor(0, color, 0);
+        System.out.println(sum * m);
     }
-    private void toColor(int v, boolean[] visited, int[] color) {
-        // 拿到某个节点，首先输出
+    private int toColor(int v, int[] color, int sum) {
+        if(v >= n) return ++sum;
 
-
-        // 将其的标志位设置为true
-        visited[v] = true;
-
-        for(int i  = firstColor(v, visited, color); i >= 0; i = firstColor(v, visited, color)) {
-            toColor(i, visited, color);
+        for(int i = 1; i <=m; i++) {
+            color[v] = i;
+            if(color(v, color)) {
+                sum = toColor(v+1, color, sum);
+            } else {
+                color[v] = 0;
+            }
         }
+        return sum;
     }
-    private int firstColor(int v, boolean[] visited, int[] color) {
+
+    // 检查顶点v的颜色可用
+    private boolean color(int v, int[] color) {
         for(int i = 0; i < n; i++) {
-            // 找第一个未被访问过的节点
-            if(matrix[v][i] && !visited[i]) return i;
+            if(matrix[v][i] && color[i] == color[v]) return false;
         }
-        return -1;
-    }
-
-
-    public void depthFirstSearch() {
-        boolean[] visited = new boolean[n];
-        depthFirstSearch(0, visited, e -> {
-            System.out.print(e + 1 + " ");
-        });
-    }
-
-    private void depthFirstSearch(int v, boolean[] visited, Consumer<Integer> con) {
-        // 拿到某个节点，首先输出
-        con.accept(v);
-        // 将其的标志位设置为true
-        visited[v] = true;
-
-        for(int i  = first(v, visited); i >= 0; i = first(v, visited)) {
-            depthFirstSearch(i, visited, con);
-        }
-    }
-
-    private int first(int v, boolean[] visited) {
-        for(int i = 0; i < n; i++) {
-            // 找第一个未被访问过的节点
-            if(matrix[v][i] && !visited[i]) return i;
-        }
-        return -1;
+        return true;
     }
 }
