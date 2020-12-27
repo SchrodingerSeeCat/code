@@ -964,4 +964,116 @@ graph TD
    }
    ```
 
+
+### 4.3 配置代理解决跨域
+
+#### 4.3.1 方法一
+
+> 在package.json中追加如下配置
+
+```json
+"proxy":"http://localhost:8080"
+```
+
+说明：
+
+1. 优点：配置简单，前端请求资源时可以不加任何前缀。
+2. 缺点：不能配置多个代理。
+3. 工作方式：上述方式配置代理，当请求了3000不存在的资源时，那么该请求会转发给8080（优先匹配前端资源）
+
+#### 4.3.2 方法二
+
+1. 第一步：创建代理配置文件
+
+   ```
+   在src下创建配置文件：src/setupProxy.js
+   ```
+
+2. 编写`setupProxy.js`配置具体代理规则：
+
+   ```js
+   const proxy = require('http-proxy-middleware')
+   
+   module.exports = function(app) {
+     app.use(
+       proxy('/api1', {  //api1是需要转发的请求(所有带有/api1前缀的请求都会转发给8080)
+         target: 'http://localhost:8080', //配置转发目标地址(能返回数据的服务器地址)
+         changeOrigin: true, //控制服务器接收到的请求头中host字段的值
+         /*
+         	changeOrigin设置为true时，服务器收到的请求头中的host为：localhost:8080
+         	changeOrigin设置为false时，服务器收到的请求头中的host为：localhost:8080
+         	changeOrigin默认值为false，但我们一般将changeOrigin值设为true
+         */
+         pathRewrite: {'^/api1': ''} //去除请求前缀，保证交给后台服务器的是正常请求地址(必须配置)
+       }),
+       proxy('/api2', { 
+         target: 'http://localhost:8080',
+         changeOrigin: true,
+         pathRewrite: {'^/api2': ''}
+       })
+     )
+   }
+   ```
+
+说明：
+
+1. 优点：可以配置多个代理，可以灵活的控制请求是否走代理。
+2. 缺点：配置繁琐，前端请求资源时必须加前缀。
+
+### 4.4 消息订阅-发布机制
+
+用于解决兄弟组件传参的问题，当然也适用于所有的组件的传参
+
+1. 工具库`PubSubJs`
+
+2. 安装
+
+   ```bash
+   npm install pubsub-js
+   ```
+
+3. 使用
+
+   ```js
+   import PubSub from 'pubsub-js' //引入
+   PubSub.subscribe('delete', function(data){ }); //订阅
+   PubSub.publish('delete', data) //发布消息
+   ```
+
+假设有A组件想要向B组件发送数据，A组件与B组件为兄弟组件
+
+```mermaid
+graph LR
+A --> |发送数据|B
+```
+
+1. 在`B`中订阅消息
+
+   ```js
+   import PubSub from 'pubsub-js'
+   
+   // 订阅消息并保存token
+   this.token = PubSub.subscribe('messageName', (msg, data) => {
+   	console.log('收到数据')
+   })
+   ```
+
+2. 在`A`中发布消息
+
+   ```js
+   import PubSub from 'pubsub-js'
+   
+   // 发布消息
+   PubSub.publish('messageName', {data: 123})
+   ```
+
+3. 在`B`组件卸载之前应该取消订阅
+
+   ```js
+   componentWillUnmount() {
+       // 取消消息订阅
+       PubSub.unsubscribe(this.token)
+   }
+   ```
+
    
