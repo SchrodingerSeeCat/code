@@ -951,7 +951,6 @@ graph TD
                    console.log(error)
                }
            )
-           
        }
    
        render() {
@@ -1076,4 +1075,168 @@ A --> |发送数据|B
    }
    ```
 
+
+### 4.5 fetch
+
+属于`javascript`的内置库，与`xhr`的内置对象
+
+#### 4.5.1 文档
+
+1. https://github.github.io/fetch/
+
+2. https://segmentfault.com/a/1190000003810652
+
+#### 4.5.2 特点
+
+1. `fetch`: 原生函数，不再使用`XmlHttpRequest`对象提交`ajax`请求
+
+2. 老版本浏览器可能不支持
+
+#### 4.5.3 相关API
+
+1. `GET`请求
+
+   ```js
+   fetch(url).then(function(response) {
+       return response.json()
+   }).then(function(data) {
+       console.log(data)
+   }).catch(function(e) {
+       console.log(e)
+   });
+   ```
+
+2. `POST`请求
+
+   ```js
+   fetch(url, {
+       method: "POST",
+       body: JSON.stringify(data),
+   }).then(function(data) {
+   	console.log(data)
+   }).catch(function(e) {
+   	console.log(e)
+   })
+   ```
+
+
+## 5. React路由
+
+### 5.1 相关理解
+
+#### 5.1.1 SPA的理解
+
+1. 单页`Web`应用`single page web application SPA`
+2. 整个应用只有一个完整的页面
+3. 点击页面中的链接不会刷新页面，只会做页面的局部更新
+4. 数据都需要通过`ajax`请求获取，并在前端异步展现
+
+#### 5.1.2 路由的理解
+
+1. 什么是路由
+
+   一个路由就是一个映射关系(`key: value`)
+
+   `key`为路径，`value`可能是`function`或者`component`
+
+2. 路由分类
+
+   后端路由
+
+   - 理解：`value`是`function`，用来处理客户端提交的请求
    
+   - 注册路由：`router.get(path, function(req, res))`
+   
+   - 工作过程中：当`node`接受到一个请求时，根据请求路径找到匹配的路由，调用路由中的函数来处理请求，返回响应数据
+   
+   前端路由：
+   
+   - 浏览器端路由，`value`是`component`，用于战术页面内容
+   - 注册路由：`<Route path="/test" component={Test}>`
+   - 工作过程：当浏览器的`path`变为`/test`，当前路由组件就会变为`Test`组件
+
+#### 5.1.3 react-router
+
+1. `react`的一个插件库
+2. 专业用来实现一个`SPA`应用
+3. 基于`react`的项目基本都会用到此库
+
+### 5.2 react-router-dom相关API
+
+安装
+
+```
+npm install react-router-dom
+```
+
+
+
+#### 5.2.1 内置组件
+
+1. `BrowserRouter`：`h5`特有
+2. `HashRouter`
+3. `Route`
+4. `Redirect`
+5. `Link`
+6. `NavLink`
+7. `Switch`
+
+#### 5.2.2 其他
+
+1. `history`对象
+2. `match`对象
+3. `withRouter`函数
+
+#### 5.2.3 快速入门
+
+1. 明确好界面中的导航区、展示区
+2. 导航区的a标签Link标签
+3. `<Link to='/xxx> Demo </Link>'`
+4. 展示区写`Route`标签路径的匹配`<Route path='/xxx' component={Demo} />`
+5. `<App />`的最外层包裹一个`<BrowserRouter>`或`<HashRouter>`
+
+```jsx
+import {Link, BrowserRouter, Route} from "react-router-dom"
+
+
+<BrowserRouter>
+    <div>
+        {/* react路由链接切换组件 ---编写路由链接 */}
+        <Link className="list-group-item" to="/about">About</Link>
+        <Link className="list-group-item" to="/home">Home</Link>
+    </div>
+    <div className="panel-body">
+    {/* 注册路由 */}
+        <Route path="/about" component={About}/>
+        <Route path="/home" component={Home}/>
+    </div>
+</BrowserRouter>
+```
+
+#### 5.2.4 路由组件和一般组件
+
+路由组件：注册路由中引用的组件，一般放在`pages`文件夹下
+
+路由组件在渲染时会接受到的`props`
+
+```json
+{
+  "history": {
+    "push": "ƒ push() {}",
+    "replace": "ƒ replace() {}",
+    "go": "ƒ go() {}",
+    "goBack": "ƒ goBack() {}",
+    "goForward": "ƒ goForward() {}",
+  },
+  "location": {
+    "pathname": "/home",
+    "search": "",
+  },
+  "match": {
+    "path": "/home",
+    "url": "/home",
+    "params": "{}"
+  }
+}
+```
+
