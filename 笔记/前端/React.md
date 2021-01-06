@@ -1178,7 +1178,7 @@ npm install react-router-dom
 3. `Route`
 4. `Redirect`
 5. `Link`
-6. `NavLink`
+6. `NavLink`：相比`Link`有一个`activeClassName`属性，即当`NavLink`被点击时会追加一个类名，比如说让标签高亮的样式类名
 7. `Switch`
 
 #### 5.2.2 其他
@@ -1187,7 +1187,7 @@ npm install react-router-dom
 2. `match`对象
 3. `withRouter`函数
 
-#### 5.2.3 快速入门
+### 5.3 快速入门
 
 1. 明确好界面中的导航区、展示区
 2. 导航区的a标签Link标签
@@ -1213,7 +1213,7 @@ import {Link, BrowserRouter, Route} from "react-router-dom"
 </BrowserRouter>
 ```
 
-#### 5.2.4 路由组件和一般组件
+#### 5.3.1 路由组件和一般组件
 
 路由组件：注册路由中引用的组件，一般放在`pages`文件夹下
 
@@ -1239,4 +1239,339 @@ import {Link, BrowserRouter, Route} from "react-router-dom"
   }
 }
 ```
+
+#### 5.3.2 标签体
+
+对于组件的标签体被收集在`children`属性中
+
+#### 5.3.3 解决样式丢失
+
+当路由的层级为多级时，此时去刷新页面样式就会丢失，解决办法如下
+
+1. 修改样式引入的链接
+
+   ```html
+   <link rel="stylesheet" href="./css/bootstrap.css">
+   
+   <!-- 删除点 -->
+   <link rel="stylesheet" href="/css/bootstrap.css">
+   ```
+
+2. 修改样式引入链接
+
+   ```HTML
+   <link rel="stylesheet" href="./css/bootstrap.css">
+   
+   <!-- 将点修改为%PUBLIC_URL% -->
+   <link rel="stylesheet" href="%PUBLIC_URL%/css/bootstrap.css">
+   ```
+
+3. 修改`BrowserRouter`为`HashRouter`
+
+#### 5.3.4 路由匹配
+
+**模糊匹配**
+
+可以匹配成功
+
+```html
+<NavLink to="/home/test">Home</NavLink>
+<Route path="/home" component={Home}/>
+```
+
+不能匹配成功
+
+```html
+<NavLink to="/home/test">Home</NavLink>
+<Route path="/home/test" component={Home}/>
+```
+
+**精准匹配**
+
+```
+<Route path="/home/test" component={Home}/>
+```
+
+**总结**
+
+1. 模式使用的是模糊匹配
+2. 开启严格匹配使用`exact={true}`
+3. 严格匹配不要随便开启，需要时开启。有时开启会导致无法继续匹配二级路由
+
+### 5.4 路由组件的使用
+
+路由组件包括两种，`react-dom-router`提供的组件和`Route`属性中`component`指定的组件
+
+#### 5.4.1 NavLink
+
+1. `NavLink`可以实现路由链接的高亮，通过`activeClassName`指定样式名
+2. 标签体的内容是一个特殊的标签属性
+3. 通过`this.props.children`可以获取标签体内容
+
+#### 5.4.2  Switch
+
+被`Switch`包裹的`Route`可以实现只匹配第一个成功的路由
+
+```jsx
+<Switch>
+    {/* 注册路由 */}
+    <Route path="/about" component={About}/>
+    <Route path="/home" component={Home}/>
+    <Route path="/home" component={Test}/>
+</Switch>
+```
+
+#### 5.4.3 Redirect
+
+指定路由不匹配时，所要使用的路由
+
+```html
+<Route path="/about" component={About}/>
+<Route path="/home" component={Home}/>
+<Redirect to="/about" />
+```
+
+### 5.5 二级路由和向路由组件传递参数
+
+#### 5.5.1 二级路由
+
+路由的匹配都是从第一个注册的路由开始，因为路由的匹配都是模糊匹配，所以二级路由一定要带上父路由的前缀
+
+#### 5.5.2 路由组件传递参数
+
+1. `params`传递参数
+
+   路由路径使用`:xxx`来传递参数
+
+   ```jsx
+   render() {
+       return (
+           <div>
+               <ul>
+               {
+                   this.state.messageArr.map((msg) => {
+                   return <li key={msg.id}>
+                   	{/* 向路由组件传递params参数 */}
+                   	<Link to={`/home/message/detail/${msg.id}/${msg.title}`} href="xxx">{msg.title}</Link>&nbsp;&nbsp;
+                   </li>
+                   })
+               }
+               </ul>
+               <hr/>
+               <Switch>
+                   {/* 声明接受params参数 */}
+               	<Route path="/home/message/detail/:id/:title" component={Detail} />
+               </Switch>
+           </div>
+       )
+   }
+   ```
+   
+    在路由组件的`this.props.match.params`中会接到传递的参数
+   
+   ```js
+   const {id, title} = this.props.match.params
+   ```
+2. `search`参数
+
+   `search`参数就相当于`query`参数，以`?`开始，`&`符分割
+
+   ```jsx
+   <Link to={`/home/message/detail/?id=${msg.id}&title=${msg.title}`}>{msg.title}</Link>
+   
+   {/* search参数无需声明接受 */}
+   <Route path="/home/message/detail" component={Detail} />
+   ```
+
+   传递的参数被保存为`this.props.location.search`字符串，使用`querystring`库的`parse`解析为对象
+
+   ```js
+   import qs from 'querystring'
+   
+   const {id, title} = qs.parse(this.props.location.search.slice(1))
+   ```
+
+3. `state`参数
+
+   `state`参数不会展示在地址栏中
+
+   ```jsx
+   <Link to={{pathname: '/home/message/detail', state: {id: msg.id, title: msg.title}}}>{msg.title}</Link>
+   
+   {/* state参数无需声明接受 */}
+   <Route path="/home/message/detail" component={Detail} />
+   ```
+
+   传递的参数会被保存到`this.props.location.state`中
+
+   ```js
+   const {id, title} = this.props.location.state
+   ```
+
+
+### 5.6 push与replace
+
+`react-router-dom`利用的是浏览器的`history`的`push`与`replace`默认为`push`，`Link`中提供属性`replace={true}`来进行切换到`replace`模式
+
+```jsx
+<Link replace={true} to='xxx'>xxx</Link>
+```
+
+### 5.7 编程式路由导航
+
+#### 5.7.1 push与replace导航
+
+1. `replace`手动导航
+
+   ```jsx
+   <button onClick={this.replaceShow(msg.id, msg.title)}>replace查看</button>
+   replaceShow = (id, title) => {
+       // 实现跳转到Detail组件，且为replace跳转
+       return () => {
+           this.props.history.replace(`/home/message/detail/${id}/${title}`)
+       }
+   }
+   ```
+
+2. `push`手动导航
+
+   ```jsx
+   <button onClick={this.pushShow(msg.id, msg.title)}>push查看</button>
+   pushShow = (id, title) => {
+       // 实现跳转到Detail组件，且为push跳转
+       return () => {
+       	this.props.history.push(`/home/message/detail/${id}/${title}`)
+       }
+   }
+   ```
+
+对于`params`和`search`不同的参数传递，使用不同的路径即可，`state`参数需要在`replace`或`push`的第二个参数中传递
+
+```jsx
+<button onClick={this.pushShow(msg.id, msg.title)}>push查看</button>
+pushShow = (id, title) => {
+    // push跳转，携带params参数
+    return () => {
+    	this.props.history.push(`/home/message/detail`, {id: id, title: title})
+    }
+}
+```
+
+#### 5.7.2 goBack和goForward
+
+1. `goBack`回退
+
+   ```jsx
+   <button onClick={this.back}>回退</button>
+   back = () => {
+   	this.props.history.goBack()
+   }
+   ```
+
+2. `goForward`前进
+
+   ```jsx
+   <button onClick={this.forward}>前进</button>
+   forward = () => {
+   	this.props.history.goForward()
+   }
+   ```
+
+3. `go`根据传递的参数的值来进行回退或前进
+
+   ```jsx
+   <button onClick={this.go}>go</button>
+   go =() => {
+       // 回退两步
+   	this.props.history.go(-2)
+   }
+   ```
+
+#### 5.7.3 withRouter
+
+对于路由组件`this.props`上的属性`history`、`location`、`match`属性只能在路由组件上使用，因为一般组件没有这些属性
+
+`withRouter`是`react-dom-router`提供的一个函数，通过`withRouter`包裹的一般组件称为路由组件
+
+```jsx
+import {withRouter} from 'react-router-dom'
+
+class Header extends Component {
+
+    back = () => {
+        this.props.history.goBack()
+    }
+    
+    render() {
+        return (
+            <div className="page-header">
+                <button onClick={this.back}>回退</button>
+            </div>
+        )
+    }
+}
+export default withRouter(Header)
+```
+
+### 5.8 history与hash
+
+`hsitory`与`hash`的区别即是`BrowserRouter`与`HashRouter`的区别
+
+1. 底层原理不一样
+
+   `BrowserRouter`使用的是`H5`的`hsiroty API`，不兼容`IE9`及以下的版本，`HashRouter`使用的是`URL`的哈希值
+
+2. `path`表现形式不一致
+
+   `BrowserRouter`的路径中没有`#`，例如：`localhost:3000/demo/test`
+
+   `HashRouter`的路径包含`#`，例如：`localhost:3000/#/demo/test`
+
+3. 刷新后对路由`state`参数的影响
+
+   `BrowserRouter`没有任何影响，因为`state`保存在`history`对象中
+
+   `HashRouter`刷新后会导致路由`state`参数的丢失
+
+4. `HashRouter`可以用于解决一些路径错误的问题，例如：样式丢失
+
+## 6. ant-design组件
+
+国内蚂蚁金服的开源`react`组件库
+
+### 6.1 基本使用
+
+1. 安装
+
+   ```
+   npm install antd
+   ```
+
+2. 使用
+
+   ```jsx
+   import React, { Component } from 'react'
+   
+   // 导入需要的组件
+   import { Button } from 'antd'
+   import { WechatOutlined } from '@ant-design/icons'
+   
+   // 导入组件的样式
+   import 'antd/dist/antd.css'
+   export default class App extends Component {
+       render() {
+           return (
+               <div>
+                   // 按钮组件
+                   <Button type="primary">Primary Button</Button>
+   
+                   // 图标
+                   <WechatOutlined />
+               </div>
+           )
+       }
+   }
+   ```
+
+   
 

@@ -1,0 +1,25 @@
+import React, { Component } from 'react'
+
+const deatilDate = [
+    {id: '01', content: "你好，中国"},
+    {id: '02', content: "你好，世界"},
+    {id: '03', content: "你好，地球"}
+]
+
+export default class Detail extends Component {
+    render() {
+        const {id, title} = this.props.match.params
+
+        // 查找对应的消息体
+        const findResult = deatilDate.find((detail) => {
+            return detail.id === id
+        }) 
+        return (
+            <ul>
+                <li>ID: {id}</li>
+                <li>TITLE: {title}</li>
+                <li>CONTENT: {findResult.content}</li>
+            </ul>
+        )
+    }
+}
