@@ -2139,7 +2139,7 @@ WHERE
   语法
 
   ```mysql
-  alter table 表名 add|drop|modify|change [column] 列名 [列的类型 约束]
+  ALTER TABLE 表名 add|drop|modify|change [column] 列名 [列的类型 约束]
   ```
 
   修改列名：修改`book`表中`publish_date` 为 `publishdate`

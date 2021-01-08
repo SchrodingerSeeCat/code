@@ -1078,7 +1078,7 @@ A --> |发送数据|B
 
 ### 4.5 fetch
 
-属于`javascript`的内置库，与`xhr`的内置对象
+属于`javascript`的内置库，与`xhr`同级的内置对象
 
 #### 4.5.1 文档
 
@@ -1168,8 +1168,6 @@ A --> |发送数据|B
 ```
 npm install react-router-dom
 ```
-
-
 
 #### 5.2.1 内置组件
 
@@ -1562,16 +1560,385 @@ export default withRouter(Header)
        render() {
            return (
                <div>
-                   // 按钮组件
                    <Button type="primary">Primary Button</Button>
    
-                   // 图标
                    <WechatOutlined />
                </div>
            )
        }
    }
    ```
-
    
 
+### 6.2 按需引入样式
+
+1. 安装`react-app-rewired`和`customize-cra`
+
+   ```
+   npm install react-app-rewired customize-cra
+   ```
+
+2. 安装`babel-plugin-import`
+
+   ```
+   npm install babel-plugin-import
+   ```
+
+3. 修改`package.json`
+
+   ```json
+   "scripts": {
+   -   "start": "react-scripts start",
+   -   "build": "react-scripts build",
+   -   "test": "react-scripts test",
+   +   "start": "craco start",
+   +   "build": "craco build",
+   +   "test": "craco test",
+   }
+   ```
+
+4. 根目录新建`config-overrides.js`
+
+   ```js
+   const { override, fixBabelImports } = require('customize-cra');
+   
+   module.exports = override(
+   	fixBabelImports('import', {
+   		libraryName: 'antd',
+   		libraryDirectory: 'es',
+   		style: 'css',
+   	}),
+   );
+   ```
+
+5. 配置完成之后，组件不需要再引入样式
+
+### 6.3 自定义样式
+
+1. 由于`antd`官方使用`less`编写样式，要想修改样式需要安装`less`和`less-loader`
+
+   ```
+   npm install less less-loader
+   ```
+
+2. 修改`config-overrides.js`配置文件
+
+   ```js
+   const { override, fixBabelImports, addLessLoader  } = require('customize-cra');
+   
+   module.exports = override(
+   	fixBabelImports('import', {
+   		libraryName: 'antd',
+   		libraryDirectory: 'es',
+   		style: true,
+   	}),
+   	addLessLoader({
+   		lessOptions: {
+   			javascriptEnabled: true, // 允许使用js修改主题颜色
+   			modifyVars: { '@primary-color': 'orange' }, // 修改主题的颜色
+   		}
+   	}),
+   );
+   ```
+
+## 7. redux
+
+### 7.1 redux理解
+
+1. `redux`是一个专门用于做状态管理的`JS`库(不是`react`插件库)
+2. 它可以用在`react`，`angular`，`vue`等项目中，但基本与`react`配合使用
+3. 作用：集中式管理`react`应用中多个组件共享的状态
+
+#### 7.1.1 使用redux的情况
+
+1. 某个组件的状态，需要让其他组件可以随时拿到
+2. 一个组件需要改变另一个组件的状态
+3. 总体原则：能不用就不用，如果不用比较吃力才考虑使用
+
+#### 7.1.2 redux工作流程
+
+<img src="React.assets/image-20210107212920419.png" alt="image-20210107212920419" style="zoom:50%;" />
+
+### 7.2 redux的三个核心概念
+
+#### 7.2.1 action
+
+1. 动作的对象
+
+2. 包含2个属性
+
+   - `type`：标识属性，值为字符串，唯一，必要属性
+   - `data`：数据属性，值类型任意，可选属性
+
+3. 例子
+
+   ```js
+   {type: 'ADD_STUDENT', data: {name: 'tom', age: 18}}
+   ```
+
+#### 7.2.2 reducer
+
+1. 用于初始化状态、加工状态
+2. 加工时，根据旧的`state`和`action`，产生新的`state`的纯函数
+
+#### 7.2.3 store
+
+1. 将`state`、`action`、`reducer`联系在一起的对象
+
+2. 如何得到此对象
+
+   安装
+
+   ```
+   npm install redux
+   ```
+
+   使用
+
+   ```jsx
+   import {createStore} from 'redux'
+   import reducer from './reducers'
+   const store = createStore(reducer)
+   ```
+
+3. 此对象的功能?
+
+   - `getState()`: 得到`state`
+
+   - `dispatch(action)`: 分发`action`, 触发`reducer`调用, 产生新的`state`
+
+   - `subscribe(listener)`: 注册监听, 当产生了新的`state`时, 自动调用
+
+### 7.3 基本使用
+
+#### 7.3.1 redux精简版
+
+1. 去除`Count`组件的自身状态
+
+2. `src`下建立
+
+   ```
+   - src
+   	- redux
+   		- store.js
+   		- count_reducer.js
+   ```
+
+3. `store.js`
+
+   1. 引入`redux`中的`createStore`函数，创建一个`store`
+
+      ```js
+      import { createStore } from 'redux'
+      import countReducer from './count_reducer'
+      ```
+
+   2. `createStore`调用时要传入一个为其服务的`reducer`，并将返回的结果暴露出去
+
+      ```js
+      export default createStore(countReducer)
+      ```
+
+4. `count_reducer.js`
+
+   1. `reducer`的本质是一个函数，接受`preState`、`action`返回加工后的状态
+
+   2. `reducer`有两个作用：初始化状态，加工状态
+
+   3. `reducer`被第一次调用时，是`store`自动触发的，传递的`preState`是`undefinded`
+
+   4. 完整代码
+
+      ```js
+      export default function countReducer(preState, action) {
+      
+          // 从action对象中获取：type, data
+          const {type, data} = action
+      
+          // 根据type决定如何加工数据
+          switch(type) {
+              // 加
+              case 'increment':
+                  return preState + data
+      
+              // 减
+              case 'decrement':
+                  return preState - data
+      
+              // 程序初始化时preState为undefined，赋初值为0
+              default:
+                  return 0
+          }
+      }
+      ```
+
+5. 在`index.js`中检测`store`中状态的改变，一旦发生改变重新渲染`<App />`
+
+   ```jsx
+   import React from 'react'
+   import ReactDOM from 'react-dom'
+   
+   import store from './redux/store'
+   import App from './App'
+   
+   ReactDOM.render(<App />, document.getElementById('root'))
+   
+   store.subscribe(() => {
+       // 由于虚拟DOM的性质，状态发生改变的组件，才会重新调用render渲染
+       ReactDOM.render(<App />, document.getElementById('root'))
+   })
+   ```
+
+   `redux`只负责管理状态，至于状态的改变驱动着页面的展示，要自己通知`react`调用`render`
+   
+6. `Count`组件
+
+   ```jsx
+   export default class Count extends Component {
+   
+       // 加操作
+       increment = () => {
+           const {value} = this.selectNumber
+           store.dispatch(createIncrementAction(value * 1))
+       }
+   
+       // 减操作
+       decrement = () => {
+           const {value} = this.selectNumber
+           store.dispatch(createDecrementAction(value * 1))
+       }
+   
+       // 奇数加
+       incrementIfOdd = () => {
+           const count = store.getState()
+           if(count % 2 !== 0) {
+               const {value} = this.selectNumber
+               store.dispatch(createIncrementAction(value * 1))
+           }
+       }
+   
+       // 异步加
+       incrementAsync = () => {
+           const {value} = this.selectNumber
+           setTimeout(() => {
+               store.dispatch(createIncrementAction(value * 1))
+           }, 2000)
+       }
+       render() {
+           return (
+               <div>
+                   <h1>当前求和为：{store.getState()}</h1>
+                   <select ref={c => this.selectNumber = c}>
+                       <option value="1">1</option>
+                       <option value="2">2</option>
+                       <option value="3">3</option>
+                   </select>&nbsp;
+                   <button onClick={this.increment}>+</button>&nbsp;
+                   <button onClick={this.decrement}>-</button>&nbsp;
+                   <button onClick={this.incrementIfOdd}>当前和为奇数再+</button>&nbsp;
+                   <button onClick={this.incrementAsync}>异步+</button>
+               </div>
+           )
+       }
+   }
+   ```
+
+#### 7.3.2 redux完整版
+
+相对于精简版增加两个文件
+
+1. `constant.js`放置由于编码疏忽写错`action`中的`type`
+
+   ```js
+   export const INCREMENT = 'increment'
+   export const DECREMENT = 'decrement'
+```
+   
+2. `count_action.js`专门用于创建`action`对象
+
+   ```js
+   import {INCREMENT, DECREMENT} from './constant'
+   
+export const createIncrementAction = (data) => {
+       return {type: INCREMENT, data: data}
+   }
+   
+   export const createDecrementAction = (data) => {
+       return {type: DECREMENT, data: data}
+   }
+   ```
+   
+
+#### 7.3.3 同步和异步action
+
+如果一个`action`返回的是一个普通对象，则为同步`action`；如果返回一个函数，则为异步`action`
+
+对于异步`action`需要中间件`redux-thunk`的支持
+
+1. 明确：延迟的动作不想交给组件自身，想交给`action`
+
+2. 何时需要异步`action`：想要对状态进行操作，但是具体的数据靠异步任务返回
+
+3. 具体编码：
+
+   安装`redux-thunk`
+
+   ```
+   npm install redux-thunk
+   ```
+
+   `store.js`中使用`redux-thunk`处理异步任务
+
+   ```js
+   // 引入createStore，用于创建redux中最为核心的store对象
+   import { createStore, applyMiddleware } from 'redux'
+   
+   // 引入redux-thunk，用于支持异步action
+   import thunk from 'redux-thunk'
+   
+   import countReducer from './count_reducer'
+   
+   export default createStore(countReducer, applyMiddleware(thunk))
+   ```
+
+   创建`action`的函数不再返回一个一般对象，而是返回一个函数，该函数中写异步任务`count_action.js`
+
+   ```js
+   export const createIncrementAsyncAction = (data, time) => {
+       return (dispatch) => {
+           setTimeout(() => {
+               // 通知redux修改状态
+               dispatch(createIncrementAction(data))
+           }, time)
+       }
+   }
+   ```
+
+   组件调用
+
+   ```js
+   incrementAsync = () => {
+       const {value} = this.selectNumber
+       store.dispatch(createIncrementAsyncAction(value * 1, 500))
+   }
+   ```
+
+   等到异步任务有结果时，分发一个同步的`action`去真正操作数据
+
+4. 异步`action`不是必须的，完全可以自己等待异步任务的结果，再去分发同步`action`
+
+### 7.4 react-redux
+
+`react-redux`是`react`官方出的一个类似于`redux`的状态管理插件
+
+<img src="React.assets/image-20210108215036857.png" alt="image-20210108215036857" style="zoom:80%;" />
+
+#### 7.4.1 基本理解
+
+1. 所有的`UI`组件都应该包裹在一个容器组件，它们是父子关系
+2. 容器组件是真正和`redux`打交道的，里面可以随意的使用`redux`的`api`
+3. `UI`组件中不能使用任何`redux`的`api`
+4. 容器组件会传递给`UI`组件：
+   - `redux`中所保存的状态
+   - 用于操作状态的方法
+5. 容器给`UI`传递：状态、操作状态的方法，均通过`props`传递
