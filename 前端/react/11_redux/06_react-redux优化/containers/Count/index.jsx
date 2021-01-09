@@ -8,7 +8,7 @@ import {
     createIncrementAction, 
     createIncrementAsyncAction, 
     createDecrementAction 
-} from "../../redux/actions/count"
+} from "../../redux/count_action"
 
 // 定义UI组件
 class Count extends Component {
@@ -41,8 +41,7 @@ class Count extends Component {
     render() {
         return (
             <div>
-                <h2>我是Count组件</h2>
-                <h4>当前求和为：{this.props.count}</h4>
+                <h1>当前求和为：{this.props.count}</h1>
                 <select ref={c => this.selectNumber = c}>
                     <option value="1">1</option>
                     <option value="2">2</option>

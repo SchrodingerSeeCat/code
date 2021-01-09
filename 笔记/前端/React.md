@@ -1852,6 +1852,7 @@ export default withRouter(Header)
    ```js
    export const INCREMENT = 'increment'
    export const DECREMENT = 'decrement'
+   ```
 ```
    
 2. `count_action.js`专门用于创建`action`对象
@@ -1866,8 +1867,8 @@ export const createIncrementAction = (data) => {
    export const createDecrementAction = (data) => {
        return {type: DECREMENT, data: data}
    }
-   ```
-   
+```
+
 
 #### 7.3.3 同步和异步action
 
@@ -1942,3 +1943,178 @@ export const createIncrementAction = (data) => {
    - `redux`中所保存的状态
    - 用于操作状态的方法
 5. 容器给`UI`传递：状态、操作状态的方法，均通过`props`传递
+
+#### 7.4.2 基本使用
+
+1. 安装
+
+   ```
+   npm install react-redux
+   ```
+
+2. 在`src`下创建容器组件
+
+   ```
+   - src
+     - containers
+       - Count
+         index.jsx
+   ```
+
+3. 引入相关依赖
+
+   ```js
+   // 引入Count的UI组件
+   import CountUI from '../../components/Count'
+   
+   // 引入action
+   import { 
+       createIncrementAction, 
+       createIncrementAsyncAction, 
+       createDecrementAction 
+   } from "../../redux/count_action";
+   
+   // 引入connect用于连接UI组件与redux
+   import {connect} from 'react-redux'
+   ```
+
+4. 编写`mapStateToProps`函数
+
+   ```js
+   function mapStateToProps(state) {
+       return {count: state}
+   }
+   ```
+
+   `mapStateToProps`函数的返回的是一个对象
+
+   对象中的`key`就作为传递给`UI`组件`props`的`key`，`value`就作为传递给`UI`组件`props`的`value`——状态
+
+   `mapStateToProps`用于传递状态
+
+5. 编写`mapDispatchToProps`函数
+
+   ```js
+   function mapDispatchToProps(dispatch) {
+       return {
+           increment: (data)=> {
+               // 通知redux执行加法
+               dispatch(createIncrementAction(data))
+           },
+           decrement: (data) => {
+               dispatch(createDecrementAction(data))
+           },
+           incrementAsync: (data, time) => {
+               dispatch(createIncrementAsyncAction(data, time))
+           }
+       }
+   }
+   ```
+
+   `mapDispatchToProps`函数的返回的是一个对象
+
+   对象中的`key`就作为传递给`UI`组件`props`的`key`，`value`就作为传递给`UI`组件`props`的`value`——操作状态的方法
+
+   `mapDispatchToProps`用于传递操作状态的方法
+
+6. 创建并暴露一个`Count`组件
+
+   ```js
+   export default connect(mapStateToProps, mapDispatchToProps)(CountUI)
+   ```
+
+7. 在引入`Count`组件中改为，引入`container`中的`Count`并传入`store`
+
+   ```jsx
+   import React, { Component } from 'react'
+   
+   // 引入容器组件
+   import Count from './containers/Count'
+   
+   // react-redux需要在组件中使用props传递store
+   import store from './redux/store'
+   
+   export default class App extends Component {
+       render() {
+           return (
+               <div>
+                   {/* 给容器组件传递store */}
+                   <Count store={store}/>
+               </div>
+           )
+       }
+   }
+   ```
+
+8. 容器组件优化
+
+   ```js
+   // 引入Count的UI组件
+   import CountUI from '../../components/Count'
+   
+   // 引入action
+   import { 
+       createIncrementAction, 
+       createIncrementAsyncAction, 
+       createDecrementAction 
+   } from "../../redux/count_action";
+   
+   // 引入connect用于连接UI组件与redux
+   import {connect} from 'react-redux'
+   
+   // 创建并暴露一个Count组件
+   export default connect(
+       state => ({count: state}),
+       
+       // mspDispatchToProps的一般写法
+       // dispatch => ({
+       //     increment: (data)=> {
+       //         // 通知redux执行加法
+       //         dispatch(createIncrementAction(data))
+       //     },
+       //     decrement: (data) => {
+       //         dispatch(createDecrementAction(data))
+       //     },
+       //     incrementAsync: (data, time) => {
+       //         dispatch(createIncrementAsyncAction(data, time))
+       //     }
+       // })
+   
+       // mapDispatchToProps的简写，传送action，react-redux自动dispatch
+       {
+           increment: createIncrementAction,
+           decrement: createDecrementAction,
+           incrementAsync: createIncrementAsyncAction
+       }
+   )(CountUI)
+   ```
+
+#### 7.4.3 优化
+
+1. 如果使用了`react-redux`，那么在`index.js`中就不需要使用`store.subscribe`监控`App`组件的变化，因为容器组件会自动监控状态的变化
+
+2. `Provider`组件的使用
+
+   使用`Provider`可以自动传递`store`而不需要在使用容器组件的地方自己传递`store`
+
+   修改`index.js`
+
+   ```js
+   import React from 'react'
+   import ReactDOM from 'react-dom'
+   
+   import App from './App'
+   
+   import store from './redux/store'
+   import { Provider } from 'react-redux'
+   
+   ReactDOM.render(
+       <Provider store={store}>
+           <App />
+       </Provider>, 
+       document.getElementById('root')
+   )
+   ```
+
+3. 一般将`UI`组件与容器组件整合为一个文件，`UI`组件不必暴露，暴露容器组件
+
