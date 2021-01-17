@@ -1,0 +1,24 @@
+body{
+    text-align: center;
+}
+
+.parent{
+    width: 200px;
+    padding: 10px 0 10px 0;
+    margin: 0 auto;
+    background-color: orange;
+}
+
+.child{
+    width: 180px;
+    padding: 10px 0 10px 0;
+    margin: 0 auto;
+    background-color: orangered;
+}
+
+.grand{
+    width: 150px;
+    padding: 10px 0 10px 0;
+    margin: 0 auto;
+    background-color: skyblue;
+}

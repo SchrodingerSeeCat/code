@@ -5,9 +5,9 @@ import {connect} from 'react-redux'
 
 // 引入action
 import { 
-    createIncrementAction, 
-    createIncrementAsyncAction, 
-    createDecrementAction 
+    increment, 
+    decrement, 
+    incrementAsync 
 } from "../../redux/actions/count"
 
 // 定义UI组件
@@ -41,7 +41,7 @@ class Count extends Component {
     render() {
         return (
             <div>
-                <h2>我是Count组件</h2>
+                <h2>我是Count组件, 下方组件总人数为{this.props.personCount}</h2>
                 <h4>当前求和为：{this.props.count}</h4>
                 <select ref={c => this.selectNumber = c}>
                     <option value="1">1</option>
@@ -59,12 +59,14 @@ class Count extends Component {
 
 // 创建并暴露一个容器组件
 export default connect(
-    state => ({count: state}),
+    state => (
+        {count: state.count, personCount: state.persons.length}
+    ),
 
     // mapDispatchToProps的简写，传送action，react-redux自动dispatch
     {
-        increment: createIncrementAction,
-        decrement: createDecrementAction,
-        incrementAsync: createIncrementAsyncAction
+        increment: increment,
+        decrement: decrement,
+        incrementAsync: incrementAsync
     }
 )(Count)

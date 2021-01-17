@@ -9,6 +9,14 @@ import { createStore, applyMiddleware } from 'redux'
 // 引入redux-thunk，用于支持异步action
 import thunk from 'redux-thunk'
 
-import countReducer from './reducers/count'
+// 引入redux-devtools-extension
+import { composeWithDevTools } from 'redux-devtools-extension'
 
-export default createStore(countReducer, applyMiddleware(thunk))
+// 引入reducer
+import reducer from './reducers/index'
+
+//无异步的情况
+// export default createStore(allReducer, composeWithDevTools())
+
+// 有异步的情况
+export default createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))

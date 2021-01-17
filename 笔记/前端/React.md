@@ -1750,7 +1750,8 @@ export default withRouter(Header)
    4. 完整代码
 
       ```js
-      export default function countReducer(preState, action) {
+      // 程序初始化时preState为undefined，赋初值为0
+      export default function countReducer(preState = 0, action) {
       
           // 从action对象中获取：type, data
           const {type, data} = action
@@ -1765,9 +1766,8 @@ export default withRouter(Header)
               case 'decrement':
                   return preState - data
       
-              // 程序初始化时preState为undefined，赋初值为0
               default:
-                  return 0
+                  return preState
           }
       }
       ```
@@ -1853,22 +1853,20 @@ export default withRouter(Header)
    export const INCREMENT = 'increment'
    export const DECREMENT = 'decrement'
    ```
-```
    
 2. `count_action.js`专门用于创建`action`对象
 
-   ```js
+      ```js
    import {INCREMENT, DECREMENT} from './constant'
    
-export const createIncrementAction = (data) => {
+   export const createIncrementAction = (data) => {
        return {type: INCREMENT, data: data}
    }
    
    export const createDecrementAction = (data) => {
        return {type: DECREMENT, data: data}
    }
-```
-
+   ```
 
 #### 7.3.3 同步和异步action
 
@@ -2117,4 +2115,375 @@ export const createIncrementAction = (data) => {
    ```
 
 3. 一般将`UI`组件与容器组件整合为一个文件，`UI`组件不必暴露，暴露容器组件
+
+#### 7.4.4 多组件数据共享
+
+1. 每一个组件都需要定义一个`action`和`reducer`
+
+2. 多个`reducer`中需要在`store.js`中使用`redux`中的`combineReducers`合并成一个`reducer`
+
+   ```js
+   // 引入createStore，用于创建redux中最为核心的store对象, combineReducers用于合并reducers
+   import { createStore, applyMiddleware, combineReducers } from 'redux'
+   
+   // 引入redux-thunk，用于支持异步action
+   import thunk from 'redux-thunk'
+   
+   // 引入reducers
+   import countReducer from './reducers/count'
+   import personReducer from './reducers/person'
+   
+   // 汇总reducers
+   const allReducer = combineReducers({
+       count: countReducer,
+       persons: personReducer
+   })
+   export default createStore(allReducer, applyMiddleware(thunk))
+   ```
+
+
+#### 7.4.5 redux调试工具
+
+1. 扩展商店安装`Redux DevTools`
+
+2. 项目安装支持库
+
+   ```
+   npm install redux-devtools-extension
+   ```
+
+3. `store.js`中引入并使用
+
+   ```js
+   import { composeWithDevTools } from 'redux-devtools-extension'
+   
+   //无异步的情况
+   // export default createStore(allReducer, composeWithDevTools())
+   
+   // 有异步的情况
+   export default createStore(allReducer, composeWithDevTools(applyMiddleware(thunk)))
+   ```
+
+## 8. 项目打包
+
+1. 执行`npm build`
+
+   ```
+   npm run build
+   ```
+
+2. 安装临时查看服务器
+
+   ```
+   npm install -g serve
+   ```
+
+3. 进入打包文件夹`build`
+
+   ```
+   serve
+   ```
+
+## 9. react扩展
+
+### 9.1 setState
+
+`setState`更新状态有2种写法
+
+1. `setState(stateChange, [callback])`------对象式的`setState`
+
+   `stateChange`为状态改变对象(该对象可以体现出状态的更改)
+
+   `callback`是可选的回调函数, 它在状态更新完毕、界面也更新后(render调用后)才被调用
+
+2. `setState(updater, [callback])`------函数式的`setState`
+
+   `updater`为返回`stateChange`对象的函数。
+
+   `updater`可以接收到`state`和`props`。
+
+   `callback`是可选的回调函数, 它在状态更新、界面也更新后(`render`调用后)才被调用。
+
+3. 总结:
+
+   对象式的`setState`是函数式的`setState`的简写方式(语法糖)
+
+   使用原则：
+
+   - 如果新状态不依赖于原状态 ===> 使用对象方式
+   - 如果新状态依赖于原状态 ===> 使用函数方式
+   - 如果需要在`setState()`执行后获取最新的状态数据, 要在第二个`callback`函数中读取
+
+### 9.2 lazyLoad
+
+路由组件的`lazyLoad`
+
+1. 通过`React`的`lazy`函数配合`import()`函数动态加载路由组件 ===> 路由组件代码会被分开打包
+
+   ```jsx
+   const Login = lazy(()=>import('@/pages/Login'))
+   ```
+
+2. 通过`<Suspense>`指定在加载得到路由打包文件前显示一个自定义`loading`界面
+
+   ```jsx
+   <Suspense fallback={<h1>loading.....</h1>}>
+       <Switch>
+           <Route path="/xxx" component={Xxxx}/>
+           <Redirect to="/login"/>
+       </Switch>
+   </Suspense>
+   ```
+
+### 9.3 Hooks
+
+1. `React Hook/Hooks`是什么?
+   
+   - `Hook`是`React 16.8.0`版本增加的新特性/新语法
+- 可以让你在函数组件中使用 `state `以及其他的 `React `特性
+   
+2. 三个常用的`Hook`
+
+   `State Hook`
+
+   ```js
+   React.useState()
+   ```
+
+   `Effect Hook`
+
+   ```
+   React.useEffect()
+   ```
+
+   `Ref Hook`
+
+   ```
+   React.useRef()
+   ```
+
+3. `State Hook`
+
+   `State Hook`让函数组件也可以有state状态, 并进行状态数据的读写操作
+
+   语法:` const [xxx, setXxx] = React.useState(initValue)  `
+
+   `useState()`说明:
+           参数: 第一次初始化指定的值在内部作缓存
+           返回值: 包含2个元素的数组, 第1个为内部当前状态值, 第2个为更新状态值的函数
+
+   `setXxx()`2种写法:
+           `setXxx(newValue)`: 参数为非函数值, 直接指定新的状态值, 内部用其覆盖原来的状态值
+           `setXxx(value => newValue)`: 参数为函数, 接收原本的状态值, 返回新的状态值, 内部用其覆盖原来的状态值
+
+4. `Effect Hook`
+
+   `Effect Hook` 可以让你在函数组件中执行副作用操作(用于模拟类组件中的生命周期钩子)
+
+   `React`中的副作用操作:
+           发`ajax`请求数据获取
+           设置订阅 / 启动定时器
+           手动更改真实`DOM`
+
+   语法和说明: 
+
+   ```js
+   useEffect(() => { 
+       // 在此可以执行任何带副作用操作
+       return () => { // 在组件卸载前执行
+       	// 在此做一些收尾工作, 比如清除定时器/取消订阅等
+       }
+   }, [stateValue]) // 如果指定的是[], 回调函数只会在第一次render()后执行
+   ```
+
+   可以把 `useEffect Hook` 看做如下三个函数的组合
+
+   ```
+   componentDidMount()
+   componentDidUpdate()
+   componentWillUnmount() 
+   ```
+
+5. `Ref Hook`
+
+   `Ref Hook`可以在函数组件中存储/查找组件内的标签或任意其它数据
+
+   语法: `const refContainer = useRef()`
+
+   作用:保存标签对象,功能与`React.createRef()`一样
+
+### 9.4 Fragment
+
+使用
+
+	<Fragment><Fragment>
+	
+	<></>
+
+作用
+
+> 可以不用必须有一个真实的DOM根标签了
+
+<hr/>
+
+### 9.5 Context
+
+理解
+
+> 一种组件间通信方式, 常用于【祖组件】与【后代组件】间通信
+
+使用
+
+1. 创建`Context`容器对象：
+
+   ```js
+   const XxxContext = React.createContext() 
+   ```
+
+2. 渲染子组时，外面包裹`xxxContext.Provider`, 通过`value`属性给后代组件传递数据
+
+   ```jsx
+   <xxxContext.Provider value={数据}>
+   	子组件
+   </xxxContext.Provider>
+   ```
+
+3. 后代组件读取数据
+
+   第一种方式:仅适用于类组件 
+
+   ```js
+   static contextType = xxxContext  // 声明接收context
+   this.context // 读取context中的value数据
+   ```
+
+   第二种方式: 函数组件与类组件都可以
+
+   ```jsx
+   <xxxContext.Consumer>
+       {
+           value => ( // value就是context中的value数据
+           	要显示的内容
+           )
+       }
+   </xxxContext.Consumer>
+   ```
+
+注意
+
+	在应用开发中一般不用context, 一般都用它的封装react插件
+
+
+### 9.6 组件优化
+
+**Component的2个问题** 
+
+> 1. 只要执行setState(),即使不改变状态数据, 组件也会重新render() ==> 效率低
+>
+> 2. 只当前组件重新render(), 就会自动重新render子组件，纵使子组件没有用到父组件的任何数据 ==> 效率低
+
+**效率高的做法**
+
+>  只有当组件的state或props数据发生改变时才重新render()
+
+**原因**
+
+>  Component中的shouldComponentUpdate()总是返回true
+
+**解决**
+
+	办法1: 
+		重写shouldComponentUpdate()方法
+		比较新旧state或props数据, 如果有变化才返回true, 如果没有返回false
+	办法2:  
+		使用PureComponent
+		PureComponent重写了shouldComponentUpdate(), 只有state或props数据有变化才返回true
+		注意: 
+			只是进行state和props数据的浅比较, 如果只是数据对象内部数据变了, 返回false  
+			不要直接修改state数据, 而是要产生新数据
+	项目中一般使用PureComponent来优化
+
+
+### 9.7 render props
+
+如何向组件内部动态传入带内容的结构(标签)?
+
+	Vue中: 
+		使用slot技术, 也就是通过组件标签体传入结构  <A><B/></A>
+	React中:
+		使用children props: 通过组件标签体传入结构
+		使用render props: 通过组件标签属性传入结构,而且可以携带数据，一般用render函数属性
+
+`children props`
+
+	<A>
+	  <B>xxxx</B>
+	</A>
+	{this.props.children}
+	问题: 如果B组件需要A组件内的数据, ==> 做不到 
+
+`render props`
+
+	<A render={(data) => <C data={data}></C>}></A>
+	A组件: {this.props.render(内部state数据)}
+	C组件: 读取A组件传入的数据显示 {this.props.data} 
+
+### 9.8 错误边界
+
+#### 理解：
+
+错误边界(`Error boundary`)：用来捕获后代组件错误，渲染出备用页面
+
+#### 特点：
+
+只能捕获后代组件生命周期产生的错误，不能捕获自己组件产生的错误和其他组件在合成事件、定时器中产生的错误
+
+##### 使用方式：
+
+getDerivedStateFromError配合componentDidCatch
+
+```js
+// 生命周期函数，一旦后台组件报错，就会触发
+static getDerivedStateFromError(error) {
+    console.log(error);
+    // 在render之前触发
+    // 返回新的state
+    return {
+        hasError: true,
+    }
+}
+
+componentDidCatch(error, info) {
+    // 统计页面的错误。发送请求发送到后台去
+    console.log(error, info);
+}
+```
+
+### 9.9 组件通信方式总结
+
+#### 组件间的关系：
+
+- 父子组件
+- 兄弟组件（非嵌套组件）
+- 祖孙组件（跨级组件）
+
+#### 几种通信方式：
+
+		1.props：
+			(1).children props
+			(2).render props
+		2.消息订阅-发布：
+			pubs-sub、event等等
+		3.集中式管理：
+			redux、dva等等
+		4.conText:
+			生产者-消费者模式
+
+#### 比较好的搭配方式：
+
+		父子组件：props
+		兄弟组件：消息订阅-发布、集中式管理
+		祖孙组件(跨级组件)：消息订阅-发布、集中式管理、conText(开发用的少，封装插件用的多)
+
+
 
