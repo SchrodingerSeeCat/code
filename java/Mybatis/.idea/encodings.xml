@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/01_mybatis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/01_mybatis/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/02_mybatis配置/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/02_mybatis配置/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/03_mybatis结果集映射/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/03_mybatis结果集映射/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/04_mybatis注解开发/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/04_mybatis注解开发/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/05_mybatis一对多/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/05_mybatis一对多/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/06_mybatis多对一/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/06_mybatis多对一/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/07_mybatis动态SQL/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/07_mybatis动态SQL/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/08_mybatis缓存/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/08_mybatis缓存/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

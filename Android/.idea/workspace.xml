@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="626732f6-5805-40fa-871c-cc71bb67ef97" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1nE4AKYoxs8lSiaAose5wccKQ2z" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$PROJECT_DIR$/../../env/Android SDK" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/01_Demo" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="626732f6-5805-40fa-871c-cc71bb67ef97" name="Default Changelist" comment="" />
+      <created>1610941771757</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1610941771757</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1610942182945">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864@0.0.1536.864" timestamp="1610942182945" />
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1610942222995">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1610942222995" />
+    <state x="270" y="13" key="SettingsEditor" timestamp="1610942215242">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="270" y="13" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1610942215242" />
+  </component>
+</project>

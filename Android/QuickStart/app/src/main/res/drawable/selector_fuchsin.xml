@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!--
+    设置一些状态
+-->
+
+    <!--    设置有按压的时候-->
+    <item android:state_checked="true">
+        <shape>
+            <solid android:color="#FF9999" />
+            <corners android:radius="5dp" />
+        </shape>
+    </item>
+    <!--    设置无按压的时候-->
+    <item android:state_checked="false">
+        <shape>
+            <stroke
+                android:width="1dp"
+                android:color="#FF9999"/>
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+</selector>

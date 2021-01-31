@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_custom_dialog">
+
+    <TextView
+        android:id="@+id/tv_title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:text="提示"
+        android:textStyle="bold"/>
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/dividing"
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:text="content"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:textStyle="bold"/>
+
+    <View
+        android:id="@+id/dividing"
+
+        app:layout_constraintTop_toBottomOf="@+id/tv_message"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/black"/>
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/dividing"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/dividing2"
+        android:id="@+id/tv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="取消"
+        android:textColor="#389FD6"
+        android:textSize="24sp"
+        android:padding="10dp"/>
+
+    <View
+        app:layout_constraintTop_toBottomOf="@id/dividing"
+        app:layout_constraintLeft_toRightOf="@id/tv_cancel"
+        app:layout_constraintRight_toLeftOf="@id/tv_confirm"
+        android:id="@+id/dividing2"
+        android:layout_width="0.5dp"
+        android:background="@color/black"
+        android:layout_height="47dp" />
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/dividing"
+        app:layout_constraintLeft_toRightOf="@id/dividing2"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/tv_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="确定"
+        android:textColor="#389FD6"
+        android:textSize="24sp"
+        android:padding="10dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

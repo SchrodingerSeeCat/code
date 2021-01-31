@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="20dp">
+
+    <Button
+        android:id="@+id/frg_a_message"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="给Activity传递消息"
+        android:textSize="25sp"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/frg_a_change"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="更换为BFragment"
+        android:textSize="25sp"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/frg_a_reset"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="更换TextView的文字内容"
+        android:textSize="25sp"
+        android:textAllCaps="false"/>
+
+    <TextView
+        android:id="@+id/frg_a_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="我是AFragment"
+        android:gravity="center"/>
+</LinearLayout>

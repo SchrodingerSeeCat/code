@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".ui.ButtonActivity">
+
+    <!--    基础设置-->
+    <Button
+        android:id="@+id/btn_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:background="#F28F60"
+        android:text="按钮1"/>
+
+    <!--    设置圆角-->
+    <Button
+        android:id="@+id/btn_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:background="@drawable/bg_btn2"
+        android:layout_below="@id/btn_1"
+        android:layout_marginTop="10dp"
+        android:text="按钮2"/>
+
+    <!--    设定只有描边-->
+    <Button
+        android:id="@+id/btn_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#FF9900"
+        android:background="@drawable/bg_btn3"
+        android:layout_below="@id/btn_2"
+        android:layout_marginTop="10dp"
+        android:text="按钮3"/>
+
+    <!--    设定某些状态时，不同的展现效果-->
+    <Button
+        android:id="@+id/btn_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:background="@drawable/bg_btn4"
+        android:layout_below="@id/btn_3"
+        android:layout_marginTop="10dp"
+        android:text="按钮4"/>
+
+    <!--    添加点击事件，onClick指定方法名-->
+    <Button
+        android:id="@+id/btn_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:background="#3DDC84"
+        android:layout_below="@id/btn_4"
+        android:layout_marginTop="10dp"
+        android:onClick="showToast"
+        android:text="按钮5" />
+
+    <!--    添加点击事件，java代码实现（常用）-->
+    <Button
+        android:id="@+id/btn_6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:background="#225C6E"
+        android:layout_below="@id/btn_5"
+        android:layout_marginTop="10dp"
+        android:text="按钮5" />
+</RelativeLayout>

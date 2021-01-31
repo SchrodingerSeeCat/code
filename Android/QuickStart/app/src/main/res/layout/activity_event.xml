@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".event.EventActivity"
+    android:padding="30dp"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_event_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="click me"
+        android:textSize="25sp"
+        android:textAllCaps="false"
+        android:onClick="show"/>
+
+    <com.example.demo.widget.MyButton
+        android:id="@+id/btn_event_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MyButton"
+        android:textSize="25sp"
+        android:textAllCaps="false"/>
+</LinearLayout>

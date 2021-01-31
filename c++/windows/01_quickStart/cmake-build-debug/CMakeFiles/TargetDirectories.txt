@@ -1,0 +1,3 @@
+D:/code/c++/windows/01_quickStart/cmake-build-debug/CMakeFiles/01_quickStart.dir
+D:/code/c++/windows/01_quickStart/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/code/c++/windows/01_quickStart/cmake-build-debug/CMakeFiles/rebuild_cache.dir

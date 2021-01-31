@@ -1,0 +1,17 @@
+#spring:
+#    mvc:
+#        static-path-pattern: /res/**
+#spring:
+#    mvc:
+#        hiddenmethod:
+#            filter:
+#                enabled: true
+
+# 配置支持矩阵变量
+
+
+#配置支持参数类型的内容协商
+spring:
+    mvc:
+        contentnegotiation:
+            favor-parameter: true

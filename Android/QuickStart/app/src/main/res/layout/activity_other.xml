@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".other.OtherActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <!--生命周期-->
+        <Button
+            android:id="@+id/btn_lief_cycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LiefCycle"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+
+        <!--Activity之间的数据传递-->
+        <Button
+            android:id="@+id/btn_jump"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+
+        <!--Fragment片段-->
+        <Button
+            android:id="@+id/btn_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fragment"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+
+        <!--Handler-->
+        <Button
+            android:id="@+id/btn_handler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Handler"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+    </LinearLayout>
+</ScrollView>

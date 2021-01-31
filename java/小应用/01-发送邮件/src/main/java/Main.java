@@ -1,61 +1,70 @@
-import java.util.Properties;
+/*
+*   使用QQ邮箱发送邮件
+* */
 
-import javax.mail.Authenticator;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.util.Properties;
 
-public class Main {
-    public static void main(String [] args) {
-        // 收件人电子邮箱
-        String to = "488253526@qq.com";
+public class Main{
+    public static void main(String[] args) {
+        // 1. 设置一些参数
+        Properties properties = new Properties();
 
-        // 发件人电子邮箱
-        String from = "471068961@qq.com";
+//        properties.setProperty("mail.smtp.auth", "true");
+        properties.setProperty("mail.debug", "true");
+        // 设置qq的邮件服务器
+        properties.setProperty("mail.host", "smtp.qq.com");
+        // 发送邮件，采用的协议是什么
+        properties.setProperty("mail.transport.protocol", "smtp");
 
-        // 指定发送邮件的主机为 smtp.qq.com
-        String host = "smtp.qq.com";  //QQ 邮件服务器
+        // 2. 创建会话
+        Session session = Session.getDefaultInstance(properties);
 
-        // 获取系统属性
-        Properties properties = System.getProperties();
+        // 3. 获取传输对象, 发送邮件
+        Transport ts = null;
+        try {
+            ts = session.getTransport();
 
-        // 设置邮件服务器
-        properties.setProperty("mail.smtp.host", host);
+            // 发送邮件之前，校验账号和授权码
+            ts.connect("471068961@qq.com", "oresztpbmzoscbca");
 
-        properties.put("mail.smtp.auth", "true");
-        // 获取默认session对象
-        Session session = Session.getDefaultInstance(properties,new Authenticator(){
-            public PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("471068961@qq.com", "rpytvmjwbjnpbigj"); //发件人邮件用户名、授权码
-            }
-        });
-
-        try{
-            // 创建默认的 MimeMessage 对象
+            // 4. 构建一封邮件
             MimeMessage message = new MimeMessage(session);
+            // 发件人
+            message.setFrom(new InternetAddress("471068961@qq.com"));
+            // 收件人
+            // Message.RecipientType.TO 收件人
+            // Message.RecipientType.CC 抄送
+            // Message.RecipientType.BCC 暗送
+            // 把邮件发送给XXX用户
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress("248543351@qq.com"));
+            // 主题
+            message.setSubject("测试发送邮件");
+            // 正文
+            message.setContent("测试发邮件的正文", "text/html;charset=utf-8");
+            // 保存邮件
+            message.saveChanges();
 
-            // Set From: 头部头字段
-            message.setFrom(new InternetAddress(from));
+            // 5. 发送邮件
+            ts.sendMessage(message, message.getAllRecipients());
 
-            // Set To: 头部头字段
-            message.addRecipient(Message.RecipientType.TO,
-                    new InternetAddress(to));
-
-            // Set Subject: 头部头字段
-            message.setSubject("This is the Subject Line!");
-
-            // 设置消息体
-            message.setText("This is actual message");
-
-            // 发送消息
-            Transport.send(message);
-            System.out.println("Sent message successfully....from runoob.com");
-        }catch (MessagingException mex) {
-            mex.printStackTrace();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        } finally {
+            // 关闭邮件发送对象
+            if(ts != null) {
+                try {
+                    ts.close();
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

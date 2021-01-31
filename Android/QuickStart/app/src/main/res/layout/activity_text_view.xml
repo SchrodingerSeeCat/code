@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.TextViewActivity">
+
+    <TextView
+        android:id="@+id/tv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_text1"
+        android:textColor="#F69364"
+        android:textSize="30sp" />
+
+
+    <!--
+        maxLines 设置文字显示的行数
+        ellipsize 文字显示不全时以 ... 代替
+    -->
+    <TextView
+        android:id="@+id/tv_2"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="@string/tv_text1"
+        android:textColor="#F69364"
+        android:textSize="30sp"
+        android:layout_marginTop="10dp" />
+
+
+    <!--  drawableXXX 设置icon  -->
+    <TextView
+        android:id="@+id/tv_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/icon_arrow_off"
+        android:drawablePadding="5dp"
+        android:text="筛选"
+        android:textColor="#F69364"
+        android:textSize="30sp"
+        android:layout_marginTop="10dp"/>
+
+    <!--    中划线 需要通过java代码来实现-->
+    <TextView
+        android:id="@+id/tv_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_text1"
+        android:textColor="#F69364"
+        android:textSize="30sp"
+        android:layout_marginTop="10dp"/>
+
+    <!--    下划线 需要通过java代码来实现-->
+    <TextView
+        android:id="@+id/tv_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_text1"
+        android:textColor="#F69364"
+        android:textSize="30sp"
+        android:layout_marginTop="10dp"/>
+
+    <!--html方式 添加下划线-->
+    <TextView
+        android:id="@+id/tv_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#F69664"
+        android:textSize="30sp"
+        android:layout_marginTop="10dp" />
+
+    <!--    文字跑马灯-->
+    <TextView
+        android:id="@+id/tv_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="-1"
+        android:singleLine="true"
+        android:clickable="true"
+
+        android:text="跑马灯，跑马灯，跑马灯，跑马灯，跑马灯，跑马灯"
+        android:textColor="#F69664"
+        android:textSize="30sp" />
+</LinearLayout>

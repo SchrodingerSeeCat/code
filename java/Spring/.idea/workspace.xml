@@ -23,8 +23,71 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b03cb2d-14d5-47d2-830f-cf8efe68ef7b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../Android/.idea/Android.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../小应用/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../小应用/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../小应用/03_plugins/03_plugins.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/proguard-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/androidTest/java/com/ding/valid/ExampleInstrumentedTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/java/com/ding/valid/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/values-night/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/values/colors.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/main/res/values/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/app/src/test/java/com/ding/valid/ExampleUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Android/01_HelloWorld/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Mybatis/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Mybatis/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Mybatis/07_mybatis动态SQL/07_mybatis动态SQL.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_beust_jcommander_1_78.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_22.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_errorprone_error_prone_annotations_2_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_25_1_android2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_inject_guice_no_aop_4_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_j2objc_j2objc_annotations_1_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_ant_ant_1_10_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_ant_ant_launcher_1_10_32.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_checkerframework_checker_compat_qual_2_0_02.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_mojo_animal_sniffer_annotations_1_142.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_launcher_1_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_launcher_unknown.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_nop_1_7_30.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_simple_1_7_30.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_unknown.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_testng_testng_7_3_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_21.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/01_Spring相关概念、IOC/01_Spring相关概念、IOC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/01_Spring相关概念、IOC/01_Spring相关概念、IOC.iml" afterDir="false" />
@@ -34,12 +97,32 @@
       <change beforePath="$PROJECT_DIR$/05_自动装配/05_自动装配.iml" beforeDir="false" afterPath="$PROJECT_DIR$/05_自动装配/05_自动装配.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/06_外部属性文件/06_外部属性文件.iml" beforeDir="false" afterPath="$PROJECT_DIR$/06_外部属性文件/06_外部属性文件.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/07_注解管理bean/07_注解管理bean.iml" beforeDir="false" afterPath="$PROJECT_DIR$/07_注解管理bean/07_注解管理bean.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/08_AOP/08_AOP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/08_AOP/08_AOP.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/09_JDBCTemplate/09_JDBCTemplate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/09_JDBCTemplate/09_JDBCTemplate.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/10_JDBC事务管理&amp;Spring5新功能/10_JDBC事务管理&amp;Spring5新功能.iml" beforeDir="false" afterPath="$PROJECT_DIR$/10_JDBC事务管理&amp;Spring5新功能/10_JDBC事务管理&amp;Spring5新功能.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Spring.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/java/Spring.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/java/Spring.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/01_HelloWorld/01_HelloWorld.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Mybatis/.idea/Mybatis.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/04_构造器绑定/04_构造器绑定.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../SSM整合/.idea/SSM整合.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/06_profile/06_profile.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot/.idea/SpringBoot.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/07_java_spi/07_java_spi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringMVC/.idea/SpringMVC.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/07_java_spi/ali-pay/ali-pay.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../小应用/.idea/小应用.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/07_java_spi/main-test/main-test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/07_java_spi/wx-pay/wx-pay.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringMVC/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringMVC/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringMVC/01_回顾servlet/01_回顾servlet.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringMVC/02_SpringMVC/02_SpringMVC.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringMVC/03_注解开发/03_注解开发.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringMVC/04_Controller/04_Controller.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringMVC/05_JSON/05_JSON.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringMVC/06_AJAX/06_AJAX.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringMVC/07_拦截器/07_拦截器.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringMVC/08_文件上传/08_文件上传.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaweb/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../javaweb/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaweb/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../javaweb/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../小应用/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../小应用/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../小应用/02-爬虫/02-爬虫.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../小应用/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../小应用/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../数据结构/08_红黑树/08_红黑树.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../数据结构/08_红黑树/08_红黑树.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/Android/Android.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Android/Android.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/java/java高级.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/java/java高级.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,9 +144,9 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="localRepository" value="D:\Environmental\maven-repo" />
-        <option name="mavenHome" value="D:\Environmental\apache-maven-3.6.3" />
-        <option name="userSettingsFile" value="D:\Environmental\apache-maven-3.6.3\conf\settings.xml" />
+        <option name="localRepository" value="D:\env\apache-maven-3.6.3\res" />
+        <option name="mavenHome" value="D:\env\apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="D:\env\apache-maven-3.6.3\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -82,9 +165,10 @@
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/13_webflux函数式编程" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -212,6 +296,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Application (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="webfluxtest (2)" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.valid.webfluxtest.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application (2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="webfluxtest (1)" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.valid.webfluxtest.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="12_webflux注解" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.valid.webfluxtest.Application" />
@@ -278,6 +376,8 @@
       <workItem from="1607071492311" duration="6452000" />
       <workItem from="1607141040066" duration="8515000" />
       <workItem from="1607164132176" duration="45000" />
+      <workItem from="1611368847731" duration="231000" />
+      <workItem from="1611546243528" duration="142000" />
     </task>
     <servers />
   </component>
@@ -295,137 +395,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="538" y="349" key="#Glassfish_Server" timestamp="1606649446560">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="538" y="349" key="#Glassfish_Server/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1606649446560" />
-    <state x="395" y="111" key="#Inspections" timestamp="1607141239678">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="395" y="111" key="#Inspections/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1607141239678" />
-    <state x="249" y="0" key="#Project_Structure" timestamp="1607078282268">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="249" y="0" key="#Project_Structure/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606478564194" />
-    <state x="249" y="0" key="#Project_Structure/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1607078282268" />
-    <state x="179" y="273" key="#SQL_Dialects" timestamp="1606909406627">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="179" y="273" key="#SQL_Dialects/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1606909406627" />
-    <state x="96" y="88" width="1089" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606906085475">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="96" y="88" width="1089" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1606906085475" />
-    <state x="574" y="134" key="#com.intellij.ide.util.MemberChooser" timestamp="1607148100321">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606532432190" />
-    <state x="574" y="134" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1607148100321" />
-    <state x="439" y="355" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1606994871383">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="439" y="355" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1606994871383" />
-    <state x="501" y="295" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606637264429">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="501" y="295" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1606637264429" />
-    <state x="493" y="312" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1606994878547">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="493" y="312" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1606994878547" />
-    <state x="354" y="113" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606907336365">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="354" y="113" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1606907336365" />
-    <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606638399859">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1606638399859" />
-    <state x="511" y="263" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1606902470606">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="511" y="263" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1606902470606" />
-    <state x="549" y="175" key="FileChooserDialogImpl" timestamp="1607164162102">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606530872634" />
-    <state x="549" y="175" key="FileChooserDialogImpl/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1607164162102" />
-    <state width="1493" height="540" key="GridCell.Tab.0.bottom" timestamp="1607149801218">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state width="1493" height="212" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606532772454" />
-    <state width="1493" height="540" key="GridCell.Tab.0.bottom/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1607149801218" />
-    <state width="1493" height="540" key="GridCell.Tab.0.center" timestamp="1607149801218">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state width="1493" height="212" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606532772453" />
-    <state width="1493" height="540" key="GridCell.Tab.0.center/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1607149801218" />
-    <state width="1493" height="540" key="GridCell.Tab.0.left" timestamp="1607149801217">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state width="1493" height="212" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606532772453" />
-    <state width="1493" height="540" key="GridCell.Tab.0.left/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1607149801217" />
-    <state width="1493" height="540" key="GridCell.Tab.0.right" timestamp="1607149801218">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state width="1493" height="212" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606532772453" />
-    <state width="1493" height="540" key="GridCell.Tab.0.right/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1607149801218" />
-    <state width="1493" height="179" key="GridCell.Tab.1.bottom" timestamp="1607147383424">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state width="1493" height="179" key="GridCell.Tab.1.bottom/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1607147383424" />
-    <state width="1493" height="179" key="GridCell.Tab.1.center" timestamp="1607147383424">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state width="1493" height="179" key="GridCell.Tab.1.center/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1607147383424" />
-    <state width="1493" height="179" key="GridCell.Tab.1.left" timestamp="1607147383424">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state width="1493" height="179" key="GridCell.Tab.1.left/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1607147383424" />
-    <state width="1493" height="179" key="GridCell.Tab.1.right" timestamp="1607147383424">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state width="1493" height="179" key="GridCell.Tab.1.right/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1607147383424" />
-    <state x="299" y="70" key="Maven.ArtifactSearchDialog" timestamp="1606812739473">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="299" y="67" key="Maven.ArtifactSearchDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606479205013" />
-    <state x="299" y="70" key="Maven.ArtifactSearchDialog/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1606812739473" />
-    <state x="429" y="142" key="NewModule_or_Project.wizard" timestamp="1607144637061">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="429" y="142" key="NewModule_or_Project.wizard/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1607144637061" />
-    <state x="270" y="13" key="SettingsEditor" timestamp="1607144640234">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="270" y="57" key="SettingsEditor/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606530879339" />
-    <state x="270" y="13" key="SettingsEditor/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1607144640234" />
-    <state x="548" y="233" width="439" height="390" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1606898692117">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="548" y="233" width="439" height="390" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1606898692117" />
-    <state x="540" y="259" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1607073222321">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="540" y="259" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1607073222321" />
-    <state x="234" y="85" width="1194" height="779" key="new project wizard" timestamp="1607164174999">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="234" y="85" width="1194" height="779" key="new project wizard/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1607164174999" />
-    <state x="530" y="300" width="627" height="295" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1606725193329">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="530" y="286" width="617" height="281" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606530877954" />
-    <state x="530" y="300" width="627" height="295" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1606725193329" />
-    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1606985629207">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1606985629207" />
-    <state x="449" y="115" key="spring file set editor" timestamp="1606994997248">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="449" y="115" key="spring file set editor/0.0.1536.864/1920.0.1366.768@0.0.1536.864" timestamp="1606994997248" />
   </component>
 </project>

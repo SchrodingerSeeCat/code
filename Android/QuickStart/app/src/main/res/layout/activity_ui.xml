@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.UIActivity">
+
+<!--
+    ScrollView
+    可以将控件多余的垂直部分滚动起来，但只能有一个子元素
+
+    HorizontalScrollView
+    可以将控件多余的水平部分滚动起来，但只能有一个子元素
+-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <!--    TextView演示界面-->
+        <Button
+            android:id="@+id/btn_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+
+        <!--   Button演示界面-->
+        <Button
+            android:id="@+id/btn_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+
+        <!--    EditText演示界面-->
+        <Button
+            android:id="@+id/btn_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="EditText"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+
+        <!--    RadioButton演示界面-->
+        <Button
+            android:id="@+id/btn_radiobtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RadioButton"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+
+        <!--    CheckBox演示界面-->
+        <Button
+            android:id="@+id/btn_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CheckBox"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+
+        <!--    ImageView演示界面-->
+        <Button
+            android:id="@+id/btn_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ImageView"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+
+        <!--    ListView演示界面-->
+        <Button
+            android:id="@+id/btn_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ListView"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+
+        <!--    GridView演示界面-->
+        <Button
+            android:id="@+id/btn_gridview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GridView"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+
+        <!--    RecycleView演示界面-->
+        <Button
+            android:id="@+id/btn_recycleview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RecycleView"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+
+        <!--    WebView演示界面-->
+        <Button
+            android:id="@+id/btn_webview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WebView"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+
+        <!--    Toast演示界面-->
+        <Button
+            android:id="@+id/btn_toast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Toast"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+
+        <!--    Dialog演示界面-->
+        <Button
+            android:id="@+id/btn_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dialog"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+
+        <!--    Progress演示界面-->
+        <Button
+            android:id="@+id/btn_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Progress"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+
+        <!--自定义Dialog-->
+        <Button
+            android:id="@+id/btn_custom_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CustomDialog"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+
+        <!--PopupWindow演示界面-->
+        <Button
+            android:id="@+id/btn_popup_window"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PopupWindow"
+            android:textAllCaps="false"
+            android:textSize="30sp"/>
+    </LinearLayout>
+</ScrollView>

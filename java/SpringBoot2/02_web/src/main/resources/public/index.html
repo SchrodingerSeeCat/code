@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>index</h1>
+    <form action="/user" method="post">
+        <input name="_method" type="hidden" value="PUT">
+        <input value="REST-PUT" type="submit">
+    </form>
+
+    <form action="/body" method="post">
+        <input name="username">
+        <input name="password" type="password">
+        <input type="submit">
+    </form>
+
+    <br />
+    <h3>第一种方式</h3>
+    <form action="/saveuser" method="post">
+        姓名：<input name="userName" value="zhangsan" /><br />
+        年龄：<input name="age" value="18" /><br />
+        生日：<input name="birth" value="2003/12/01" /><br />
+        宠物姓名：<input name="pet.name" value="大黄" /><br />
+        宠物年龄：<input name="pet.age" value="5" /><br />
+        <input type="submit" value="保存">
+    </form>
+
+    <br />
+    <h3>第二种方式</h3>
+    <form action="/saveuser" method="post">
+        姓名：<input name="userName" value="zhangsan" /><br />
+        年龄：<input name="age" value="18" /><br />
+        生日：<input name="birth" value="2003/12/01" /><br />
+        宠物：<input name="pet" value="大黄,10" /><br />
+        <input type="submit" value="保存">
+    </form>
+</body>
+</html>

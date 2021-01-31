@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    tools:context=".ui.EditTextActivity">
+
+    <!--
+        基本设置
+        hint 提示信息
+        inputType 设置文本类型
+    -->
+
+    <EditText
+        android:id="@+id/et_1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/bg_username"
+        android:drawableLeft="@drawable/icon_user"
+        android:maxLines="1"
+        android:drawablePadding="8dp"
+        android:hint="用户名"
+        android:paddingLeft="20dp"
+        android:textColor="#F28F60"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/et_2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textColor="#F28F60"
+        android:textSize="25sp"
+        android:layout_below="@id/et_1"
+        android:layout_marginTop="10dp"
+        android:hint="密码"
+        android:background="@drawable/bg_username"
+        android:inputType="textPassword"
+        android:drawableLeft="@drawable/icon_pwd"
+        android:drawablePadding="8dp"
+        android:maxLines="1"
+        android:paddingLeft="20dp"/>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/et_2"
+        android:layout_marginTop="10dp"
+        android:textSize="25sp"
+        android:text="登录"
+        android:background="@drawable/bg_btn4"/>
+</RelativeLayout>

@@ -477,7 +477,7 @@ public String test(@PathVariable int a,@PathVariable int b, Model model) {
    }
    ```
 
-`Model`：只有寥寥几个方法只适合用于存储数据，简化了新手对于`Model`对象的操作和理解
+`Model`：只有很少的几个方法只适合用于存储数据，简化了新手对于`Model`对象的操作和理解
 
 `ModelMap`：继承了`LinkedMap`，除了实现了自身的一些方法，同样的继承`LinkedMap`的方法和特性
 

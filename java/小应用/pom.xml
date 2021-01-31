@@ -11,6 +11,9 @@
     <modules>
         <module>01-发送邮件</module>
         <module>02-爬虫</module>
+        <module>04_ADB</module>
+        <module>05_Appium</module>
+        <module>06_录像</module>
     </modules>
 
     <dependencies>

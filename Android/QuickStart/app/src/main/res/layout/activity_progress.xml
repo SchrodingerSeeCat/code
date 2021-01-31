@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ProgressActivity">
+
+<!--
+    @style设置ProgressBar的不同样式
+    @style/Widget.AppCompat.ProgressBar 圆状
+    @style/Widget.AppCompat.ProgressBar.Horizontal 水平
+
+    @android:style 提供了更加丰富的样式
+-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ProgressBar
+            android:id="@+id/pb1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_marginBottom="20dp"/>
+
+        <ProgressBar
+            android:id="@+id/pb2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@android:style/Widget.ProgressBar.Inverse"
+            android:layout_marginBottom="20dp"/>
+
+        <!--
+            android:max="100" 最大进度为100
+             android:progress="10" 设置进度为10
+             android:secondaryProgress="30" 二级进度，如视频、音乐缓存进度
+        -->
+        <ProgressBar
+            android:id="@+id/pb3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_marginBottom="20dp"
+            android:max="100"
+            android:progress="10"
+            android:secondaryProgress="30"/>
+
+        <ProgressBar
+            android:id="@+id/pb4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@android:style/Widget.Material.ActionBar.Solid"
+            android:layout_marginBottom="20dp"
+            android:max="100"
+            android:progress="10"
+            android:secondaryProgress="30"/>
+
+        <Button
+            android:id="@+id/pb_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="模拟进度"
+            android:textSize="25sp"
+            android:layout_marginBottom="20dp"/>
+
+        <!--    在drawable中自定义进度条-->
+        <ProgressBar
+            android:id="@+id/pb5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminateDrawable="@drawable/bg_progress"
+            android:layout_marginBottom="20dp" />
+
+        <!--    通过style引用themes.xml中定义样式-->
+        <ProgressBar
+            android:id="@+id/pb6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/MyProgressBar"
+            android:layout_marginBottom="20dp" />
+
+        <Button
+            android:id="@+id/btn_progress_dialog1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="ProgressDialog1"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/btn_progress_dialog2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="ProgressDialog2"
+            android:layout_marginBottom="20dp"/>
+    </LinearLayout>
+
+ </ScrollView>

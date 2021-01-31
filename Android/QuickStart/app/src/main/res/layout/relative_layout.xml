@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/view_1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#000000"/>
+        <!--
+            相对布局默认是向左上对齐
+            android:layout_alignParentBottom="true" 设置向左下对齐
+        -->
+    <View
+        android:id="@+id/view_2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#00a1de"
+        android:layout_below="@id/view_1" />
+
+        <!--
+        设置view_2的位置
+           android:layout_toRightOf="@id/view_1" 在view_1的右侧
+           android:layout_below="@id/view_1"     在view_1的下方
+        -->
+
+</RelativeLayout>

@@ -3527,7 +3527,7 @@ FileWriter --> BufferedWriter
 
 - 转换流提供了在字节流和字符流之间的转换
 
-- `java`提供了俩个转换流
+- `java`提供了两个转换流
 
   `InputStreamReader`：将`InputStream`转换为`Reader`，即将一个字节的输入流转换为字符的输入流
 

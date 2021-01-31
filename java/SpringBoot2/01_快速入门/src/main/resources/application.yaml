@@ -1,0 +1,27 @@
+person:
+    userName: 张三
+    boos: true
+    birth: 1999/11/11
+    age: 22
+    car:
+        brand: 奔驰
+        price: 1000000000
+    intersts:
+        - 吃饭
+        - 睡觉
+        - 写代码
+    animal: [大黄, 小黑]
+    score:
+        java程序设计: 100
+        数据结构: 62
+        操作系统: 90
+    salaries:
+        - 1000000
+        - 300000
+    allCars:
+        helth:
+            - {brand: 奔驰, price: 1800000}
+            - {brand: 玛莎拉蒂, price: 3000000}
+        sick:
+            - {brand: 迈巴赫, price: 4000000}
+            - {brand: 兰博基尼, price: 6000000}

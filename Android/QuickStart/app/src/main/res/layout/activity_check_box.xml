@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".ui.CheckBoxActivity">
+
+
+    <!--基本使用-->
+    <TextView
+        android:id="@+id/cb_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="你会哪些移动开发: "
+        android:textSize="25dp"
+        android:textColor="#000000"
+        android:layout_marginBottom="15dp"/>
+    <CheckBox
+        android:id="@+id/cb_1"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Android"
+        android:textSize="20sp"
+        android:layout_below="@id/cb_title"/>
+
+    <CheckBox
+        android:id="@+id/cb_2"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="IOS"
+        android:textSize="20sp"
+        android:layout_below="@id/cb_1"/>
+
+    <CheckBox
+        android:id="@+id/cb_3"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="H5"
+        android:textSize="20sp"
+        android:layout_below="@id/cb_2"/>
+
+    <CheckBox
+        android:id="@+id/cb_4"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="其他"
+        android:textSize="20sp"
+        android:layout_below="@id/cb_3"/>
+
+    <EditText
+        android:id="@+id/cb_et"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/cb_4"
+        android:textSize="20sp"
+        android:paddingLeft="15dp"
+        android:maxLines="1"
+        android:hint="请填写其他的技术"/>
+
+
+
+    <!--自定义的选择框-->
+    <LinearLayout
+        android:id="@+id/btn_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/cb_et"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="你的兴趣：" />
+
+        <CheckBox
+            android:id="@+id/cb_5"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="编程"
+            android:layout_marginTop="8dp"
+            android:textSize="20sp"
+            android:button="@drawable/bg_checkbox"
+            android:paddingLeft="10dp"/>
+        <CheckBox
+            android:id="@+id/cb_6"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="游戏"
+            android:layout_marginTop="8dp"
+            android:textSize="20sp"
+            android:button="@drawable/bg_checkbox"
+            android:paddingLeft="10dp"/>
+        <CheckBox
+            android:id="@+id/cb_7"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="做饭"
+            android:layout_marginTop="8dp"
+            android:textSize="20sp"
+            android:button="@drawable/bg_checkbox"
+            android:paddingLeft="10dp"/>
+    </LinearLayout>
+</RelativeLayout>

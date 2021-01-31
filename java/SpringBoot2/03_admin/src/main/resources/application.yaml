@@ -1,0 +1,58 @@
+spring:
+    servlet:
+        multipart:
+            max-file-size: 10MB
+            max-request-size: 100MB
+
+    jdbc:
+        template:
+            query-timeout: 3
+
+    datasource:
+        driver-class-name: org.mariadb.jdbc.Driver
+        url: jdbc:mysql://192.168.1.103:3306/test
+        username: root
+        password: 123456
+
+        druid:
+            aop-patterns: com.valid.admin.*
+            filters: stat,wall,slf4j
+
+            stat-view-servlet:
+                enabled: true
+                login-username: admin
+                login-password: admin
+                reset-enable: false
+            web-stat-filter:
+                enabled: true
+                url-pattern: /*
+                exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+
+            filter:
+                stat:
+                    log-slow-sql: true
+                    slow-sql-millis: 1000
+                wall:
+                    enabled: true
+    redis:
+        host: 192.168.1.103
+        port: 6379
+        password: 123456
+        client-type: LETTUCE
+
+
+mybatis:
+#    config-location: classpath:mybatis/mybatis-config.xml
+    mapper-locations: classpath:mybatis/mapper/*.xml
+    configuration:
+        map-underscore-to-camel-case: true
+
+# management 是所有actuator的配置
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*' # 以web方式暴露所有端点
+    endpoint:
+        health:
+            show-details: always

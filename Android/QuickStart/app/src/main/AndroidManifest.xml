@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.demo">
+    <!-- 申请网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 申请外部存储的权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.01_Demo">
+        <activity android:name=".animation.AnimationActivity"></activity>
+        <activity android:name=".broadcast.BroadActivity2" />
+        <activity android:name=".broadcast.BroadActivity" />
+        <activity android:name=".datastorage.FileActivity" />
+        <activity android:name=".datastorage.SharedPreferencesActivity" />
+        <activity android:name=".datastorage.DataStorageActivity" />
+        <activity
+            android:name=".other.handler.TestActivity"
+            android:label="TestActivity" />
+        <activity
+            android:name=".other.handler.HandlerActivity"
+            android:label="HandlerActivity" />
+        <activity android:name=".event.EventActivity" />
+        <activity android:name=".other.fragment.ContainerActivity" />
+        <activity
+            android:name=".other.jumpanddata.BActivity"
+            android:label="B">
+            <intent-filter>
+
+                <!-- 这个字符串可以是任意的字符串 -->
+                <action android:name="com.expample.test" />
+
+                <!-- 这个category需要设置为DEFAULT -->
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".other.jumpanddata.AActivity"
+            android:label="A" />
+        <activity android:name=".other.OtherActivity" />
+        <activity android:name=".other.life.LifeCycleActivity" />
+        <activity android:name=".ui.PopupWindowActivity" />
+        <activity android:name=".ui.dialog.CustomDialogActivity" />
+        <activity android:name=".ui.ProgressActivity" />
+        <activity android:name=".ui.dialog.DialogActivity" />
+        <activity android:name=".ui.UIActivity" />
+        <activity android:name=".ui.ToastActivity" />
+        <activity android:name=".ui.webview.WebViewActivity" />
+        <activity android:name=".ui.recycleview.waterfall.StaggeredGridActivity" />
+        <activity android:name=".ui.recycleview.grid.GridRecycleViewActivity" />
+        <activity android:name=".ui.recycleview.horizontal.HorRecycleViewActivity" />
+        <activity android:name=".ui.recycleview.linear.LinearRecycleViewActivity" />
+        <activity android:name=".ui.recycleview.RecycleViewActivity" />
+        <activity android:name=".ui.gridview.GridViewActivity" />
+        <activity android:name=".ui.listview.ListViewActivity" />
+        <activity android:name=".ui.ImageViewActivity" />
+        <activity android:name=".ui.CheckBoxActivity" />
+        <activity android:name=".ui.RadioButtonActivity" />
+        <activity android:name=".ui.EditTextActivity" />
+        <activity android:name=".ui.ButtonActivity" /> <!-- 注册activity -->
+        <activity android:name=".ui.TextViewActivity" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

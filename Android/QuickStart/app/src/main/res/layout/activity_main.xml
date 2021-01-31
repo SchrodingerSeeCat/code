@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:padding="30dp">
+
+    <!--UI控件-->
+    <Button
+        android:id="@+id/btn_ui"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="UI"
+        android:textAllCaps="false"
+        android:textSize="30sp"/>
+
+    <!--事件机制-->
+    <Button
+        android:id="@+id/btn_event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Event"
+        android:textAllCaps="false"
+        android:textSize="30sp"/>
+
+    <!--生命周期、数据传递、Fragment、Handler-->
+    <Button
+        android:id="@+id/btn_other"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Other"
+        android:textAllCaps="false"
+        android:textSize="30sp"/>
+
+    <!--数据存储-->
+    <Button
+        android:id="@+id/btn_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="数据存储"
+        android:textAllCaps="false"
+        android:textSize="30sp"/>
+
+    <!--广播-->
+    <Button
+        android:id="@+id/btn_broadcast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BroadCast"
+        android:textAllCaps="false"
+        android:textSize="30sp"/>
+
+    <!--动画-->
+    <Button
+        android:id="@+id/btn_animation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Animation"
+        android:textAllCaps="false"
+        android:textSize="30sp"/>
+</LinearLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    tools:context=".ui.RadioButtonActivity">
+
+    <!--    RadioButton是单选框，需要配合RadioGroup使用-->
+    <RadioGroup
+        android:id="@+id/rg_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/rb_man"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="男"
+            android:textSize="20sp"
+            android:checked="true"/>
+
+        <!--android:checked="true"默认选中-->
+        <RadioButton
+            android:id="@+id/rb_women"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="女"
+            android:textSize="20sp"/>
+    </RadioGroup>
+
+
+    <!--自定义RadioButton的样式-->
+    <RadioGroup
+        android:id="@+id/rg_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/rg_1">
+
+        <RadioButton
+            android:gravity="center"
+            android:id="@+id/rb_man2"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:text="男"
+            android:textSize="20sp"
+            android:checked="true"
+            android:button="@null"
+            android:background="@drawable/selector_fuchsin"/>
+
+        <!--
+            android:checked="true"  默认选中
+            android:button="@null" 去除RadioButton默认的样式
+        -->
+        <RadioButton
+            android:gravity="center"
+            android:id="@+id/rb_women2"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:text="女"
+            android:textSize="20sp"
+            android:button="@null"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/selector_fuchsin"/>
+    </RadioGroup>
+
+</RelativeLayout>
