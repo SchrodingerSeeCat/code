@@ -22,7 +22,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/**")             // 拦截哪些请求，/**所有请求，静态资源也会被拦截
-                .excludePathPatterns("/", "/login", "/css/**", "/fonts/**", "/images/**", "/js/**", "/actuator/**"); // 不拦截哪些请求
+                .excludePathPatterns("/", "/login", "/css/**", "/fonts/**", "/images/**", "/js/**", "/actuator/**", "/city/*", "/insert"); // 不拦截哪些请求
 
         // new RedisUrlCountInterceptor()不能使用new的方式创建依赖了别的组件的拦截器
         registry.addInterceptor(redisUrlCountInterceptor)

@@ -154,22 +154,16 @@ sudo apt install maven
 
 ```xml
 <profile>    
-	<id>jdk-1.11</id>    
+	<id>jdk-11</id>    
     <activation>    
         <activeByDefault>true</activeByDefault>    
-        <jdk>1.11</jdk>    
+        <jdk>11</jdk>    
     </activation>    
     <properties>    
-        <maven.compiler.source>1.11</maven.compiler.source>    
-        <maven.compiler.target>1.11</maven.compiler.target>    
-        <maven.compiler.compilerVersion>1.11</maven.compiler.compilerVersion>    
+        <maven.compiler.source>11</maven.compiler.source>    
+        <maven.compiler.target>11</maven.compiler.target>    
+        <maven.compiler.compilerVersion>11</maven.compiler.compilerVersion>    
     </properties> 
 </profile>
-```
-
-## IDEA
-
-```bash
-sudo snap install intellij-idea-ultimate --classic
 ```
 

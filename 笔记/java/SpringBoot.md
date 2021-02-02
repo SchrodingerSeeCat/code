@@ -866,7 +866,7 @@ public class ParameterTestController {
    ```
    http://127.0.0.1:8080/header
    
-   Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36 Edg/88.0.705.50
+   Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4324.96 Safari/537.36 Edg/87.0.705.50
    ```
 
    也可以获取全部的请求头
@@ -883,7 +883,7 @@ public class ParameterTestController {
    ```json
    http://127.0.0.1:8080/header
    
-   {"host":"127.0.0.1:8080","connection":"keep-alive","cache-control":"max-age=0","upgrade-insecure-requests":"1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36 Edg/88.0.705.50","accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9","sec-fetch-site":"none","sec-fetch-mode":"navigate","sec-fetch-user":"?1","sec-fetch-dest":"document","accept-encoding":"gzip, deflate, br","accept-language":"zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,zh-TW;q=0.5","cookie":"username-127-0-0-1-8888=\"2|1:0|10:1610972519|23:username-127-0-0-1-8888|44:NGMwNzhhZDA5YjQ5NGFmMmJkYWI0YzdjNmY1YTFkOWI=|11f885b4841a2571dbe4df5bb6daa332b092df0b572f891f6941269e3af40230\""}
+   {"host":"127.0.0.1:8080","connection":"keep-alive","cache-control":"max-age=0","upgrade-insecure-requests":"1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4324.96 Safari/537.36 Edg/87.0.705.50","accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9","sec-fetch-site":"none","sec-fetch-mode":"navigate","sec-fetch-user":"?1","sec-fetch-dest":"document","accept-encoding":"gzip, deflate, br","accept-language":"zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,zh-TW;q=0.5","cookie":"username-127-0-0-1-8888=\"2|1:0|10:1610972519|23:username-127-0-0-1-8888|44:NGMwNzhhZDA5YjQ5NGFmMmJkYWI0YzdjNmY1YTFkOWI=|11f885b4841a2571dbe4df5bb6daa332b092df0b572f891f6941269e3af40230\""}
    ```
 
 3. 获取请求参数
@@ -1644,7 +1644,7 @@ A --> D(自定义视图)
 
 ### 4.9 原生web组件注入
 
-#### 4.9.1 使用Servlet API
+#### 4.8.1 使用Servlet API
 
 **servlet**
 
@@ -1711,7 +1711,7 @@ public class MyListener implements ServletContextListener {
 }
 ```
 
-#### 4.9.2 RegisterBean
+#### 4.8.2 RegisterBean
 
 不使用`@Webxxx`注解的方式注入组件
 
@@ -1763,7 +1763,7 @@ public class MyRegisterConfig {
    <dependency>
        <groupId>mysql</groupId>
        <artifactId>mysql-connector-java</artifactId>
-       <version>8.0.23</version>
+       <version>7.0.23</version>
    </dependency>
    ```
 
@@ -1878,7 +1878,7 @@ public class MyRegisterConfig {
    spring:
        datasource:
            driver-class-name: org.mariadb.jdbc.Driver
-           url: jdbc:mysql://192.168.1.103:3306/test
+           url: jdbc:mysql://192.167.1.103:3306/test
            username: root
            password: 123456
    
@@ -2123,7 +2123,7 @@ public class MyRegisterConfig {
    ```yaml
    spring:
        redis:
-           host: 192.168.1.103
+           host: 192.167.1.103
            port: 6379
            password: 123456
            client-type: LETTUCE # 操作redis的工具
@@ -2365,11 +2365,11 @@ public void testParameterized(int i) {
 
 `@MethodSource`：表示读取指定方法的返回值作为参数测试入参(注意方法返回需要是一个流)
 
-## 8. 指标监控
+## 7. 指标监控
 
-### 8.1 SpringBoot Actuator
+### 7.1 SpringBoot Actuator
 
-#### 8.1.1 简介
+#### 7.1.1 简介
 
 未来每一个微服务在云上部署后，我们都需要对其进行监控、追踪、审计、控制等。`SpringBoot`就提取了`Actuator`场景，使得我们每个微服务快速引用即可获得生产级别的应用监控、审计等功能
 
@@ -2382,7 +2382,7 @@ public void testParameterized(int i) {
 </dependency>
 ```
 
-#### 8.1.2 如何使用
+#### 7.1.2 如何使用
 
 - 导入依赖
 
@@ -2400,9 +2400,9 @@ public void testParameterized(int i) {
                   include: '*' # 以web方式暴露所有端点
   ```
 
-### 8.2 Actuator Endpoint
+### 7.2 Actuator Endpoint
 
-#### 8.2.1 常用端点
+#### 7.2.1 常用端点
 
 | ID               | 描述                                                         |
 | ---------------- | ------------------------------------------------------------ |
@@ -2429,7 +2429,7 @@ public void testParameterized(int i) {
 
 `health`健康状况、`metrics`运行时指标、`loggers`日志记录
 
-#### 8.2.2 health
+#### 7.2.2 health
 
 配置`health`的详细信息
 
@@ -2477,7 +2477,7 @@ management:
 }
 ```
 
-#### 8.2.3 Mertics Endpoint
+#### 7.2.3 Mertics Endpoint
 
 提供详细的、层级的、控件指标信息，这些信息可以被`pull`（主动推送）或者`push`（被动获取）方式得到
 
@@ -2485,7 +2485,289 @@ management:
 - 简化核心`metrics`开发
 - 添加自定义的`metrics`或者扩展已有的`metrics`
 
-### 8.3 定制Endpoint
+### 7.3 定制Endpoint
 
-#### 8.3.1 定制Health信息
+#### 7.3.1 定制Health信息
+
+```java
+/*
+ * 名字一定是HealthIndicator结尾
+ * */
+@Component
+public class MyComHealthIndicator extends AbstractHealthIndicator {
+    @Override
+    protected void doHealthCheck(Health.Builder builder) throws Exception {
+        // 获取连接进行测试
+        // 携带数据
+        Map<String, Object> map = new HashMap<>();
+        if(true) {
+//            builder.up(); // 健康
+            builder.status(Status.UP);
+
+            // 连接成功返回的信息
+            map.put("count", 1);
+            map.put("ms", 100);
+        } else {
+            builder.down(); // 不健康
+            map.put("error", "连接超时");
+        }
+        builder.withDetails(map);
+    }
+}
+```
+
+再次访问`health`端点就会有`myCom`这个组件的健康状态
+
+#### 7.3.2 定制info信息
+
+**配置文件中配置**
+
+只需要在配置文件中添加想要访问的信息
+
+```yaml
+info:
+    appName: SpringBoot
+    version: 1.0.0
+```
+
+**实现接口方式**
+
+```java
+@Component
+public class AppInfoInfoContributor implements InfoContributor {
+    @Override
+    public void contribute(Info.Builder builder) {
+        builder.withDetail("msg", "测试")
+                .withDetail("Hello", "World");
+    }
+}
+```
+
+#### 7.3.3 定制Metrics
+
+```java
+private Counter counter;
+public CityServiceImpl(MeterRegistry meterRegistry) {
+	// 注册指标
+	counter = meterRegistry.counter("cityService");
+}
+
+// 在需要监控方法内调用counter.increment()
+```
+
+#### 7.3.4 定制Endpoint
+
+```java
+@Component
+@Endpoint(id = "docker") // endpoint的名字
+public class MyEndpoint {
+
+    @ReadOperation
+    public Map<String, String> getDockerInfo() {
+        // 端点的读操作，默认的返回值
+        return Collections.singletonMap("start", "up");
+    }
+
+    @WriteOperation
+    public void stopDocker() {
+        System.out.println("docker stopped");
+        // 可以使用jconsole调用
+    }
+}
+```
+
+### 7.4 整合可视化微服务管理面板
+
+**管理项目配置**
+
+新建`SpringBoot`的管理项目并引入如下依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+
+<!--可视化面板-->
+<dependency>
+    <groupId>de.codecentric</groupId>
+    <artifactId>spring-boot-admin-starter-server</artifactId>
+    <version>2.3.1</version>
+</dependency>
+```
+
+并在启动类上添加`@EnableAdminServer`
+
+**需要管理的项目的配置**
+
+在想要管理的`SpringBoot`项目中引入如下依赖
+
+```xml
+<dependency>
+    <groupId>de.codecentric</groupId>
+    <artifactId>spring-boot-admin-starter-client</artifactId>
+    <version>2.3.1</version>
+</dependency>
+```
+
+配置文件
+
+```yaml
+spring:
+    boot:
+        admin:
+            client:
+                url: http://localhost:8081 # 管理项目服务器地址
+                instance:
+                    prefer-ip: true # 使用ip注册
+    application:
+        name: 03_admin  # 应用名称
+```
+
+## 8. 原理解析
+
+### 8.1 Profile功能
+
+#### 8.1.1 配置文件加载
+
+为了方便多环境适配，`springboot`简化了`profile`功能
+
+1. 新建一个`controller`
+
+   ```java
+   @RestController
+   public class HelloController {
+   
+       @Value("${name:默认值}") //从配置文件中注入值
+       private String name;
+   
+       @GetMapping("/")
+       public String name() {
+           return name;
+       }
+   }
+   ```
+
+2. 新建`application.yaml`不填写任何属性
+
+3. 新建`application-prod.yaml`填写
+
+   ```yaml
+   name: prod
+   ```
+
+4. 新建`application-test.yaml`填写
+
+   ```yaml
+   name: test
+   ```
+
+默认`StringBoot`启动项目是从`application.yaml`中加载，在`application.yaml`中通过属性可以指定启动文件（`application.yaml`默认也会加载）
+
+```yaml
+spring:
+    profiles:
+        active: prod # 指定applicaiton-prod.yaml为启动文件
+```
+
+如果默认配置文件和指定的配置文件中有同名配置，则以指定的配置文件属性为主
+
+对于打包后的`jar`包也可以指定配置文件执行或者指定属性
+
+```
+java -jar xxx.jar --spring.profiles.active=test --xxx=xxx
+```
+
+#### 8.1.2 注解加载
+
+指定在不同的环境下注入不同的对象
+
+```mermaid
+graph TD
+A[public interface Person] --> B[public class Boss]
+A --> C[public class worker]
+```
+
+在某一个类中需要
+
+```java
+@Autowired
+private Person person;
+```
+
+可以在是实现类上添加注解
+
+```java
+@Component
+@Profile("prod")
+@ConfigurationProperties("person")
+public class Boss implements Person{
+    // ......
+}
+```
+
+```java
+@Component
+@Profile("test")
+@ConfigurationProperties("person")
+public class Worker implements Person{
+    // ......
+}
+```
+
+可以实现在不同的环境下加载不同的对象
+
+`@Bean`也可以标注在方法上，表明在`prod`的环境下添加这个组件
+
+```java
+@Bean
+@Profile("prod")
+public int myInt() {
+	return 1;
+}
+```
+
+### 8.2 外部化配置
+
+#### 8.2.1 外部配置源
+
+常用：`java`属性文件、`YAML`文件、环境变量、命令行参数
+
+`@Value`也可以直接从环境变量中取值
+
+```java
+@Value("${MAVEN_HOME}")
+private String msg;
+```
+
+#### 8.2.2 配置文件查找位置
+
+1. `classpath`根路径
+2. `classpath`根路径下`config`目录
+3. `jar`包当前目录
+4. `jar`包当前目录的`config`目录
+5. `/config`子目录的直接子目录
+
+### 8.3 自定义的starter
+
+- `starter-pom`引入`autoconfigurer`包
+
+  ```mermaid
+  graph TD
+  starter --> autoconfigure --> spring-boot-starter
+  ```
+
+- `autoconfigure`包中配置使用`META-INF/spring.factories`中`EnableAutoConfiguration`的值，使得项目启动加载指定的自动配置类
+
+- 编写自动配置类`xxxAutoConfiguration` -> `xxxProperties`
+
+  - `@Configuration`
+  - `@Conditional`
+  - `@EnableConfigurationProperties`
+  - `@Bean`
+  - ....
+
+总结：引入`starter` -> `xxxAutoConfiguration` --> 容器中放入组件 --> 绑定`xxxProperties` --> 配置项
+
+
 

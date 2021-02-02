@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.valid:valid-hello-spring-boot-starter:1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../env/apache-maven-3.6.3/res/org/valid/valid-hello-spring-boot-starter/1.0-SNAPSHOT/valid-hello-spring-boot-starter-1.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../../env/apache-maven-3.6.3/res/org/valid/valid-hello-spring-boot-starter/1.0-SNAPSHOT/valid-hello-spring-boot-starter-1.0-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../../env/apache-maven-3.6.3/res/org/valid/valid-hello-spring-boot-starter/1.0-SNAPSHOT/valid-hello-spring-boot-starter-1.0-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

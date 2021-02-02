@@ -130,5 +130,7 @@
     <orderEntry type="library" name="Maven: io.micrometer:micrometer-core:1.6.3" level="project" />
     <orderEntry type="library" name="Maven: org.hdrhistogram:HdrHistogram:2.1.12" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.latencyutils:LatencyUtils:2.0.3" level="project" />
+    <orderEntry type="library" name="Maven: de.codecentric:spring-boot-admin-starter-client:2.3.1" level="project" />
+    <orderEntry type="library" name="Maven: de.codecentric:spring-boot-admin-client:2.3.1" level="project" />
   </component>
 </module>

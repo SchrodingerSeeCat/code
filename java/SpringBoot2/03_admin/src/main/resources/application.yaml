@@ -39,6 +39,14 @@ spring:
         port: 6379
         password: 123456
         client-type: LETTUCE
+    boot:
+        admin:
+            client:
+                url: http://localhost:8081 # 管理项目服务器地址
+                instance:
+                    prefer-ip: true # 使用ip注册
+    application:
+        name: 03_admin  # 应用名称
 
 
 mybatis:
@@ -56,3 +64,11 @@ management:
     endpoint:
         health:
             show-details: always
+info:
+    appName: SpringBoot
+    version: 1.0.0
+
+server:
+    servlet:
+        encoding:
+            charset: UTF-8

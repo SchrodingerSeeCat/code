@@ -1,0 +1,7 @@
+spring:
+    profiles:
+        active: prod
+
+person:
+    name: 张三
+    age: 18
