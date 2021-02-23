@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/03_plugins/03_plugins.iml" filepath="$PROJECT_DIR$/03_plugins/03_plugins.iml" />
+      <module fileurl="file://$PROJECT_DIR$/07_加密/07_加密.iml" filepath="$PROJECT_DIR$/07_加密/07_加密.iml" />
     </modules>
   </component>
 </project>

@@ -455,14 +455,13 @@ cache --> 集群3
   # 1) "two"
   # 2) "one"
   
-linsert key after "one" "zero"
+  linsert key after "one" "zero"
   lrange key 0 -1
+  
   # 1) "two"
   # 2) "one"
   # 3) "zero"
   ```
-  
-
 ### 3.4 Set
 
 值的内容不可重复

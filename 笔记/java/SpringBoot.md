@@ -1878,7 +1878,7 @@ public class MyRegisterConfig {
    spring:
        datasource:
            driver-class-name: org.mariadb.jdbc.Driver
-           url: jdbc:mysql://192.167.1.103:3306/test
+           url: jdbc:mysql://192.168.1.103:3306/test
            username: root
            password: 123456
    
@@ -2123,7 +2123,7 @@ public class MyRegisterConfig {
    ```yaml
    spring:
        redis:
-           host: 192.167.1.103
+           host: 192.168.1.103
            port: 6379
            password: 123456
            client-type: LETTUCE # 操作redis的工具

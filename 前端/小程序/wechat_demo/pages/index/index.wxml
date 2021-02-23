@@ -1,0 +1,15 @@
+<view class="indexContainer">
+    <image class="avatarUrl" src="/static/images/nvsheng.jpg"></image>
+    <text class="userName">{{msg}}</text>
+
+    <!-- 测试事件绑定 -->
+    <!-- <view class="goStudy" bindtap="handleParent">
+        <text catchtap="handleChild">Hello World</text>
+    </view> -->
+
+    <!-- 测试路由跳转 -->
+    <view class="goStudy">
+        <text catchtap="toLogs">Hello World</text>
+    </view>
+
+</view>

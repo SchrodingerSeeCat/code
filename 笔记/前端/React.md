@@ -846,7 +846,7 @@ src ---- 源码文件夹
    安装
 
    ```bash
-   npm i uuid
+   npm install nanoid
    ```
 
    使用
@@ -1046,7 +1046,7 @@ graph LR
 A --> |发送数据|B
 ```
 
-1. 在`B`中订阅消息
+1. 在`B`组件挂载时订阅消息
 
    ```js
    import PubSub from 'pubsub-js'
@@ -1286,7 +1286,7 @@ import {Link, BrowserRouter, Route} from "react-router-dom"
 
 **精准匹配**
 
-```
+```jsx
 <Route path="/home/test" component={Home}/>
 ```
 

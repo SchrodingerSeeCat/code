@@ -1,0 +1,8 @@
+spring:
+    mail:
+#        host: smtp.163.com  #登录邮箱设置那里可以看到,第一张图所示,SMTP服务器
+#        password: BMPYQSHNBYLJNPVI #密码是第二张图设置的授权密码.不是邮箱的登录密码
+#        username: rouckylinux@163.com #这个是你的邮箱
+        host: smtp.qq.com
+        username: 471068961@qq.com
+        password: uqrsirtcrlojbhbj
