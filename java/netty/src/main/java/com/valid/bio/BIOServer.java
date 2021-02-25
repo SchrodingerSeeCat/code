@@ -55,6 +55,11 @@ public class BIOServer {
                     e.printStackTrace();
                 }
             }
+            try {
+                client.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
