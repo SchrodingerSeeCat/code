@@ -54,6 +54,9 @@ public class GroupChatServer {
                     if(key.isAcceptable()) {
                         SocketChannel client = listenChannel.accept();
 
+                        // 设置为非阻塞
+                        client.configureBlocking(false);
+
                         // 将client注册到selector
                         client.register(selector, SelectionKey.OP_READ);
 
@@ -119,15 +122,17 @@ public class GroupChatServer {
         System.out.println("服务器转发消息....");
         // 遍历所有注册到selector上的SocketChannel，并排除self
         for(SelectionKey key : selector.keys()) {
-            SocketChannel target = (SocketChannel) key.channel();
-            if(target != self) {
+            Channel target = key.channel();
+            if(target instanceof SocketChannel && target != self) {
                 // 将msg写入buffer
                 ByteBuffer buffer = ByteBuffer.wrap(msg.getBytes(StandardCharsets.UTF_8));
-                target.write(buffer);
+                ((SocketChannel) target).write(buffer);
             }
         }
     }
     public static void main(String[] args) {
-
+        // 创建服务器对象
+        GroupChatServer chatServer = new GroupChatServer();
+        chatServer.listen();
     }
 }
