@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <!--相对布局-->
+    <TextView
+        android:id="@+id/tv_center"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我在中间" />
+
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我在水平中间"/>
+
+    <TextView
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我在垂直中间"/>
+
+    <TextView
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="左上对齐(默认)" />
+
+    <TextView
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="右对齐" />
+
+    <TextView
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="顶对齐" />
+
+    <TextView
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="底对齐" />
+
+    <TextView
+        android:layout_toLeftOf="@+id/tv_center"
+        android:layout_alignTop="@+id/tv_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="中间左边" />
+
+    <TextView
+        android:layout_toRightOf="@+id/tv_center"
+        android:layout_alignBottom="@+id/tv_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="中间右边" />
+
+    <TextView
+        android:layout_above="@+id/tv_center"
+        android:layout_toLeftOf="@+id/tv_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="中间上面"/>
+
+    <TextView
+        android:layout_below="@+id/tv_center"
+        android:layout_toLeftOf="@+id/tv_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="中间下面" />
+</RelativeLayout>

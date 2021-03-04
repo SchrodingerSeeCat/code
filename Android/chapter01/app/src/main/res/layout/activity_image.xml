@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ImageActivity"
+    android:orientation="vertical">
+
+    <!--
+        src属性设置图片的地址
+        scaleType 缩放类型 默认fitCenter撑满屏幕并居中
+    -->
+    <ImageView
+        android:src="@drawable/apple"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"/>
+</LinearLayout>
