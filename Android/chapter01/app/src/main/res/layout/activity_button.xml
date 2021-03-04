@@ -64,10 +64,16 @@
         android:enabled="false"
         android:textSize="20sp"/>
 
-<!--    测试带图片的Button-->
+    <!--测试带图片的Button-->
     <Button
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:drawableLeft="@drawable/"
-        />
+        android:layout_height="50dp"
+        android:drawableLeft="@drawable/up"
+        android:text="支持文字，但不支持图片缩放"/>
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:src="@drawable/up"
+        android:scaleType="fitStart" />
 </LinearLayout>
