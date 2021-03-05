@@ -5,20 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="10dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="我是主页"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:gravity="center"
+        android:textSize="25sp"/>
 
     <Button
         android:id="@+id/btn_go_finish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="去FinishActivity" />
+        android:text="去FinishActivity"
+        android:textAllCaps="false"/>
+
+    <!--测试活动栈-->
+    <Button
+        android:id="@+id/btn_stack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="活动栈" />
+
+    <!--测试Intent-->
+    <Button
+        android:id="@+id/btn_intent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="intent"
+        android:textAllCaps="false"/>
+
+    <!--测试从资源文件中获取字符串-->
+    <Button
+        android:id="@+id/btn_string"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="资源文件"
+        android:textAllCaps="false"/>
+
+    <!--从meta文件中获取-->
+    <Button
+        android:id="@+id/btn_meta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="meta"
+        android:textAllCaps="false"/>
 </LinearLayout>

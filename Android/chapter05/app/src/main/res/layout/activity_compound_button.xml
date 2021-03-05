@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CompoundButtonActivity"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+    <CheckBox
+        android:id="@+id/ck_default"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="系统默认的checkbox"
+        android:textSize="20sp"
+        android:layout_marginBottom="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="switch开关"
+            android:layout_marginRight="30dp"
+            android:textSize="20sp"/>
+        <CheckBox
+            android:id="@+id/ck_switch"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_selector"
+            android:button="@null"/>
+    </LinearLayout>
+
+    <!--单选按钮-->
+    <RadioGroup
+        android:id="@+id/rg_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="单选按钮"
+            android:textSize="20sp"/>
+        <RadioButton
+            android:id="@+id/rb_boy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="男"
+            android:textSize="20sp" />
+        <RadioButton
+            android:id="@+id/rb_girl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="女"
+            android:textSize="20sp" />
+    </RadioGroup>
+</LinearLayout>

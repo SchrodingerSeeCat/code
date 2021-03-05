@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:layout_margin="10dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--简单绘图-->
+            <Button
+                android:id="@+id/btn_simple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:textSize="25dp"
+                android:layout_marginBottom="3dp"
+                android:text="简单绘图"/>
+
+            <!--复选框-->
+            <Button
+                android:id="@+id/btn_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:textSize="25dp"
+                android:layout_marginBottom="3dp"
+                android:text="复选框"/>
+
+            <!--编辑框-->
+            <Button
+                android:id="@+id/btn_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:textSize="25dp"
+                android:layout_marginBottom="3dp"
+                android:text="EditText"/>
+
+            <!--对话框-->
+            <Button
+                android:id="@+id/btn_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:textSize="25dp"
+                android:layout_marginBottom="3dp"
+                android:text="Dialog"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".IntentActivity"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="测试Intent"
+        android:textSize="30sp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/btn_implicit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="隐式跳转"
+        android:gravity="center"
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/btn_bundle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="携带数据"
+        android:gravity="center"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:id="@+id/tv_intent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示处理结果"
+        android:textSize="30sp"
+        android:gravity="center"/>
+</LinearLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DrawableShapeActivity"
+    android:orientation="vertical">
+
+    <!--自定义的drawable可以使用java代码引用-->
+    <View
+        android:id="@+id/v_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <!--使用background引用-->
+    <View
+        android:id="@+id/v_background"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/shape_oval_rose"/>
+
+    <!--状态图表-->
+    <Button
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:background="@drawable/btn_nine_selector"/>
+</LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MetaActivity"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+    <!--源信息，只允许当前活动获取-->
+    <TextView
+        android:id="@+id/tv_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:text="点击按钮从meta中获取"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_meta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:text="获取meta"
+        android:textAllCaps="false"/>
+</LinearLayout>
