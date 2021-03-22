@@ -5,7 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "D:/code/c++/datastruct/01_lineartable/01.cpp" "D:/code/c++/datastruct/01_lineartable/cmake-build-debug/CMakeFiles/01_lineartable.dir/01.cpp.obj"
-  "D:/code/c++/datastruct/01_lineartable/02.cpp" "D:/code/c++/datastruct/01_lineartable/cmake-build-debug/CMakeFiles/01_lineartable.dir/02.cpp.obj"
+  "D:/code/c++/datastruct/01_lineartable/02LinkList.cpp" "D:/code/c++/datastruct/01_lineartable/cmake-build-debug/CMakeFiles/01_lineartable.dir/02LinkList.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

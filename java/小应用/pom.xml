@@ -14,6 +14,7 @@
         <module>04_ADB</module>
         <module>05_Appium</module>
         <module>06_录像</module>
+        <module>08_tencent</module>
     </modules>
 
     <dependencies>

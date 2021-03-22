@@ -83,7 +83,7 @@
 		<Unit filename="D:/code/c++/datastruct/01_lineartable/01.cpp">
 			<Option target="01_lineartable"/>
 		</Unit>
-		<Unit filename="D:/code/c++/datastruct/01_lineartable/02.cpp">
+		<Unit filename="D:/code/c++/datastruct/01_lineartable/02LinkList.cpp">
 			<Option target="01_lineartable"/>
 		</Unit>
 		<Unit filename="D:/code/c++/datastruct/01_lineartable/CMakeLists.txt">

@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_checkbox;
     private Button btn_edit_text;;
     private Button btn_dialog;;
+    private Button btn_password;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, DialogActivity.class));
+            }
+        });
+
+        btn_password = findViewById(R.id.btn_password);
+        btn_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
     }

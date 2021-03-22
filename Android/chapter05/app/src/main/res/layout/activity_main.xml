@@ -55,6 +55,16 @@
                 android:layout_marginBottom="3dp"
                 android:text="Dialog"/>
 
+            <!--找回密码-->
+            <Button
+                android:id="@+id/btn_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:textSize="25dp"
+                android:layout_marginBottom="3dp"
+                android:text="找回密码"/>
+
         </LinearLayout>
     </ScrollView>
 

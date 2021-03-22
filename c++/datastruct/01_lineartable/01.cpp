@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 
 #define MaxSize 50 // 定义线性表的最大长度
 typedef struct {
@@ -172,19 +173,93 @@ void find_x(SqList &list, int x) {
     list.length++;
 }
 
-int main() {
-    SqList list;
-    list.length = 0;
+// 11. 找出两个有序序列的中位数
+int findMid(SqList &list1, SqList &list2) {
 
-    for(int i = 0; i < 20; i++) {
-        list.data[i] = i * 2;
-        list.length++;
+    int total = list1.length + list2.length - 1; // 两个有序序列的总长度
+
+    int index;
+    if((list1.length % 2 == 0 && list2.length % 2 == 0) || (list1.length % 2 != 0 && list2.length % 2 != 0)) {
+        index = total / 2; // 偶数不向上取整
+    } else {
+        index = (total / 2.0) + 0.5;
     }
 
-//    exchange(list, 7, 13);
-    find_x(list, 39);
-    for(int i = 0; i < list.length; i++) {
-        cout << list.data[i] << " ";
+    int i = 0, j = 0;
+    while(i < list1.length && j < list2.length) {
+        if(list1.data[i] < list2.data[j]) {
+            i++;
+            if((i + j + 1) == index) {
+                return list1.data[i];
+            }
+        } else if(list1.data[i] >= list2.data[j]){
+            j++;
+            if((i + j + 1) == index) {
+                return list2.data[j];
+            }
+        }
     }
-    return 0;
+
+    if((i + j + 1) < index && i < list1.length) {
+        return list1.data[index - j];
+    }
+
+    return list2.data[index - i];
 }
+
+// 12. 统计每个数字出现的频率
+void numCount(int nums[], int length) {
+    map<int, int> m;
+    for(int i = 0; i < length; i++) {
+        if(m.find(nums[i]) != m.end()) {
+
+        } else {
+            m.insert(pair<int, int>(nums[i], 0));
+        }
+    }
+}
+
+// 13. 找出一个数组中没有出现的最小正整数
+int findMid(SqList &list, int begin, int end) {
+    end--;
+    int temp = list.data[begin];
+    while(begin < end) {
+        while(begin < end && list.data[end] > temp) {
+            end--;
+        }
+        while(begin < end && list.data[begin] < temp) {
+            begin++;
+        }
+        if(begin < end) {
+            int t = list.data[begin];
+            list.data[begin] = list.data[end];
+            list.data[end] = t;
+        }
+    }
+    list.data[begin] = temp;
+    return begin;
+}
+void quickSort(SqList &list, int begin, int end) {
+    if(begin >= end) return;
+    int mid = findMid(list, begin, end);
+    quickSort(list, begin, mid);
+    quickSort(list, mid + 1, end);
+}
+
+//int main() {
+//    SqList list1;
+//    list1.length = 4;
+//
+//    list1.data[0] = 4;
+//    list1.data[1] = 2;
+//    list1.data[2] = 3;
+//    list1.data[3] = 1;
+//
+//    quickSort(list1, 0, list1.length);
+//
+//    for(int i = 0; i < list1.length; i++) {
+//        cout << list1.data[i] << " ";
+//    }
+//
+//    return 0;
+//}

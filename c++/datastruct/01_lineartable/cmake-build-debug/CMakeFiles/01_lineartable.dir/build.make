@@ -89,29 +89,29 @@ CMakeFiles/01_lineartable.dir/01.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/01_lineartable.dir/01.cpp.s"
 	D:\env\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\code\c++\datastruct\01_lineartable\01.cpp -o CMakeFiles\01_lineartable.dir\01.cpp.s
 
-CMakeFiles/01_lineartable.dir/02.cpp.obj: CMakeFiles/01_lineartable.dir/flags.make
-CMakeFiles/01_lineartable.dir/02.cpp.obj: ../02.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\code\c++\datastruct\01_lineartable\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/01_lineartable.dir/02.cpp.obj"
-	D:\env\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\01_lineartable.dir\02.cpp.obj -c D:\code\c++\datastruct\01_lineartable\02.cpp
+CMakeFiles/01_lineartable.dir/02LinkList.cpp.obj: CMakeFiles/01_lineartable.dir/flags.make
+CMakeFiles/01_lineartable.dir/02LinkList.cpp.obj: ../02LinkList.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\code\c++\datastruct\01_lineartable\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/01_lineartable.dir/02LinkList.cpp.obj"
+	D:\env\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\01_lineartable.dir\02LinkList.cpp.obj -c D:\code\c++\datastruct\01_lineartable\02LinkList.cpp
 
-CMakeFiles/01_lineartable.dir/02.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/01_lineartable.dir/02.cpp.i"
-	D:\env\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\code\c++\datastruct\01_lineartable\02.cpp > CMakeFiles\01_lineartable.dir\02.cpp.i
+CMakeFiles/01_lineartable.dir/02LinkList.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/01_lineartable.dir/02LinkList.cpp.i"
+	D:\env\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\code\c++\datastruct\01_lineartable\02LinkList.cpp > CMakeFiles\01_lineartable.dir\02LinkList.cpp.i
 
-CMakeFiles/01_lineartable.dir/02.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/01_lineartable.dir/02.cpp.s"
-	D:\env\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\code\c++\datastruct\01_lineartable\02.cpp -o CMakeFiles\01_lineartable.dir\02.cpp.s
+CMakeFiles/01_lineartable.dir/02LinkList.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/01_lineartable.dir/02LinkList.cpp.s"
+	D:\env\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\code\c++\datastruct\01_lineartable\02LinkList.cpp -o CMakeFiles\01_lineartable.dir\02LinkList.cpp.s
 
 # Object files for target 01_lineartable
 01_lineartable_OBJECTS = \
 "CMakeFiles/01_lineartable.dir/01.cpp.obj" \
-"CMakeFiles/01_lineartable.dir/02.cpp.obj"
+"CMakeFiles/01_lineartable.dir/02LinkList.cpp.obj"
 
 # External object files for target 01_lineartable
 01_lineartable_EXTERNAL_OBJECTS =
 
 01_lineartable.exe: CMakeFiles/01_lineartable.dir/01.cpp.obj
-01_lineartable.exe: CMakeFiles/01_lineartable.dir/02.cpp.obj
+01_lineartable.exe: CMakeFiles/01_lineartable.dir/02LinkList.cpp.obj
 01_lineartable.exe: CMakeFiles/01_lineartable.dir/build.make
 01_lineartable.exe: CMakeFiles/01_lineartable.dir/linklibs.rsp
 01_lineartable.exe: CMakeFiles/01_lineartable.dir/objects1.rsp

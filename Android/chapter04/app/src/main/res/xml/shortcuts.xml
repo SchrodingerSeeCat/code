@@ -8,7 +8,7 @@
         <!-- targetClass指定了点击该项菜单后要打开哪个活动页面 -->
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetPackage="com.valid.activity"
+            android:targetPackage="com.valid.chapter04"
             android:targetClass="com.valid.activity.MainActivity" />
         <categories android:name="android.shortcut.conversation"/>
     </shortcut>
@@ -22,7 +22,7 @@
         <!-- targetClass指定了点击该项菜单后要打开哪个活动页面 -->
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetPackage="com.valid.activity"
+            android:targetPackage="com.valid.chapter04"
             android:targetClass="com.valid.activity.StackActivity" />
         <categories android:name="android.shortcut.conversation"/>
     </shortcut>
@@ -36,7 +36,7 @@
         <!-- targetClass指定了点击该项菜单后要打开哪个活动页面 -->
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetPackage="com.valid.activity"
+            android:targetPackage="com.valid.chapter04"
             android:targetClass="com.valid.activity.StackActivity" />
         <categories android:name="android.shortcut.conversation"/>
     </shortcut>

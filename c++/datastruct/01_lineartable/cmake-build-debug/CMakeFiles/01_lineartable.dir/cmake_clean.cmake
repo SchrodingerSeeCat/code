@@ -3,7 +3,7 @@ file(REMOVE_RECURSE
   "01_lineartable.exe.manifest"
   "01_lineartable.pdb"
   "CMakeFiles/01_lineartable.dir/01.cpp.obj"
-  "CMakeFiles/01_lineartable.dir/02.cpp.obj"
+  "CMakeFiles/01_lineartable.dir/02LinkList.cpp.obj"
   "lib01_lineartable.dll.a"
 )
 

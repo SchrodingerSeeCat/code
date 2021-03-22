@@ -3,5 +3,5 @@
 
 CMakeFiles/01_lineartable.dir/01.cpp.obj: ../01.cpp
 
-CMakeFiles/01_lineartable.dir/02.cpp.obj: ../02.cpp
+CMakeFiles/01_lineartable.dir/02LinkList.cpp.obj: ../02LinkList.cpp
 
