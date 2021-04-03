@@ -1,6 +1,0 @@
-const teacher = "老王";
-console.log(teacher); // 引入jquery
-
-$(function () {
-  alert("Hello " + teacher);
-});

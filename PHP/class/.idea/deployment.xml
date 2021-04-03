@@ -5,7 +5,7 @@
       <paths name="Apache">
         <serverdata>
           <mappings>
-            <mapping deploy="calc" local="$PROJECT_DIR$" web="/calc" />
+            <mapping deploy="class" local="$PROJECT_DIR$" web="/class" />
           </mappings>
         </serverdata>
       </paths>

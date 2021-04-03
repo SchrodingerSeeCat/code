@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="leetcode" targetName="leetcode" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a68ad2c7-178f-4bd9-8845-ad5a163952f3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/leetcode.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PHP/class/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PHP/class/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PHP/class/calc.php" beforeDir="false" afterPath="$PROJECT_DIR$/../PHP/class/calc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c++/datastruct/01_lineartable/02LinkList.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../c++/datastruct/01_lineartable/02LinkList.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c++/datastruct/01_lineartable/cmake-build-debug/01_lineartable.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../c++/datastruct/01_lineartable/cmake-build-debug/01_lineartable.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c++/datastruct/01_lineartable/cmake-build-debug/CMakeFiles/01_lineartable.dir/02LinkList.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../c++/datastruct/01_lineartable/cmake-build-debug/CMakeFiles/01_lineartable.dir/02LinkList.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c++/datastruct/01_lineartable/cmake-build-debug/CMakeFiles/01_lineartable.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../c++/datastruct/01_lineartable/cmake-build-debug/CMakeFiles/01_lineartable.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c++/datastruct/01_lineartable/cmake-build-debug/CMakeFiles/01_lineartable.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/../c++/datastruct/01_lineartable/cmake-build-debug/CMakeFiles/01_lineartable.dir/objects.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c++/datastruct/01_lineartable/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../c++/datastruct/01_lineartable/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/linkllist/P_19.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/linkllist/P_19.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/demo1.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/demo10.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/demo11.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/demo12.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/demo13.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/demo14.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/demo15.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/demo16.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/demo17.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/demo2.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/demo3.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/demo4.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/demo5.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/demo6.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/demo7.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/demo8.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/demo9.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_18/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_18/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_18/src/components.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_18/src/page.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_18/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_19/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_19/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_19/src/components.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_19/src/page.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_19/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/18/a530989d46201817d25f2c433a9052.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/18/b4064b711868aef7d0d4a609ebec90.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/1a/76016ae805a8d0ea0d101b8e3be1c4.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/1e/4599586ea51d871f9b4c5b8c1ecd58.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/22/4be5fa44b110a031e68935f8a96bca.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/24/1b75935545969967916e3abbeded72.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/27/426abf54c0430a4691193e1adc5e34.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/2b/2eb1759b7e1394134c5ef01516b29c.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/42/5d3f4c16ac389cfd38151705a36136.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/49/65a15087e4ed753c8c1aeaa687d62a.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/4b/8e3e1e26a734603fde4ead5ddc5eae.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/58/65a8bb4b3c660b45956b25a284fc03.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/59/bac8a83c6bbe306fb54fe9646d59af.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/61/99685379a292361e8925b73a201d98.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/66/1e31dc4731469bd0b479b856f74ed5.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/69/4f1c75a962bad96518fa4718cb522a.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/71/b9baa607b1608c7313147d4bff042a.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/71/cc0f485eeadd93c5514dd860607325.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/7a/224729c2f876ab747d104eae8d474b.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/7f/325a0a7c62b05715f55ae53b7b15be.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/81/e496fc3eaf731eeb7c527e6485ae0b.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/82/1e2dfc571c4a159bc575ece48bac07.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/87/f3f0a18602bb2238fbde3da4435de8.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/8e/d6738de62f4a796e1ba16be23029d9.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/90/e9aca24ad2d619f55ddd79af0293a6.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/98/579eea10b9cab7c682389a00c06629.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/9d/351839cd549fc54d38e28ab546e28f.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/9f/de030641a607be706b538e892bbe96.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/9f/fc7fab478df926b67f78acd96a0041.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/a0/d0b40f65f5dcbec605e577bae15608.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/a1/1e3e19fe2d94174833093bb04aaf15.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/a6/f79c71534cd3fe81826bb7a495fecf.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/a7/2a38297d6ed6c780ab6a501db62936.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/ac/16927a5dba3824341580e23bd1a23f.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/ac/8766d08ecdc0c5692839693e7dc936.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/b8/bb2517ae82be885851b19242a67f02.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/bc/04f1b3670619995a662662c889bb0f.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/ca/d8e51c1d9de5263c9b31e3a6119a1e.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/cd/00012baa79a2a0290a7600147b4910.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/cf/1169f8bee7d715b870f7b048b7950b.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/cf/199418511341621819293907574a3a.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/d0/118c1d67b5605ab41268a0297c75c1.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/d1/0eb85ef63534520045eabb29278056.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/d7/009d51350058d9b0427c419f4c346f.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/e0/3e526ed6d2b3cd96f7619137802cf5.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/e3/754f56db872e9e1ca6f23fb28cc260.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/f0/7f900d3cfaab195ab60990a8f47b94.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/f1/6250e875349599565ef985ec09e02a.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/fb/12035dcf1d5bd764fa7b1c8713c931.blob" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/.parcel-cache/fb/70a56d9f49ad28435b38ca579b2fdd.v8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/src/page.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/dwl_20/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../笔记/java/JavaWeb.md" beforeDir="false" afterPath="$PROJECT_DIR$/../笔记/java/JavaWeb.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\env\apache-maven-3.6.3\res" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../env/apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="D:\env\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1qYIgNy4YGGeiu80DOVPyIMiLHw" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.28965518" />
+    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="leetcode" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leetcode" TARGET_NAME="leetcode" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leetcode" RUN_TARGET_NAME="leetcode">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a68ad2c7-178f-4bd9-8845-ad5a163952f3" name="Default Changelist" comment="" />
+      <created>1617250206992</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1617250206992</updated>
+      <workItem from="1617250209591" duration="5816000" />
+      <workItem from="1617273413692" duration="1884000" />
+      <workItem from="1617276690355" duration="27000" />
+      <workItem from="1617336349761" duration="286000" />
+      <workItem from="1617349117740" duration="418000" />
+      <workItem from="1617349603688" duration="101000" />
+      <workItem from="1617349718848" duration="100000" />
+      <workItem from="1617349844657" duration="60000" />
+      <workItem from="1617350321369" duration="68000" />
+      <workItem from="1617350399273" duration="51000" />
+      <workItem from="1617350493656" duration="17000" />
+      <workItem from="1617350699225" duration="220000" />
+      <workItem from="1617367991354" duration="15000" />
+      <workItem from="1617370580408" duration="1149000" />
+      <workItem from="1617416053994" duration="252000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="j" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

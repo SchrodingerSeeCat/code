@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 typedef struct LNode{
@@ -27,12 +28,14 @@ LinkList Link_HeaderInsert(LinkList &l) {
 }
 
 int main() {
-    LinkList list;
-    LinkList l = Link_HeaderInsert(list);
+    vector<int> vec;
+    for(int i = 0; i < 10; i++) {
+        vec.push_back(i);
+    }
 
-    while(l->next != nullptr) {
-        cout << l->data << " ";
-        l = l->next;
+
+    for(vector<int>::iterator begin = vec.begin(); begin != vec.end(); begin++){
+        cout << *begin << " ";
     }
     return 0;
 }

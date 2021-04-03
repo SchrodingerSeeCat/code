@@ -8,7 +8,6 @@ if(isset($_POST["firstNum"]) && isset($_POST["secondNum"])) {
     // 字符串用于页面展示
     $firstNum = (float)$_POST["firstNum"];
     $secondNum = (float)$_POST["secondNum"];
-
     // 数字用于计算
     $first = (float)$_POST["firstNum"];
     $second = (float)$_POST["secondNum"];

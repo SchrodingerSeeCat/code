@@ -1519,7 +1519,7 @@ JDBC --> SqlServer驱动 --> SqlServer
 3. 配置连接信息`JDBC.java`
 
    ```java
-   String url = "jdbc:mysql://localhost:3306/jdbc?useUnicode=true&characterEncoding=utf-8";
+   String url = "jdbc:mysql://localhost:3306/jdbc?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC";
    String username = "root";
    String password = "123456";
    ```
