@@ -169,32 +169,86 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-src/array/P_17_21.obj: src/array/P_17_21.cpp.obj
+src/array/P_1143.obj: src/array/P_1143.cpp.obj
 
-.PHONY : src/array/P_17_21.obj
+.PHONY : src/array/P_1143.obj
 
 # target to build an object file
-src/array/P_17_21.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/array/P_17_21.cpp.obj
-.PHONY : src/array/P_17_21.cpp.obj
+src/array/P_1143.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/array/P_1143.cpp.obj
+.PHONY : src/array/P_1143.cpp.obj
 
-src/array/P_17_21.i: src/array/P_17_21.cpp.i
+src/array/P_1143.i: src/array/P_1143.cpp.i
 
-.PHONY : src/array/P_17_21.i
+.PHONY : src/array/P_1143.i
 
 # target to preprocess a source file
-src/array/P_17_21.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/array/P_17_21.cpp.i
-.PHONY : src/array/P_17_21.cpp.i
+src/array/P_1143.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/array/P_1143.cpp.i
+.PHONY : src/array/P_1143.cpp.i
 
-src/array/P_17_21.s: src/array/P_17_21.cpp.s
+src/array/P_1143.s: src/array/P_1143.cpp.s
 
-.PHONY : src/array/P_17_21.s
+.PHONY : src/array/P_1143.s
 
 # target to generate assembly for a file
-src/array/P_17_21.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/array/P_17_21.cpp.s
-.PHONY : src/array/P_17_21.cpp.s
+src/array/P_1143.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/array/P_1143.cpp.s
+.PHONY : src/array/P_1143.cpp.s
+
+src/array/P_80.obj: src/array/P_80.cpp.obj
+
+.PHONY : src/array/P_80.obj
+
+# target to build an object file
+src/array/P_80.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/array/P_80.cpp.obj
+.PHONY : src/array/P_80.cpp.obj
+
+src/array/P_80.i: src/array/P_80.cpp.i
+
+.PHONY : src/array/P_80.i
+
+# target to preprocess a source file
+src/array/P_80.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/array/P_80.cpp.i
+.PHONY : src/array/P_80.cpp.i
+
+src/array/P_80.s: src/array/P_80.cpp.s
+
+.PHONY : src/array/P_80.s
+
+# target to generate assembly for a file
+src/array/P_80.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/array/P_80.cpp.s
+.PHONY : src/array/P_80.cpp.s
+
+src/array/P_88.obj: src/array/P_88.cpp.obj
+
+.PHONY : src/array/P_88.obj
+
+# target to build an object file
+src/array/P_88.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/array/P_88.cpp.obj
+.PHONY : src/array/P_88.cpp.obj
+
+src/array/P_88.i: src/array/P_88.cpp.i
+
+.PHONY : src/array/P_88.i
+
+# target to preprocess a source file
+src/array/P_88.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/array/P_88.cpp.i
+.PHONY : src/array/P_88.cpp.i
+
+src/array/P_88.s: src/array/P_88.cpp.s
+
+.PHONY : src/array/P_88.s
+
+# target to generate assembly for a file
+src/array/P_88.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/array/P_88.cpp.s
+.PHONY : src/array/P_88.cpp.s
 
 src/stack/P_1006.obj: src/stack/P_1006.cpp.obj
 
@@ -235,9 +289,15 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
-	@echo ... src/array/P_17_21.obj
-	@echo ... src/array/P_17_21.i
-	@echo ... src/array/P_17_21.s
+	@echo ... src/array/P_1143.obj
+	@echo ... src/array/P_1143.i
+	@echo ... src/array/P_1143.s
+	@echo ... src/array/P_80.obj
+	@echo ... src/array/P_80.i
+	@echo ... src/array/P_80.s
+	@echo ... src/array/P_88.obj
+	@echo ... src/array/P_88.i
+	@echo ... src/array/P_88.s
 	@echo ... src/stack/P_1006.obj
 	@echo ... src/stack/P_1006.i
 	@echo ... src/stack/P_1006.s

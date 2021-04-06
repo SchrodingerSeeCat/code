@@ -83,7 +83,13 @@
 		<Unit filename="D:/code/leetcode/main.cpp">
 			<Option target="leetcode"/>
 		</Unit>
-		<Unit filename="D:/code/leetcode/src/array/P_17_21.cpp">
+		<Unit filename="D:/code/leetcode/src/array/P_1143.cpp">
+			<Option target="leetcode"/>
+		</Unit>
+		<Unit filename="D:/code/leetcode/src/array/P_80.cpp">
+			<Option target="leetcode"/>
+		</Unit>
+		<Unit filename="D:/code/leetcode/src/array/P_88.cpp">
 			<Option target="leetcode"/>
 		</Unit>
 		<Unit filename="D:/code/leetcode/src/stack/P_1006.cpp">

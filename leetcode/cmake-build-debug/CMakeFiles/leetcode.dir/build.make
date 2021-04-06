@@ -102,36 +102,66 @@ CMakeFiles/leetcode.dir/src/stack/P_1006.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/leetcode.dir/src/stack/P_1006.cpp.s"
 	D:\env\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\code\leetcode\src\stack\P_1006.cpp -o CMakeFiles\leetcode.dir\src\stack\P_1006.cpp.s
 
-CMakeFiles/leetcode.dir/src/array/P_17_21.cpp.obj: CMakeFiles/leetcode.dir/flags.make
-CMakeFiles/leetcode.dir/src/array/P_17_21.cpp.obj: ../src/array/P_17_21.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\code\leetcode\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/leetcode.dir/src/array/P_17_21.cpp.obj"
-	D:\env\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\leetcode.dir\src\array\P_17_21.cpp.obj -c D:\code\leetcode\src\array\P_17_21.cpp
+CMakeFiles/leetcode.dir/src/array/P_1143.cpp.obj: CMakeFiles/leetcode.dir/flags.make
+CMakeFiles/leetcode.dir/src/array/P_1143.cpp.obj: ../src/array/P_1143.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\code\leetcode\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/leetcode.dir/src/array/P_1143.cpp.obj"
+	D:\env\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\leetcode.dir\src\array\P_1143.cpp.obj -c D:\code\leetcode\src\array\P_1143.cpp
 
-CMakeFiles/leetcode.dir/src/array/P_17_21.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/leetcode.dir/src/array/P_17_21.cpp.i"
-	D:\env\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\code\leetcode\src\array\P_17_21.cpp > CMakeFiles\leetcode.dir\src\array\P_17_21.cpp.i
+CMakeFiles/leetcode.dir/src/array/P_1143.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/leetcode.dir/src/array/P_1143.cpp.i"
+	D:\env\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\code\leetcode\src\array\P_1143.cpp > CMakeFiles\leetcode.dir\src\array\P_1143.cpp.i
 
-CMakeFiles/leetcode.dir/src/array/P_17_21.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/leetcode.dir/src/array/P_17_21.cpp.s"
-	D:\env\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\code\leetcode\src\array\P_17_21.cpp -o CMakeFiles\leetcode.dir\src\array\P_17_21.cpp.s
+CMakeFiles/leetcode.dir/src/array/P_1143.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/leetcode.dir/src/array/P_1143.cpp.s"
+	D:\env\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\code\leetcode\src\array\P_1143.cpp -o CMakeFiles\leetcode.dir\src\array\P_1143.cpp.s
+
+CMakeFiles/leetcode.dir/src/array/P_88.cpp.obj: CMakeFiles/leetcode.dir/flags.make
+CMakeFiles/leetcode.dir/src/array/P_88.cpp.obj: ../src/array/P_88.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\code\leetcode\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/leetcode.dir/src/array/P_88.cpp.obj"
+	D:\env\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\leetcode.dir\src\array\P_88.cpp.obj -c D:\code\leetcode\src\array\P_88.cpp
+
+CMakeFiles/leetcode.dir/src/array/P_88.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/leetcode.dir/src/array/P_88.cpp.i"
+	D:\env\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\code\leetcode\src\array\P_88.cpp > CMakeFiles\leetcode.dir\src\array\P_88.cpp.i
+
+CMakeFiles/leetcode.dir/src/array/P_88.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/leetcode.dir/src/array/P_88.cpp.s"
+	D:\env\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\code\leetcode\src\array\P_88.cpp -o CMakeFiles\leetcode.dir\src\array\P_88.cpp.s
+
+CMakeFiles/leetcode.dir/src/array/P_80.cpp.obj: CMakeFiles/leetcode.dir/flags.make
+CMakeFiles/leetcode.dir/src/array/P_80.cpp.obj: ../src/array/P_80.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\code\leetcode\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/leetcode.dir/src/array/P_80.cpp.obj"
+	D:\env\mingw64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\leetcode.dir\src\array\P_80.cpp.obj -c D:\code\leetcode\src\array\P_80.cpp
+
+CMakeFiles/leetcode.dir/src/array/P_80.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/leetcode.dir/src/array/P_80.cpp.i"
+	D:\env\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\code\leetcode\src\array\P_80.cpp > CMakeFiles\leetcode.dir\src\array\P_80.cpp.i
+
+CMakeFiles/leetcode.dir/src/array/P_80.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/leetcode.dir/src/array/P_80.cpp.s"
+	D:\env\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\code\leetcode\src\array\P_80.cpp -o CMakeFiles\leetcode.dir\src\array\P_80.cpp.s
 
 # Object files for target leetcode
 leetcode_OBJECTS = \
 "CMakeFiles/leetcode.dir/main.cpp.obj" \
 "CMakeFiles/leetcode.dir/src/stack/P_1006.cpp.obj" \
-"CMakeFiles/leetcode.dir/src/array/P_17_21.cpp.obj"
+"CMakeFiles/leetcode.dir/src/array/P_1143.cpp.obj" \
+"CMakeFiles/leetcode.dir/src/array/P_88.cpp.obj" \
+"CMakeFiles/leetcode.dir/src/array/P_80.cpp.obj"
 
 # External object files for target leetcode
 leetcode_EXTERNAL_OBJECTS =
 
 leetcode.exe: CMakeFiles/leetcode.dir/main.cpp.obj
 leetcode.exe: CMakeFiles/leetcode.dir/src/stack/P_1006.cpp.obj
-leetcode.exe: CMakeFiles/leetcode.dir/src/array/P_17_21.cpp.obj
+leetcode.exe: CMakeFiles/leetcode.dir/src/array/P_1143.cpp.obj
+leetcode.exe: CMakeFiles/leetcode.dir/src/array/P_88.cpp.obj
+leetcode.exe: CMakeFiles/leetcode.dir/src/array/P_80.cpp.obj
 leetcode.exe: CMakeFiles/leetcode.dir/build.make
 leetcode.exe: CMakeFiles/leetcode.dir/linklibs.rsp
 leetcode.exe: CMakeFiles/leetcode.dir/objects1.rsp
 leetcode.exe: CMakeFiles/leetcode.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\code\leetcode\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable leetcode.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\code\leetcode\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable leetcode.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\leetcode.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
