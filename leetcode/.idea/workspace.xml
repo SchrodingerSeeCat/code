@@ -15,21 +15,85 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a68ad2c7-178f-4bd9-8845-ad5a163952f3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../java/数据结构/09_排序/09_排序.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/数据结构/10_排序/src/com/valid/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../java/数据结构/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java/数据结构/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/数据结构/09_排序/09_排序.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java/数据结构/10_排序/10_排序.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/数据结构/09_排序/src/com/valid/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/DependInfo.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/build.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/link.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/objects1.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/objects1.rsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/progress.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/leetcode.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/leetcode.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/array/P_17_21.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/array/P_1143.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/01_setup和ref的使用/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/01_setup和ref的使用/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/02_reactive/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/02_reactive/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/03_setup参数/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/03_setup参数/components/Child.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/03_setup参数/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/04_计算属性/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/04_计算属性/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/04_计算属性/shims-vue.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/05_生命周期/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/05_生命周期/components/Child.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/05_生命周期/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/05_生命周期/shims-vue.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/06_hooks/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/06_hooks/hooks/useMousePosition.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/06_hooks/hooks/useRequest.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/06_hooks/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/06_hooks/shims-vue.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/07_toRefs/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/07_toRefs/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/07_toRefs/shims-vue.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/08_ref获取页面元素/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/08_ref获取页面元素/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/08_ref获取页面元素/shims-vue.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/09_shallowRef/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/09_shallowRef/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/10_shallowReadonly/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/10_shallowReadonly/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/11_toRaw和markRaw/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/11_toRaw和markRaw/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/12_toRef的使用/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/12_toRef的使用/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/13_CustomRef的使用/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/13_CustomRef的使用/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/13_CustomRef的使用/shims-vue.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/14_provide与inject/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/14_provide与inject/components/GrandSon.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/14_provide与inject/components/Son.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/14_provide与inject/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/14_provide与inject/shims-vue.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/15_判断API/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/15_判断API/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/15_判断API/shims-vue.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/16_Teleport组件/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/16_Teleport组件/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/16_Teleport组件/shims-vue.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/17_suspense的使用/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/17_suspense的使用/components/AsyncAddress.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/17_suspense的使用/components/AsyncComponent.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/17_suspense的使用/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/17_suspense的使用/shims-vue.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/public/data/address.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/public/data/products.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../前端/TypeScript/04_vue3/vue3_study/01_code/public/index.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +103,6 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -71,30 +134,33 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="cf.first.check.clang-format" value="false" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="cmake.loaded.for.project" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../java/数据结构" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.28965518" />
-    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
+    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="leetcode" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leetcode" TARGET_NAME="leetcode" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leetcode" RUN_TARGET_NAME="leetcode">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="leetcode" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leetcode" TARGET_NAME="leetcode" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leetcode" RUN_TARGET_NAME="leetcode">
       <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -127,6 +193,15 @@
       <workItem from="1617597270036" duration="1841000" />
       <workItem from="1617623733822" duration="59000" />
       <workItem from="1617681451434" duration="2314000" />
+      <workItem from="1617754353607" duration="202000" />
+      <workItem from="1617756969141" duration="723000" />
+      <workItem from="1617879970259" duration="357000" />
+      <workItem from="1617881559773" duration="941000" />
+      <workItem from="1617887699295" duration="325000" />
+      <workItem from="1617957165778" duration="179000" />
+      <workItem from="1617957404511" duration="1174000" />
+      <workItem from="1617962987628" duration="355000" />
+      <workItem from="1617971223272" duration="45000" />
     </task>
     <servers />
   </component>
