@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-D:/code/leetcode/src/stack/P_1006.cpp
-iostream
+D:/code/leetcode/src/str/P_9.cpp
+string
 -
-stack
+iostream
 -
 

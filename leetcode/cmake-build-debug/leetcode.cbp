@@ -89,6 +89,15 @@
 		<Unit filename="D:/code/leetcode/src/array/P_153.cpp">
 			<Option target="leetcode"/>
 		</Unit>
+		<Unit filename="D:/code/leetcode/src/array/P_179.cpp">
+			<Option target="leetcode"/>
+		</Unit>
+		<Unit filename="D:/code/leetcode/src/array/P_263.cpp">
+			<Option target="leetcode"/>
+		</Unit>
+		<Unit filename="D:/code/leetcode/src/array/P_264.cpp">
+			<Option target="leetcode"/>
+		</Unit>
 		<Unit filename="D:/code/leetcode/src/array/P_80.cpp">
 			<Option target="leetcode"/>
 		</Unit>
@@ -98,16 +107,25 @@
 		<Unit filename="D:/code/leetcode/src/array/P_88.cpp">
 			<Option target="leetcode"/>
 		</Unit>
+		<Unit filename="D:/code/leetcode/src/binarytree/P_783.cpp">
+			<Option target="leetcode"/>
+		</Unit>
+		<Unit filename="D:/code/leetcode/src/binarytree/TreeNode.h">
+			<Option target="leetcode"/>
+		</Unit>
 		<Unit filename="D:/code/leetcode/src/linkllist/ListNode.cpp">
 			<Option target="leetcode"/>
 		</Unit>
 		<Unit filename="D:/code/leetcode/src/linkllist/ListNode.h">
 			<Option target="leetcode"/>
 		</Unit>
-		<Unit filename="D:/code/leetcode/src/linkllist/P.cpp">
+		<Unit filename="D:/code/leetcode/src/linkllist/P_2.cpp">
 			<Option target="leetcode"/>
 		</Unit>
 		<Unit filename="D:/code/leetcode/src/stack/P_1006.cpp">
+			<Option target="leetcode"/>
+		</Unit>
+		<Unit filename="D:/code/leetcode/src/str/P_9.cpp">
 			<Option target="leetcode"/>
 		</Unit>
 		<Unit filename="D:/code/leetcode/CMakeLists.txt">

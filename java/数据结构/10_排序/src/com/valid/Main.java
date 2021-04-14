@@ -1,8 +1,7 @@
 package com.valid;
 
-import com.valid.sort.InsertSort2;
-import com.valid.sort.InsertSort3;
-import com.valid.sort.MergeSort;
+import com.valid.sort.count.CountingSort2;
+import com.valid.sort.count.RadixSort;
 
 public class Main {
     public static void main(String[] args) {
@@ -27,7 +26,27 @@ public class Main {
 //        sort.sort(array);
 //        System.out.println(sort);
 
-        MergeSort<Integer> sort = new MergeSort<>();
+//        MergeSort<Integer> sort = new MergeSort<>();
+//        sort.sort(array);
+//        System.out.println(sort);
+
+//        QuickSort2<Integer> sort = new QuickSort2<>();
+//        sort.sort(array);
+//        System.out.println(sort);
+
+//        ShellSort<Integer> sort = new ShellSort<>();
+//        sort.sort(array);
+//        System.out.println(sort);
+
+//        CountingSort1 sort = new CountingSort1();
+//        sort.sort(array);
+//        System.out.println(sort);
+
+//        CountingSort2 sort = new CountingSort2();
+//        sort.sort(array);
+//        System.out.println(sort);
+
+        RadixSort sort = new RadixSort();
         sort.sort(array);
         System.out.println(sort);
     }

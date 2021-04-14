@@ -50,12 +50,3 @@ public:
         return num.top();
     }
 };
-
-int main() {
-    Solution* solution = new Solution();
-    cout << solution->clumsy(4);
-
-    delete solution;
-    return 0;
-}
-

@@ -1,4 +1,6 @@
-package com.valid.sort;
+package com.valid.sort.cmp;
+
+import com.valid.sort.Sort;
 
 public class InsertSort1<E extends Comparable<E>> extends Sort<E> {
     @Override

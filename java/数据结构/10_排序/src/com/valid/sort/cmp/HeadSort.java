@@ -1,8 +1,10 @@
-package com.valid.sort;
+package com.valid.sort.cmp;
+
+import com.valid.sort.Sort;
 
 import java.util.Arrays;
 
-public class HeadSort<E extends Comparable<E>> extends Sort<E>{
+public class HeadSort<E extends Comparable<E>> extends Sort<E> {
     private  int heapSize; // 堆的大小
 
     @Override

@@ -1,6 +1,8 @@
-package com.valid.sort;
+package com.valid.sort.cmp;
 
-public class SelectionSort<E extends Comparable<E>> extends Sort<E>{
+import com.valid.sort.Sort;
+
+public class SelectionSort<E extends Comparable<E>> extends Sort<E> {
     @Override
     protected void sort() {
         int maxIndex;
