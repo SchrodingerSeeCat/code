@@ -19,7 +19,13 @@ public class Main {
 //        graph.removeVertex("V0");
 //        graph.removeVertex("V1");
 
-        graph.bfs("V1");
+//        graph.bfs("V1");
+//        graph.dfs("V1", value -> {
+//            System.out.println(value);
+//            return value.equals("V4");
+//        });
+
+        System.out.println(graph.topologicalSort());
     }
 
 }

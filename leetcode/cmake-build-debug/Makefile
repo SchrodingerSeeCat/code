@@ -249,6 +249,33 @@ src/array/P_179.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/array/P_179.cpp.s
 .PHONY : src/array/P_179.cpp.s
 
+src/array/P_208.obj: src/array/P_208.cpp.obj
+
+.PHONY : src/array/P_208.obj
+
+# target to build an object file
+src/array/P_208.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/array/P_208.cpp.obj
+.PHONY : src/array/P_208.cpp.obj
+
+src/array/P_208.i: src/array/P_208.cpp.i
+
+.PHONY : src/array/P_208.i
+
+# target to preprocess a source file
+src/array/P_208.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/array/P_208.cpp.i
+.PHONY : src/array/P_208.cpp.i
+
+src/array/P_208.s: src/array/P_208.cpp.s
+
+.PHONY : src/array/P_208.s
+
+# target to generate assembly for a file
+src/array/P_208.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/array/P_208.cpp.s
+.PHONY : src/array/P_208.cpp.s
+
 src/array/P_263.obj: src/array/P_263.cpp.obj
 
 .PHONY : src/array/P_263.obj
@@ -411,6 +438,33 @@ src/binarytree/P_783.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/binarytree/P_783.cpp.s
 .PHONY : src/binarytree/P_783.cpp.s
 
+src/dp/P_213.obj: src/dp/P_213.cpp.obj
+
+.PHONY : src/dp/P_213.obj
+
+# target to build an object file
+src/dp/P_213.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/dp/P_213.cpp.obj
+.PHONY : src/dp/P_213.cpp.obj
+
+src/dp/P_213.i: src/dp/P_213.cpp.i
+
+.PHONY : src/dp/P_213.i
+
+# target to preprocess a source file
+src/dp/P_213.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/dp/P_213.cpp.i
+.PHONY : src/dp/P_213.cpp.i
+
+src/dp/P_213.s: src/dp/P_213.cpp.s
+
+.PHONY : src/dp/P_213.s
+
+# target to generate assembly for a file
+src/dp/P_213.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/dp/P_213.cpp.s
+.PHONY : src/dp/P_213.cpp.s
+
 src/linkllist/ListNode.obj: src/linkllist/ListNode.cpp.obj
 
 .PHONY : src/linkllist/ListNode.obj
@@ -540,6 +594,9 @@ help:
 	@echo ... src/array/P_179.obj
 	@echo ... src/array/P_179.i
 	@echo ... src/array/P_179.s
+	@echo ... src/array/P_208.obj
+	@echo ... src/array/P_208.i
+	@echo ... src/array/P_208.s
 	@echo ... src/array/P_263.obj
 	@echo ... src/array/P_263.i
 	@echo ... src/array/P_263.s
@@ -558,6 +615,9 @@ help:
 	@echo ... src/binarytree/P_783.obj
 	@echo ... src/binarytree/P_783.i
 	@echo ... src/binarytree/P_783.s
+	@echo ... src/dp/P_213.obj
+	@echo ... src/dp/P_213.i
+	@echo ... src/dp/P_213.s
 	@echo ... src/linkllist/ListNode.obj
 	@echo ... src/linkllist/ListNode.i
 	@echo ... src/linkllist/ListNode.s

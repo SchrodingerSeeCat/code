@@ -1,6 +1,8 @@
 package com.valid.graph;
 
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public class ListGraph<V, E> implements Graph<V, E>{
     private Map<V, Vertex<V, E>> vertices = new HashMap<>(); //存储顶点
@@ -100,7 +102,7 @@ public class ListGraph<V, E> implements Graph<V, E>{
     }
 
     @Override
-    public void bfs(V begin) {
+    public void bfs(V begin, Predicate<V> consumer) {
         Vertex<V, E> vertex = vertices.get(begin);
         if (vertex == null) return;
 
@@ -110,7 +112,7 @@ public class ListGraph<V, E> implements Graph<V, E>{
         visitedVertices.add(vertex);
         while (!queue.isEmpty()) {
             vertex = queue.poll();
-            System.out.println(vertex.value);
+            if (consumer.test(vertex.value)) break; // 如果返回值为true则退出
 
             for(Edge<V, E> edge : vertex.outEdges) {
                 if (!visitedVertices.contains(edge.to)) {
@@ -119,6 +121,104 @@ public class ListGraph<V, E> implements Graph<V, E>{
                 }
             }
         }
+    }
+
+    // 递归
+//    @Override
+//    public void dfs(V begin, Predicate<V> consumer) {
+//        Vertex<V, E> vertex = vertices.get(begin);
+//        if (vertex == null) return;
+//        dfs(vertex, new HashSet<>(), consumer); // HashSet存储已经访问过的节点
+//    }
+//
+//    private void dfs(Vertex<V, E> vertex, Set<Vertex<V, E>> visited, , Predicate<V> consumer) {
+//        consumer.test(vertex.value);
+//        vertex.outEdges.forEach(edge -> {
+//            if (!visited.contains(edge.to)) {
+//                dfs(edge.to, visited, consumer);
+//                visited.add(edge.to);
+//            }
+//        });
+//    }
+
+    // 非递归
+    @Override
+    public void dfs(V begin, Predicate<V> consumer) {
+        Vertex<V, E> vertex = vertices.get(begin);
+        if (vertex == null) return;
+        Set<Vertex<V, E>> visited = new HashSet<>(); // HashSet存储已经访问过的节点
+        Stack<Vertex<V, E>> stack = new Stack<>(); // 存储需要回溯的节点
+
+        // 访问根节点
+        stack.push(vertex);
+        visited.add(vertex);
+        if (consumer.test(vertex.value)) return;
+
+        while (!stack.empty()) {
+            vertex = stack.pop();
+
+            for(Edge<V, E> edge : vertex.outEdges) {
+                if(!visited.contains(edge.to)) {
+                    stack.push(edge.from); // 保存根节点以便回溯
+                    stack.push(edge.to);
+                    visited.add(edge.to);
+                    if (consumer.test(edge.to.value)) return;
+                    break;
+                }
+            }
+        }
+    }
+
+    @Override
+    public List<V> topologicalSort() {
+        if (verticesSize() == 0) return null;
+        List<V> list = new ArrayList<>();
+        Queue<Vertex<V, E>> queue = new LinkedList<>();
+
+        Map<Vertex<V, E>, Integer> degrees = new HashMap();
+        // 初始化(将度为0的节点都入队)
+        vertices.forEach((V v, Vertex<V, E> vertex) -> {
+            if (vertex.inEdges.size() == 0) {
+                queue.offer(vertex);
+            } else {
+                // 维护每个入度不为零的节点的入度数
+                degrees.put(vertex, vertex.inEdges.size());
+            }
+        });
+
+        Vertex<V, E> vertex;
+        while (!queue.isEmpty()) {
+            vertex = queue.poll();
+            list.add(vertex.value);
+            for(Edge<V, E> edge : vertex.outEdges) {
+                // 更改入度
+                int to = degrees.get(edge.to) - 1;
+                if (to == 0) {
+                    queue.offer(edge.to);
+                } else {
+                    degrees.put(edge.to, to); // 更改入度
+                }
+            }
+        }
+
+        return list.size() == verticesSize() ? list : null;
+    }
+
+    @Override
+    public Set<EdgeInfo<V, E>> mst() {
+        return prim();
+    }
+    private Set<EdgeInfo<V, E>> prim() {
+        Set<EdgeInfo<V, E>> edgeInfos = new HashSet<>();
+
+        // 先拿到起始节点
+        Vertex<V, E> vertex = vertices.values().iterator().next();
+
+        return edgeInfos;
+    }
+    private Set<EdgeInfo<V, E>> kruskal() {
+        Set<EdgeInfo<V, E>> edgeInfos = new HashSet<>();
+        return edgeInfos;
     }
 
     private static class Vertex<V, E>{
