@@ -49,14 +49,3 @@ public:
         return false;
     }
 };
-
-int main() {
-    Trie *trie = new Trie();
-    trie->insert("apple");
-    trie->search("apple");
-    trie->search("app");
-    trie->startsWith("app");
-    trie->insert("app");
-    trie->search("app");
-    return 0;
-}

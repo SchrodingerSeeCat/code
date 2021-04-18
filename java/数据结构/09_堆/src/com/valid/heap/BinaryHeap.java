@@ -37,11 +37,6 @@ public class BinaryHeap<E> extends AbstractHeap<E>{
 
     // 批量建堆
     private void heapify() {
-        // 自上而下上滤 效率较低
-//        for(int i = 1; i < elements.length; i++) {
-//            siftUp(i);
-//        }
-
         // 自下而上的下滤
         for(int i = (size >> 1) - 1; i >= 0; i--) {
             siftDown(i);

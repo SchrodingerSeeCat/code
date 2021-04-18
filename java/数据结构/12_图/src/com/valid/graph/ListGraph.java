@@ -1,12 +1,18 @@
 package com.valid.graph;
 
+import com.valid.heap.BinaryHeap;
+import com.valid.union.UnionFind;
+
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public class ListGraph<V, E> implements Graph<V, E>{
-    private Map<V, Vertex<V, E>> vertices = new HashMap<>(); //存储顶点
-    private Set<Edge<V, E>> edges = new HashSet<>(); // 存储边信息
+public class ListGraph<V, E> extends Graph<V, E>{
+    private final Map<V, Vertex<V, E>> vertices = new HashMap<>(); //存储顶点
+    private final Set<Edge<V, E>> edges = new HashSet<>(); // 存储边信息
+
+    public ListGraph(WeightManager<E> weightManager) {
+        super(weightManager);
+    }
 
     @Override
     public int edgesSize() {
@@ -58,6 +64,12 @@ public class ListGraph<V, E> implements Graph<V, E>{
         fromVertex.outEdges.add(edge);
         toVertex.inEdges.add(edge);
         edges.add(edge);
+    }
+
+    @Override
+    public void addUndirectedEdge(V from, V to, E weight) {
+        addEdge(from, to, weight);
+        addEdge(to, from, weight);
     }
 
     @Override
@@ -169,6 +181,7 @@ public class ListGraph<V, E> implements Graph<V, E>{
         }
     }
 
+    // 拓扑排序
     @Override
     public List<V> topologicalSort() {
         if (verticesSize() == 0) return null;
@@ -204,21 +217,83 @@ public class ListGraph<V, E> implements Graph<V, E>{
         return list.size() == verticesSize() ? list : null;
     }
 
+    // 最小生成树
     @Override
     public Set<EdgeInfo<V, E>> mst() {
-        return prim();
+        return kruskal();
     }
+    // 边的比较器
+    private final Comparator<Edge<V, E>> edgeComparator = (Edge<V, E> e1, Edge<V, E> e2) -> {
+        return -weightManager.compare(e1.weight, e2.weight);
+    };
     private Set<EdgeInfo<V, E>> prim() {
-        Set<EdgeInfo<V, E>> edgeInfos = new HashSet<>();
 
         // 先拿到起始节点
-        Vertex<V, E> vertex = vertices.values().iterator().next();
+        Iterator<Vertex<V, E>> iterator = vertices.values().iterator();
+        if (!iterator.hasNext()) return null;
+        Vertex<V, E> vertex = iterator.next();
+        Set<EdgeInfo<V, E>> edgeInfos = new HashSet<>(); // 最终要返回的边的信息
+        Set<Vertex<V, E>> addedVertices = new HashSet<>(); // 已经添加的顶点
+        addedVertices.add(vertex);
+
+        // 将出度边集合转换为数组
+        Edge<V, E>[] edges = setConversionArray(vertex.outEdges);
+        BinaryHeap<Edge<V, E>> heap = new BinaryHeap<>(edges, edgeComparator);
+
+        // 最小生成树的边的数量
+        int edgeSize = verticesSize() - 1;
+        while (!heap.isEmpty() && edgeInfos.size() < edgeSize) {
+            Edge<V, E> edge = heap.remove();
+            if (addedVertices.contains(edge.to)) continue;
+
+            // 将最小的边放入到边信息中
+            edgeInfos.add(edge.info());
+            addedVertices.add(edge.to);
+
+            // 将to的出度放入到heap中
+            for(Edge<V, E> to : edge.to.outEdges) {
+                heap.add(to);
+            }
+        }
 
         return edgeInfos;
     }
     private Set<EdgeInfo<V, E>> kruskal() {
+        if(verticesSize() == 0) return null; // 图中没有顶点
         Set<EdgeInfo<V, E>> edgeInfos = new HashSet<>();
+
+        // 将所有边加入到小顶堆中
+        BinaryHeap<Edge<V, E>> heap = new BinaryHeap<>(setConversionArray(edges), edgeComparator);
+
+        // 创建并查集集合
+        UnionFind<Vertex<V, E>> union = new UnionFind<>();
+        vertices.forEach((V key, Vertex<V, E> value) -> {
+            union.makeSet(value);
+        });
+
+        int edgeSize = verticesSize() - 1;
+        while(!heap.isEmpty() && edgeInfos.size() < edgeSize) {
+            Edge<V, E> edge = heap.remove();
+
+            // 忽略会构成环的边
+            if (union.isSame(edge.from, edge.to)) continue;
+
+            edgeInfos.add(edge.info());
+            union.union(edge.from, edge.to); // 将最小边的两个顶点放入到同一个集合中
+        }
+
         return edgeInfos;
+    }
+
+    // 集合转换为数组
+    private Edge<V, E>[] setConversionArray(Set<Edge<V, E>> collection) {
+        if (collection.size() == 0) return null;
+        Edge<V, E>[] elements = new Edge[collection.size()];
+        int i = 0;
+        for(Edge<V, E> element : collection) {
+            elements[i++] = element;
+        }
+        return elements;
     }
 
     private static class Vertex<V, E>{
@@ -254,6 +329,11 @@ public class ListGraph<V, E> implements Graph<V, E>{
             this.from = from;
             this.to = to;
             this.weight = weight;
+        }
+
+        // 返回边的信息
+        public EdgeInfo<V, E> info() {
+            return new EdgeInfo<>(from.value, to.value, weight);
         }
 
         @Override

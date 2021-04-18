@@ -92,12 +92,12 @@ clean: CMakeFiles/leetcode.dir/clean
 CMakeFiles/leetcode.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\code\leetcode\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 "Built target leetcode"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\code\leetcode\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target leetcode"
 .PHONY : CMakeFiles/leetcode.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/leetcode.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\code\leetcode\cmake-build-debug\CMakeFiles 17
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\code\leetcode\cmake-build-debug\CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/leetcode.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\code\leetcode\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/leetcode.dir/rule

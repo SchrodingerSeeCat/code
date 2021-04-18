@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:layout_margin="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请选择你最喜欢的季节"
+        android:textSize="25sp"
+        android:layout_marginBottom="10dp"/>
+    <RadioGroup
+        android:id="@+id/rg_season"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/rb_spring"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="春"
+            android:textSize="25sp"
+            android:layout_marginBottom="5dp"/>
+        <RadioButton
+            android:id="@+id/rb_summer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="夏"
+            android:textSize="25sp"
+            android:layout_marginBottom="5dp"/>
+        <RadioButton
+            android:id="@+id/rb_fall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="秋"
+            android:textSize="25sp"
+            android:layout_marginBottom="5dp"/>
+        <RadioButton
+            android:id="@+id/rb_winter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="冬"
+            android:textSize="25sp" />
+    </RadioGroup>
+
+</LinearLayout>
