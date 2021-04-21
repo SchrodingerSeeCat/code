@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (str != null) {
-                System.out.println("================");
                 Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
             }
         });

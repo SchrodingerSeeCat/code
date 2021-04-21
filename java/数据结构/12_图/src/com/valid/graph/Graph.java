@@ -1,10 +1,14 @@
 package com.valid.graph;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
 
 public abstract class Graph<V, E> {
+    public Graph(WeightManager<E> weightManager) {
+        this.weightManager = weightManager;
+    }
+    public Graph() {}
+
     public abstract int edgesSize(); // 边的个数
     public abstract int verticesSize(); // 点的个数
 
@@ -43,14 +47,38 @@ public abstract class Graph<V, E> {
         }
     }
 
+    // 路径信息
+    public static class PathInfo<V, E> {
+        protected E weight;
+        protected List<EdgeInfo<V, E>> edgeInfos;
+
+        public PathInfo() {
+            edgeInfos = new LinkedList<>();
+        }
+        public PathInfo(E weight) {
+            this();
+            this.weight = weight;
+        }
+
+        @Override
+        public String toString() {
+            return "PathInfo{" +
+                    "weight=" + weight +
+                    ", edgeInfos=" + edgeInfos +
+                    '}';
+        }
+    }
+
     // 权重管理
     protected WeightManager<E> weightManager;
     public interface WeightManager<E> {
         int compare(E w1, E w2); // 比较
-        E add(E w1, E w2); // 想加
+        E add(E w1, E w2); // 相加
+        E zero(); // 零点信息
     }
-    public Graph(WeightManager<E> weightManager) {
-        this.weightManager = weightManager;
-    }
-    public Graph() {}
+
+    // 单源点最短路径 返回begin到其他各点之间的最短距离
+    public abstract Map<V, PathInfo<V, E>> shortestPath(V begin);
+    // 多源最短路径
+    public abstract Map<V, Map<V, PathInfo<V, E>>> shortestPath();
 }

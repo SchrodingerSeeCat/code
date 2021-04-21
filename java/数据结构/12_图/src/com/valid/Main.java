@@ -3,6 +3,8 @@ package com.valid;
 import com.valid.graph.Graph;
 import com.valid.graph.ListGraph;
 
+import java.util.Map;
+
 public class Main {
     public static void main(String[] args) {
         Graph<String, Integer> graph = new ListGraph<>(new Graph.WeightManager<Integer>() {
@@ -14,6 +16,11 @@ public class Main {
             @Override
             public Integer add(Integer w1, Integer w2) {
                 return w1 + w2;
+            }
+
+            @Override
+            public Integer zero() {
+                return 0;
             }
         });
 //        graph.addEdge("V1", "V0", 9);
@@ -36,22 +43,54 @@ public class Main {
 //        });
 //        System.out.println(graph.topologicalSort());
 
-        graph.addUndirectedEdge("A", "B", 17);
-        graph.addUndirectedEdge("A", "F", 1);
-        graph.addUndirectedEdge("A", "E", 16);
+//        graph.addUndirectedEdge("A", "B", 17);
+//        graph.addUndirectedEdge("A", "F", 1);
+//        graph.addUndirectedEdge("A", "E", 16);
+//
+//        graph.addUndirectedEdge("B", "C", 6);
+//        graph.addUndirectedEdge("B", "D", 5);
+//        graph.addUndirectedEdge("B", "F", 11);
+//
+//        graph.addUndirectedEdge("C", "D", 10);
+//
+//        graph.addUndirectedEdge("F", "E", 33);
+//        graph.addUndirectedEdge("F", "D", 14);
+//
+//        graph.addUndirectedEdge("E", "D", 4);
+//
+//        System.out.println(graph.mst());
 
-        graph.addUndirectedEdge("B", "C", 6);
-        graph.addUndirectedEdge("B", "D", 5);
-        graph.addUndirectedEdge("B", "F", 11);
+        graph.addEdge("A", "B", 10);
+        graph.addEdge("A", "D", 30);
+        graph.addEdge("A", "E", 100);
 
-        graph.addUndirectedEdge("C", "D", 10);
+        graph.addEdge("B", "C", 50);
+        graph.addEdge("C", "E", 10);
+        graph.addEdge("D", "C", 20);
+        graph.addEdge("D", "E", 60);
 
-        graph.addUndirectedEdge("F", "E", 33);
-        graph.addUndirectedEdge("F", "D", 14);
+//        graph.addUndirectedEdge("A", "B", 10);
+//        graph.addUndirectedEdge("A", "D", 30);
+//        graph.addUndirectedEdge("A", "E", 100);
+//
+//        graph.addUndirectedEdge("B", "C", 50);
+//        graph.addUndirectedEdge("C", "E", 10);
+//        graph.addUndirectedEdge("D", "C", 20);
+//        graph.addUndirectedEdge("D", "E", 60);
 
-        graph.addUndirectedEdge("E", "D", 4);
+        Map<String, Graph.PathInfo<String, Integer>> paths = graph.shortestPath("A");
+//        paths.forEach((String key, Graph.PathInfo<String, Integer> value) -> {
+//            System.out.println(key + " " + value);
+//        });
 
-        System.out.println(graph.mst());
+        Map<String, Map<String, Graph.PathInfo<String, Integer>>> stringMapMap = graph.shortestPath();
+        stringMapMap.forEach((String from, Map<String, Graph.PathInfo<String, Integer>> map) -> {
+            System.out.println(from + "----------------");
+            map.forEach((String to, Graph.PathInfo<String, Integer> path) -> {
+                System.out.println(to + "-" + path);
+            });
+            System.out.println("----------------------");
+        });
     }
 
 }

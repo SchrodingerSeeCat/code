@@ -168,6 +168,60 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/str/P_28.obj: src/str/P_28.cpp.obj
+
+.PHONY : src/str/P_28.obj
+
+# target to build an object file
+src/str/P_28.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/str/P_28.cpp.obj
+.PHONY : src/str/P_28.cpp.obj
+
+src/str/P_28.i: src/str/P_28.cpp.i
+
+.PHONY : src/str/P_28.i
+
+# target to preprocess a source file
+src/str/P_28.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/str/P_28.cpp.i
+.PHONY : src/str/P_28.cpp.i
+
+src/str/P_28.s: src/str/P_28.cpp.s
+
+.PHONY : src/str/P_28.s
+
+# target to generate assembly for a file
+src/str/P_28.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/str/P_28.cpp.s
+.PHONY : src/str/P_28.cpp.s
+
+src/str/P_91.obj: src/str/P_91.cpp.obj
+
+.PHONY : src/str/P_91.obj
+
+# target to build an object file
+src/str/P_91.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/str/P_91.cpp.obj
+.PHONY : src/str/P_91.cpp.obj
+
+src/str/P_91.i: src/str/P_91.cpp.i
+
+.PHONY : src/str/P_91.i
+
+# target to preprocess a source file
+src/str/P_91.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/str/P_91.cpp.i
+.PHONY : src/str/P_91.cpp.i
+
+src/str/P_91.s: src/str/P_91.cpp.s
+
+.PHONY : src/str/P_91.s
+
+# target to generate assembly for a file
+src/str/P_91.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\leetcode.dir\build.make CMakeFiles/leetcode.dir/src/str/P_91.cpp.s
+.PHONY : src/str/P_91.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -180,6 +234,12 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... src/str/P_28.obj
+	@echo ... src/str/P_28.i
+	@echo ... src/str/P_28.s
+	@echo ... src/str/P_91.obj
+	@echo ... src/str/P_91.i
+	@echo ... src/str/P_91.s
 .PHONY : help
 
 

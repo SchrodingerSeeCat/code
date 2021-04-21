@@ -27,5 +27,5 @@ if (!empty($_FILES)) {
 
 function jumpIndex($msg, $time = 3) {
     echo "<script>alert('$msg')</script>";
-    echo "<meta http-equiv=\"refresh\" content=\"$time; url=index.html\">";
+    echo "<meta http-equiv=\"refresh\" content=\"$time; url=index.php\">";
 }
