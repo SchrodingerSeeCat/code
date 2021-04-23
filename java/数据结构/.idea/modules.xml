@@ -14,6 +14,8 @@
       <module fileurl="file://$PROJECT_DIR$/10_排序/10_排序.iml" filepath="$PROJECT_DIR$/10_排序/10_排序.iml" />
       <module fileurl="file://$PROJECT_DIR$/11_并查集/11_并查集.iml" filepath="$PROJECT_DIR$/11_并查集/11_并查集.iml" />
       <module fileurl="file://$PROJECT_DIR$/12_图/12_图.iml" filepath="$PROJECT_DIR$/12_图/12_图.iml" />
+      <module fileurl="file://$PROJECT_DIR$/13_递归/13_递归.iml" filepath="$PROJECT_DIR$/13_递归/13_递归.iml" />
+      <module fileurl="file://$PROJECT_DIR$/14_策略/14_策略.iml" filepath="$PROJECT_DIR$/14_策略/14_策略.iml" />
       <module fileurl="file://$PROJECT_DIR$/数据结构.iml" filepath="$PROJECT_DIR$/数据结构.iml" />
     </modules>
   </component>
