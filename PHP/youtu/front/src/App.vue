@@ -29,36 +29,5 @@ export default defineComponent({
 </script>
 
 <style scoped>
-    .el-menu-demo {
-        position: relative;
-    }
-    .login-container{
-        position: absolute;
-        right: 0;
-    }
-    .logo {
-        height: 61px;
-        float: left;
-    }
-    .account{
-        margin: 0 auto;
-        width: 60%;
-    }
-    .github-img {
-        float: right;
-        position: relative;
-    }
-    .github-img img {
-        width: 32px;
-        position: absolute;
-        right: 10px;
-    }
-    .username {
-        margin-bottom: 12px;
-    }
-    .login {
-        width: 150px;
-        position: relative;
-        top: -20px;
-    }
+
 </style>

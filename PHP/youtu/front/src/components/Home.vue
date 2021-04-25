@@ -1,16 +1,17 @@
 <template>
     <el-menu
         class="el-menu-demo"
-        mode="horizontal">
+        mode="horizontal"
+        default-active="recommend">
         <router-link to="/">
             <img class="logo" src="../assets/logo.png" alt="logo">
         </router-link>
-        <el-menu-item index="1" @click="select">推荐</el-menu-item>
-        <el-menu-item index="2" @click="select">动漫</el-menu-item>
-        <el-menu-item index="3" @click="select">风景</el-menu-item>
-        <el-menu-item index="4" @click="select">生活</el-menu-item>
+        <el-menu-item index="recommend" @click="select">推荐</el-menu-item>
+        <el-menu-item index="comic" @click="select">动漫</el-menu-item>
+        <el-menu-item index="scenery" @click="select">风景</el-menu-item>
+        <el-menu-item index="life" @click="select">生活</el-menu-item>
 
-        <el-submenu index="5" class="login-container">
+        <el-submenu index="personal" class="login-container">
             <template #title>{{loginMsg}}</template>
             <el-menu-item index="5-1" v-if="isLogin">个人资料</el-menu-item>
             <el-menu-item index="5-2" v-if="isLogin">我的收藏</el-menu-item>
@@ -21,58 +22,73 @@
     </el-menu>
 
     <el-dialog
-        title="请登陆"
         v-model="dialogVisible"
         width="30%"
         center>
         <div class="account">
-            <el-input class="username" v-model="userName" placeholder="请输入账号"></el-input>
-            <el-input placeholder="请输入密码" v-model="password" show-password></el-input>
+            <el-tabs v-model="activeName">
+                <el-tab-pane label="登陆" name="first">
+                    <Login />
+                </el-tab-pane>
+                <el-tab-pane label="注册" name="second">
+                    <Register />
+                </el-tab-pane>
+                <el-tab-pane label="第三方" name="third">
+                    <Third />
+                </el-tab-pane>
+            </el-tabs>
         </div>
-        <template #footer>
-            <span class="dialog-footer">
-                <el-button class="login" type="primary" @click="dialogVisible = false">登陆</el-button>
-            </span>
-            <a class="github-img">
-                <img src="../assets/github.png">
-            </a>
-        </template>
     </el-dialog>
     <router-view></router-view>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import {defineComponent, onMounted, ref} from 'vue'
+import Login from './user/login/Login.vue'
+import Register from "./user/login/Register.vue";
+import Third from "./user/login/Third.vue";
+import {useRouter} from "vue-router";
 
 interface Nav {
     index: string,
-    indexPath: string[]
+    indexPath?: string[]
 }
 
 export default defineComponent({
     name: 'Home',
     components: {
+        Third,
+        Register,
+        Login
     },
     setup() {
+        // 引入路由
+        const router = useRouter()
+
         const loginMsg = ref("登陆")
         const isLogin = ref(false)
-        const userName = ref("")
-        const password = ref("")
+        const activeName = ref('first')
+        const dialogVisible = ref(false) // 登陆对话框
 
         // 默认回调
         const select = (index: Nav) => {
-            console.log(index)
+            router.push({
+                path: `/home/${index.index}`,
+                name: index.index
+            })
         }
 
-        // 登陆对话框
-        const dialogVisible = ref(false)
+        // 生命周期钩子
+        onMounted(() => { // 挂载之后
+            select({index: 'recommend'})
+        })
+
         return {
             loginMsg,
             isLogin,
             dialogVisible,
-            userName,
-            password,
-            select
+            select,
+            activeName
         }
     }
 })
@@ -102,9 +118,6 @@ export default defineComponent({
     width: 32px;
     position: absolute;
     right: 10px;
-}
-.username {
-    margin-bottom: 12px;
 }
 .login {
     width: 150px;

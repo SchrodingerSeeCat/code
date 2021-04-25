@@ -1,7 +1,8 @@
-package com.valid.greedy;
+package com.valid.greedy.load;
 
 import java.util.Arrays;
 
+// 装载问题
 public class Load {
     public int maxNum(int capacity,  int[] treasure) {
         if (treasure == null) return 0;

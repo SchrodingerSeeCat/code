@@ -14,7 +14,8 @@ import {defineComponent} from "vue";
 
 export default defineComponent({
     name: "Picture",
-    setup() {
+    setup(props) {
+        console.log(props)
         return {
             description: ['fill', 'contain', 'cover', 'none', 'scale-down', 'contain', 'contain', 'contain', 'contain', 'contain', 'contain', 'contain', 'contain'],
             url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
