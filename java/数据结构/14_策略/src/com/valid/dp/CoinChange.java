@@ -1,7 +1,9 @@
 package com.valid.dp;
 
+// 硬币选择
 public class CoinChange {
     public int coinChange(int[] coins, int amount) {
+        if (amount == 0) return 0;
         if (amount < 1 || coins == null || coins.length == 0) {
             return -1;
         }
@@ -10,9 +12,14 @@ public class CoinChange {
             int min = Integer.MAX_VALUE;
             for (int coin : coins) {
                 if (i < coin) continue;
-                min = Math.min(dp[i - coin], min);
+                if ( dp[i - coin] >= min || dp[i - coin] < 0) continue;
+                min = dp[i - coin];
             }
-            dp[i] = min + 1;
+            if (min == Integer.MAX_VALUE) {
+                dp[i] = -1;
+            } else {
+                dp[i] = min + 1;
+            }
         }
         return dp[amount];
     }
