@@ -6,15 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="02-爬虫" />
         <module name="08_tencent" />
         <module name="06_录像" />
         <module name="04_ADB" />
         <module name="01-发送邮件" />
         <module name="05_Appium" />
+        <module name="02_爬虫" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">
+      <module name="02-爬虫" target="11" />
       <module name="04_script" target="1.11" />
     </bytecodeTargetLevel>
   </component>

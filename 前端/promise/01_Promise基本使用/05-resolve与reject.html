@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 普通对象返回成功的promise对象
+        // let p = Promise.resolve(123)
+        // p.then(value => {
+        //     console.log(value)
+        // })
+
+        
+        // Promise对象，参数的结果决定了resolve的结果
+        // let p = Promise.resolve(new Promise((resolve, reject) => {
+        //     resolve("ok")
+        // }))
+        // p.then(value => {
+        //     console.log(value)
+        // })
+
+
+        // 转换失败的promise
+        // let p = Promise.reject("error")
+        // p.then(value => {
+        //     console.log(value)
+        // }).catch(reason => {
+        //     console.log(reason) // error
+        // })
+
+
+        // all
+        // let p = Promise.all([
+        //     new Promise((resolve, reject) => {
+        //         resolve("success")
+        //     }),
+        //     new Promise((resolve, reject) => {
+        //         resolve("success")
+        //     }),
+        //     new Promise((resolve, reject) => {
+        //         // resolve("success")
+        //         reject("error")
+        //     }),
+        // ])
+        // p.then(value => {
+        //     console.log(value) // ["success", "success", "success"]
+        // }).catch(reason => {
+        //     console.log(reason) // error
+        // })
+
+
+        // race
+        let p = Promise.race([
+            new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve("success1")
+                }, 1000)
+            }),
+            new Promise((resolve, reject) => {
+                resolve("success2")
+            }),
+            new Promise((resolve, reject) => {
+                reject("error")
+            }),
+        ])
+        p.then(value => {
+            console.log(value) // success2
+        }).catch(reason => {
+            console.log(reason)
+        })
+    </script>
+</body>
+</html>

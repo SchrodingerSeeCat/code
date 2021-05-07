@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>结构搭建</title>
+</head>
+<body>
+    <script src="./promise.js"></script>
+    <script>
+        let p = new Promise((resolve, reject) => {
+            // resolve("OK")
+            // resolve("reject error")
+
+            setTimeout(() => {
+                // resolve("延迟调用")
+                reject("延迟调用")
+            }, 1000)
+        })
+        let result = p.then(value => {
+            throw "hahahahhhhhhhhhhhhhhhhhhhhhhh"
+            console.log(value)
+        }).catch(err => {
+            console.log(err)
+        })
+
+        console.log(result)
+    </script>
+</body>
+</html>

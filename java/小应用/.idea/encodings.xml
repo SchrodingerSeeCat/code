@@ -2,7 +2,8 @@
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/01-发送邮件/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/02-爬虫/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/02_爬虫/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/02_爬虫/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/04_ADB/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/04_ADB/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/05_Appium/src/main/java" charset="UTF-8" />

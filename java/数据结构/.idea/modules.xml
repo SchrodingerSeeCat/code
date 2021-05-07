@@ -16,6 +16,8 @@
       <module fileurl="file://$PROJECT_DIR$/12_图/12_图.iml" filepath="$PROJECT_DIR$/12_图/12_图.iml" />
       <module fileurl="file://$PROJECT_DIR$/13_递归/13_递归.iml" filepath="$PROJECT_DIR$/13_递归/13_递归.iml" />
       <module fileurl="file://$PROJECT_DIR$/14_策略/14_策略.iml" filepath="$PROJECT_DIR$/14_策略/14_策略.iml" />
+      <module fileurl="file://$PROJECT_DIR$/15_布隆过滤器/15_布隆过滤器.iml" filepath="$PROJECT_DIR$/15_布隆过滤器/15_布隆过滤器.iml" />
+      <module fileurl="file://$PROJECT_DIR$/16_跳表/16_跳表.iml" filepath="$PROJECT_DIR$/16_跳表/16_跳表.iml" />
       <module fileurl="file://$PROJECT_DIR$/数据结构.iml" filepath="$PROJECT_DIR$/数据结构.iml" />
     </modules>
   </component>

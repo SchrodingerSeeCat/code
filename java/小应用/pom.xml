@@ -10,11 +10,11 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>01-发送邮件</module>
-        <module>02-爬虫</module>
         <module>04_ADB</module>
         <module>05_Appium</module>
         <module>06_录像</module>
         <module>08_tencent</module>
+        <module>02_爬虫</module>
     </modules>
 
     <dependencies>

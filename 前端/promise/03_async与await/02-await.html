@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const main = async () => {
+            // 1. 右侧为promise的情况
+            // let p = await new Promise((resolve, reject) => {
+            //     resolve("OK")
+            // })
+            // console.log(p) // OK
+            
+            // 普通值
+            // let p = await 20
+            // console.log(p) // 20
+
+            // 失败的情况
+            try {    
+                let p = await new Promise((resolve, reject) => {
+                    reject("error")
+                })
+                console.log(p)
+            } catch(err) {
+                console.log(err) // error
+            }
+        }   
+        main() 
+    </script>
+</body>
+</html>

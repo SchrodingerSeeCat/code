@@ -15,81 +15,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07d57aec-d3fb-4427-a4d7-bb88bbfa8178" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../java/数据结构/14_策略/src/com/valid/dp/DPTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/leetcode.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/.github/workflows/ci.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/.idea/deployment.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/.idea/php.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/.idea/youtu.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/public/css/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/src/App.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/src/ajax/axios.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/src/assets/github.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/src/assets/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/src/components/Home.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/src/components/admin/Admin.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/src/components/user/Authorization.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/src/components/user/login/Login.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/src/components/user/login/Register.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/src/components/user/login/Third.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/src/components/user/picture/Picture.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/src/main.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/src/router/routes.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/src/shims-vue.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/front/vite.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/youtu/server/dao/mysql.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java/数据结构/14_策略/src/com/valid/dp/CoinChange.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/数据结构/14_策略/src/com/valid/dp/CoinChange.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java/数据结构/14_策略/src/com/valid/dp/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/数据结构/14_策略/src/com/valid/dp/DPTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/数据结构/14_策略/src/com/valid/dp/DPTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/数据结构/14_策略/src/com/valid/dp/Knapsack.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/数据结构/14_策略/src/com/valid/dp/Knapsack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/数据结构/14_策略/src/com/valid/dp/LengthOfLIS.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/数据结构/14_策略/src/com/valid/dp/LengthOfLIS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.19.2/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.19.2/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.19.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.19.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.19.2/CMakeRCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.19.2/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.19.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.19.2/CompilerIdC/a.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.19.2/CompilerIdCXX/a.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/linklibs.rsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/objects1.rsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/leetcode.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/leetcode.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +28,6 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -122,16 +50,17 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
-    <configuration name="leetcode" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leetcode" TARGET_NAME="leetcode" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leetcode" RUN_TARGET_NAME="leetcode">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="leetcode" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leetcode" TARGET_NAME="leetcode" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leetcode" RUN_TARGET_NAME="leetcode">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -147,6 +76,11 @@
       <workItem from="1619527675311" duration="10000" />
       <workItem from="1619582547023" duration="910000" />
       <workItem from="1619583513476" duration="599000" />
+      <workItem from="1619701895394" duration="3000" />
+      <workItem from="1619701959711" duration="599000" />
+      <workItem from="1619703519401" duration="4000" />
+      <workItem from="1619747628684" duration="12000" />
+      <workItem from="1619747688873" duration="279000" />
     </task>
     <servers />
   </component>

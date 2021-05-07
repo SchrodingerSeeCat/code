@@ -21,6 +21,21 @@
   <component name="ChangeListManager">
     <list default="true" id="369b93bb-15ef-46c1-860a-926a35757e9c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day14/day14.iml" beforeDir="false" afterPath="$PROJECT_DIR$/day14/day14.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day14/src/instance/StreamAPIInstanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/day14/src/instance/StreamAPIInstanceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../小应用/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../小应用/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../小应用/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../小应用/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../小应用/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../小应用/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../小应用/02-爬虫/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../小应用/02-爬虫/src/main/java/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../小应用/05_Appium/05_Appium.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../小应用/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../小应用/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../小应用/小应用.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../数据结构/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../数据结构/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../数据结构/14_策略/src/com/valid/dp/DPTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../数据结构/14_策略/src/com/valid/dp/DPTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../数据结构/14_策略/src/com/valid/dp/Knapsack.java" beforeDir="false" afterPath="$PROJECT_DIR$/../数据结构/14_策略/src/com/valid/dp/Knapsack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../数据结构/14_策略/src/com/valid/dp/LengthOfLIS.java" beforeDir="false" afterPath="$PROJECT_DIR$/../数据结构/14_策略/src/com/valid/dp/LengthOfLIS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../leetcode/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../leetcode/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,21 +64,23 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="Downloaded.Files.Path" value="/usr/lib/jvm/jdk-11.0.9/lib" />
+    <property name="Downloaded.Files.Path" value="D:\env\java\jdk-11.0.9\lib" />
     <property name="Downloaded.Files.Path.Enabled" value="true" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../数据结构实验" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -81,17 +98,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.OptionalTest.test1">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="EndOperationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="day14" />
       <extension name="coverage">
@@ -196,6 +202,8 @@
       <workItem from="1605436929796" duration="12163000" />
       <workItem from="1605449880563" duration="9000" />
       <workItem from="1605500142045" duration="860000" />
+      <workItem from="1620134978319" duration="228000" />
+      <workItem from="1620215083920" duration="229000" />
     </task>
     <servers />
   </component>
@@ -213,83 +221,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="444" y="131" key="#Project_Structure" timestamp="1605320209243">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state x="444" y="131" key="#Project_Structure/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605320209243" />
-    <state x="635" y="254" width="648" height="604" key="#com.intellij.ide.util.MemberChooser" timestamp="1605447947521">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state x="635" y="254" width="648" height="604" key="#com.intellij.ide.util.MemberChooser/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605447947521" />
-    <state x="529" y="469" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1605328776455">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state x="529" y="469" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605328776455" />
-    <state x="694" y="300" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605439471134">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state x="694" y="300" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605439471134" />
-    <state x="685" y="374" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1605323034750">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state x="685" y="374" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605323034750" />
-    <state x="730" y="246" key="FileChooserDialogImpl" timestamp="1605514188149">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state x="730" y="246" key="FileChooserDialogImpl/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605514188149" />
-    <state width="1864" height="210" key="GridCell.Tab.0.bottom" timestamp="1605449427481">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state width="1864" height="210" key="GridCell.Tab.0.bottom/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605449427481" />
-    <state width="1864" height="210" key="GridCell.Tab.0.center" timestamp="1605449427480">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state width="1864" height="210" key="GridCell.Tab.0.center/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605449427480" />
-    <state width="1864" height="210" key="GridCell.Tab.0.left" timestamp="1605449427480">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state width="1864" height="210" key="GridCell.Tab.0.left/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605449427480" />
-    <state width="1864" height="210" key="GridCell.Tab.0.right" timestamp="1605449427480">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state width="1864" height="210" key="GridCell.Tab.0.right/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605449427480" />
-    <state width="1864" height="336" key="GridCell.Tab.1.bottom" timestamp="1605364097434">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state width="1864" height="336" key="GridCell.Tab.1.bottom/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605364097434" />
-    <state width="1864" height="336" key="GridCell.Tab.1.center" timestamp="1605364097433">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state width="1864" height="336" key="GridCell.Tab.1.center/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605364097433" />
-    <state width="1864" height="336" key="GridCell.Tab.1.left" timestamp="1605364097433">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state width="1864" height="336" key="GridCell.Tab.1.left/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605364097433" />
-    <state width="1864" height="336" key="GridCell.Tab.1.right" timestamp="1605364097434">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state width="1864" height="336" key="GridCell.Tab.1.right/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605364097434" />
-    <state x="480" y="292" key="NewModule_or_Project.wizard" timestamp="1605320176422">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state x="480" y="292" key="NewModule_or_Project.wizard/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605320176422" />
-    <state x="444" y="131" key="SettingsEditor" timestamp="1605356056115">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state x="444" y="131" key="SettingsEditor/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605356056115" />
-    <state x="574" y="437" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1605436179271">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state x="574" y="437" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605436179271" />
-    <state x="150" y="83" key="new project wizard" timestamp="1605436097613">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state x="150" y="83" key="new project wizard/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605436097613" />
-    <state x="702" y="361" width="625" height="291" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1605356054808">
-      <screen x="0" y="24" width="1920" height="1056" />
-    </state>
-    <state x="702" y="361" width="625" height="291" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.24.1920.1056/1920.0.1152.864@0.24.1920.1056" timestamp="1605356054808" />
   </component>
 </project>

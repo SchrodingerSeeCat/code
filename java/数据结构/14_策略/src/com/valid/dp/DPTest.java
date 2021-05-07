@@ -19,7 +19,13 @@ public class DPTest {
         Assertions.assertEquals(6, new MaxSubArray().maxSubArray(new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4}));
     }
 
-    @DisplayName("测试最大上升序列长度")
+    @DisplayName("测试最大上升序列长度,动态规划")
+    @Test
+    public void testLTS1() {
+        Assertions.assertEquals(4, new LengthOfLIS().lengthOfLIS1(new int[]{10,9,2,5,3,7,101,18}));
+    }
+
+    @DisplayName("测试最大上升序列长度,牌顶")
     @Test
     public void testLTS() {
         Assertions.assertEquals(4, new LengthOfLIS().lengthOfLIS(new int[]{10,9,2,5,3,7,101,18}));
@@ -40,8 +46,18 @@ public class DPTest {
     @DisplayName("测试01背包")
     @Test
     public void testKnapsack() {
-        Assertions.assertEquals(3,
+        Assertions.assertEquals(15,
                 new Knapsack().maxValue(
+                        new int[]{6, 3, 5, 4, 6},
+                        new int[]{2, 2, 6, 5, 4},
+                        10));
+    }
+
+    @DisplayName("测试01背包,刚好装满的情况")
+    @Test
+    public void testKnapsackExactly() {
+        Assertions.assertEquals(14,
+                new Knapsack().maxValueExactly(
                         new int[]{6, 3, 5, 4, 6},
                         new int[]{2, 2, 6, 5, 4},
                         10));
