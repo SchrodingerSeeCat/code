@@ -15,10 +15,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07d57aec-d3fb-4427-a4d7-bb88bbfa8178" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../PHP/class/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PHP/class/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PHP/class/.idea/dataSources/60b894df-4392-40f0-8f2c-2f05093d97cc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PHP/class/.idea/dataSources/60b894df-4392-40f0-8f2c-2f05093d97cc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/设计模式/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java/设计模式/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/设计模式/src/dmo.puml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../java/设计模式/设计模式.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java/设计模式/设计模式.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,11 +53,6 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="leetcode" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leetcode" TARGET_NAME="leetcode" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leetcode" RUN_TARGET_NAME="leetcode">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -83,6 +77,7 @@
       <workItem from="1619747628684" duration="12000" />
       <workItem from="1619747688873" duration="279000" />
       <workItem from="1620641631219" duration="1659000" />
+      <workItem from="1620781337871" duration="10000" />
     </task>
     <servers />
   </component>
