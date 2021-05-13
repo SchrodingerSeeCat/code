@@ -1,4 +1,4 @@
-package com.valid.memento;
+package com.valid.memento.theory;
 
 public class Memento {
     private final String state;

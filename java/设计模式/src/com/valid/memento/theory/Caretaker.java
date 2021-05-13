@@ -1,4 +1,4 @@
-package com.valid.memento;
+package com.valid.memento.theory;
 
 import java.util.ArrayList;
 import java.util.List;

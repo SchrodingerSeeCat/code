@@ -1,4 +1,4 @@
-package com.valid.memento;
+package com.valid.memento.theory;
 
 public class Originator {
     private String state; // 状态信息

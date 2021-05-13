@@ -1,4 +1,4 @@
-package com.valid.memento;
+package com.valid.memento.theory;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
