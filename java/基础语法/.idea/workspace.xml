@@ -20,22 +20,70 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="369b93bb-15ef-46c1-860a-926a35757e9c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../SpringSecurity/01-HelloWorld/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SpringSecurity/01-HelloWorld/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SpringSecurity/01-HelloWorld/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/.idea/SpringBoot.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/.idea/kotlinc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/01_HelloWorld/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/01_HelloWorld/src/main/java/com/valid/main/FirstSpringApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/01_HelloWorld/src/main/java/com/valid/main/controller/TestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/01_HelloWorld/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/02_config/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/02_config/src/main/java/com/valid/sboot/ConfigSpringApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/02_config/src/main/java/com/valid/sboot/controller/SpringTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/02_config/src/main/java/com/valid/sboot/controller/YamlController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/02_config/src/main/java/com/valid/sboot/model/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/02_config/src/main/java/com/valid/sboot/model/YamlModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/02_config/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/02_config/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/03_属性绑定/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/03_属性绑定/src/main/java/com/valid/BindApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/03_属性绑定/src/main/java/com/valid/controller/YamlController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/03_属性绑定/src/main/java/com/valid/model/AcmeProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/03_属性绑定/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/04_构造器绑定/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/04_构造器绑定/src/main/java/com/valid/BindApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/04_构造器绑定/src/main/java/com/valid/controller/YamlController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/04_构造器绑定/src/main/java/com/valid/model/AcmeProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/04_构造器绑定/src/main/java/com/valid/model/AnotherComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/04_构造器绑定/src/main/java/com/valid/model/OwnerProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/04_构造器绑定/src/main/java/org/valid/service/MyService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/04_构造器绑定/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/05_数据校验/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/05_数据校验/src/main/java/com/valid/BindApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/05_数据校验/src/main/java/com/valid/controller/TestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/05_数据校验/src/main/java/com/valid/model/Person.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/05_数据校验/src/main/java/com/valid/model/ValueProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/05_数据校验/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/06_profile/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/06_profile/src/main/java/com/valid/ProfileApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/06_profile/src/main/java/com/valid/controller/TestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/06_profile/src/main/java/com/valid/model/AcmeProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/06_profile/src/main/resources/application-dev.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/06_profile/src/main/resources/application-pro.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/06_profile/src/main/resources/application.yml.bak" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/07_java_spi/ali-pay/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/07_java_spi/ali-pay/src/main/java/com/valid/impl/AliPay.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/07_java_spi/main-test/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/07_java_spi/main-test/src/main/java/MainTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/07_java_spi/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/07_java_spi/service-common/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/07_java_spi/service-common/src/main/java/org/valid/service/PayService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/07_java_spi/wx-pay/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/07_java_spi/wx-pay/src/main/java/org/valid/service/WxPay.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/SpringBoot.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/day14/day14.iml" beforeDir="false" afterPath="$PROJECT_DIR$/day14/day14.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/day14/src/instance/StreamAPIInstanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/day14/src/instance/StreamAPIInstanceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../小应用/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../小应用/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../小应用/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../小应用/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../小应用/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../小应用/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../小应用/02-爬虫/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../小应用/02-爬虫/src/main/java/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../小应用/05_Appium/05_Appium.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../小应用/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../小应用/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../小应用/小应用.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../数据结构/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../数据结构/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../数据结构/14_策略/src/com/valid/dp/DPTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../数据结构/14_策略/src/com/valid/dp/DPTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../数据结构/14_策略/src/com/valid/dp/Knapsack.java" beforeDir="false" afterPath="$PROJECT_DIR$/../数据结构/14_策略/src/com/valid/dp/Knapsack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../数据结构/14_策略/src/com/valid/dp/LengthOfLIS.java" beforeDir="false" afterPath="$PROJECT_DIR$/../数据结构/14_策略/src/com/valid/dp/LengthOfLIS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../leetcode/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../leetcode/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +122,8 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="jdk.selected.JAVA_MODULE" value="11" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/VBlog/blogserver" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -83,95 +132,96 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/day12/src" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\code\java\基础语法\反射\src" />
+      <recent name="D:\code\java\基础语法\反射" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/day011/src" />
       <recent name="$PROJECT_DIR$/day010" />
-      <recent name="$PROJECT_DIR$/day010/src" />
-      <recent name="$PROJECT_DIR$/day009/src" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="endoperation" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/day12/src" />
-    </key>
   </component>
-  <component name="RunManager" selected="JUnit.OptionalTest.test1">
-    <configuration name="EndOperationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="day14" />
+  <component name="RunManager" selected="JUnit.RegExp08.test3">
+    <configuration name="RegExp07.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="正则表达式" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="endoperation.*" />
+          <option name="PATTERN" value="com.valid.regexp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="endoperation" />
-      <option name="MAIN_CLASS_NAME" value="endoperation.EndOperationTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EndOperationTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="day14" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="endoperation.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="endoperation" />
-      <option name="MAIN_CLASS_NAME" value="endoperation.EndOperationTest" />
+      <option name="PACKAGE_NAME" value="com.valid.regexp" />
+      <option name="MAIN_CLASS_NAME" value="com.valid.regexp.RegExp07" />
       <option name="METHOD_NAME" value="test1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EndOperationTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="day14" />
+    <configuration name="RegExp07.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="正则表达式" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="endoperation.*" />
+          <option name="PATTERN" value="com.valid.regexp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="endoperation" />
-      <option name="MAIN_CLASS_NAME" value="endoperation.EndOperationTest" />
+      <option name="PACKAGE_NAME" value="com.valid.regexp" />
+      <option name="MAIN_CLASS_NAME" value="com.valid.regexp.RegExp07" />
       <option name="METHOD_NAME" value="test2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OptionalTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="day14" />
+    <configuration name="RegExp08.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="正则表达式" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="optional.*" />
+          <option name="PATTERN" value="com.valid.regexp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="optional" />
-      <option name="MAIN_CLASS_NAME" value="optional.OptionalTest" />
-      <option name="METHOD_NAME" value="test" />
+      <option name="PACKAGE_NAME" value="com.valid.regexp" />
+      <option name="MAIN_CLASS_NAME" value="com.valid.regexp.RegExp08" />
+      <option name="METHOD_NAME" value="test1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OptionalTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="day14" />
+    <configuration name="RegExp08.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="正则表达式" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="optional.*" />
+          <option name="PATTERN" value="com.valid.regexp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="optional" />
-      <option name="MAIN_CLASS_NAME" value="optional.OptionalTest" />
-      <option name="METHOD_NAME" value="test1" />
+      <option name="PACKAGE_NAME" value="com.valid.regexp" />
+      <option name="MAIN_CLASS_NAME" value="com.valid.regexp.RegExp08" />
+      <option name="METHOD_NAME" value="test2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RegExp08.test3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="正则表达式" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.valid.regexp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.valid.regexp" />
+      <option name="MAIN_CLASS_NAME" value="com.valid.regexp.RegExp08" />
+      <option name="METHOD_NAME" value="test3" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -179,11 +229,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.OptionalTest.test1" />
-        <item itemvalue="JUnit.OptionalTest.test" />
-        <item itemvalue="JUnit.EndOperationTest.test2" />
-        <item itemvalue="JUnit.EndOperationTest" />
-        <item itemvalue="JUnit.EndOperationTest.test1" />
+        <item itemvalue="JUnit.RegExp08.test3" />
+        <item itemvalue="JUnit.RegExp08.test2" />
+        <item itemvalue="JUnit.RegExp08.test1" />
+        <item itemvalue="JUnit.RegExp07.test2" />
+        <item itemvalue="JUnit.RegExp07.test1" />
       </list>
     </recent_temporary>
   </component>
@@ -204,6 +254,13 @@
       <workItem from="1605500142045" duration="860000" />
       <workItem from="1620134978319" duration="228000" />
       <workItem from="1620215083920" duration="229000" />
+      <workItem from="1621432647216" duration="3656000" />
+      <workItem from="1621468757214" duration="1114000" />
+      <workItem from="1621484521427" duration="3000" />
+      <workItem from="1621653099326" duration="598000" />
+      <workItem from="1621675947195" duration="9325000" />
+      <workItem from="1621735730736" duration="13842000" />
+      <workItem from="1621755185751" duration="30000" />
     </task>
     <servers />
   </component>

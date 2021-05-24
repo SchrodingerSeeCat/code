@@ -16,7 +16,9 @@
       <module fileurl="file://$PROJECT_DIR$/day12/day12.iml" filepath="$PROJECT_DIR$/day12/day12.iml" />
       <module fileurl="file://$PROJECT_DIR$/day13/day13.iml" filepath="$PROJECT_DIR$/day13/day13.iml" />
       <module fileurl="file://$PROJECT_DIR$/day14/day14.iml" filepath="$PROJECT_DIR$/day14/day14.iml" />
+      <module fileurl="file://$PROJECT_DIR$/反射/反射.iml" filepath="$PROJECT_DIR$/反射/反射.iml" />
       <module fileurl="file://$PROJECT_DIR$/基础语法.iml" filepath="$PROJECT_DIR$/基础语法.iml" />
+      <module fileurl="file://$PROJECT_DIR$/正则表达式/正则表达式.iml" filepath="$PROJECT_DIR$/正则表达式/正则表达式.iml" />
     </modules>
   </component>
 </project>
