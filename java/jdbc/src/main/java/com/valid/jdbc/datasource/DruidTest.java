@@ -22,10 +22,4 @@ public class DruidTest {
 
         connection.close();
     }
-    @Test
-    @DisplayName("测试文件路径")
-    public void test2() {
-        System.out.println(DruidTest.class.getResource("/"));
-        System.out.println(DruidTest.class.getResource("/").getFile());
-    }
 }

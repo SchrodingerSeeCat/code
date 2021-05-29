@@ -85,7 +85,7 @@ C --> 字节码文件
 - `HotSpot VM`目前市面上高性能虚拟机的代表作之一
 - 它采用解释起与即时编译器并存的架构
 
-![image-20201119223248764](./JVM.assets/image-20201119223248764.png)
+<img src="https://gitee.com/dingwanli/picture/raw/master/20210525163204.png" style="zoom:80%;" />
 
 ### 1.5 java代码执行流程
 
@@ -145,7 +145,7 @@ A --> |执行|Mac_JVM
 
 ### 2.1 类加载的过程
 
-![image-20201123182326389](JVM.assets/image-20201123182326389.png)
+<img src="D:\code\笔记\java\JVM.assets\image-20201123182326389.png" alt="image-20201123182326389" style="zoom:80%;" />
 
 - 类加载子系统负责从文件系统或者网络中加载`Class`文件，`class`文件在文件开头有特定的文件标识
 - `ClassLoader`只负责`calss`文件的加载，至于它是否可以运行，则由`Execution Engine`决定
